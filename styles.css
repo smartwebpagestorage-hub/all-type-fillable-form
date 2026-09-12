@@ -1,0 +1,1225 @@
+/* ==========================================================================
+   EPFO Composite Claim Form (Death Cases) - Stylesheet
+   Precision Typography, Authentic Borders, Screen & Print Layouts
+   ========================================================================== */
+
+:root {
+  --primary-color: #0284c7;
+  --primary-hover: #0369a1;
+  --success-color: #16a34a;
+  --success-hover: #15803d;
+  --danger-color: #dc2626;
+  --dark-color: #0f172a;
+  --border-color: #000000;
+  --bg-page: #f1f5f9;
+  --sheet-bg: #ffffff;
+  --input-focus: #3b82f6;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-deva: 'Noto Sans Devanagari', 'Inter', sans-serif;
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: #000000;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.35;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hindi / Devanagari font priority for bilingual text */
+.lbl-hi, .form-title-hi, .org-hi, .banner-title-hi, .b-hi, .enc-hi, .sign-title-hi, .sign-designation-hi {
+  font-family: var(--font-deva);
+}
+
+/* ==========================================================================
+   Floating Action Bar (Screen Only)
+   ========================================================================== */
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.epfo-badge {
+  background: #0284c7;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.toolbar-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar-title strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.toolbar-title span {
+  font-size: 11px;
+  color: #94a3b8;
+  font-family: var(--font-deva);
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Paper Size Selector (A4 / Legal) */
+.paper-size-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.switcher-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.size-btn-group {
+  display: inline-flex;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.btn-size-toggle {
+  background: #1e293b;
+  color: #94a3b8;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-size-toggle:hover {
+  background: #334155;
+  color: #ffffff;
+}
+
+.btn-size-toggle.active {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 0 6px rgba(2, 132, 199, 0.5);
+}
+
+/* Toolbar Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s ease-in-out;
+}
+
+.btn svg {
+  flex-shrink: 0;
+}
+
+.btn-secondary {
+  background: #334155;
+  color: #f1f5f9;
+}
+.btn-secondary:hover {
+  background: #475569;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #475569;
+}
+.btn-outline:hover {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #64748b;
+}
+
+.btn-primary {
+  background: #0284c7;
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background: #0369a1;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+}
+
+.btn-success {
+  background: #16a34a;
+  color: #ffffff;
+}
+.btn-success:hover {
+  background: #15803d;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.4);
+}
+
+/* ==========================================================================
+   Paper Sheet Container (A4 / Document Canvas)
+   ========================================================================== */
+.page-container {
+  max-width: 900px;
+  margin: 24px auto 48px auto;
+  background: var(--sheet-bg);
+  padding: 24px 28px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Screen Styles for Legal Mode: Proportional expansion without empty blank bottom */
+body.size-legal .page-container {
+  max-width: 930px;
+  min-height: auto;
+  padding: 28px 34px;
+}
+
+body.size-legal .form-header {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+}
+
+body.size-legal .form-table th, 
+body.size-legal .form-table td {
+  padding: 6px 7px;
+  font-size: 11px;
+}
+
+body.size-legal .lbl-hi {
+  font-size: 11px;
+}
+
+body.size-legal .lbl-en {
+  font-size: 10px;
+}
+
+body.size-legal .sub-lbl-cell, 
+body.size-legal .sub-val-cell {
+  height: 30px;
+}
+
+body.size-legal .r1-option-box, 
+body.size-legal .r1-pension-box {
+  min-height: 56px;
+}
+
+body.size-legal .claimant-row td {
+  height: 32px;
+}
+
+body.size-legal .bank-table td {
+  height: 29px;
+}
+
+body.size-legal .form-textarea {
+  min-height: 60px;
+  font-size: 11px;
+}
+
+body.size-legal .sign-space {
+  height: 65px;
+}
+
+body.size-legal .enclosures-section {
+  padding: 10px 14px;
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+
+body.size-legal .enclosure-list li {
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   Header Layout
+   ========================================================================== */
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
+}
+
+.header-left {
+  width: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.epfo-logo-wrap {
+  display: inline-block;
+}
+
+.epfo-logo-img {
+  width: 76px;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+  display: block;
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.org-hi {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #000000;
+}
+
+.org-en {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.form-title-hi {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.form-title-en {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.form-sub-hi {
+  font-size: 11px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.form-sub-en {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.header-right {
+  width: 145px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.portal-url {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: 0.2px;
+}
+
+.mobile-box {
+  border: 1px solid #000;
+  padding: 4px 6px;
+  width: 100%;
+  background: #ffffff;
+}
+
+.mobile-lbl {
+  display: flex;
+  flex-direction: column;
+  font-size: 9.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+.mobile-field {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Master Tables & Borders
+   ========================================================================== */
+.form-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  border: 1.5px solid var(--border-color);
+  font-size: 10.5px;
+}
+
+.form-table th,
+.form-table td {
+  border: 1px solid var(--border-color);
+  padding: 4px 6px;
+  vertical-align: middle;
+}
+
+.col-sn {
+  width: 32px;
+  min-width: 32px;
+}
+
+.col-desc {
+  width: 44%;
+}
+
+.col-val {
+  width: 52%;
+}
+
+.cell-sn {
+  font-weight: 700;
+  font-size: 11px;
+  background-color: #fafafa;
+}
+
+.cell-desc {
+  font-weight: 500;
+}
+
+.lbl-hi {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.25;
+}
+
+.lbl-en {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: #262626;
+  line-height: 1.2;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Inner Subtables without outer border duplication */
+.inner-subtable {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+.inner-subtable td {
+  border: none;
+  padding: 4px 6px;
+}
+
+.sub-lbl-cell {
+  height: 26px;
+}
+
+.sub-val-cell {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sub-sn {
+  font-weight: 700;
+  font-size: 10.5px;
+}
+
+/* Text helpers */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-uppercase { text-transform: uppercase; }
+.font-bold { font-weight: 700; }
+.font-mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+.font-roman { font-family: 'Times New Roman', serif; }
+.text-italic { font-style: italic; }
+
+/* ==========================================================================
+   Form Input Styles (Clean Screen, Seamless Print)
+   ========================================================================== */
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  color: #000000;
+  font-family: inherit;
+  font-size: 11px;
+  padding: 4px 7px;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.inline-input {
+  display: inline-block;
+  width: auto;
+  min-width: 160px;
+  flex: 1;
+}
+
+.inline-sub-input {
+  flex: 1;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 48px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Row 1: Exactly 4 Columns Layout
+   ========================================================================== */
+.row1-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+.row1-table td {
+  border: none;
+  border-right: 1px solid var(--border-color);
+  padding: 4px 6px;
+  vertical-align: top;
+}
+
+.row1-table td:last-child {
+  border-right: none;
+}
+
+.r1-col-1 {
+  background-color: #fafafa;
+}
+
+.r1-desc-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.r1-sn {
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.r1-desc-text {
+  flex: 1;
+}
+
+.r1-option-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 48px;
+}
+
+.r1-opt-header {
+  font-size: 10px;
+  line-height: 1.25;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.r1-chk-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.paren-wrap {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chk-box {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  accent-color: #0284c7;
+  margin: 0 2px;
+}
+
+.r1-pension-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 48px;
+  gap: 4px;
+}
+
+.r1-pension-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.r1-pension-title {
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.r1-pension-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lbl-pension-type {
+  font-size: 8.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.r1-pension-input {
+  width: 100%;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+.inline-sublbl {
+  font-size: 9.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Row 8: NCP Service Breakdown */
+.ymd-inputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ymd-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.ymd-item .form-input {
+  width: 60px;
+}
+
+.ymd-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Section 11: Claimants Detail Table
+   ========================================================================== */
+.section-container {
+  margin-top: 6px;
+}
+
+.section-header-banner {
+  background: #f1f5f9;
+  border: 1.5px solid var(--border-color);
+  border-bottom: none;
+  text-align: center;
+  padding: 4px 6px;
+}
+
+.banner-title-hi {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.banner-title-en {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.section-instruction-box {
+  border-left: 1.5px solid var(--border-color);
+  border-right: 1.5px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 3px 6px;
+  font-size: 9px;
+  line-height: 1.25;
+  background: #ffffff;
+}
+
+.sub-grid-table th {
+  background: #f8fafc;
+  font-size: 9.5px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  padding: 3px 4px;
+}
+
+.th-sn { width: 34px; }
+.th-name { width: 18%; }
+.th-relation-name { width: 17%; }
+.th-aadhaar { width: 14%; }
+.th-gender { width: 9%; }
+.th-dob { width: 10%; }
+.th-marital { width: 10%; }
+.th-rel-group { width: 22%; }
+.th-rel-sub { width: 11%; font-size: 9px; }
+
+.grid-input {
+  padding: 2px 4px;
+  font-size: 10px;
+  border-radius: 2px;
+}
+
+.table-footnote {
+  font-size: 9.5px;
+  font-weight: 500;
+  padding: 3px 6px;
+  border: 1.5px solid var(--border-color);
+  border-top: none;
+  font-style: italic;
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   Sections 12 & 13: Bank Details Tables
+   ========================================================================== */
+.bank-section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1.5px solid var(--border-color);
+  border-bottom: none;
+  padding: 3px 6px;
+}
+
+.sn-tag {
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.bank-title-wrap {
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.bank-table th {
+  background: #f8fafc;
+  font-size: 9.5px;
+  font-weight: 600;
+  text-align: center;
+  padding: 3px 4px;
+}
+
+.col-bank-label { width: 34%; }
+.col-bank-c1 { width: 22%; }
+.col-bank-c2 { width: 22%; }
+.col-bank-c3 { width: 22%; }
+
+.bank-label-cell {
+  background-color: #fafafa;
+  font-weight: 600;
+}
+
+/* Address Table */
+.address-table {
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   Declarations & Signatures
+   ========================================================================== */
+.signature-section {
+  border: 1.5px solid var(--border-color);
+  border-top: none;
+  padding: 8px 12px;
+  background: #ffffff;
+}
+
+.cert-statement {
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.cert-hi {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.cert-en {
+  font-size: 10px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.sign-columns-wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 10px;
+}
+
+.sign-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.claimant-sign-box {
+  align-items: flex-start;
+}
+
+.employer-sign-box {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.sign-space {
+  height: 48px;
+  width: 100%;
+  position: relative;
+}
+
+.sign-title-hi {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.sign-title-en {
+  font-size: 10px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.sign-name-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.sign-name-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.inline-sign-input {
+  flex: 1;
+  font-size: 11px;
+}
+
+.sign-designation-hi {
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.sign-designation-en {
+  font-size: 9.5px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Enclosures Section
+   ========================================================================== */
+.enclosures-section {
+  border: 1.5px solid var(--border-color);
+  border-top: none;
+  padding: 6px 12px;
+  background: #ffffff;
+  font-size: 9.5px;
+  line-height: 1.35;
+}
+
+.enclosure-title {
+  font-weight: 700;
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+.enclosure-list {
+  padding-left: 18px;
+}
+
+.enclosure-list li {
+  margin-bottom: 2px;
+}
+
+/* ==========================================================================
+   PRINT STYLES: Pixel-Perfect Official Document Output
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 6mm 7mm 6mm 7mm;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 9.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Hide Application Toolbar */
+  .no-print, .app-toolbar {
+    display: none !important;
+  }
+
+  /* Expand Sheet to 100% full paper */
+  .page-container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Ensure crisp black borders */
+  .form-table, 
+  .section-header-banner, 
+  .section-instruction-box, 
+  .table-footnote,
+  .bank-section-header, 
+  .signature-section, 
+  .enclosures-section,
+  .mobile-box {
+    border-color: #000000 !important;
+  }
+
+  .form-table th, 
+  .form-table td {
+    border-color: #000000 !important;
+    padding: 2.5px 4px !important;
+  }
+
+  /* Headers in print */
+  .org-hi { font-size: 14.5px !important; }
+  .org-en { font-size: 11px !important; }
+  .form-title-hi { font-size: 12px !important; }
+  .form-title-en { font-size: 10.5px !important; }
+  .form-sub-hi { font-size: 9.5px !important; }
+  .form-sub-en { font-size: 9px !important; }
+  
+  .epfo-logo-svg {
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  /* Input fields render as natural text / paper lines */
+  .form-input, .form-select, .form-textarea {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    font-size: 9.5px !important;
+    font-weight: 600 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
+
+  /* For blank print: when value is empty, do not show gray border */
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: transparent !important;
+  }
+
+  /* Checkboxes in print */
+  .chk-box {
+    width: 12px !important;
+    height: 12px !important;
+    margin: 0 !important;
+    accent-color: #000000 !important;
+  }
+
+  /* Compact spacing so the entire form fits on 1 official A4 sheet */
+  .form-header {
+    margin-bottom: 4px !important;
+    padding-bottom: 4px !important;
+  }
+
+  .org-hi { font-size: 13px !important; line-height: 1.15 !important; }
+  .org-en { font-size: 10px !important; line-height: 1.15 !important; margin-bottom: 2px !important; }
+  .form-title-hi { font-size: 11px !important; line-height: 1.15 !important; }
+  .form-title-en { font-size: 9.5px !important; line-height: 1.15 !important; margin-bottom: 2px !important; }
+  .form-sub-hi { font-size: 8.5px !important; line-height: 1.15 !important; }
+  .form-sub-en { font-size: 8px !important; line-height: 1.15 !important; }
+  
+  .epfo-logo-img {
+    width: 60px !important;
+    height: auto !important;
+    max-height: 64px !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  .mobile-box {
+    padding: 2px 4px !important;
+  }
+
+  .form-table th, 
+  .form-table td {
+    padding: 1.5px 3px !important;
+    font-size: 8.5px !important;
+    line-height: 1.15 !important;
+  }
+
+  .lbl-hi { font-size: 8.5px !important; line-height: 1.15 !important; }
+  .lbl-en { font-size: 8px !important; line-height: 1.1 !important; }
+
+  .sub-lbl-cell, .sub-val-cell {
+    height: 20px !important;
+  }
+
+  /* Row 1 4-column print styling */
+  .row1-table td {
+    border-right: 1px solid #000 !important;
+    padding: 1.5px 3px !important;
+  }
+
+  .row1-table td:last-child {
+    border-right: none !important;
+  }
+
+  .r1-option-box, .r1-pension-box {
+    min-height: 28px !important;
+  }
+
+  .r1-pension-input {
+    padding: 0 !important;
+    font-size: 8.5px !important;
+  }
+
+  .section-container {
+    margin-top: 3px !important;
+  }
+
+  .section-header-banner {
+    padding: 2px 4px !important;
+  }
+
+  .banner-title-hi { font-size: 9px !important; }
+  .banner-title-en { font-size: 8.5px !important; }
+
+  .section-instruction-box {
+    padding: 2px 4px !important;
+    font-size: 7.5px !important;
+    line-height: 1.15 !important;
+  }
+
+  .sub-grid-table th, .bank-table th {
+    padding: 2px 3px !important;
+    font-size: 8px !important;
+    line-height: 1.15 !important;
+  }
+
+  .grid-input {
+    font-size: 8.5px !important;
+    padding: 0 !important;
+  }
+
+  .table-footnote {
+    font-size: 8px !important;
+    padding: 2px 4px !important;
+  }
+
+  .bank-section-header {
+    padding: 2px 4px !important;
+  }
+
+  .bank-title-wrap {
+    font-size: 8.5px !important;
+  }
+
+  .address-table {
+    margin-top: 3px !important;
+  }
+
+  .form-textarea {
+    min-height: 26px !important;
+    font-size: 8.5px !important;
+    line-height: 1.2 !important;
+  }
+
+  .signature-section {
+    padding: 4px 8px !important;
+  }
+
+  .cert-statement {
+    margin-bottom: 4px !important;
+  }
+
+  .cert-hi { font-size: 9px !important; }
+  .cert-en { font-size: 8px !important; }
+
+  .sign-space {
+    height: 32px !important;
+  }
+
+  .sign-title-hi { font-size: 9px !important; }
+  .sign-title-en { font-size: 8px !important; }
+  .sign-designation-hi { font-size: 8.5px !important; }
+  .sign-designation-en { font-size: 8px !important; }
+
+  .enclosures-section {
+    padding: 3px 8px !important;
+    font-size: 8px !important;
+    line-height: 1.2 !important;
+  }
+
+  .enclosure-title {
+    font-size: 8.5px !important;
+    margin-bottom: 1px !important;
+  }
+
+  .enclosure-list {
+    padding-left: 14px !important;
+  }
+
+  .enclosure-list li {
+    margin-bottom: 0px !important;
+  }
+
+  /* Legal Paper Size Print Enhancements (Balanced single-sheet coverage for 14-inch Legal paper) */
+  body.size-legal {
+    font-size: 9.8px !important;
+    line-height: 1.28 !important;
+  }
+
+  body.size-legal .form-header {
+    margin-bottom: 6px !important;
+    padding-bottom: 6px !important;
+  }
+
+  body.size-legal .org-hi { font-size: 14.5px !important; }
+  body.size-legal .org-en { font-size: 11px !important; }
+  body.size-legal .form-title-hi { font-size: 12.5px !important; }
+  body.size-legal .form-title-en { font-size: 11px !important; }
+
+  body.size-legal .epfo-logo-img {
+    width: 68px !important;
+    max-height: 72px !important;
+  }
+
+  body.size-legal .form-table th, 
+  body.size-legal .form-table td {
+    padding: 3.5px 4px !important;
+    font-size: 9.2px !important;
+    line-height: 1.25 !important;
+  }
+
+  body.size-legal .lbl-hi { font-size: 9.2px !important; }
+  body.size-legal .lbl-en { font-size: 8.5px !important; }
+
+  body.size-legal .sub-lbl-cell, 
+  body.size-legal .sub-val-cell {
+    height: 25px !important;
+  }
+
+  body.size-legal .r1-option-box, 
+  body.size-legal .r1-pension-box {
+    min-height: 44px !important;
+  }
+
+  body.size-legal .claimant-row td {
+    height: 25px !important;
+  }
+
+  body.size-legal .bank-table td {
+    height: 24px !important;
+  }
+
+  body.size-legal .form-textarea {
+    min-height: 44px !important;
+    font-size: 9.5px !important;
+  }
+
+  body.size-legal .sign-space {
+    height: 52px !important;
+  }
+
+  body.size-legal .enclosures-section {
+    padding: 6px 10px !important;
+    font-size: 8.8px !important;
+    line-height: 1.35 !important;
+  }
+
+  body.size-legal .enclosure-list li {
+    margin-bottom: 1.5px !important;
+  }
+}

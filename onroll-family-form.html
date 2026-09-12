@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO On-Roll & Family Description Certificates (ऑन-रोल एवं पारिवारिक विवरण प्रमाणपत्र)</title>
+  
+  <!-- Google Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for direct PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <!-- Shared Portal Navigation & Toolbar Styles -->
+  <link rel="stylesheet" href="portal.css">
+  
+  <!-- Dynamic Print Page Size (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm 10mm 12mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-hover: #0369a1;
+      --border-color: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --bg-page: #f1f5f9;
+      --paper-bg: #ffffff;
+      --line-dotted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Print Paper Container */
+    .printable-document-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 60px 16px;
+      gap: 32px;
+    }
+
+    /* A4 Paper Sheet Representation */
+    .form-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 16mm 18mm 16mm 18mm;
+      background: var(--paper-bg);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+      border-radius: 4px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #000;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+
+    /* Sheet Header Tag (Screen only) */
+    .sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .sheet-1-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+    .sheet-2-badge {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Office Destination (To block) */
+    .recipient-block {
+      margin-bottom: 14px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .recipient-block .to-label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .recipient-block .office-details {
+      margin-left: 28px;
+    }
+
+    /* Subject line */
+    .subject-line {
+      margin: 12px 0 14px 0;
+      font-weight: 700;
+      text-align: justify;
+      line-height: 1.7;
+    }
+
+    /* Salutation */
+    .salutation {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    /* Body Paragraphs */
+    .form-paragraph {
+      text-align: justify;
+      margin-bottom: 12px;
+      line-height: 1.85;
+      font-size: 13.5px;
+    }
+
+    /* Auto-adjusting dotted underline input fields */
+    .fill-field {
+      border: none;
+      border-bottom: 1.5px dotted var(--line-dotted);
+      outline: none;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0b132b;
+      background: rgba(2, 132, 199, 0.03);
+      padding: 1px 4px 0px 4px;
+      min-width: 80px;
+      display: inline-block;
+      vertical-align: baseline;
+      transition: all 0.15s ease-in-out;
+      box-sizing: content-box;
+    }
+
+    .fill-field:hover {
+      background: rgba(2, 132, 199, 0.08);
+      border-bottom-color: var(--primary-color);
+    }
+
+    .fill-field:focus {
+      border-bottom: 2px solid var(--primary-color);
+      background: #f0f9ff;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .fill-field::placeholder {
+      color: #94a3b8;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    /* Prefix text inside dotted areas (like HR/FBD/) */
+    .prefix-span {
+      font-weight: 700;
+      color: #000;
+    }
+
+    /* Beneficiary Table */
+    .table-section {
+      margin: 12px 0 16px 0;
+    }
+    .table-section-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 13.5px;
+    }
+
+    .beneficiary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin-bottom: 6px;
+    }
+
+    .beneficiary-table th,
+    .beneficiary-table td {
+      border: 1px solid #1e293b;
+      padding: 5px 6px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .beneficiary-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.3;
+    }
+
+    .beneficiary-table td input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      padding: 3px 2px;
+    }
+    .beneficiary-table td input:focus {
+      background: #e0f2fe;
+      border-radius: 2px;
+    }
+
+    .beneficiary-table td.col-name input,
+    .beneficiary-table td.col-relation input {
+      text-align: left;
+    }
+
+    .beneficiary-table .col-sn { width: 38px; font-weight: 700; }
+    .beneficiary-table .col-name { width: 26%; }
+    .beneficiary-table .col-relation { width: 18%; }
+    .beneficiary-table .col-dob { width: 14%; }
+    .beneficiary-table .col-aadhar { width: 18%; }
+    .beneficiary-table .col-eligible { width: 16%; }
+    .beneficiary-table .col-action { width: 34px; }
+
+    /* Delete row button inside table */
+    .btn-del-row {
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #ef4444;
+      border-radius: 4px;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.15s;
+    }
+    .btn-del-row:hover {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    /* Add Row Button Container (Below Last Row) */
+    .add-row-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+
+    .btn-add-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0fdf4;
+      border: 1px dashed #22c55e;
+      color: #15803d;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-add-row:hover {
+      background: #dcfce7;
+      border-style: solid;
+      color: #166534;
+      transform: translateY(-1px);
+    }
+
+    /* Signature & Stamp Section */
+    .signature-container {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 10px;
+    }
+
+    .sign-left {
+      line-height: 1.8;
+    }
+
+    .sign-right {
+      text-align: right;
+      line-height: 1.5;
+      min-width: 240px;
+    }
+
+    .sign-seal-box {
+      margin-top: 28px;
+      border-top: 1px solid #94a3b8;
+      padding-top: 4px;
+      font-weight: 700;
+      text-align: right;
+    }
+    .sign-seal-sub {
+      font-size: 11.5px;
+      color: #475569;
+    }
+
+    /* Sync Indicator Banner */
+    .sync-banner {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 210mm;
+      width: 100%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .sync-banner-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    /* Sheet separator for screen view */
+    .sheet-divider {
+      width: 210mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .sheet-divider::before,
+    .sheet-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #cbd5e1;
+    }
+
+    /* Print & PDF Export Rules */
+    @media print {
+      body {
+        padding-top: 0 !important;
+        background: #fff !important;
+      }
+      .no-print,
+      .app-toolbar,
+      .sync-banner,
+      .sheet-divider,
+      .sheet-badge,
+      .add-row-container,
+      .col-action,
+      .btn-del-row {
+        display: none !important;
+      }
+      .printable-document-area {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+      .form-sheet {
+        width: 100% !important;
+        min-height: 275mm !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 8mm 12mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .form-sheet:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      .fill-field {
+        background: transparent !important;
+        border-bottom: 1px dotted #000 !important;
+      }
+      .beneficiary-table th {
+        background: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4">
+
+  <!-- Top Application Action Bar (Same as epfo-death-claim.html) -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <!-- Back to Home Portal Button -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Page Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Form List Dropdown Menu -->
+      <div class="nav-dropdown" id="formListDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnDropdownForms">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
+          <span>Form List (प्रपत्र सूची)</span>
+          <svg class="chevron-icon" width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box">
+          <div class="dropdown-header-tag">
+            <span>Available Forms</span>
+            <span class="badge-count">5 Active</span>
+          </div>
+          
+          <!-- Form 1 -->
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Composite Claim Form (Death Cases)</span>
+              <span class="item-sub">प्रपत्र-20 (PF) / 10-डी (Pension) / 5-आईएफ (EDLI)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 2 (Current) -->
+          <a href="onroll-family-form.html" class="dropdown-item-link active">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#10b981" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">On-Roll & Family Description Form</span>
+              <span class="item-sub">ऑन-रोल एवं पारिवारिक विवरण प्रमाणपत्र (2 Sheets)</span>
+              <span class="item-tag tag-ready">Active Form</span>
+            </div>
+          </a>
+
+          <!-- Form 3 -->
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#f59e0b" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Form 10-D (Monthly Pension)</span>
+              <span class="item-sub">मासिक पेंशन हेतु आवेदन प्रपत्र-10-डी (6 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 4 -->
+          <a href="gar14a-ta-bill.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#8b5cf6" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">G.A.R-14A: TA Bill for Tour</span>
+              <span class="item-sub">यात्रा भत्ता बिल प्रपत्र (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 5 -->
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Composite Claim Form (Aadhar)</span>
+              <span class="item-sub">प्रपत्र-19 / 10-सी / 31 (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <div class="dropdown-divider-line"></div>
+          <div class="dropdown-header-tag">
+            <span>Upcoming Forms</span>
+          </div>
+
+          <div class="dropdown-item-link disabled" title="Coming soon">
+            <div class="item-icon">
+              <svg width="14" height="14" fill="#94a3b8" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Form 19 (PF Final Settlement)</span>
+              <span class="item-sub">प्रपत्र-19 (अंतिम भविष्य निधि निकासी)</span>
+              <span class="item-tag tag-soon">Next to Add</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="epfo-badge" style="background:#047857;">EPFO CERTIFICATE</div>
+      <div class="toolbar-title">
+        <strong>On-Roll & Family Description Certificates</strong>
+        <span>ऑन-रोल एवं विधिक लाभार्थी व पारिवारिक विवरण प्रमाणपत्र (Separate A4 Letters)</span>
+      </div>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Paper Size Selector (A4 / Legal) -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF (A4 / Legal)">
+        <span class="switcher-label">Page Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4" data-size="a4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal" data-size="legal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Fill sample data to test the layout">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+        Fill Sample Data
+      </button>
+
+      <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear all fields to start blank">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        Clear Blank Form
+      </button>
+
+      <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF file">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        Save as PDF
+      </button>
+
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document or Save as PDF via browser print dialog">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        Print Form
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="printable-document-area" id="printableFormArea">
+
+    <!-- Sync Information Banner (Screen Only) -->
+    <div class="sync-banner no-print">
+      <div class="sync-banner-text">
+        <svg width="18" height="18" fill="#047857" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+        <span><strong>Smart Auto-Sync Active:</strong> ऊपर (Sheet 1) में विवरण या लाभार्थी पंक्ति भरने पर नीचे (Sheet 2) का फॉर्म स्वतः भर जाएगा। दोनों फॉर्म अलग-अलग A4 पेज पर प्रिंट होंगे।</span>
+      </div>
+      <span style="font-size: 11px; background:#d1fae5; padding:3px 8px; border-radius:4px; font-weight:700;">2 A4 SHEETS</span>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 1: On Roll & Legal Beneficiary Certificate for Form 20/10D/5IF       -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="sheet1">
+      <div class="sheet-content">
+        <div class="sheet-badge sheet-1-badge no-print">
+          <span>Sheet 1 — On Roll & Legal Beneficiary Certificate</span>
+        </div>
+
+        <!-- Recipient Address (To block) -->
+        <div class="recipient-block">
+          <span class="to-label">To,</span>
+          <div class="office-details">
+            <div>The Regional Provident Fund Commissioner</div>
+            <div>Regional Office, <input type="text" class="fill-field" id="s1_officeLocation" value="Sector-15A, Faridabad" style="width: 170px;" title="Regional Office Location"></div>
+          </div>
+        </div>
+
+        <!-- Subject Line -->
+        <div class="subject-line">
+          Sub:- On Roll &amp; Legal beneficiary Certificate for Form 20/10D/5IF in respect of Late Sh.
+          <input type="text" class="fill-field" id="s1_memberName" placeholder="मृतक कर्मचारी का नाम (Full Name)" style="width: 220px;">
+          bearing P.f Code No. <span class="prefix-span">HR/FBD/</span><input type="text" class="fill-field" id="s1_pfCode" placeholder="PF Code / Member ID" style="width: 140px;">
+        </div>
+
+        <!-- Salutation -->
+        <div class="salutation">Sir,</div>
+
+        <!-- Paragraph 1 -->
+        <div class="form-paragraph">
+          This is to certify that Late
+          <input type="text" class="fill-field" id="s1_memberName2" placeholder="Full Name" style="width: 210px;">
+          S/o-
+          <input type="text" class="fill-field" id="s1_fatherName" placeholder="पिता का नाम (Father's Name)" style="width: 210px;">
+          bearing P.f Code No. <span class="prefix-span">HR/FBD/</span><input type="text" class="fill-field" id="s1_pfCode2" placeholder="PF Code" style="width: 120px;">
+          was on roll till date of death i.e
+          <input type="text" class="fill-field" id="s1_dateOfDeath" placeholder="DD/MM/YYYY" style="width: 110px;">
+          in our establishment M/s-
+          <input type="text" class="fill-field" id="s1_establishmentName" placeholder="प्रतिष्ठान/कंपनी का नाम (Establishment Name)" style="width: 260px;">
+          having P.F Code No. <span class="prefix-span">HR/FBD-</span><input type="text" class="fill-field" id="s1_estPfCode" placeholder="Est. PF Code" style="width: 110px;">
+        </div>
+
+        <!-- Lead-in to Beneficiary Table -->
+        <div class="table-section-title">
+          I further certify that following are the legal beneficiaries for following benefits
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-section">
+          <table class="beneficiary-table" id="tableSheet1">
+            <thead>
+              <tr>
+                <th class="col-sn">S.N</th>
+                <th class="col-name">Name of beneficiary</th>
+                <th class="col-relation">Relation with member</th>
+                <th class="col-dob">DOB</th>
+                <th class="col-aadhar">Aadhar</th>
+                <th class="col-eligible">Eligible for benefits</th>
+                <th class="col-action no-print">हटाएं</th>
+              </tr>
+            </thead>
+            <tbody id="table1Body">
+              <!-- Initial 3 rows match physical form -->
+              <tr>
+                <td class="col-sn">1</td>
+                <td class="col-name"><input type="text" class="ben-name" placeholder="Beneficiary Name"></td>
+                <td class="col-relation"><input type="text" class="ben-relation" placeholder="e.g. Wife / Son"></td>
+                <td class="col-dob"><input type="text" class="ben-dob" placeholder="DD/MM/YYYY"></td>
+                <td class="col-aadhar"><input type="text" class="ben-aadhar" placeholder="12 Digit Aadhaar" maxlength="14"></td>
+                <td class="col-eligible"><input type="text" class="ben-eligible" placeholder="F-20 / 10D / 5IF" value="F-20, 10D, 5IF"></td>
+                <td class="col-action no-print"><button type="button" class="btn-del-row" title="Delete Row" onclick="removeRow(this, 1)">×</button></td>
+              </tr>
+              <tr>
+                <td class="col-sn">2</td>
+                <td class="col-name"><input type="text" class="ben-name" placeholder="Beneficiary Name"></td>
+                <td class="col-relation"><input type="text" class="ben-relation" placeholder="e.g. Son / Daughter"></td>
+                <td class="col-dob"><input type="text" class="ben-dob" placeholder="DD/MM/YYYY"></td>
+                <td class="col-aadhar"><input type="text" class="ben-aadhar" placeholder="12 Digit Aadhaar" maxlength="14"></td>
+                <td class="col-eligible"><input type="text" class="ben-eligible" placeholder="F-20 / 10D / 5IF" value="F-20, 10D, 5IF"></td>
+                <td class="col-action no-print"><button type="button" class="btn-del-row" title="Delete Row" onclick="removeRow(this, 1)">×</button></td>
+              </tr>
+              <tr>
+                <td class="col-sn">3</td>
+                <td class="col-name"><input type="text" class="ben-name" placeholder="Beneficiary Name"></td>
+                <td class="col-relation"><input type="text" class="ben-relation" placeholder="e.g. Daughter / Mother"></td>
+                <td class="col-dob"><input type="text" class="ben-dob" placeholder="DD/MM/YYYY"></td>
+                <td class="col-aadhar"><input type="text" class="ben-aadhar" placeholder="12 Digit Aadhaar" maxlength="14"></td>
+                <td class="col-eligible"><input type="text" class="ben-eligible" placeholder="F-20 / 10D / 5IF" value="F-20, 10D, 5IF"></td>
+                <td class="col-action no-print"><button type="button" class="btn-del-row" title="Delete Row" onclick="removeRow(this, 1)">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Add Row Button Below Last Row -->
+          <div class="add-row-container no-print">
+            <button type="button" class="btn-add-row" onclick="addBeneficiaryRow(1)">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+              <span>+ पंक्ति जोड़ें / Add Beneficiary Row</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Paragraph 2 -->
+        <div class="form-paragraph">
+          Above mentioned legal beneficiaries of the deceased member Late
+          <input type="text" class="fill-field" id="s1_memberName3" placeholder="Member Name" style="width: 190px;">
+          having P.f Code No. <span class="prefix-span">HR/FBD/</span><input type="text" class="fill-field" id="s1_pfCode3" placeholder="PF Code" style="width: 120px;">
+          is eligible for payment form RPFC Faridabad within the provision of Employees Provident Fund &amp; Misc Act, 1952 and there is no matter pending sub-judice over eligibility of legal beneficiaries for F-20/10D/5IF.
+        </div>
+
+        <!-- Paragraph 3 -->
+        <div class="form-paragraph">
+          Further it is stated that regular contributions have been remitted in account of 21 and 10 of EPFO w.r.t the deceased member. It is hereby sated that no exemption for employees or class of employees has been taken from all or any provisions of the EDLI Scheme or pension Scheme and no application has been submitted under para 28 exemption from the provision of EDLI Scheme and Pension Scheme.
+        </div>
+
+        <!-- Paragraph 4 -->
+        <div class="form-paragraph">
+          You are hereby requested that the EDLI/F-20/10D claim may be processed as per above details and establishment will be responsible if any fraudulent or erroneous payment occurs in this regard.
+        </div>
+      </div>
+
+      <!-- Signature & Seal Section -->
+      <div class="signature-container">
+        <div class="sign-left">
+          <div><strong>Date:</strong> <input type="text" class="fill-field" id="s1_formDate" placeholder="DD/MM/YYYY" style="width: 110px;"></div>
+          <div><strong>Place:</strong> <input type="text" class="fill-field" id="s1_formPlace" value="Faridabad" style="width: 120px;"></div>
+        </div>
+        <div class="sign-right">
+          <div><strong>For</strong> <input type="text" class="fill-field" id="s1_signEstName" placeholder="Establishment / Employer Name" style="width: 220px;"></div>
+          <div class="sign-seal-box">
+            <div>Authorized Signatory</div>
+            <div class="sign-seal-sub">(Seal &amp; Signature of Employer)</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- Sheet Separator (Screen Only) -->
+    <div class="sheet-divider no-print">
+      <span>Page Break — Next A4 Sheet Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 2: Family Description Form                                           -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="sheet2">
+      <div class="sheet-content">
+        <div class="sheet-badge sheet-2-badge no-print">
+          <span>Sheet 2 — Family Description Form</span>
+        </div>
+
+        <!-- Recipient Address (To block) -->
+        <div class="recipient-block">
+          <span class="to-label">To,</span>
+          <div class="office-details">
+            <div>The Regional Provident Fund Commissioner</div>
+            <div>Regional Office, <input type="text" class="fill-field" id="s2_officeLocation" value="Sector-15A, Faridabad" style="width: 170px;" title="Regional Office Location"></div>
+          </div>
+        </div>
+
+        <!-- Subject Line -->
+        <div class="subject-line">
+          Sub:- Family description in respect of
+          <input type="text" class="fill-field" id="s2_memberName" placeholder="मृतक कर्मचारी का नाम" style="width: 230px;">
+          bearing P.f Code No.
+          <input type="text" class="fill-field" id="s2_pfCode" placeholder="PF Code / Member ID" style="width: 190px;">
+        </div>
+
+        <!-- Salutation -->
+        <div class="salutation">Sir,</div>
+
+        <!-- Paragraph 1 -->
+        <div class="form-paragraph">
+          This is to certify that
+          <input type="text" class="fill-field" id="s2_memberName2" placeholder="Full Name" style="width: 200px;">
+          S/o-
+          <input type="text" class="fill-field" id="s2_fatherName" placeholder="Father's Name" style="width: 200px;">
+          bearing P.f Code No.
+          <input type="text" class="fill-field" id="s2_pfCode2" placeholder="PF Code" style="width: 140px;">
+          had been working from
+          <input type="text" class="fill-field" id="s2_dateOfJoining" placeholder="DD/MM/YYYY" style="width: 110px;">
+          to till date of death i.e
+          <input type="text" class="fill-field" id="s2_dateOfDeath" placeholder="DD/MM/YYYY" style="width: 110px;">
+          in our establishment M/s-
+          <input type="text" class="fill-field" id="s2_establishmentName" placeholder="Establishment Name" style="width: 250px;">
+          having P.F Code No.
+          <input type="text" class="fill-field" id="s2_estPfCode" placeholder="Est. PF Code" style="width: 130px;">
+          As per our office record. The details of his family member are as below.
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-section">
+          <table class="beneficiary-table" id="tableSheet2">
+            <thead>
+              <tr>
+                <th class="col-sn">S.No.</th>
+                <th class="col-name">Name of beneficiary</th>
+                <th class="col-relation">Relation with member</th>
+                <th class="col-dob">DOB</th>
+                <th class="col-aadhar">Aadhar</th>
+                <th class="col-eligible">Eligible for benefits</th>
+                <th class="col-action no-print">हटाएं</th>
+              </tr>
+            </thead>
+            <tbody id="table2Body">
+              <!-- Initial 3 rows mirror Sheet 1 -->
+              <tr>
+                <td class="col-sn">1</td>
+                <td class="col-name"><input type="text" class="ben-name" placeholder="Beneficiary Name"></td>
+                <td class="col-relation"><input type="text" class="ben-relation" placeholder="Relation"></td>
+                <td class="col-dob"><input type="text" class="ben-dob" placeholder="DOB"></td>
+                <td class="col-aadhar"><input type="text" class="ben-aadhar" placeholder="Aadhaar" maxlength="14"></td>
+                <td class="col-eligible"><input type="text" class="ben-eligible" placeholder="Eligible" value="F-20, 10D, 5IF"></td>
+                <td class="col-action no-print"><button type="button" class="btn-del-row" title="Delete Row" onclick="removeRow(this, 2)">×</button></td>
+              </tr>
+              <tr>
+                <td class="col-sn">2</td>
+                <td class="col-name"><input type="text" class="ben-name" placeholder="Beneficiary Name"></td>
+                <td class="col-relation"><input type="text" class="ben-relation" placeholder="Relation"></td>
+                <td class="col-dob"><input type="text" class="ben-dob" placeholder="DOB"></td>
+                <td class="col-aadhar"><input type="text" class="ben-aadhar" placeholder="Aadhaar" maxlength="14"></td>
+                <td class="col-eligible"><input type="text" class="ben-eligible" placeholder="Eligible" value="F-20, 10D, 5IF"></td>
+                <td class="col-action no-print"><button type="button" class="btn-del-row" title="Delete Row" onclick="removeRow(this, 2)">×</button></td>
+              </tr>
+              <tr>
+                <td class="col-sn">3</td>
+                <td class="col-name"><input type="text" class="ben-name" placeholder="Beneficiary Name"></td>
+                <td class="col-relation"><input type="text" class="ben-relation" placeholder="Relation"></td>
+                <td class="col-dob"><input type="text" class="ben-dob" placeholder="DOB"></td>
+                <td class="col-aadhar"><input type="text" class="ben-aadhar" placeholder="Aadhaar" maxlength="14"></td>
+                <td class="col-eligible"><input type="text" class="ben-eligible" placeholder="Eligible" value="F-20, 10D, 5IF"></td>
+                <td class="col-action no-print"><button type="button" class="btn-del-row" title="Delete Row" onclick="removeRow(this, 2)">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Add Row Button Below Last Row -->
+          <div class="add-row-container no-print">
+            <button type="button" class="btn-add-row" onclick="addBeneficiaryRow(2)">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+              <span>+ पंक्ति जोड़ें / Add Beneficiary Row</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Paragraph 2 -->
+        <div class="form-paragraph">
+          It is informed that the member Sh.
+          <input type="text" class="fill-field" id="s2_memberName3" placeholder="Member Name" style="width: 190px;">
+          had declared dead on
+          <input type="text" class="fill-field" id="s2_dateOfDeath2" placeholder="DD/MM/YYYY" style="width: 110px;">.
+          You are hereby requested that the EDLI/F-20/10D claim may be processed as per above details and establishment will be responsible if any fraudulent or erroneous payment occurs in this regard.
+        </div>
+      </div>
+
+      <!-- Signature & Seal Section -->
+      <div class="signature-container">
+        <div class="sign-left">
+          <div><strong>Date:</strong> <input type="text" class="fill-field" id="s2_formDate" placeholder="DD/MM/YYYY" style="width: 110px;"></div>
+          <div><strong>Place:</strong> <input type="text" class="fill-field" id="s2_formPlace" value="Faridabad" style="width: 120px;"></div>
+        </div>
+        <div class="sign-right">
+          <div><strong>For</strong> <input type="text" class="fill-field" id="s2_signEstName" placeholder="Establishment / Employer Name" style="width: 220px;"></div>
+          <div class="sign-seal-box">
+            <div>Authorized Signatory</div>
+            <div class="sign-seal-sub">(Seal &amp; Signature of Employer)</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Portal Script for Dropdown functionality -->
+  <script src="portal.js"></script>
+
+  <!-- Form Interactions and Auto-Sync Script -->
+  <script>
+    (function () {
+      'use strict';
+
+      // -------------------------------------------------------------
+      // Dynamic Input Width Adjustment ("apne aap space adjust kar le")
+      // -------------------------------------------------------------
+      function adjustWidth(input) {
+        if (!input) return;
+        const val = input.value || input.placeholder || '';
+        const len = Math.max(val.length, 6);
+        // Approx 8.5px per character in 13.5px font
+        const calculatedWidth = Math.max(80, (len + 2) * 8.5);
+        input.style.width = calculatedWidth + 'px';
+      }
+
+      function initFieldAutoWidth() {
+        document.querySelectorAll('.fill-field').forEach(input => {
+          adjustWidth(input);
+          input.addEventListener('input', () => adjustWidth(input));
+        });
+      }
+
+      // -------------------------------------------------------------
+      // Paper Size Toggle (A4 / Legal)
+      // -------------------------------------------------------------
+      const btnSizeA4 = document.getElementById('btnSizeA4');
+      const btnSizeLegal = document.getElementById('btnSizeLegal');
+      const dynamicPageSizeStyle = document.getElementById('dynamicPageSizeStyle');
+
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          document.body.classList.remove('size-a4');
+          document.body.classList.add('size-legal');
+          btnSizeLegal.classList.add('active');
+          btnSizeA4.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: legal portrait;
+              margin: 12mm 15mm 12mm 15mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(sheet => {
+            sheet.style.minHeight = '355.6mm';
+          });
+        } else {
+          document.body.classList.remove('size-legal');
+          document.body.classList.add('size-a4');
+          btnSizeA4.classList.add('active');
+          btnSizeLegal.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: A4 portrait;
+              margin: 10mm 12mm 10mm 12mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(sheet => {
+            sheet.style.minHeight = '297mm';
+          });
+        }
+      }
+
+      btnSizeA4.addEventListener('click', () => setPaperSize('a4'));
+      btnSizeLegal.addEventListener('click', () => setPaperSize('legal'));
+
+      // -------------------------------------------------------------
+      // Real-Time Sync: Sheet 1 Inputs -> Sheet 2 Inputs
+      // -------------------------------------------------------------
+      const syncMap = [
+        // Member name sync
+        { src: 's1_memberName', targets: ['s1_memberName2', 's1_memberName3', 's2_memberName', 's2_memberName2', 's2_memberName3'] },
+        // PF Code sync
+        { src: 's1_pfCode', targets: ['s1_pfCode2', 's1_pfCode3', 's2_pfCode', 's2_pfCode2'] },
+        // Father's name sync
+        { src: 's1_fatherName', targets: ['s2_fatherName'] },
+        // Date of death sync
+        { src: 's1_dateOfDeath', targets: ['s2_dateOfDeath', 's2_dateOfDeath2'] },
+        // Establishment Name sync
+        { src: 's1_establishmentName', targets: ['s2_establishmentName', 's1_signEstName', 's2_signEstName'] },
+        // Establishment PF Code sync
+        { src: 's1_estPfCode', targets: ['s2_estPfCode'] },
+        // Office Location sync
+        { src: 's1_officeLocation', targets: ['s2_officeLocation'] },
+        // Date & Place sync
+        { src: 's1_formDate', targets: ['s2_formDate'] },
+        { src: 's1_formPlace', targets: ['s2_formPlace'] }
+      ];
+
+      syncMap.forEach(rule => {
+        const srcEl = document.getElementById(rule.src);
+        if (srcEl) {
+          srcEl.addEventListener('input', () => {
+            rule.targets.forEach(tgtId => {
+              const tgtEl = document.getElementById(tgtId);
+              if (tgtEl) {
+                tgtEl.value = srcEl.value;
+                adjustWidth(tgtEl);
+              }
+            });
+          });
+        }
+      });
+
+      // -------------------------------------------------------------
+      // Real-Time Table Sync: Table 1 -> Table 2
+      // -------------------------------------------------------------
+      const table1Body = document.getElementById('table1Body');
+      const table2Body = document.getElementById('table2Body');
+
+      function syncTable1ToTable2() {
+        const rows1 = table1Body.querySelectorAll('tr');
+        
+        // Ensure table2 has exact same number of rows
+        while (table2Body.children.length < rows1.length) {
+          addRowToTable(2, false);
+        }
+        while (table2Body.children.length > rows1.length && table2Body.children.length > 0) {
+          table2Body.lastElementChild.remove();
+        }
+
+        // Copy values from each row
+        rows1.forEach((r1, index) => {
+          const r2 = table2Body.children[index];
+          if (!r2) return;
+          r2.querySelector('.col-sn').textContent = (index + 1);
+          
+          const fields = ['ben-name', 'ben-relation', 'ben-dob', 'ben-aadhar', 'ben-eligible'];
+          fields.forEach(f => {
+            const in1 = r1.querySelector('.' + f);
+            const in2 = r2.querySelector('.' + f);
+            if (in1 && in2) {
+              in2.value = in1.value;
+            }
+          });
+        });
+      }
+
+      // Listen for any input in Table 1
+      table1Body.addEventListener('input', () => {
+        syncTable1ToTable2();
+      });
+
+      // -------------------------------------------------------------
+      // Beneficiary Row Management: Add & Remove
+      // -------------------------------------------------------------
+      window.addBeneficiaryRow = function (sheetNum) {
+        addRowToTable(sheetNum, true);
+        if (sheetNum === 1) {
+          syncTable1ToTable2();
+        }
+      };
+
+      function addRowToTable(sheetNum, focusNew) {
+        const tbody = sheetNum === 1 ? table1Body : table2Body;
+        const rowCount = tbody.children.length + 1;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="col-sn">${rowCount}</td>
+          <td class="col-name"><input type="text" class="ben-name" placeholder="Beneficiary Name"></td>
+          <td class="col-relation"><input type="text" class="ben-relation" placeholder="Relation"></td>
+          <td class="col-dob"><input type="text" class="ben-dob" placeholder="DD/MM/YYYY"></td>
+          <td class="col-aadhar"><input type="text" class="ben-aadhar" placeholder="Aadhaar" maxlength="14"></td>
+          <td class="col-eligible"><input type="text" class="ben-eligible" placeholder="Eligible" value="F-20, 10D, 5IF"></td>
+          <td class="col-action no-print"><button type="button" class="btn-del-row" title="Delete Row" onclick="removeRow(this, ${sheetNum})">×</button></td>
+        `;
+        tbody.appendChild(tr);
+
+        if (focusNew) {
+          const firstIn = tr.querySelector('input');
+          if (firstIn) firstIn.focus();
+        }
+      }
+
+      window.removeRow = function (btn, sheetNum) {
+        const row = btn.closest('tr');
+        const tbody = sheetNum === 1 ? table1Body : table2Body;
+        if (tbody.children.length <= 1) {
+          alert('कम से कम एक पंक्ति (row) रहना आवश्यक है।');
+          return;
+        }
+        row.remove();
+        
+        // Renumber remaining rows
+        Array.from(tbody.children).forEach((r, idx) => {
+          r.querySelector('.col-sn').textContent = (idx + 1);
+        });
+
+        if (sheetNum === 1) {
+          syncTable1ToTable2();
+        }
+      };
+
+      // -------------------------------------------------------------
+      // Fill Sample Data (उदाहरणात्मक डेटा)
+      // -------------------------------------------------------------
+      document.getElementById('btnSampleData').addEventListener('click', () => {
+        // Sheet 1 fields
+        const sample = {
+          memberName: 'Mange Ram',
+          pfCode: '58426/102',
+          fatherName: 'Harpal Singh',
+          dateOfDeath: '05/10/2022',
+          dateOfJoining: '01/06/2009',
+          establishmentName: 'Apex Precision Engineering Pvt. Ltd.',
+          estPfCode: '58426',
+          officeLocation: 'Sector-15A, Faridabad',
+          formDate: new Date().toISOString().slice(0, 10).split('-').reverse().join('/'),
+          formPlace: 'Faridabad'
+        };
+
+        document.getElementById('s1_memberName').value = sample.memberName;
+        document.getElementById('s1_pfCode').value = sample.pfCode;
+        document.getElementById('s1_fatherName').value = sample.fatherName;
+        document.getElementById('s1_dateOfDeath').value = sample.dateOfDeath;
+        document.getElementById('s1_establishmentName').value = sample.establishmentName;
+        document.getElementById('s1_estPfCode').value = sample.estPfCode;
+        document.getElementById('s1_officeLocation').value = sample.officeLocation;
+        document.getElementById('s1_formDate').value = sample.formDate;
+        document.getElementById('s1_formPlace').value = sample.formPlace;
+
+        // Sheet 2 specific date
+        document.getElementById('s2_dateOfJoining').value = sample.dateOfJoining;
+
+        // Trigger input event on all sync sources
+        syncMap.forEach(rule => {
+          const srcEl = document.getElementById(rule.src);
+          if (srcEl) {
+            srcEl.dispatchEvent(new Event('input'));
+          }
+        });
+
+        // Fill sample beneficiaries in Table 1
+        const sampleBens = [
+          { name: 'Sunita Devi', relation: 'Wife', dob: '14/08/1975', aadhar: '9845 2310 7712', eligible: 'F-20, 10D, 5IF' },
+          { name: 'Rohit Kumar', relation: 'Son', dob: '22/11/2001', aadhar: '7721 8934 1102', eligible: 'F-20, 10D, 5IF' },
+          { name: 'Pooja Rani', relation: 'Daughter', dob: '05/03/2004', aadhar: '6612 4430 8919', eligible: 'F-20, 10D, 5IF' }
+        ];
+
+        // Reset to 3 rows
+        while (table1Body.children.length < 3) addRowToTable(1, false);
+        while (table1Body.children.length > 3) table1Body.lastElementChild.remove();
+
+        sampleBens.forEach((ben, idx) => {
+          const row = table1Body.children[idx];
+          if (row) {
+            row.querySelector('.ben-name').value = ben.name;
+            row.querySelector('.ben-relation').value = ben.relation;
+            row.querySelector('.ben-dob').value = ben.dob;
+            row.querySelector('.ben-aadhar').value = ben.aadhar;
+            row.querySelector('.ben-eligible').value = ben.eligible;
+          }
+        });
+
+        // Sync to Table 2
+        syncTable1ToTable2();
+
+        // Update all field widths
+        document.querySelectorAll('.fill-field').forEach(input => adjustWidth(input));
+      });
+
+      // -------------------------------------------------------------
+      // Clear Blank Form (फॉर्म खाली करें)
+      // -------------------------------------------------------------
+      document.getElementById('btnClearForm').addEventListener('click', () => {
+        if (!confirm('क्या आप पूरे फॉर्म को रिक्त (Blank) करना चाहते हैं?')) return;
+
+        document.querySelectorAll('.fill-field').forEach(input => {
+          if (input.id !== 's1_officeLocation' && input.id !== 's2_officeLocation' && input.id !== 's1_formPlace' && input.id !== 's2_formPlace') {
+            input.value = '';
+          }
+          adjustWidth(input);
+        });
+
+        // Clear Table 1 & Table 2
+        [table1Body, table2Body].forEach(tbody => {
+          tbody.querySelectorAll('input').forEach(input => {
+            if (input.classList.contains('ben-eligible')) {
+              input.value = 'F-20, 10D, 5IF';
+            } else {
+              input.value = '';
+            }
+          });
+        });
+      });
+
+      // -------------------------------------------------------------
+      // Save as PDF (html2pdf.js)
+      // -------------------------------------------------------------
+      document.getElementById('btnSavePdf').addEventListener('click', function () {
+        const memberName = document.getElementById('s1_memberName').value.trim() || 'Beneficiary_Certificate';
+        const filename = `EPFO_OnRoll_Family_Certificate_${memberName.replace(/\s+/g, '_')}.pdf`;
+
+        const area = document.getElementById('printableFormArea');
+
+        const opt = {
+          margin: [8, 10, 8, 10], // mm [top, left, bottom, right]
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { 
+            scale: 2, 
+            useCORS: true, 
+            letterRendering: true,
+            scrollX: 0,
+            scrollY: 0
+          },
+          jsPDF: { 
+            unit: 'mm', 
+            format: document.body.classList.contains('size-legal') ? 'legal' : 'a4', 
+            orientation: 'portrait' 
+          },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        const btn = this;
+        const originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = `
+          <svg class="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-linecap="round"/></svg>
+          Generating PDF...
+        `;
+
+        html2pdf().set(opt).from(area).save().then(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }).catch(err => {
+          console.error(err);
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+          alert('PDF बनाने में समस्या आई, कृपया सीधे Print Form बटन पर क्लिक करके "Save as PDF" चुनें।');
+        });
+      });
+
+      // -------------------------------------------------------------
+      // Print Form (window.print)
+      // -------------------------------------------------------------
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+      // -------------------------------------------------------------
+      // Auto-Fill from sessionStorage if user came from EPFO Death Claim Form
+      // -------------------------------------------------------------
+      function autoFillFromSession() {
+        try {
+          const stored = sessionStorage.getItem('epfoDeathClaimData');
+          if (stored) {
+            const data = JSON.parse(stored);
+            if (data.deceasedName) {
+              document.getElementById('s1_memberName').value = data.deceasedName;
+            }
+            if (data.pfAccountNo) {
+              document.getElementById('s1_pfCode').value = data.pfAccountNo;
+            }
+            if (data.fatherOrHusbandName) {
+              document.getElementById('s1_fatherName').value = data.fatherOrHusbandName;
+            }
+            if (data.dateOfDeath) {
+              document.getElementById('s1_dateOfDeath').value = data.dateOfDeath;
+            }
+            if (data.establishmentName) {
+              document.getElementById('s1_establishmentName').value = data.establishmentName;
+            }
+            if (data.establishmentCode) {
+              document.getElementById('s1_estPfCode').value = data.establishmentCode;
+            }
+            syncMap.forEach(rule => {
+              const srcEl = document.getElementById(rule.src);
+              if (srcEl) srcEl.dispatchEvent(new Event('input'));
+            });
+          }
+        } catch (e) {
+          console.warn('Could not read from sessionStorage', e);
+        }
+      }
+
+      // Initialize
+      window.addEventListener('DOMContentLoaded', () => {
+        initFieldAutoWidth();
+        autoFillFromSession();
+      });
+
+    })();
+  </script>
+</body>
+</html>

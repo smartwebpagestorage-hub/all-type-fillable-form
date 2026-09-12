@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Composite Claim Form in Death Cases (Forms 20, 10-D, 5-IF)</title>
+  
+  <!-- Fonts: Noto Sans Devanagari and Inter for crisp bilingual display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for direct high-quality PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 5mm 6mm 5mm 6mm;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body class="size-a4">
+
+  <!-- Floating Application Action Bar (Hidden in Print) -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <!-- Back to Home Portal Button -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Page Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Form List Dropdown -->
+      <div class="nav-dropdown" id="formListDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnDropdownForms">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
+          <span>Form List (प्रपत्र सूची)</span>
+          <svg class="chevron-icon" width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+        <div class="dropdown-menu-box">
+          <div class="dropdown-header-tag">
+            <span>Available Forms</span>
+            <span class="badge-count">5 Active</span>
+          </div>
+          
+          <a href="epfo-death-claim.html" class="dropdown-item-link active">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Composite Claim Form (Death Cases)</span>
+              <span class="item-sub">प्रपत्र-20 / 10-डी / 5-आईएफ</span>
+              <span class="item-tag tag-ready">Active Form</span>
+            </div>
+          </a>
+
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#10b981" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">On-Roll & Family Description Form</span>
+              <span class="item-sub">ऑन-रोल एवं पारिवारिक विवरण प्रमाणपत्र (2 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#f59e0b" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Form 10-D (Monthly Pension)</span>
+              <span class="item-sub">मासिक पेंशन हेतु आवेदन प्रपत्र-10-डी (6 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <a href="gar14a-ta-bill.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#8b5cf6" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">G.A.R-14A: TA Bill for Tour</span>
+              <span class="item-sub">यात्रा भत्ता बिल प्रपत्र (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Composite Claim Form (Aadhar)</span>
+              <span class="item-sub">प्रपत्र-19 / 10-सी / 31 (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <div class="dropdown-item-link disabled" title="Coming soon">
+            <div class="item-icon">
+              <svg width="14" height="14" fill="#94a3b8" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Form 31 (PF Advance)</span>
+              <span class="item-sub">प्रपत्र-31 (भविष्य निधि अग्रिम)</span>
+              <span class="item-tag tag-soon">Next to Add</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="epfo-badge">EPFO</div>
+      <div class="toolbar-title">
+        <strong>EPFO Composite Claim Form (Death Cases)</strong>
+        <span>प्रपत्र-20 (भविष्य निधि) / प्रपत्र 10-डी (पेंशन) / प्रपत्र-5 आईएफ (ईडिएलआई)</span>
+      </div>
+    </div>
+    <div class="toolbar-actions">
+      <!-- Paper Size Selector (A4 / Legal) -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF (A4 / Legal)">
+        <span class="switcher-label">Page Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4" data-size="a4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal" data-size="legal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Fill sample data to test the layout">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+        Fill Sample Data
+      </button>
+      <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear all fields to start blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        Clear Blank Form
+      </button>
+      <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF file">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        Save as PDF
+      </button>
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document or Save as PDF via browser print dialog">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        Print Form
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Paper Sheet Container (matches physical A4/Official form page) -->
+  <main class="page-container" id="printableFormArea">
+    <form id="compositeClaimForm" autocomplete="off">
+
+      <!-- Form Header -->
+      <div class="form-header">
+        <div class="header-left">
+          <!-- Official EPFO Emblem Image from image folder -->
+          <div class="epfo-logo-wrap">
+            <img src="image/epfo_logo.png" alt="EPFO Emblem" class="epfo-logo-img">
+          </div>
+        </div>
+
+        <div class="header-center">
+          <h1 class="org-hi">कर्मचारी भविष्य निधि संगठन</h1>
+          <h2 class="org-en">EMPLOYEES PROVIDENT FUNDS ORGANISATION</h2>
+          <div class="form-title-hi">मृत्यु मामले में कम्पोजिट दावा प्रपत्र</div>
+          <div class="form-title-en">COMPOSITE CLAIM FORM IN DEATH CASES</div>
+          <div class="form-sub-hi">प्रपत्र-20 (भविष्य निधि भुगतान) / प्रपत्र 10-डी (पेंशन) / प्रपत्र -5 आईएफ (ईडिएलआई)</div>
+          <div class="form-sub-en">[FORM NO.-20 (PF Payment)/ Form 10-D (PENSION)/ Form-5IF (EDLI)]</div>
+        </div>
+
+        <div class="header-right">
+          <div class="portal-url">www.epfindia.gov.in</div>
+          <div class="mobile-box">
+            <div class="mobile-lbl">
+              <span>मोबाइल नम्बर</span>
+              <span>Mobile Number</span>
+            </div>
+            <div class="mobile-input-wrap">
+              <input type="tel" name="mobileNumber" id="mobileNumber" maxlength="10" placeholder="10 Digits" class="form-input mobile-field">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Form Master Table -->
+      <table class="form-table main-table">
+        <colgroup>
+          <col class="col-sn">
+          <col class="col-desc">
+          <col class="col-val">
+        </colgroup>
+        <tbody>
+
+          <!-- Row 1: Exactly 4 Columns as per official EPFO form -->
+          <tr class="row-1-applicable">
+            <td colspan="3" class="no-padding">
+              <table class="row1-table">
+                <colgroup>
+                  <col style="width: 26%;">
+                  <col style="width: 22%;">
+                  <col style="width: 33%;">
+                  <col style="width: 19%;">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <!-- Column 1: S.N. 1 & Instructions -->
+                    <td class="r1-col r1-col-1">
+                      <div class="r1-desc-content">
+                        <span class="r1-sn">1.</span>
+                        <div class="r1-desc-text">
+                          <div class="lbl-hi">(जो लागू हो, उस पर निशान लगाएं)</div>
+                          <div class="lbl-en">Tick whichever is/are applicable</div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- Column 2: (i) Provident Fund -->
+                    <td class="r1-col r1-col-2">
+                      <div class="r1-option-box">
+                        <div class="r1-opt-header">
+                          <div class="lbl-hi font-bold">(i) भविष्य निधि /</div>
+                          <div class="lbl-en">Provident Fund</div>
+                        </div>
+                        <label class="r1-chk-label">
+                          <span class="paren-wrap">(</span>
+                          <input type="checkbox" name="claimPF" id="claimPF" class="chk-box">
+                          <span class="paren-wrap">)</span>
+                        </label>
+                      </div>
+                    </td>
+
+                    <!-- Column 3: (ii) Pension -->
+                    <td class="r1-col r1-col-3">
+                      <div class="r1-pension-box">
+                        <div class="r1-pension-top">
+                          <div class="r1-pension-title">
+                            <span class="lbl-hi font-bold">(ii) पेंशन / </span>
+                            <span class="lbl-en font-bold">Pension</span>
+                          </div>
+                          <label class="r1-chk-label inline-chk">
+                            <span class="paren-wrap">(</span>
+                            <input type="checkbox" name="claimPension" id="claimPension" class="chk-box">
+                            <span class="paren-wrap">)</span>
+                          </label>
+                        </div>
+                        <div class="r1-pension-bottom">
+                          <div class="lbl-pension-type">
+                            <span class="lbl-hi">पेंशन दावा का प्रकार / </span>
+                            <span class="lbl-en">Type of Pension Claim</span>
+                          </div>
+                          <input type="text" name="pensionClaimType" id="pensionClaimType" class="form-input r1-pension-input" placeholder="e.g. Widow / Children Pension">
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- Column 4: (iii) Insurance EDLI -->
+                    <td class="r1-col r1-col-4">
+                      <div class="r1-option-box">
+                        <div class="r1-opt-header">
+                          <div class="lbl-hi font-bold">(iii) बीमा (ईडिएलआई) /</div>
+                          <div class="lbl-en">Insurance EDLI</div>
+                        </div>
+                        <label class="r1-chk-label">
+                          <span class="paren-wrap">(</span>
+                          <input type="checkbox" name="claimEDLI" id="claimEDLI" class="chk-box">
+                          <span class="paren-wrap">)</span>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Row 2: Name of Deceased Member -->
+          <tr>
+            <td class="cell-sn text-center">2.</td>
+            <td class="cell-desc">
+              <div class="lbl-hi">मृतक सदस्य का नाम (बड़े अक्षरों में)</div>
+              <div class="lbl-en">Name of the deceased member (IN CAPITAL letters)</div>
+            </td>
+            <td class="cell-val">
+              <input type="text" name="deceasedName" id="deceasedName" class="form-input text-uppercase font-bold" placeholder="NAME OF DECEASED MEMBER">
+            </td>
+          </tr>
+
+          <!-- Row 3: Father / Spouse Name -->
+          <tr>
+            <td class="cell-sn text-center">3.</td>
+            <td class="cell-desc no-padding">
+              <table class="inner-subtable">
+                <tr>
+                  <td class="sub-lbl-cell border-bottom">
+                    <div class="lbl-hi">(a) पिता का नाम / <span class="lbl-en">Father's Name</span></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="sub-lbl-cell">
+                    <div class="lbl-hi">(b) पति / पत्नी का नाम / <span class="lbl-en">Spouse's Name</span></div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td class="cell-val no-padding">
+              <table class="inner-subtable">
+                <tr>
+                  <td class="sub-val-cell border-bottom">
+                    <span class="sub-sn">(a)</span>
+                    <input type="text" name="fatherName" id="fatherName" class="form-input inline-sub-input" placeholder="Father's full name">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="sub-val-cell">
+                    <span class="sub-sn">(b)</span>
+                    <input type="text" name="spouseName" id="spouseName" class="form-input inline-sub-input" placeholder="Spouse's full name">
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Row 4: Marital Status -->
+          <tr>
+            <td class="cell-sn text-center">4.</td>
+            <td class="cell-desc">
+              <div class="lbl-hi">मृतक सदस्य की वैवाहिक स्थिति :</div>
+              <div class="lbl-en">Marital status of deceased member :</div>
+            </td>
+            <td class="cell-val">
+              <div class="marital-wrap">
+                <input type="text" name="maritalStatus" id="maritalStatus" class="form-input" list="maritalStatusOptions" placeholder="Married / Unmarried / Widowed / Divorced">
+                <datalist id="maritalStatusOptions">
+                  <option value="विवाहित / Married">
+                  <option value="अविवाहित / Unmarried">
+                  <option value="विधवा/विधुर / Widowed">
+                  <option value="तलाकशुदा / Divorced">
+                </datalist>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Row 5: Aadhaar, UAN, PF Account -->
+          <tr>
+            <td class="cell-sn text-center">5.</td>
+            <td class="cell-desc no-padding" colspan="2">
+              <table class="inner-subtable">
+                <!-- 5 (a) -->
+                <tr>
+                  <td class="col-desc border-bottom">
+                    <div class="lbl-hi">(a) मृतक सदस्य का आधार नंबर (यदि उपलब्ध हो)</div>
+                    <div class="lbl-en">Aadhar Number of the deceased member (if available)</div>
+                  </td>
+                  <td class="col-val border-bottom">
+                    <input type="text" name="deceasedAadhaar" id="deceasedAadhaar" maxlength="14" class="form-input aadhaar-field" placeholder="XXXX XXXX XXXX">
+                  </td>
+                </tr>
+                <!-- 5 (b) UAN -->
+                <tr>
+                  <td class="col-desc border-bottom">
+                    <div class="lbl-hi">(b) यू ए एन / <span class="lbl-en">Universal Account Number (UAN) :</span></div>
+                  </td>
+                  <td class="col-val border-bottom">
+                    <div class="uan-boxes-wrap">
+                      <input type="text" name="deceasedUAN" id="deceasedUAN" maxlength="12" class="form-input uan-field font-mono font-bold" placeholder="100026389870">
+                    </div>
+                  </td>
+                </tr>
+                <!-- 5 (c) PF Account -->
+                <tr>
+                  <td class="col-desc">
+                    <div class="lbl-hi">(c) भविष्य निधि खाता संख्या (यदि यू ए एन उपलब्ध नहीं है) /</div>
+                    <div class="lbl-en">PF Account Number (in case UAN not available)</div>
+                  </td>
+                  <td class="col-val">
+                    <input type="text" name="deceasedPFNo" id="deceasedPFNo" class="form-input font-mono" placeholder="e.g. MH/BAN/0000000/000/0000000">
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Row 6: Date of Leaving Service -->
+          <tr>
+            <td class="cell-sn text-center">6.</td>
+            <td class="cell-desc">
+              <div class="lbl-hi">सेवा छोड़ने की तिथि / <span class="lbl-en">Date of Leaving service :</span></div>
+            </td>
+            <td class="cell-val">
+              <input type="text" name="dateOfLeaving" id="dateOfLeaving" class="form-input date-field" placeholder="DD/MM/YYYY">
+            </td>
+          </tr>
+
+          <!-- Row 7: Scheme Certificate Details -->
+          <tr>
+            <td class="cell-sn text-center" rowspan="3">7.</td>
+            <td class="cell-desc border-bottom">
+              <div class="lbl-hi">(a) क्या स्कीम प्रमाणपत्र जारी किया गया है (हां/नहीं)</div>
+              <div class="lbl-en">(a) Whether Scheme Certificate has been issued (Yes/No)</div>
+            </td>
+            <td class="cell-val border-bottom">
+              <div class="yes-no-options">
+                <input type="text" name="schemeCertIssued" id="schemeCertIssued" class="form-input" list="yesNoOptions" placeholder="Yes / No (हां / नहीं)">
+                <datalist id="yesNoOptions">
+                  <option value="Yes / हां">
+                  <option value="No / नहीं">
+                </datalist>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="cell-desc border-bottom">
+              <div class="lbl-hi">(b) यदि हां, स्कीम प्रमाणपत्र संख्या</div>
+              <div class="lbl-en">(b) If Yes, Number of Scheme Certificate</div>
+            </td>
+            <td class="cell-val border-bottom">
+              <input type="text" name="schemeCertNo" id="schemeCertNo" class="form-input" placeholder="Scheme Certificate No.">
+            </td>
+          </tr>
+          <tr>
+            <td class="cell-desc">
+              <div class="lbl-hi">(c) स्कीम प्रमाणपत्र जारी करने वाले कार्यालय का नाम व पता :</div>
+              <div class="lbl-en">(c) Scheme Certificate issuing office</div>
+            </td>
+            <td class="cell-val">
+              <input type="text" name="schemeCertOffice" id="schemeCertOffice" class="form-input" placeholder="Name & Address of EPFO Issuing Office">
+            </td>
+          </tr>
+
+          <!-- Row 8: Non-Contributory Service -->
+          <tr>
+            <td class="cell-sn text-center">8.</td>
+            <td class="cell-desc">
+              <div class="lbl-hi">गैर अंशदायी सेवा की अवधि (वर्ष / माह / दिन) /</div>
+              <div class="lbl-en">Period of Non-Contributory service (Year/Month/Days) - <span class="text-italic">(To be filled by the employer)</span></div>
+            </td>
+            <td class="cell-val">
+              <div class="ymd-inputs">
+                <div class="ymd-item">
+                  <input type="text" name="ncpYears" id="ncpYears" class="form-input text-center" placeholder="Years">
+                  <span class="ymd-lbl">वर्ष / Yrs</span>
+                </div>
+                <div class="ymd-item">
+                  <input type="text" name="ncpMonths" id="ncpMonths" class="form-input text-center" placeholder="Months">
+                  <span class="ymd-lbl">माह / Mos</span>
+                </div>
+                <div class="ymd-item">
+                  <input type="text" name="ncpDays" id="ncpDays" class="form-input text-center" placeholder="Days">
+                  <span class="ymd-lbl">दिन / Days</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Row 9: Date of Death -->
+          <tr>
+            <td class="cell-sn text-center">9.</td>
+            <td class="cell-desc">
+              <div class="lbl-hi">सदस्य की मृत्यु की तिथि / <span class="lbl-en">Date of death of the member :</span></div>
+            </td>
+            <td class="cell-val">
+              <input type="text" name="dateOfDeath" id="dateOfDeath" class="form-input date-field font-bold" placeholder="DD/MM/YYYY">
+            </td>
+          </tr>
+
+          <!-- Row 10: Died while in Service -->
+          <tr>
+            <td class="cell-sn text-center">10.</td>
+            <td class="cell-desc">
+              <div class="lbl-hi">क्या सदस्य की मृत्यु सेवाकाल के दौरान हुई थी (हां / नहीं)</div>
+              <div class="lbl-en">Whether the member had died while in service (Yes/No) :</div>
+            </td>
+            <td class="cell-val">
+              <input type="text" name="diedInService" id="diedInService" class="form-input" list="yesNoOptions" placeholder="Yes / No (हां / नहीं)">
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <!-- Section 11: Claimant's Details Table -->
+      <div class="section-container" id="sectionClaimants">
+        <div class="section-header-banner">
+          <div class="banner-title-hi">भविष्य निधि पेंशन तथा बीमा (ईडीएलआई) हेतु दावाकर्ता का विवरण</div>
+          <div class="banner-title-en">CLAIMANT'S DETAILS FOR PROVIDENT FUND, PENSION AND INSURANCE (EDLI)</div>
+        </div>
+        <div class="section-instruction-box">
+          <div>* दावाकर्ता अवयस्क / नामित / कानूनी उत्तराधिकारी / वर्तमान परिवार के सदस्य का विवरण जिनके द्वारा दावा प्रस्तुत किया गया है।</div>
+          <div>* Particulars of the claimant/minor/nominee(s)/legal heir(s)/surviving family member on whose the claim is submitted:</div>
+        </div>
+
+        <table class="form-table sub-grid-table claimants-table">
+          <thead>
+            <tr>
+              <th rowspan="2" class="th-sn">क्र.सं.<br>S.N.</th>
+              <th rowspan="2" class="th-name">नाम / Name</th>
+              <th rowspan="2" class="th-relation-name">पिता / Father's /<br>पति-पत्नी का नाम /<br>Spouse's Name</th>
+              <th rowspan="2" class="th-aadhaar">आधार नम्बर /<br>Aadhar Number</th>
+              <th rowspan="2" class="th-gender">लिंग /<br>Gender</th>
+              <th rowspan="2" class="th-dob">जन्म तिथि /<br>Date of Birth</th>
+              <th rowspan="2" class="th-marital">वैवाहिक स्थिति /<br>Marital Status</th>
+              <th colspan="2" class="th-rel-group">संबंध / Relationship with</th>
+            </tr>
+            <tr>
+              <th class="th-rel-sub">सदस्य के /<br>Member</th>
+              <th class="th-rel-sub">अभिभावक /<br>Guardian</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 5 Rows as per the official physical form -->
+            <tr class="claimant-row" data-index="1">
+              <td class="text-center font-bold font-roman">(i)</td>
+              <td><input type="text" name="c1_name" class="form-input grid-input" placeholder="Claimant Name"></td>
+              <td><input type="text" name="c1_parentSpouse" class="form-input grid-input" placeholder="Father/Spouse Name"></td>
+              <td><input type="text" name="c1_aadhaar" maxlength="14" class="form-input grid-input aadhaar-field" placeholder="Aadhaar No."></td>
+              <td>
+                <select name="c1_gender" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Male / पु">Male / पु</option>
+                  <option value="Female / स्त्री">Female / स्त्री</option>
+                  <option value="Other / अन्य">Other / अन्य</option>
+                </select>
+              </td>
+              <td><input type="text" name="c1_dob" class="form-input grid-input date-field" placeholder="DD/MM/YYYY"></td>
+              <td>
+                <select name="c1_marital" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Widow">Widow</option>
+                </select>
+              </td>
+              <td><input type="text" name="c1_relMember" class="form-input grid-input" placeholder="e.g. Widow/Son/Daughter"></td>
+              <td><input type="text" name="c1_relGuardian" class="form-input grid-input" placeholder="If minor"></td>
+            </tr>
+
+            <tr class="claimant-row" data-index="2">
+              <td class="text-center font-bold font-roman">(ii)</td>
+              <td><input type="text" name="c2_name" class="form-input grid-input" placeholder="Claimant Name"></td>
+              <td><input type="text" name="c2_parentSpouse" class="form-input grid-input" placeholder="Father/Spouse Name"></td>
+              <td><input type="text" name="c2_aadhaar" maxlength="14" class="form-input grid-input aadhaar-field" placeholder="Aadhaar No."></td>
+              <td>
+                <select name="c2_gender" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Male / पु">Male / पु</option>
+                  <option value="Female / स्त्री">Female / स्त्री</option>
+                  <option value="Other / अन्य">Other / अन्य</option>
+                </select>
+              </td>
+              <td><input type="text" name="c2_dob" class="form-input grid-input date-field" placeholder="DD/MM/YYYY"></td>
+              <td>
+                <select name="c2_marital" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Widow">Widow</option>
+                </select>
+              </td>
+              <td><input type="text" name="c2_relMember" class="form-input grid-input" placeholder="Relationship"></td>
+              <td><input type="text" name="c2_relGuardian" class="form-input grid-input" placeholder="Guardian"></td>
+            </tr>
+
+            <tr class="claimant-row" data-index="3">
+              <td class="text-center font-bold font-roman">(iii)</td>
+              <td><input type="text" name="c3_name" class="form-input grid-input" placeholder="Claimant Name"></td>
+              <td><input type="text" name="c3_parentSpouse" class="form-input grid-input" placeholder="Father/Spouse Name"></td>
+              <td><input type="text" name="c3_aadhaar" maxlength="14" class="form-input grid-input aadhaar-field" placeholder="Aadhaar No."></td>
+              <td>
+                <select name="c3_gender" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Male / पु">Male / पु</option>
+                  <option value="Female / स्त्री">Female / स्त्री</option>
+                  <option value="Other / अन्य">Other / अन्य</option>
+                </select>
+              </td>
+              <td><input type="text" name="c3_dob" class="form-input grid-input date-field" placeholder="DD/MM/YYYY"></td>
+              <td>
+                <select name="c3_marital" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Widow">Widow</option>
+                </select>
+              </td>
+              <td><input type="text" name="c3_relMember" class="form-input grid-input" placeholder="Relationship"></td>
+              <td><input type="text" name="c3_relGuardian" class="form-input grid-input" placeholder="Guardian"></td>
+            </tr>
+
+            <tr class="claimant-row" data-index="4">
+              <td class="text-center font-bold font-roman">(iv)</td>
+              <td><input type="text" name="c4_name" class="form-input grid-input" placeholder="Claimant Name"></td>
+              <td><input type="text" name="c4_parentSpouse" class="form-input grid-input" placeholder="Father/Spouse Name"></td>
+              <td><input type="text" name="c4_aadhaar" maxlength="14" class="form-input grid-input aadhaar-field" placeholder="Aadhaar No."></td>
+              <td>
+                <select name="c4_gender" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Male / पु">Male / पु</option>
+                  <option value="Female / स्त्री">Female / स्त्री</option>
+                  <option value="Other / अन्य">Other / अन्य</option>
+                </select>
+              </td>
+              <td><input type="text" name="c4_dob" class="form-input grid-input date-field" placeholder="DD/MM/YYYY"></td>
+              <td>
+                <select name="c4_marital" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Widow">Widow</option>
+                </select>
+              </td>
+              <td><input type="text" name="c4_relMember" class="form-input grid-input" placeholder="Relationship"></td>
+              <td><input type="text" name="c4_relGuardian" class="form-input grid-input" placeholder="Guardian"></td>
+            </tr>
+
+            <tr class="claimant-row" data-index="5">
+              <td class="text-center font-bold font-roman">(v)</td>
+              <td><input type="text" name="c5_name" class="form-input grid-input" placeholder="Claimant Name"></td>
+              <td><input type="text" name="c5_parentSpouse" class="form-input grid-input" placeholder="Father/Spouse Name"></td>
+              <td><input type="text" name="c5_aadhaar" maxlength="14" class="form-input grid-input aadhaar-field" placeholder="Aadhaar No."></td>
+              <td>
+                <select name="c5_gender" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Male / पु">Male / पु</option>
+                  <option value="Female / स्त्री">Female / स्त्री</option>
+                  <option value="Other / अन्य">Other / अन्य</option>
+                </select>
+              </td>
+              <td><input type="text" name="c5_dob" class="form-input grid-input date-field" placeholder="DD/MM/YYYY"></td>
+              <td>
+                <select name="c5_marital" class="form-select grid-input">
+                  <option value=""></option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Widow">Widow</option>
+                </select>
+              </td>
+              <td><input type="text" name="c5_relMember" class="form-input grid-input" placeholder="Relationship"></td>
+              <td><input type="text" name="c5_relGuardian" class="form-input grid-input" placeholder="Guardian"></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="table-footnote">
+          In case of more than five family members, the details of family member may be furnished in a separate sheet, duly attested by the employer.
+        </div>
+      </div>
+
+      <!-- Section 12: Bank Details for PF & EDLI -->
+      <div class="section-container" id="sectionBankPF">
+        <div class="bank-section-header">
+          <span class="sn-tag">12.</span>
+          <div class="bank-title-wrap">
+            <span class="b-hi">भविष्य निधि तथा ईडीएलआई (बीमा) के भुगतान हेतु बैंक खाते का विवरण</span> / 
+            <span class="b-en">Bank Account details for payment of PF & EDLI</span>
+          </div>
+        </div>
+
+        <table class="form-table bank-table">
+          <colgroup>
+            <col class="col-bank-label">
+            <col class="col-bank-c1">
+            <col class="col-bank-c2">
+            <col class="col-bank-c3">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="th-bank-desc">
+                <div class="lbl-hi">भुगतान हेतु बैंक खाते का विवरण</div>
+                <div class="lbl-en">Bank Account details for payment</div>
+              </th>
+              <th class="th-claimant-col">
+                <div class="lbl-en">Claimant - I</div>
+                <div class="lbl-hi">दावाकर्ता - I</div>
+              </th>
+              <th class="th-claimant-col">
+                <div class="lbl-en">Claimant - II</div>
+                <div class="lbl-hi">दावाकर्ता - II</div>
+              </th>
+              <th class="th-claimant-col">
+                <div class="lbl-en">Claimant - III</div>
+                <div class="lbl-hi">दावाकर्ता - III</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">नाम / <span class="lbl-en">Name</span></div>
+              </td>
+              <td><input type="text" name="pf_bank_c1_name" class="form-input grid-input" placeholder="Claimant 1 Name"></td>
+              <td><input type="text" name="pf_bank_c2_name" class="form-input grid-input" placeholder="Claimant 2 Name"></td>
+              <td><input type="text" name="pf_bank_c3_name" class="form-input grid-input" placeholder="Claimant 3 Name"></td>
+            </tr>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">बचत बैंक खाता संख्या / <span class="lbl-en">Saving Bank Account No.</span></div>
+              </td>
+              <td><input type="text" name="pf_bank_c1_acc" class="form-input grid-input font-mono" placeholder="Account Number"></td>
+              <td><input type="text" name="pf_bank_c2_acc" class="form-input grid-input font-mono" placeholder="Account Number"></td>
+              <td><input type="text" name="pf_bank_c3_acc" class="form-input grid-input font-mono" placeholder="Account Number"></td>
+            </tr>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">बैंक का नाम व पता / <span class="lbl-en">Name & address of the Bank</span></div>
+              </td>
+              <td><input type="text" name="pf_bank_c1_bank" class="form-input grid-input" placeholder="Bank Name & Branch"></td>
+              <td><input type="text" name="pf_bank_c2_bank" class="form-input grid-input" placeholder="Bank Name & Branch"></td>
+              <td><input type="text" name="pf_bank_c3_bank" class="form-input grid-input" placeholder="Bank Name & Branch"></td>
+            </tr>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">आई एफ एस कोड / <span class="lbl-en">IFS Code of Bank</span></div>
+              </td>
+              <td><input type="text" name="pf_bank_c1_ifsc" maxlength="11" class="form-input grid-input font-mono text-uppercase" placeholder="IFSC Code"></td>
+              <td><input type="text" name="pf_bank_c2_ifsc" maxlength="11" class="form-input grid-input font-mono text-uppercase" placeholder="IFSC Code"></td>
+              <td><input type="text" name="pf_bank_c3_ifsc" maxlength="11" class="form-input grid-input font-mono text-uppercase" placeholder="IFSC Code"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 13: Bank Details for Pension -->
+      <div class="section-container" id="sectionBankPension">
+        <div class="bank-section-header">
+          <span class="sn-tag">13.</span>
+          <div class="bank-title-wrap">
+            <span class="b-hi">पेंशन हेतु बैंक खाते का विवरण</span> / 
+            <span class="b-en">Bank Account details for Pension</span>
+          </div>
+        </div>
+
+        <table class="form-table bank-table">
+          <colgroup>
+            <col class="col-bank-label">
+            <col class="col-bank-c1">
+            <col class="col-bank-c2">
+            <col class="col-bank-c3">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="th-bank-desc">
+                <div class="lbl-hi">भुगतान हेतु बैंक खाते का विवरण</div>
+                <div class="lbl-en">Bank Account details for payment</div>
+              </th>
+              <th class="th-claimant-col">
+                <div class="lbl-en">Claimant - I</div>
+                <div class="lbl-hi">दावाकर्ता - I</div>
+              </th>
+              <th class="th-claimant-col">
+                <div class="lbl-en">Claimant - II</div>
+                <div class="lbl-hi">दावाकर्ता - II</div>
+              </th>
+              <th class="th-claimant-col">
+                <div class="lbl-en">Claimant - III</div>
+                <div class="lbl-hi">दावाकर्ता - III</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">नाम / <span class="lbl-en">Name</span></div>
+              </td>
+              <td><input type="text" name="pension_bank_c1_name" class="form-input grid-input" placeholder="Claimant 1 Name"></td>
+              <td><input type="text" name="pension_bank_c2_name" class="form-input grid-input" placeholder="Claimant 2 Name"></td>
+              <td><input type="text" name="pension_bank_c3_name" class="form-input grid-input" placeholder="Claimant 3 Name"></td>
+            </tr>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">बचत बैंक खाता संख्या / <span class="lbl-en">Saving Bank Account No.</span></div>
+              </td>
+              <td><input type="text" name="pension_bank_c1_acc" class="form-input grid-input font-mono" placeholder="Account Number"></td>
+              <td><input type="text" name="pension_bank_c2_acc" class="form-input grid-input font-mono" placeholder="Account Number"></td>
+              <td><input type="text" name="pension_bank_c3_acc" class="form-input grid-input font-mono" placeholder="Account Number"></td>
+            </tr>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">बैंक का नाम व पता / <span class="lbl-en">Name & address of the Bank</span></div>
+              </td>
+              <td><input type="text" name="pension_bank_c1_bank" class="form-input grid-input" placeholder="Bank Name & Branch"></td>
+              <td><input type="text" name="pension_bank_c2_bank" class="form-input grid-input" placeholder="Bank Name & Branch"></td>
+              <td><input type="text" name="pension_bank_c3_bank" class="form-input grid-input" placeholder="Bank Name & Branch"></td>
+            </tr>
+            <tr>
+              <td class="bank-label-cell">
+                <div class="lbl-hi">आई एफ एस कोड / <span class="lbl-en">IFS Code of Bank</span></div>
+              </td>
+              <td><input type="text" name="pension_bank_c1_ifsc" maxlength="11" class="form-input grid-input font-mono text-uppercase" placeholder="IFSC Code"></td>
+              <td><input type="text" name="pension_bank_c2_ifsc" maxlength="11" class="form-input grid-input font-mono text-uppercase" placeholder="IFSC Code"></td>
+              <td><input type="text" name="pension_bank_c3_ifsc" maxlength="11" class="form-input grid-input font-mono text-uppercase" placeholder="IFSC Code"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Row 14: Full Postal Address -->
+      <table class="form-table address-table">
+        <colgroup>
+          <col class="col-sn">
+          <col class="col-desc">
+          <col class="col-val">
+        </colgroup>
+        <tbody>
+          <tr>
+            <td class="cell-sn text-center">14.</td>
+            <td class="cell-desc">
+              <div class="lbl-hi">दावाकर्ता का पत्र व्यवहार का पता :</div>
+              <div class="lbl-en">Full Postal address of claimant :</div>
+            </td>
+            <td class="cell-val">
+              <textarea name="postalAddress" id="postalAddress" class="form-textarea" rows="2" placeholder="House/Flat No., Street, Area, City/District, State, PIN Code"></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Certification & Signature Section -->
+      <div class="signature-section">
+        <div class="cert-statement">
+          <div class="cert-hi">यह प्रमाणित किया जाता है कि उपर्युक्त विवरण मेरी जानकारी के अनुसार सही है।</div>
+          <div class="cert-en">Certified that the particulars are true to the best of my knowledge.</div>
+        </div>
+
+        <div class="sign-columns-wrap">
+          <!-- Left: Claimant Signature -->
+          <div class="sign-column claimant-sign-box">
+            <div class="sign-space" id="claimantSignSpace">
+              <!-- Dotted or blank space for physical signature or typed name -->
+            </div>
+            <div class="sign-title-hi">दावाकर्ता के हस्ताक्षर</div>
+            <div class="sign-title-en">Claimant's Signature</div>
+            <div class="sign-name-field">
+              <span class="sign-name-lbl">नाम / Name:</span>
+              <input type="text" name="claimantSignName" id="claimantSignName" class="form-input inline-sign-input text-uppercase font-bold" placeholder="NAME OF CLAIMANT">
+            </div>
+          </div>
+
+          <!-- Right: Employer Signature & Seal -->
+          <div class="sign-column employer-sign-box">
+            <div class="sign-space" id="employerSignSpace">
+              <!-- Space for Employer Stamp & Sign -->
+            </div>
+            <div class="sign-title-hi">नियोक्ता का हस्ताक्षर</div>
+            <div class="sign-title-en">Employer's Signature</div>
+            <div class="sign-designation-hi">नियोक्ता का पदनाम एवं मोहर</div>
+            <div class="sign-designation-en">Designation & Seal of Employer</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enclosures Section -->
+      <div class="enclosures-section">
+        <div class="enclosure-title">
+          <span class="enc-hi">संलग्नक</span> / <span class="enc-en">Enclosures:</span>
+        </div>
+        <ol class="enclosure-list">
+          <li>
+            <span class="enc-hi">मृत्यु प्रमाणपत्र</span> / <span class="enc-en">Death Certificate.</span>
+          </li>
+          <li>
+            <span class="enc-hi">सभी दावाकर्ताओं का संयुक्त फोटो</span> / <span class="enc-en">Joint photograph of all the claimants.</span>
+          </li>
+          <li>
+            <span class="enc-hi">दावा करने वाले बच्चों के जन्म का प्रमाणपत्र</span> / <span class="enc-en">Date of Birth certificate of children claiming pension.</span>
+          </li>
+          <li>
+            <span class="enc-hi">योजना प्रमाण (यदि लागू हो)</span> / <span class="enc-en">Scheme Certificate (if applicable).</span>
+          </li>
+          <li>
+            <span class="enc-hi">बैंक खाते के सत्यापन हेतु एक रद्द चैक / पासबुक के पहले पेज की अभिप्रमाणित प्रतिलिपि</span> / 
+            <span class="enc-en">For verification of bank accounts, a copy of cancelled cheque or attested copy of first page of Bank Pass Book.</span>
+          </li>
+        </ol>
+      </div>
+
+    </form>
+  </main>
+
+  <script src="portal.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

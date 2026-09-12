@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G.A.R-14A: Traveling Allowance Bill for Tour (यात्रा भत्ता बिल प्रपत्र)</title>
+  
+  <!-- Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for multi-page PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm 10mm 12mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-hover: #0369a1;
+      --text-main: #000000;
+      --border-color: #000000;
+      --bg-page: #f1f5f9;
+      --paper-bg: #ffffff;
+      --placeholder-color: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Multi-sheet Container */
+    .document-sheets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 80px 16px;
+      gap: 32px;
+    }
+
+    /* Standard A4 Paper Sheet */
+    .form-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 14mm 16mm 14mm 16mm;
+      background: var(--paper-bg);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #000;
+      font-size: 11.5px;
+    }
+
+    /* Screen-only Sheet Badge */
+    .sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      width: fit-content;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    .sheet-footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      padding-top: 8px;
+      border-top: 0.5px solid #ccc;
+      margin-top: 14px;
+    }
+
+    /* Official Form Top Rule & Sub-bill */
+    .gar-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .form-main-title {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      text-decoration: underline;
+    }
+
+    .form-sub-note {
+      text-align: center;
+      font-size: 11px;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .part-title {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-decoration: underline;
+    }
+
+    /* Particulars List (1 to 4) */
+    .details-list {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .details-row {
+      display: flex;
+      margin-bottom: 3px;
+    }
+    .details-label {
+      width: 220px;
+      font-weight: 500;
+    }
+    .details-colon {
+      margin-right: 8px;
+    }
+    .details-val {
+      flex: 1;
+    }
+
+    /* Fillable inline inputs */
+    .fill-input {
+      border: none;
+      border-bottom: 1px dotted #333;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 600;
+      background: rgba(2, 132, 199, 0.02);
+      padding: 1px 4px;
+      color: #000;
+      width: 100%;
+    }
+    .fill-input:focus {
+      border-bottom: 1.5px solid var(--primary-color);
+      background: #f0f9ff;
+    }
+    .fill-input::placeholder {
+      color: var(--placeholder-color);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Official Bordered Tables */
+    .gar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+    .gar-table th,
+    .gar-table td {
+      border: 1px solid #000;
+      padding: 4px 6px;
+      vertical-align: middle;
+    }
+    .gar-table th {
+      font-weight: 700;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    .gar-table td input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px;
+    }
+    .gar-table td input:focus {
+      background: #e0f2fe;
+    }
+
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .font-bold { font-weight: 700; }
+    .uppercase { text-transform: uppercase; }
+
+    /* Journey table column widths */
+    .col-dt { width: 14%; font-size: 10.5px; }
+    .col-place { width: 22%; }
+    .col-mode { width: 12%; text-align: center; }
+    .col-fare { width: 13%; text-align: right; }
+    .col-dist { width: 10%; text-align: center; }
+    .col-del { width: 30px; text-align: center; }
+
+    .btn-row-del {
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      border-radius: 3px;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .btn-add-table-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0fdf4;
+      border: 1px dashed #16a34a;
+      color: #15803d;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+    .btn-add-table-row:hover {
+      background: #dcfce7;
+      border-style: solid;
+    }
+
+    /* Paragraph list items */
+    .para-item {
+      margin-bottom: 8px;
+      line-height: 1.55;
+    }
+
+    /* Part B Bill Section calculation list */
+    .part-b-calc-list {
+      margin: 12px 0 20px 0;
+      line-height: 1.8;
+      font-size: 11.5px;
+    }
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    /* Signatures layout */
+    .signatures-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 36px;
+      font-weight: 600;
+    }
+    .signatures-block-centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+      font-weight: 600;
+    }
+
+    /* Screen-only Sheet Divider */
+    .sheet-divider {
+      width: 210mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #64748b;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .sheet-divider::before,
+    .sheet-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #cbd5e1;
+    }
+
+    /* Print Rules */
+    @media print {
+      body {
+        background: #ffffff !important;
+      }
+      .no-print,
+      .app-toolbar,
+      .sheet-badge,
+      .sheet-divider,
+      .btn-add-table-row,
+      .col-del,
+      .btn-row-del {
+        display: none !important;
+      }
+      .document-sheets-container {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+      .form-sheet {
+        width: 100% !important;
+        min-height: 280mm !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 10mm 14mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .form-sheet:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      .fill-input {
+        background: transparent !important;
+        border-bottom: 0.5px dotted #000 !important;
+      }
+      .fill-input::placeholder {
+        color: transparent !important;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4">
+
+  <!-- Top Application Action Bar -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Form List Dropdown (4 Active Forms) -->
+      <div class="nav-dropdown" id="formListDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnDropdownForms">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
+          <span>Form List (प्रपत्र सूची)</span>
+          <svg class="chevron-icon" width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box">
+          <div class="dropdown-header-tag">
+            <span>Available Forms</span>
+            <span class="badge-count">5 Active</span>
+          </div>
+          
+          <!-- Form 1 -->
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Composite Claim Form (Death Cases)</span>
+              <span class="item-sub">प्रपत्र-20 (PF) / 10-डी (Pension) / 5-आईएफ (EDLI)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 2 -->
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#10b981" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">On-Roll & Family Description Form</span>
+              <span class="item-sub">ऑन-रोल एवं पारिवारिक विवरण प्रमाणपत्र (2 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 3 -->
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#f59e0b" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Form 10-D (Monthly Pension)</span>
+              <span class="item-sub">मासिक पेंशन हेतु आवेदन प्रपत्र-10-डी (6 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 4 (Current) -->
+          <a href="gar14a-ta-bill.html" class="dropdown-item-link active">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#8b5cf6" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">G.A.R-14A: TA Bill for Tour</span>
+              <span class="item-sub">यात्रा भत्ता बिल प्रपत्र (Tour TA Claim)</span>
+              <span class="item-tag tag-ready">Active Form</span>
+            </div>
+          </a>
+
+          <!-- Form 5 -->
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Composite Claim Form (Aadhar)</span>
+              <span class="item-sub">प्रपत्र-19 / 10-सी / 31 (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="epfo-badge" style="background:#7c3aed;">G.A.R-14A</div>
+      <div class="toolbar-title">
+        <strong>Traveling Allowance Bill for Tour (G.A.R-14A)</strong>
+        <span>यात्रा भत्ता बिल प्रपत्र (दौरा) [See Rules 66(1) &amp; 90(1)(i)]</span>
+      </div>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Paper Size Selector -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF">
+        <span class="switcher-label">Page Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Fill sample data from the reference document">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+        Fill Sample Data
+      </button>
+
+      <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear all fields to blank">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        Clear Blank Form
+      </button>
+
+      <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        Save as PDF
+      </button>
+
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        Print Form
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Container -->
+  <main class="document-sheets-container" id="printableFormArea">
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 1: PART-A Page 1                                                    -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page1">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 1 — Part-A Particulars & Tour Journey Details</div>
+
+        <!-- Top Rule & Sub-bill -->
+        <div class="gar-top-header">
+          <span>G.A.R-14A[See Rules 66(1) &amp; 90(1)(i)]</span>
+          <div>
+            Sub-bill No. <input type="text" class="fill-input" id="ta_subBillNo" style="width: 140px; display: inline-block;">
+          </div>
+        </div>
+
+        <h1 class="form-main-title">TRAVELING ALLOWANCE BILL FOR TOUR</h1>
+        <p class="form-sub-note">Note: This bill should be prepared in duplicate, one for payment and other as office copy.</p>
+        <h2 class="part-title">PART-A (TO BE FILLED UP BY THE GOVERNMENT SERVANT)</h2>
+
+        <!-- Employee Particulars List (1 to 4) -->
+        <div class="details-list">
+          <div class="details-row">
+            <span class="details-label">1. Name</span>
+            <span class="details-colon">:</span>
+            <div class="details-val"><input type="text" class="fill-input uppercase" id="ta_name" placeholder="NIRAJ KUMAR" style="font-weight: 700;"></div>
+          </div>
+          <div class="details-row">
+            <span class="details-label">2. Designation</span>
+            <span class="details-colon">:</span>
+            <div class="details-val"><input type="text" class="fill-input uppercase" id="ta_designation" placeholder="SECTION SUPERVISOR" style="font-weight: 700;"></div>
+          </div>
+          <div class="details-row">
+            <span class="details-label">3. Pay</span>
+            <span class="details-colon">:</span>
+            <div class="details-val"><input type="text" class="fill-input" id="ta_pay" placeholder="56900/-" style="font-weight: 700;"></div>
+          </div>
+          <div class="details-row">
+            <span class="details-label">4. Headquarters</span>
+            <span class="details-colon">:</span>
+            <div class="details-val"><input type="text" class="fill-input uppercase" id="ta_hq" placeholder="RO.FARIDABAD" style="font-weight: 700;"></div>
+          </div>
+          <div class="details-row">
+            <span class="details-label" style="padding-left: 14px;">Aadhar No.</span>
+            <span class="details-colon">:</span>
+            <div class="details-val"><input type="text" class="fill-input" id="ta_aadhar" placeholder="9112 8120 6072" style="font-weight: 700;"></div>
+          </div>
+          <div class="details-row">
+            <span class="details-label" style="padding-left: 14px;">Name of Bank &amp; Branch</span>
+            <span class="details-colon">:</span>
+            <div class="details-val"><input type="text" class="fill-input uppercase" id="ta_bankBranch" placeholder="State Bank Of India, Escort Nagar, Faridabad." style="font-weight: 700;"></div>
+          </div>
+          <div class="details-row">
+            <span class="details-label" style="padding-left: 14px;">IFSC Code of Bank</span>
+            <span class="details-colon">:</span>
+            <div class="details-val"><input type="text" class="fill-input uppercase" id="ta_ifsc" placeholder="SBIN0013912" style="font-weight: 700;"></div>
+          </div>
+        </div>
+
+        <!-- Item 5: Journey Table -->
+        <div style="font-weight: 600; margin-bottom: 4px;">5. Details and purpose of journey(s) performed:</div>
+        <table class="gar-table" id="journeyTable">
+          <thead>
+            <tr>
+              <th class="col-dt">Date &amp; time</th>
+              <th class="col-place">From</th>
+              <th class="col-dt">Date &amp; time</th>
+              <th class="col-place">To</th>
+              <th class="col-mode">Mode of travel</th>
+              <th class="col-fare">Fare paid (Rs.)</th>
+              <th class="col-dist">Distance</th>
+              <th class="col-del no-print">हटाएं</th>
+            </tr>
+          </thead>
+          <tbody id="journeyTableBody">
+            <!-- Initial Rows -->
+            <tr>
+              <td><input type="text" class="j-dep-time" placeholder="15.07.2026 8:00 AM"></td>
+              <td><input type="text" class="j-from uppercase" placeholder="SEC-77, FBD RESIDENCE"></td>
+              <td><input type="text" class="j-arr-time" placeholder="15.07.2025 8:30 am"></td>
+              <td><input type="text" class="j-to uppercase" placeholder="BATA CHOWK METRO STS"></td>
+              <td class="text-center"><input type="text" class="j-mode uppercase text-center" placeholder="AUTO"></td>
+              <td class="text-right"><input type="text" class="j-fare text-right" placeholder="200/-"></td>
+              <td class="text-center"><input type="text" class="j-dist text-center" placeholder="8 KM"></td>
+              <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteJourneyRow(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="j-dep-time" placeholder="15.07.2026 8.35 AM"></td>
+              <td><input type="text" class="j-from uppercase" placeholder="BATA CHOWK METRO STS"></td>
+              <td><input type="text" class="j-arr-time" placeholder="15.07.2026 10.20 AM"></td>
+              <td><input type="text" class="j-to uppercase" placeholder="SEC-9 DWARKA METRO STS"></td>
+              <td class="text-center"><input type="text" class="j-mode uppercase text-center" placeholder="METRO"></td>
+              <td class="text-right"><input type="text" class="j-fare text-right" placeholder="64/-"></td>
+              <td class="text-center"><input type="text" class="j-dist text-center"></td>
+              <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteJourneyRow(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="j-dep-time" placeholder="15.07.2026 10.20 AM"></td>
+              <td><input type="text" class="j-from uppercase" placeholder="SEC-9 DWARKA METRO STS"></td>
+              <td><input type="text" class="j-arr-time" placeholder="15.07.2026 10.30 AM"></td>
+              <td><input type="text" class="j-to uppercase" placeholder="NDC NEW DELHI"></td>
+              <td class="text-center"><input type="text" class="j-mode uppercase text-center" placeholder="AUTO"></td>
+              <td class="text-right"><input type="text" class="j-fare text-right" placeholder="200/-"></td>
+              <td class="text-center"><input type="text" class="j-dist text-center"></td>
+              <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteJourneyRow(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="j-dep-time" placeholder="15.07.2026 7.00 PM"></td>
+              <td><input type="text" class="j-from uppercase" placeholder="NDC NEW DELHI"></td>
+              <td><input type="text" class="j-arr-time" placeholder="15.07.2026 7.30 PM"></td>
+              <td><input type="text" class="j-to uppercase" placeholder="SEC-9 DWARKA METRO STS"></td>
+              <td class="text-center"><input type="text" class="j-mode uppercase text-center" placeholder="AUTO"></td>
+              <td class="text-right"><input type="text" class="j-fare text-right" placeholder="200/-"></td>
+              <td class="text-center"><input type="text" class="j-dist text-center"></td>
+              <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteJourneyRow(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="j-dep-time" placeholder="15.07.2026 7.40 PM"></td>
+              <td><input type="text" class="j-from uppercase" placeholder="SEC-9 DWARKA METRO STS"></td>
+              <td><input type="text" class="j-arr-time" placeholder="15.07.2026 10.00 PM"></td>
+              <td><input type="text" class="j-to uppercase" placeholder="BATA CHOWK METRO STS"></td>
+              <td class="text-center"><input type="text" class="j-mode uppercase text-center" placeholder="METRO"></td>
+              <td class="text-right"><input type="text" class="j-fare text-right" placeholder="64/-"></td>
+              <td class="text-center"><input type="text" class="j-dist text-center"></td>
+              <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteJourneyRow(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="j-dep-time" placeholder="15.07.2026 10.30 PM"></td>
+              <td><input type="text" class="j-from uppercase" placeholder="BATA CHOWK METRO STS"></td>
+              <td><input type="text" class="j-arr-time" placeholder="15.07.2026 11.00 PM"></td>
+              <td><input type="text" class="j-to uppercase" placeholder="SEC-77, FBD RESIDENCE"></td>
+              <td class="text-center"><input type="text" class="j-mode uppercase text-center" placeholder="AUTO"></td>
+              <td class="text-right"><input type="text" class="j-fare text-right" placeholder="250/-"></td>
+              <td class="text-center"><input type="text" class="j-dist text-center"></td>
+              <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteJourneyRow(this)">×</button></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="font-weight: 700;">
+              <td colspan="5" class="text-right">TOTAL =</td>
+              <td class="text-right" id="ta_totalCell">
+                <input type="text" class="fill-input text-right font-bold" id="ta_totalVal" placeholder="978/-" style="font-size: 11.5px;">
+              </td>
+              <td></td>
+              <td class="col-del no-print"></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <button type="button" class="btn-add-table-row no-print" onclick="addJourneyRow()">
+          + यात्रा पंक्ति जोड़ें / Add Journey Row
+        </button>
+
+        <div style="margin-bottom: 10px;">
+          The above journey was performed as per Head Office order dated <input type="text" class="fill-input" id="ta_orderDate" style="width: 140px; display: inline-block;">
+        </div>
+
+        <!-- 6. Mode of journey -->
+        <div class="para-item">
+          <strong>6. Mode of journey:</strong>
+          <div style="margin-left: 18px; margin-top: 2px;">
+            <div>(i) Air :</div>
+            <div style="margin-left: 18px;">
+              (a) Exchange voucher arranged by Office : <input type="text" class="fill-input" style="width: 200px; display: inline-block;"><br>
+              (b) Ticket/Exchange voucher arranged by : <input type="text" class="fill-input" style="width: 200px; display: inline-block;">
+            </div>
+            <div style="margin-top: 4px;">(ii) Rail :</div>
+            <div style="margin-left: 18px;">
+              (a) Whether traveled by mail/express/ordinary train? : Whether return ticket was available? <input type="text" class="fill-input" style="width: 140px; display: inline-block;"><br>
+              (b) If available, whether return tickets purchased? If not, state reason. <input type="text" class="fill-input" style="width: 180px; display: inline-block;">
+            </div>
+            <div style="margin-top: 4px;">(iii) Road :</div>
+            <div style="margin-left: 18px;">
+              Mode of conveyance used, i.e. by Govt. transport/by taking taxi, a single seat in a bus or other public conveyance/by sharing with another Govt. servant in a car belonging to him or to a third person to be specified.
+              <input type="text" class="fill-input" style="width: 100%; margin-top: 2px;">
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Date of absence -->
+        <div class="para-item">
+          <strong>7. Date of absence from the place of halt on account of</strong>
+          <div style="margin-left: 18px;">
+            (a) RH &amp; CL : <input type="text" class="fill-input" style="width: 320px; display: inline-block;"><br>
+            (b) Not being actually in the camp on Sundays and holidays. : <input type="text" class="fill-input" style="width: 260px; display: inline-block;">
+          </div>
+        </div>
+
+        <!-- 8. Board & lodging -->
+        <div class="para-item">
+          <strong>8. Dates on which free board and/or lodging provided by the State or any other organization financed by the State Fund.</strong>
+          <div style="margin-left: 18px;">
+            (a) Board only <input type="text" class="fill-input" style="width: 240px; display: inline-block;"><br>
+            (b) Lodging only <input type="text" class="fill-input" style="width: 240px; display: inline-block;"><br>
+            (c) Board and lodging <input type="text" class="fill-input" style="width: 240px; display: inline-block;">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sheet-footer">
+        <span>Page 1 of 3</span>
+      </div>
+    </article>
+
+
+    <div class="sheet-divider no-print">
+      <span>Page Break — Page 2 Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 2: PART-A Continued                                                 -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page2">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 2 — Hotel Charges, Higher Class Accommodation & Verification</div>
+
+        <!-- 9. Hotel Receipts Table -->
+        <div style="margin-bottom: 12px;">
+          <div style="font-weight: 600; margin-bottom: 4px; line-height: 1.45;">
+            9. Particulars to be furnished along with hotel receipts etc. in cases where higher rate of DA is claimed for stay in hotel/other establishments providing board and/or lodging at scheduled tariffs.
+          </div>
+          <table class="gar-table" id="hotelTable">
+            <thead>
+              <tr>
+                <th colspan="2" style="width: 25%;">Period of stay</th>
+                <th rowspan="2" style="width: 35%;">Name of the Hotel/establishment</th>
+                <th rowspan="2" style="width: 20%;">Daily rate of lodging charged</th>
+                <th rowspan="2" style="width: 15%;">Total amount paid</th>
+                <th rowspan="2" class="col-del no-print">हटाएं</th>
+              </tr>
+              <tr>
+                <th style="width: 12.5%;">From</th>
+                <th style="width: 12.5%;">To</th>
+              </tr>
+            </thead>
+            <tbody id="hotelTableBody">
+              <tr>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="uppercase"></td>
+                <td><input type="text" class="text-right"></td>
+                <td><input type="text" class="text-right"></td>
+                <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteTableRow(this)">×</button></td>
+              </tr>
+              <tr>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="uppercase"></td>
+                <td><input type="text" class="text-right"></td>
+                <td><input type="text" class="text-right"></td>
+                <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteTableRow(this)">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn-add-table-row no-print" onclick="addHotelRow()">
+            + होटल पंक्ति जोड़ें / Add Hotel Row
+          </button>
+        </div>
+
+        <!-- 10. Higher Class Accommodation Table -->
+        <div style="margin-bottom: 12px;">
+          <div style="font-weight: 600; margin-bottom: 4px; line-height: 1.45;">
+            10. Particular of journey(s) for which higher class of accommodation than the one to which the Govt. servant is entitled was used:
+          </div>
+          <table class="gar-table" id="higherClassTable">
+            <thead>
+              <tr>
+                <th rowspan="2" style="width: 13%;">Date</th>
+                <th colspan="2" style="width: 32%;">Name of Places</th>
+                <th rowspan="2" style="width: 15%;">Mode of conveyance used</th>
+                <th rowspan="2" style="width: 13%;">Entitle Class</th>
+                <th rowspan="2" style="width: 13%;">Class by which traveled</th>
+                <th rowspan="2" style="width: 14%;">Fare of the entitled Class</th>
+                <th rowspan="2" class="col-del no-print">हटाएं</th>
+              </tr>
+              <tr>
+                <th style="width: 16%;">From</th>
+                <th style="width: 16%;">To</th>
+              </tr>
+            </thead>
+            <tbody id="higherClassTableBody">
+              <tr>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="uppercase"></td>
+                <td><input type="text" class="uppercase"></td>
+                <td><input type="text" class="text-center uppercase"></td>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="text-right"></td>
+                <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteTableRow(this)">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn-add-table-row no-print" onclick="addHigherClassRow()">
+            + पंक्ति जोड़ें / Add Row
+          </button>
+          <div style="font-size: 11px; margin-top: 4px;">
+            If the journey(s) by higher class of accommodation has been performed with the approval of the competent Authority, No and date of the sanction may be quoted.
+            <input type="text" class="fill-input" style="width: 100%; margin-top: 2px;">
+          </div>
+        </div>
+
+        <!-- 11. Road Journey connected by Train Table -->
+        <div style="margin-bottom: 14px;">
+          <div style="font-weight: 600; margin-bottom: 4px; line-height: 1.45;">
+            11. Details of journey(s) performed by road between places connected by train:
+          </div>
+          <table class="gar-table" id="roadTrainTable">
+            <thead>
+              <tr>
+                <th rowspan="2" style="width: 18%;">Date</th>
+                <th colspan="2">Name of Place</th>
+                <th rowspan="2" style="width: 25%;">Fare paid</th>
+                <th rowspan="2" class="col-del no-print">हटाएं</th>
+              </tr>
+              <tr>
+                <th style="width: 28%;">From</th>
+                <th style="width: 28%;">To</th>
+              </tr>
+            </thead>
+            <tbody id="roadTrainTableBody">
+              <tr>
+                <td><input type="text" class="text-center"></td>
+                <td><input type="text" class="uppercase"></td>
+                <td><input type="text" class="uppercase"></td>
+                <td><input type="text" class="text-right"></td>
+                <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteTableRow(this)">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn-add-table-row no-print" onclick="addRoadTrainRow()">
+            + पंक्ति जोड़ें / Add Row
+          </button>
+        </div>
+
+        <!-- 12. Advance drawn & Certification -->
+        <div style="margin-bottom: 24px; line-height: 1.7;">
+          <div>
+            <strong>12. Amount of Advance, if any, drawn:</strong> <input type="text" class="fill-input" id="ta_advance" placeholder="Zero" style="width: 180px; display: inline-block; font-weight: 600;">
+          </div>
+          <div style="margin-top: 14px;">
+            Certified that the information, as given above, is true to the best of my knowledge and belief.
+          </div>
+        </div>
+
+        <!-- Signature -->
+        <div class="signatures-block" style="margin-top: 60px;">
+          <div></div>
+          <div style="text-align: right; min-width: 220px;">
+            <div style="border-top: 1px solid #000; padding-top: 4px; text-align: center; font-weight: 700;">
+              Signature of the Govt. Servant
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sheet-footer">
+        <span>Page 2 of 3</span>
+      </div>
+    </article>
+
+
+    <div class="sheet-divider no-print">
+      <span>Page Break — Page 3 (Bill Section) Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 3: PART-B Bill Section                                              -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page3">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 3 — Part-B Calculation (To be filled in the Bill Section)</div>
+
+        <h2 class="part-title" style="margin-top: 10px; margin-bottom: 16px;">PART-B (To be filled in the Bill Section)</h2>
+
+        <div style="font-size: 12px; margin-bottom: 16px; line-height: 1.6;">
+          The net entitlement on account of Traveling Allowance works out to Rs.
+          <input type="text" class="fill-input text-center font-bold" id="partb_netTop" placeholder="978/-" style="width: 130px; display: inline-block;">
+          as detailed below:-
+        </div>
+
+        <!-- Part B Calculations -->
+        <div class="part-b-calc-list">
+          <div class="calc-row">
+            <span>(a) Railways/Air/Bus/Steamer fare</span>
+            <div>Rs. <input type="text" class="fill-input text-right font-bold" id="partb_fare" placeholder="978/-" style="width: 140px; display: inline-block;"></div>
+          </div>
+          <div class="calc-row">
+            <span>(b) Road Mileage for <input type="text" class="fill-input text-center" style="width: 60px; display: inline-block;"> Km @ Rs. <input type="text" class="fill-input text-center" style="width: 60px; display: inline-block;"> per km</span>
+            <div>Rs. <input type="text" class="fill-input text-right" style="width: 140px; display: inline-block;"></div>
+          </div>
+          
+          <div style="margin-top: 8px;">
+            <div>(c) Daily Allowance:</div>
+            <div class="calc-row" style="margin-left: 24px; margin-top: 2px;">
+              <span>(i) <input type="text" class="fill-input text-center" style="width: 50px; display: inline-block;"> days @ Rs. <input type="text" class="fill-input text-center" style="width: 70px; display: inline-block;"> per day</span>
+              <div></div>
+            </div>
+            <div class="calc-row" style="margin-left: 24px;">
+              <span>(ii) <input type="text" class="fill-input text-center" style="width: 50px; display: inline-block;"> days @ Rs. <input type="text" class="fill-input text-center" style="width: 70px; display: inline-block;"> per day</span>
+              <div></div>
+            </div>
+            <div class="calc-row" style="margin-left: 24px;">
+              <span>(iii) <input type="text" class="fill-input text-center" style="width: 50px; display: inline-block;"> days @ Rs. <input type="text" class="fill-input text-center" style="width: 70px; display: inline-block;"> per day</span>
+              <div>Rs. <input type="text" class="fill-input text-right" style="width: 140px; display: inline-block;"></div>
+            </div>
+          </div>
+
+          <div class="calc-row" style="margin-top: 6px;">
+            <span>(d) Actual expenses</span>
+            <div>Rs. <input type="text" class="fill-input text-right" style="width: 140px; display: inline-block;"></div>
+          </div>
+
+          <div class="calc-row font-bold" style="border-top: 1px solid #000; padding-top: 4px; margin-top: 8px;">
+            <span>Gross amount</span>
+            <div>Rs. <input type="text" class="fill-input text-right font-bold" id="partb_gross" placeholder="978/-" style="width: 140px; display: inline-block;"></div>
+          </div>
+
+          <div class="calc-row">
+            <span>(e) Less: Amount of TA advance drawn, if any</span>
+            <div>Rs. <input type="text" class="fill-input text-right" id="partb_advance" placeholder="0" style="width: 140px; display: inline-block;"></div>
+          </div>
+
+          <div class="calc-row font-bold" style="border-top: 1.5px solid #000; border-bottom: 1.5px solid #000; padding: 6px 0; margin-top: 6px; font-size: 12.5px;">
+            <span>Net Amount</span>
+            <div>Rs. <input type="text" class="fill-input text-right font-bold" id="partb_net" placeholder="978/-" style="width: 140px; display: inline-block;"></div>
+          </div>
+        </div>
+
+        <div style="font-size: 12px; margin-top: 24px; margin-bottom: 40px;">
+          <strong>2. Amount is debatable to</strong> <input type="text" class="fill-input" style="width: 340px; display: inline-block;">
+        </div>
+
+        <!-- Signatures Row 1 -->
+        <div class="signatures-block" style="margin-top: 60px;">
+          <div style="text-align: center; width: 220px;">
+            <div style="border-top: 1px solid #000; padding-top: 4px;">Initial of Bill Clerk</div>
+          </div>
+          <div style="text-align: center; width: 220px;">
+            <div style="border-top: 1px solid #000; padding-top: 4px;">Drawing &amp; Disbursing Officer</div>
+          </div>
+        </div>
+
+        <!-- Signatures Row 2 -->
+        <div class="signatures-block-centered">
+          <div>Countersigned</div>
+          <div style="width: 260px; text-align: center; border-top: 1px solid #000; padding-top: 4px;">
+            Signature of the Controlling Officer
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sheet-footer">
+        <span>Page 3 of 3</span>
+      </div>
+    </article>
+
+  </main>
+
+  <script src="portal.js"></script>
+
+  <!-- Script for G.A.R-14A TA Bill -->
+  <script>
+    (function () {
+      'use strict';
+
+      // -------------------------------------------------------------
+      // Paper Size Selector
+      // -------------------------------------------------------------
+      const btnSizeA4 = document.getElementById('btnSizeA4');
+      const btnSizeLegal = document.getElementById('btnSizeLegal');
+      const dynamicPageSizeStyle = document.getElementById('dynamicPageSizeStyle');
+
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          document.body.classList.remove('size-a4');
+          document.body.classList.add('size-legal');
+          btnSizeLegal.classList.add('active');
+          btnSizeA4.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: legal portrait;
+              margin: 10mm 12mm 10mm 12mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(s => s.style.minHeight = '355.6mm');
+        } else {
+          document.body.classList.remove('size-legal');
+          document.body.classList.add('size-a4');
+          btnSizeA4.classList.add('active');
+          btnSizeLegal.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: A4 portrait;
+              margin: 10mm 12mm 10mm 12mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(s => s.style.minHeight = '297mm');
+        }
+      }
+
+      btnSizeA4.addEventListener('click', () => setPaperSize('a4'));
+      btnSizeLegal.addEventListener('click', () => setPaperSize('legal'));
+
+      // -------------------------------------------------------------
+      // Journey Table Rows & Auto Calculate Total
+      // -------------------------------------------------------------
+      const journeyTableBody = document.getElementById('journeyTableBody');
+      const taTotalVal = document.getElementById('ta_totalVal');
+      const partbFare = document.getElementById('partb_fare');
+      const partbGross = document.getElementById('partb_gross');
+      const partbNet = document.getElementById('partb_net');
+      const partbNetTop = document.getElementById('partb_netTop');
+
+      function calculateTotalFare() {
+        let total = 0;
+        let hasAnyValue = false;
+        journeyTableBody.querySelectorAll('.j-fare').forEach(input => {
+          const raw = (input.value || input.placeholder || '').replace(/[^0-9.]/g, '');
+          const num = parseFloat(raw);
+          if (!isNaN(num)) {
+            total += num;
+            if (input.value) hasAnyValue = true;
+          }
+        });
+
+        if (hasAnyValue) {
+          taTotalVal.value = total + '/-';
+          partbFare.value = total + '/-';
+          partbGross.value = total + '/-';
+          partbNet.value = total + '/-';
+          partbNetTop.value = total + '/-';
+        }
+      }
+
+      journeyTableBody.addEventListener('input', calculateTotalFare);
+
+      window.addJourneyRow = function () {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" class="j-dep-time" placeholder="Date & Time"></td>
+          <td><input type="text" class="j-from uppercase" placeholder="Station From"></td>
+          <td><input type="text" class="j-arr-time" placeholder="Date & Time"></td>
+          <td><input type="text" class="j-to uppercase" placeholder="Station To"></td>
+          <td class="text-center"><input type="text" class="j-mode uppercase text-center" placeholder="Mode"></td>
+          <td class="text-right"><input type="text" class="j-fare text-right" placeholder="0/-"></td>
+          <td class="text-center"><input type="text" class="j-dist text-center"></td>
+          <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteJourneyRow(this)">×</button></td>
+        `;
+        journeyTableBody.appendChild(tr);
+      };
+
+      window.deleteJourneyRow = function (btn) {
+        if (journeyTableBody.children.length <= 1) {
+          alert('कम से कम एक यात्रा पंक्ति रहना आवश्यक है।');
+          return;
+        }
+        btn.closest('tr').remove();
+        calculateTotalFare();
+      };
+
+      window.deleteTableRow = function (btn) {
+        btn.closest('tr').remove();
+      };
+
+      window.addHotelRow = function () {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" class="text-center"></td>
+          <td><input type="text" class="text-center"></td>
+          <td><input type="text" class="uppercase"></td>
+          <td><input type="text" class="text-right"></td>
+          <td><input type="text" class="text-right"></td>
+          <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteTableRow(this)">×</button></td>
+        `;
+        document.getElementById('hotelTableBody').appendChild(tr);
+      };
+
+      window.addHigherClassRow = function () {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" class="text-center"></td>
+          <td><input type="text" class="uppercase"></td>
+          <td><input type="text" class="uppercase"></td>
+          <td><input type="text" class="text-center uppercase"></td>
+          <td><input type="text" class="text-center"></td>
+          <td><input type="text" class="text-center"></td>
+          <td><input type="text" class="text-right"></td>
+          <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteTableRow(this)">×</button></td>
+        `;
+        document.getElementById('higherClassTableBody').appendChild(tr);
+      };
+
+      window.addRoadTrainRow = function () {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" class="text-center"></td>
+          <td><input type="text" class="uppercase"></td>
+          <td><input type="text" class="uppercase"></td>
+          <td><input type="text" class="text-right"></td>
+          <td class="col-del no-print"><button type="button" class="btn-row-del" onclick="deleteTableRow(this)">×</button></td>
+        `;
+        document.getElementById('roadTrainTableBody').appendChild(tr);
+      };
+
+      // -------------------------------------------------------------
+      // Sample Data Loader (Exact values from uploaded TA Bill)
+      // -------------------------------------------------------------
+      document.getElementById('btnSampleData').addEventListener('click', () => {
+        document.getElementById('ta_name').value = 'NIRAJ KUMAR';
+        document.getElementById('ta_designation').value = 'SECTION SUPERVISOR';
+        document.getElementById('ta_pay').value = '56900/-';
+        document.getElementById('ta_hq').value = 'RO.FARIDABAD';
+        document.getElementById('ta_aadhar').value = '9112 8120 6072';
+        document.getElementById('ta_bankBranch').value = 'State Bank Of India, Escort Nagar, Faridabad.';
+        document.getElementById('ta_ifsc').value = 'SBIN0013912';
+
+        const sampleJourneys = [
+          { dep: '15.07.2026 8:00 AM', from: 'SEC-77, FBD RESIDENCE', arr: '15.07.2025 8:30 am', to: 'BATA CHOWK METRO STS', mode: 'AUTO', fare: '200/-', dist: '8 KM' },
+          { dep: '15.07.2026 8.35 AM', from: 'BATA CHOWK METRO STS', arr: '15.07.2026 10.20 AM', to: 'SEC-9 DWARKA METRO STS', mode: 'METRO', fare: '64/-', dist: '' },
+          { dep: '15.07.2026 10.20 AM', from: 'SEC-9 DWARKA METRO STS', arr: '15.07.2026 10.30 AM', to: 'NDC NEW DELHI', mode: 'AUTO', fare: '200/-', dist: '' },
+          { dep: '15.07.2026 7.00 PM', from: 'NDC NEW DELHI', arr: '15.07.2026 7.30 PM', to: 'SEC-9 DWARKA METRO STS', mode: 'AUTO', fare: '200/-', dist: '' },
+          { dep: '15.07.2026 7.40 PM', from: 'SEC-9 DWARKA METRO STS', arr: '15.07.2026 10.00 PM', to: 'BATA CHOWK METRO STS', mode: 'METRO', fare: '64/-', dist: '' },
+          { dep: '15.07.2026 10.30 PM', from: 'BATA CHOWK METRO STS', arr: '15.07.2026 11.00 PM', to: 'SEC-77, FBD RESIDENCE', mode: 'AUTO', fare: '250/-', dist: '' }
+        ];
+
+        while (journeyTableBody.children.length < sampleJourneys.length) addJourneyRow();
+        while (journeyTableBody.children.length > sampleJourneys.length) journeyTableBody.lastElementChild.remove();
+
+        sampleJourneys.forEach((j, idx) => {
+          const row = journeyTableBody.children[idx];
+          row.querySelector('.j-dep-time').value = j.dep;
+          row.querySelector('.j-from').value = j.from;
+          row.querySelector('.j-arr-time').value = j.arr;
+          row.querySelector('.j-to').value = j.to;
+          row.querySelector('.j-mode').value = j.mode;
+          row.querySelector('.j-fare').value = j.fare;
+          row.querySelector('.j-dist').value = j.dist;
+        });
+
+        taTotalVal.value = '978/-';
+        document.getElementById('ta_advance').value = 'Zero';
+
+        // Part B
+        partbNetTop.value = '978/-';
+        partbFare.value = '978/-';
+        partbGross.value = '978/-';
+        document.getElementById('partb_advance').value = '0';
+        partbNet.value = '978/-';
+      });
+
+      // -------------------------------------------------------------
+      // Clear Blank Form
+      // -------------------------------------------------------------
+      document.getElementById('btnClearForm').addEventListener('click', () => {
+        if (!confirm('क्या आप पूरे फॉर्म को रिक्त (Blank) करना चाहते हैं?')) return;
+        document.querySelectorAll('.fill-input').forEach(inp => inp.value = '');
+        journeyTableBody.querySelectorAll('input').forEach(inp => inp.value = '');
+      });
+
+      // -------------------------------------------------------------
+      // Save as PDF
+      // -------------------------------------------------------------
+      document.getElementById('btnSavePdf').addEventListener('click', function () {
+        const empName = document.getElementById('ta_name').value.trim() || 'TA_Bill';
+        const filename = `GAR14A_TA_Bill_${empName.replace(/\s+/g, '_')}.pdf`;
+        const area = document.getElementById('printableFormArea');
+
+        const opt = {
+          margin: [8, 10, 8, 10],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: 'mm', format: document.body.classList.contains('size-legal') ? 'legal' : 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        const btn = this;
+        const originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Generating PDF...';
+
+        html2pdf().set(opt).from(area).save().then(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }).catch(err => {
+          console.error(err);
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+          alert('PDF बनाने में समस्या आई, कृपया Print Form बटन पर क्लिक करके Save as PDF चुनें।');
+        });
+      });
+
+      // -------------------------------------------------------------
+      // Print Form
+      // -------------------------------------------------------------
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+    })();
+  </script>
+</body>
+</html>

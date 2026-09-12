@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Form 10-D: Application for Monthly Pension (कर्मचारी मासिक पेंशन आवेदन प्रपत्र)</title>
+  
+  <!-- Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for multi-page PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm 10mm 12mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-hover: #0369a1;
+      --text-main: #000000;
+      --text-muted: #555555;
+      --border-dark: #000000;
+      --bg-page: #f1f5f9;
+      --paper-bg: #ffffff;
+      --placeholder-color: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container for all 6 A4 sheets */
+    .document-sheets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 80px 16px;
+      gap: 32px;
+    }
+
+    /* Standard A4 Paper Sheet */
+    .form-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 14mm 12mm 14mm;
+      background: var(--paper-bg);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #000;
+      font-size: 11.5px;
+    }
+
+    /* Screen-only Sheet Header Badge */
+    .sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      width: fit-content;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    /* Sheet Footer Matching Official Form */
+    .sheet-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 600;
+      padding-top: 8px;
+      border-top: 0.5px solid #ccc;
+      margin-top: 10px;
+    }
+
+    /* Official Typography & Alignments */
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .font-bold { font-weight: 700; }
+    .uppercase { text-transform: uppercase; }
+
+    /* Form Top Info Bar */
+    .form-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+
+    .mobile-box-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+    }
+
+    .boxed-input {
+      border: 1.5px solid #000;
+      outline: none;
+      padding: 3px 6px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: transparent;
+    }
+
+    .office-use-block {
+      text-align: right;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    /* Main Title Section */
+    .form-heading-block {
+      text-align: center;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .form-heading-block h2 {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+    .form-heading-block h3 {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 1px 0;
+    }
+    .form-heading-block p {
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    /* Two Column Header Table (Points 1 & 2) */
+    .table-two-col-header {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+    }
+    .table-two-col-header td {
+      border: 1px solid #000;
+      padding: 4px 6px;
+      vertical-align: top;
+      width: 50%;
+    }
+    .col-title {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    /* Section 3 Table */
+    .table-sec3 {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+    }
+    .table-sec3 td {
+      border: 1px solid #000;
+      padding: 3px 6px;
+      vertical-align: middle;
+    }
+
+    /* Boxed Single Digit Grid (for dates, account numbers) */
+    .digit-boxes-container {
+      display: inline-flex;
+      border-top: 1px solid #000;
+      border-left: 1px solid #000;
+      vertical-align: middle;
+    }
+    .digit-box-cell {
+      width: 20px;
+      height: 20px;
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 19px;
+      outline: none;
+      background: transparent;
+      padding: 0;
+    }
+    .digit-box-cell:focus {
+      background: #e0f2fe;
+    }
+
+    /* Inline Fillable Inputs */
+    .fill-input {
+      border: none;
+      border-bottom: 1px dotted #333;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 600;
+      background: rgba(2, 132, 199, 0.02);
+      padding: 1px 4px;
+      color: #000;
+      width: 100%;
+    }
+    .fill-input:focus {
+      border-bottom: 1.5px solid var(--primary-color);
+      background: #f0f9ff;
+    }
+    .fill-input::placeholder {
+      color: var(--placeholder-color);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Boxed Fillable Textareas */
+    .fill-textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      background: transparent;
+      resize: vertical;
+      line-height: 1.35;
+    }
+    .fill-textarea::placeholder {
+      color: var(--placeholder-color);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Form Data Grid Tables */
+    .form-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+    .form-data-table th,
+    .form-data-table td {
+      border: 1px solid #000;
+      padding: 3px 5px;
+      vertical-align: middle;
+    }
+    .form-data-table th {
+      font-weight: 700;
+      text-align: center;
+      background: #f8fafc;
+    }
+
+    /* Signature Section */
+    .signature-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 12px;
+      padding-top: 16px;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .signature-item {
+      text-align: center;
+      min-width: 200px;
+    }
+
+    /* Add Row Button (Hidden during print) */
+    .btn-add-table-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0fdf4;
+      border: 1px dashed #16a34a;
+      color: #15803d;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    .btn-add-table-row:hover {
+      background: #dcfce7;
+      border-style: solid;
+    }
+
+    .btn-row-delete {
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      border-radius: 3px;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* Screen-only Sheet Divider */
+    .sheet-divider {
+      width: 210mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #64748b;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .sheet-divider::before,
+    .sheet-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #cbd5e1;
+    }
+
+    /* Print Formatting Rules */
+    @media print {
+      body {
+        padding-top: 0 !important;
+        background: #ffffff !important;
+      }
+      .no-print,
+      .app-toolbar,
+      .sheet-badge,
+      .sheet-divider,
+      .btn-add-table-row,
+      .col-action,
+      .btn-row-delete {
+        display: none !important;
+      }
+      .document-sheets-container {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+      .form-sheet {
+        width: 100% !important;
+        min-height: 280mm !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 8mm 10mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .form-sheet:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      .fill-input {
+        background: transparent !important;
+        border-bottom: 0.5px dotted #000 !important;
+      }
+      .fill-input::placeholder,
+      .fill-textarea::placeholder {
+        color: transparent !important;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4">
+
+  <!-- Top Application Toolbar -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <!-- Back to Home Portal -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Form List Dropdown Menu (3 Active Forms) -->
+      <div class="nav-dropdown" id="formListDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnDropdownForms">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
+          <span>Form List (प्रपत्र सूची)</span>
+          <svg class="chevron-icon" width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box">
+          <div class="dropdown-header-tag">
+            <span>Available Forms</span>
+            <span class="badge-count">5 Active</span>
+          </div>
+          
+          <!-- Form 1 -->
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Composite Claim Form (Death Cases)</span>
+              <span class="item-sub">प्रपत्र-20 (PF) / 10-डी (Pension) / 5-आईएफ (EDLI)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 2 -->
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#10b981" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">On-Roll & Family Description Form</span>
+              <span class="item-sub">ऑन-रोल एवं पारिवारिक विवरण प्रमाणपत्र (2 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 3 (Current) -->
+          <a href="epfo-form-10d.html" class="dropdown-item-link active">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#f59e0b" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Form 10-D (Monthly Pension)</span>
+              <span class="item-sub">मासिक पेंशन हेतु आवेदन प्रपत्र-10-डी (6 Sheets)</span>
+              <span class="item-tag tag-ready">Active Form</span>
+            </div>
+          </a>
+
+          <!-- Form 4 -->
+          <a href="gar14a-ta-bill.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#8b5cf6" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">G.A.R-14A: TA Bill for Tour</span>
+              <span class="item-sub">यात्रा भत्ता बिल प्रपत्र (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 5 -->
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Composite Claim Form (Aadhar)</span>
+              <span class="item-sub">प्रपत्र-19 / 10-सी / 31 (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="epfo-badge" style="background:#b45309;">FORM 10-D</div>
+      <div class="toolbar-title">
+        <strong>Application for Monthly Pension Form-10-D (E.P.S.)</strong>
+        <span>मासिक पेंशन हेतु आवेदन प्रपत्र-10-डी (कर्मचारी पेंशन योजना, 1995)</span>
+      </div>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Paper Size Switcher -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF">
+        <span class="switcher-label">Page Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Fill sample data from the uploaded document">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+        Fill Sample Data
+      </button>
+
+      <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear all fields to blank">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        Clear Blank Form
+      </button>
+
+      <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        Save as PDF
+      </button>
+
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        Print Form
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Multi-Sheet Container -->
+  <main class="document-sheets-container" id="printableFormArea">
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 1: Page 1 of 6                                                      -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page1">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 1 — Personal & Service Particulars (Page 1 of 6)</div>
+
+        <!-- Top Bar: Mobile Number & Office Use -->
+        <div class="form-top-bar">
+          <div class="mobile-box-wrap">
+            <span>मोबाइल सं./ Mobile Number</span>
+            <input type="text" class="boxed-input" id="p1_mobile" placeholder="8052848323" style="width: 220px; text-align: center;" maxlength="15">
+          </div>
+          <div class="office-use-block">
+            <div>(केवल कार्यालय के प्रयोगार्थ) / For Office Use Only</div>
+            <div style="margin-top: 3px;">
+              दावा संख्या / Claim I.D. <input type="text" class="fill-input" id="p1_claimId" placeholder="..................................." style="width: 140px;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Official Header -->
+        <div class="form-heading-block">
+          <h2>मासिक पेंशन हेतु आवेदन प्रपत्र-10-डी (क.पें.यो.)</h2>
+          <h3>APPLICATION FOR MONTHLY PENSION FORM-10-D (E.P.S.)</h3>
+          <h3>कर्मचारी पेंशन योजना, 1995 / (EMPLOYEES' PENSION SCHEME, 1995)</h3>
+          <p>(इस प्रपत्र को भरने से पूर्व अनुदेश पढ़ें) / (Read INSTRUCTIONS before filling In this Form)</p>
+        </div>
+
+        <!-- Two Column Header Table: 1 & 2 -->
+        <table class="table-two-col-header">
+          <tr>
+            <td>
+              <div class="col-title">1. किसके द्वारा पेंशन का दावा किया गया है ?<br><span style="font-size: 10px; font-weight: normal;">By whom the Pension is claimed?</span></div>
+              <input type="text" class="boxed-input uppercase" id="p1_claimedBy" placeholder="VIMLA DEVI (widow)" style="width: 100%;">
+            </td>
+            <td>
+              <div class="col-title">2. दावा की गई पेंशन का प्रकार<br><span style="font-size: 10px; font-weight: normal;">Type of Pension Claimed</span></div>
+              <input type="text" class="boxed-input uppercase" id="p1_pensionType" placeholder="SUPERANNUATION / WIDOW" style="width: 100%;">
+            </td>
+          </tr>
+        </table>
+
+        <!-- Section 3 Table: Member Details -->
+        <table class="table-sec3">
+          <tr>
+            <td style="width: 48%; font-weight: 700;">
+              3. (क) सदस्य का नाम (स्पष्ट अक्षरों में)<br>
+              <span style="font-weight: normal; font-size: 10.5px;">Member's Name (In Block Letters)</span>
+            </td>
+            <td>
+              <input type="text" class="fill-input uppercase" id="p1_memberName" placeholder="PREM CHAND" style="font-weight: 700; font-size: 12.5px;">
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">
+              (ख) लिंग / SEX :
+            </td>
+            <td>
+              <input type="text" class="fill-input uppercase" id="p1_sex" placeholder="MALE" style="width: 120px; font-weight: 700;">
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">
+              (ग) वैवाहिक स्थिति / Marital Status :
+            </td>
+            <td>
+              <input type="text" class="fill-input uppercase" id="p1_maritalStatus" placeholder="MARRIED" style="width: 140px; font-weight: 700;">
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">
+              (घ) जन्म तिथि / आयु / Date of Birth/Age (dd/mm/yyyy) :
+            </td>
+            <td>
+              <div class="digit-boxes-container">
+                <input type="text" class="digit-box-cell" id="p1_dob_1" maxlength="1" placeholder="2">
+                <input type="text" class="digit-box-cell" id="p1_dob_2" maxlength="1" placeholder="0">
+                <input type="text" class="digit-box-cell" id="p1_dob_3" maxlength="1" placeholder="0">
+                <input type="text" class="digit-box-cell" id="p1_dob_4" maxlength="1" placeholder="7">
+                <input type="text" class="digit-box-cell" id="p1_dob_5" maxlength="1" placeholder="1">
+                <input type="text" class="digit-box-cell" id="p1_dob_6" maxlength="1" placeholder="9">
+                <input type="text" class="digit-box-cell" id="p1_dob_7" maxlength="1" placeholder="6">
+                <input type="text" class="digit-box-cell" id="p1_dob_8" maxlength="1" placeholder="9">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">
+              (ङ) पिता / पति का नाम<br>
+              <span style="font-weight: normal; font-size: 10.5px;">Father's/Husband's Name</span>
+            </td>
+            <td>
+              <input type="text" class="fill-input uppercase" id="p1_fatherHusbandName" placeholder="Father or Husband's Name">
+            </td>
+          </tr>
+        </table>
+
+        <!-- Section 4: EPF Account Number Table -->
+        <div style="font-weight: 700; margin-bottom: 2px;">4. क. भ. नि. खाता संख्या / E.P.F. Account Number :</div>
+        <table class="form-data-table" style="text-align: center; margin-bottom: 8px;">
+          <thead>
+            <tr>
+              <th style="width: 18%;">क्षे. कोड<br>RO</th>
+              <th style="width: 18%;">का. कोड<br>OFFICE</th>
+              <th style="width: 34%;">संस्थापन कोड नं.<br>Establishment Code No.</th>
+              <th style="width: 30%;">सदस्य का खाता सं.<br>Member's Ac.No.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" class="fill-input uppercase text-center" id="p1_epf_ro" placeholder="HR" style="font-weight: 700;"></td>
+              <td><input type="text" class="fill-input uppercase text-center" id="p1_epf_office" placeholder="FBD" style="font-weight: 700;"></td>
+              <td><input type="text" class="fill-input uppercase text-center" id="p1_epf_estCode" placeholder="3908" style="font-weight: 700;"></td>
+              <td><input type="text" class="fill-input uppercase text-center" id="p1_epf_memberNo" placeholder="144" style="font-weight: 700;"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Section 5: Establishment Name & Address -->
+        <table class="table-sec3" style="margin-bottom: 8px;">
+          <tr>
+            <td style="width: 48%; font-weight: 700;">
+              5. स्थापना का नाम व पता जहाँ सदस्य अन्त में नियोजित था<br>
+              <span style="font-weight: normal; font-size: 10.5px;">Name &amp; Address of the Establishment in which the member was last employed</span>
+            </td>
+            <td>
+              <textarea class="fill-textarea uppercase" id="p1_estAddress" rows="2" placeholder="M/S SANDEN VIKAS (INDIA) LTD&#10;PO BOX N.-98, 65/27-A, FARIDABAD"></textarea>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Section 6, 7, 8 -->
+        <table class="table-sec3" style="margin-bottom: 8px;">
+          <tr>
+            <td style="width: 48%; font-weight: 700;">
+              6. सेवा त्यागने की तिथि / Date of leaving Service (dd/mm/yyyy) :
+            </td>
+            <td>
+              <div class="digit-boxes-container">
+                <input type="text" class="digit-box-cell" id="p1_dol_1" maxlength="1" placeholder="1">
+                <input type="text" class="digit-box-cell" id="p1_dol_2" maxlength="1" placeholder="1">
+                <input type="text" class="digit-box-cell" id="p1_dol_3" maxlength="1" placeholder="0">
+                <input type="text" class="digit-box-cell" id="p1_dol_4" maxlength="1" placeholder="2">
+                <input type="text" class="digit-box-cell" id="p1_dol_5" maxlength="1" placeholder="2">
+                <input type="text" class="digit-box-cell" id="p1_dol_6" maxlength="1" placeholder="0">
+                <input type="text" class="digit-box-cell" id="p1_dol_7" maxlength="1" placeholder="1">
+                <input type="text" class="digit-box-cell" id="p1_dol_8" maxlength="1" placeholder="0">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">
+              7. सेवा त्यागने का कारण / Reason of leaving Service
+            </td>
+            <td>
+              <input type="text" class="fill-input uppercase" id="p1_reasonLeaving" placeholder="RETIRMENT" style="font-weight: 700;">
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; vertical-align: top;">
+              8. पत्र व्यवहार हेतु पता / Address for communication
+            </td>
+            <td>
+              <textarea class="fill-textarea uppercase" id="p1_commAddress" rows="2" placeholder="VILL- BHULBHULAIYA PUR, MAHSAIYAN&#10;PO- THATHIA, TIRWA, KANNAUJ,&#10;UTTAR PRADESH"></textarea>
+              <div style="margin-top: 4px; display: flex; align-items: center; gap: 6px;">
+                <span style="font-weight: 700;">पिन / Pin :</span>
+                <input type="text" class="boxed-input" id="p1_commPin" placeholder="209734" style="width: 100px; text-align: center;" maxlength="6">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; vertical-align: top;">
+              8.(क) न्यून दर पेंशन (समयपूर्व पेंशन) के मामले में पेंशन प्रारम्भ करने हेतु विकल्प की तिथि<br>
+              <span style="font-weight: normal; font-size: 10px;">(a) In case of reduced pension (opted date for commencement of pension.)</span>
+            </td>
+            <td>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <div>
+                  <span style="font-size: 10px; display: block;">दिनांक /Date</span>
+                  <div class="digit-boxes-container">
+                    <input type="text" class="digit-box-cell" id="p1_red_d1" maxlength="1">
+                    <input type="text" class="digit-box-cell" id="p1_red_d2" maxlength="1">
+                  </div>
+                </div>
+                <div>
+                  <span style="font-size: 10px; display: block;">माह /Month</span>
+                  <div class="digit-boxes-container">
+                    <input type="text" class="digit-box-cell" id="p1_red_m1" maxlength="1">
+                    <input type="text" class="digit-box-cell" id="p1_red_m2" maxlength="1">
+                  </div>
+                </div>
+                <div>
+                  <span style="font-size: 10px; display: block;">वर्ष /Year</span>
+                  <div class="digit-boxes-container">
+                    <input type="text" class="digit-box-cell" id="p1_red_y1" maxlength="1">
+                    <input type="text" class="digit-box-cell" id="p1_red_y2" maxlength="1">
+                    <input type="text" class="digit-box-cell" id="p1_red_y3" maxlength="1">
+                    <input type="text" class="digit-box-cell" id="p1_red_y4" maxlength="1">
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Signature Section Page 1 -->
+        <div class="signature-row">
+          <div class="signature-item">
+            <div>सदस्य/आवेदक के हस्ताक्षर / Signature of member/applicant</div>
+          </div>
+          <div class="signature-item">
+            <div>नियोक्ता के हस्ताक्षर / Signature of Employee's</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>Form 10D (www.epfindia.gov.in)</span>
+        <span>Page 1 of 6</span>
+      </div>
+    </article>
+
+
+    <div class="sheet-divider no-print">
+      <span>Page Break — Page 2 of 6 Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 2: Page 2 of 6                                                      -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page2">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 2 — Family Particulars & Bank Details (Page 2 of 6)</div>
+
+        <!-- Section 9: Commutation -->
+        <div style="margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="width: 65%; font-weight: 700;">
+              9. # राशि के 1/3 भाग के सारांशीकरण का विकल्प<br>
+              <span style="font-weight: normal; font-size: 10.5px;">Option for commutation of 1/3 of Pension</span><br>
+              <span style="font-weight: normal; font-size: 10px;">(यदि कम सारांशीकरण के लिये विकल्प दिया गया हो तो राशि का उल्लेख करें)<br>(If option is for lesser Commutation indicate the quantum)</span>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: center;">
+              <div>हां /Yes <input type="checkbox" id="p2_comm_yes"></div>
+              <div>नहीं /No <input type="checkbox" id="p2_comm_no"></div>
+              <div>
+                <span style="font-size: 10px; display: block;">If Yes, Quantum</span>
+                <input type="text" class="boxed-input" id="p2_comm_quantum" style="width: 70px;"> %
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 10: Return of Capital -->
+        <div style="margin-bottom: 8px; border-top: 0.5px solid #ddd; padding-top: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="width: 65%; font-weight: 700;">
+              10. # पूंजी की प्रतिलाभ हेतु विकल्प [(✓) टिक लगायें]<br>
+              <span style="font-weight: normal; font-size: 10.5px;">Option for Return of Capital. Put a tick (✓)</span><br>
+              <span style="font-weight: normal; font-size: 10px;">यदि हां तो अपने विकल्प की पसंद को दर्शायें। / If yes, indicate your choice of alternative</span>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <div>हां /Yes <input type="checkbox" id="p2_ret_yes"></div>
+              <div>नहीं /No <input type="checkbox" id="p2_ret_no"></div>
+              <div style="display: flex; gap: 4px; margin-left: 8px;">
+                <label style="border: 1px solid #000; padding: 2px 6px; font-weight: bold;"><input type="radio" name="ret_opt" value="1"> 1</label>
+                <label style="border: 1px solid #000; padding: 2px 6px; font-weight: bold;"><input type="radio" name="ret_opt" value="2"> 2</label>
+                <label style="border: 1px solid #000; padding: 2px 6px; font-weight: bold;"><input type="radio" name="ret_opt" value="3"> 3</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 11: Nominee for Return of Capital -->
+        <div style="margin-bottom: 6px; border-top: 0.5px solid #ddd; padding-top: 6px;">
+          <div style="font-weight: 700; margin-bottom: 4px;">
+            11. # पूंजी की वापसी हेतु नामित व्यक्ति का नाम उल्लिखित करें / <span style="font-weight: normal; font-size: 10.5px;">Mention your Nominee for Return of Capital :</span>
+          </div>
+          <table class="table-sec3" style="margin-bottom: 4px;">
+            <tr>
+              <td style="width: 25%; font-weight: 700;">नाम / Name :</td>
+              <td style="width: 40%;"><input type="text" class="fill-input uppercase" id="p2_nom_name"></td>
+              <td style="width: 15%; font-weight: 700;">संबंध / Relation :</td>
+              <td><input type="text" class="fill-input uppercase" id="p2_nom_rel"></td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">जन्म तिथि / Date of Birth (dd/mm/yyyy) :</td>
+              <td colspan="3">
+                <div class="digit-boxes-container">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob1" maxlength="1">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob2" maxlength="1">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob3" maxlength="1">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob4" maxlength="1">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob5" maxlength="1">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob6" maxlength="1">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob7" maxlength="1">
+                  <input type="text" class="digit-box-cell" id="p2_nom_dob8" maxlength="1">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">पता / Address :</td>
+              <td colspan="3"><input type="text" class="fill-input uppercase" id="p2_nom_addr"></td>
+            </tr>
+          </table>
+          <div style="font-size: 10px; font-weight: 700; margin: 4px 0 8px 0;">
+            # दिनांक 26.09.2008 या इसके बाद से पेंशन प्रारम्भ होने की स्थिति में लागू नहीं / Not applicable if pension start date is on or after 26-09-2008.
+          </div>
+        </div>
+
+        <!-- Section 12: Particulars of Family -->
+        <div style="margin-bottom: 6px;">
+          <div style="font-weight: 700; margin-bottom: 3px;">
+            12. परिवार का विवरण / Particulars of Family
+          </div>
+          <table class="form-data-table" id="familyTable">
+            <thead>
+              <tr>
+                <th rowspan="2" style="width: 32px;">क्रं. सं.<br>SI.No.</th>
+                <th rowspan="2">नाम<br>Name</th>
+                <th rowspan="2" style="width: 100px;">जन्म तिथि/आयु<br>Date of Birth/Age</th>
+                <th rowspan="2" style="width: 110px;">सदस्य के साथ संबंध<br>Relationship with Member</th>
+                <th colspan="2">अवयस्क के समक्ष दर्शायें / Indicate against Minor</th>
+                <th rowspan="2" class="col-action no-print" style="width: 28px;">हटाएं</th>
+              </tr>
+              <tr>
+                <th style="width: 110px;">अभिभावक का नाम<br>Guardian Name</th>
+                <th style="width: 110px;">सदस्य के साथ संबंध<br>Relationship with Member</th>
+              </tr>
+              <tr style="font-size: 9.5px; background: #fafafa;">
+                <th>(1)</th>
+                <th>(2)</th>
+                <th>(3)</th>
+                <th>(4)</th>
+                <th>(5)</th>
+                <th>(6)</th>
+                <th class="col-action no-print"></th>
+              </tr>
+            </thead>
+            <tbody id="familyTableBody">
+              <tr>
+                <td class="text-center font-bold">1.</td>
+                <td><input type="text" class="fill-input uppercase fam-name" placeholder="VIMLA DEVI"></td>
+                <td><input type="text" class="fill-input uppercase text-center fam-dob" placeholder="25.06.1972"></td>
+                <td><input type="text" class="fill-input uppercase text-center fam-rel" placeholder="WIFE"></td>
+                <td><input type="text" class="fill-input uppercase text-center fam-guard" placeholder="NA"></td>
+                <td><input type="text" class="fill-input uppercase text-center fam-guard-rel" placeholder="NA"></td>
+                <td class="col-action no-print text-center"><button type="button" class="btn-row-delete" onclick="deleteFamilyRow(this)">×</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button type="button" class="btn-add-table-row no-print" onclick="addFamilyRow()">
+            + पंक्ति जोड़ें / Add Family Member
+          </button>
+
+          <div style="font-size: 9.5px; font-weight: 600; margin-bottom: 8px;">
+            टिप्पणी : यदि कोई बच्चा शारीरिक रूप से विकलांग है तो नाम के नीचे 'अशक्त' दर्शायें ।<br>
+            Note: If any child is physically handicapped, please indicate "DISABLED" below his/her name.
+          </div>
+        </div>
+
+        <!-- Section 13: Date of death of Member -->
+        <table class="table-sec3" style="margin-bottom: 8px;">
+          <tr>
+            <td style="width: 60%; font-weight: 700;">
+              13. सदस्य की मृत्यु की तिथि (यदि लागू हो) / Date of death of Member (if applicable)
+            </td>
+            <td>
+              <div class="digit-boxes-container">
+                <input type="text" class="digit-box-cell" id="p2_dod_1" maxlength="1" placeholder="0">
+                <input type="text" class="digit-box-cell" id="p2_dod_2" maxlength="1" placeholder="8">
+                <input type="text" class="digit-box-cell" id="p2_dod_3" maxlength="1" placeholder="0">
+                <input type="text" class="digit-box-cell" id="p2_dod_4" maxlength="1" placeholder="3">
+                <input type="text" class="digit-box-cell" id="p2_dod_5" maxlength="1" placeholder="2">
+                <input type="text" class="digit-box-cell" id="p2_dod_6" maxlength="1" placeholder="0">
+                <input type="text" class="digit-box-cell" id="p2_dod_7" maxlength="1" placeholder="2">
+                <input type="text" class="digit-box-cell" id="p2_dod_8" maxlength="1" placeholder="4">
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Section 14: Details of Bank Accounts Opened -->
+        <div style="font-weight: 700; margin-bottom: 2px;">
+          14. खोले गए बैंक खाते का विवरण / Details of Bank Accounts Opened
+        </div>
+        <table class="table-sec3" style="margin-bottom: 6px;">
+          <tr>
+            <td style="width: 38px; font-weight: 700;" class="text-center">1</td>
+            <td style="width: 35%; font-weight: 700;">बैंक का नाम / Name of the Bank</td>
+            <td><input type="text" class="fill-input uppercase" id="p2_bankName" placeholder="Bank of Baroda"></td>
+          </tr>
+          <tr>
+            <td class="text-center font-bold">2</td>
+            <td style="font-weight: 700;">शाखा का नाम / Name of the Branch</td>
+            <td><input type="text" class="fill-input uppercase" id="p2_branchName" placeholder="Thathiya"></td>
+          </tr>
+          <tr>
+            <td class="text-center font-bold">3</td>
+            <td style="font-weight: 700;">पूरा डाक पता / Full Postal Address<br>पिन कोड / Pin Code</td>
+            <td>
+              <input type="text" class="fill-input uppercase" id="p2_bankAddress" placeholder="Full Bank Branch Address" style="margin-bottom: 3px;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span>पिन कोड / Pin Code :</span>
+                <input type="text" class="boxed-input" id="p2_bankPin" placeholder="Pin Code" style="width: 90px; text-align: center;">
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <div style="font-size: 10px; font-weight: 700; margin-bottom: 8px;">
+          (अपने बैंक खाते के खाली/रद्द चैक की एक प्रति संलग्न करें Please attach a copy of cancelled/blank Cheque)
+        </div>
+
+        <!-- Signature Section Page 2 -->
+        <div class="signature-row">
+          <div class="signature-item">
+            <div># सदस्य/आवेदक के हस्ताक्षर / Signature of member/applicant</div>
+          </div>
+          <div class="signature-item">
+            <div>नियोक्ता के हस्ताक्षर / Signature of Employer</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>Form 10D (www.epfindia.gov.in)</span>
+        <span>Page 2 of 6</span>
+      </div>
+    </article>
+
+
+    <div class="sheet-divider no-print">
+      <span>Page Break — Page 3 of 6 Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 3: Page 3 of 6                                                      -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page3">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 3 — Claimant Details & Scheme Certificate (Page 3 of 6)</div>
+
+        <!-- Bank Account Table Continuation -->
+        <table class="form-data-table" style="margin-bottom: 8px;">
+          <thead>
+            <tr>
+              <th style="width: 42px;">क्रं. सं.<br>Sl No</th>
+              <th style="width: 40%;">दावेदार / दावेदारों का नाम /<br>Name of Claimant(s)</th>
+              <th>बचत बैंक खाता सं. /<br>Saving Bank Account Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center font-bold">1.</td>
+              <td><input type="text" class="fill-input uppercase" id="p3_claimantName" placeholder="VIMALA DEVI" style="font-weight: 700; font-size: 12px;"></td>
+              <td>
+                <textarea class="fill-textarea uppercase" id="p3_claimantAccount" rows="3" placeholder="27260100042117&#10;BANK OF BARODA, THATHIYA&#10;IFSC- BARB0BLYAAN" style="font-weight: 700;"></textarea>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Section 14. A (क): Nominee Claim -->
+        <div style="font-weight: 700; margin-bottom: 2px;">
+          14. A (क) यदि दावा किसी नामित व्यक्ति द्वारा प्रस्तुत किया गया है तो उल्लिखित करें<br>
+          <span style="font-weight: normal; font-size: 10px;">(a) If the claim is preferred by nominee, indicate his/her</span>
+        </div>
+        <table class="table-sec3" style="margin-bottom: 8px;">
+          <tr>
+            <td style="width: 48%; font-weight: 700;">(1) नाम / Name</td>
+            <td><input type="text" class="fill-input uppercase" id="p3_nom_name2" placeholder="VIMLA DEVI" style="font-weight: 700;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">(2) मृत सदस्य के साथ संबंध / Relationship with deceased Member</td>
+            <td><input type="text" class="fill-input uppercase" id="p3_nom_rel2" placeholder="WIFE" style="font-weight: 700;"></td>
+          </tr>
+        </table>
+
+        <!-- Section 15: Scheme Certificate Details -->
+        <div style="margin-bottom: 6px;">
+          <div style="font-weight: 700; margin-bottom: 2px;">
+            15. योजना प्रमाण का विवरण यदि वह पहले ही सदस्य के पास हो (यदि कोई हो)<br>
+            <span style="font-weight: normal; font-size: 10px;">Detail of Scheme Certificate already in Possession of the Member, if any</span>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 16px; margin: 4px 0 6px 0; font-weight: 600; font-size: 10.5px;">
+            <div>योजना प्रमाणपत्र प्राप्त कर संलग्न किया / Scheme Certificate received &amp; enclosed <input type="checkbox" id="p3_sc_received"></div>
+            <div>प्राप्त नहीं / Not received <input type="checkbox" id="p3_sc_not_received"></div>
+            <div>लागू नहीं / Not Applicable <input type="checkbox" id="p3_sc_na" checked></div>
+          </div>
+
+          <div style="font-size: 10px; font-weight: 700; margin-bottom: 2px;">
+            यदि प्राप्त है, तो दर्शायें / if Received, Indicate:
+          </div>
+          <table class="form-data-table" style="margin-bottom: 8px;">
+            <thead>
+              <tr>
+                <th style="width: 40px;">क्रं. सं.<br>SI No</th>
+                <th style="width: 45%;">योजना प्रमाण पत्र नियंत्रण सं.<br>Scheme Certificate Control No</th>
+                <th>प्राधिकारी जिसने योजना प्रमाण पत्र जारी किया है<br>Authority who issued the Scheme Certificate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center font-bold">1</td>
+                <td><input type="text" class="fill-input uppercase" id="p3_sc_ctrlNo"></td>
+                <td><input type="text" class="fill-input uppercase" id="p3_sc_auth"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 16: EPS 1995 Pension Drawn -->
+        <div style="margin-bottom: 6px;">
+          <div style="font-weight: 700; margin-bottom: 2px;">
+            16. यदि पेंशन क. पें. यो., 1995 के अन्तर्गत ली जा रही है / <span style="font-weight: normal; font-size: 10px;">If pension is being drawn under E.P.S, 1995</span>
+          </div>
+          <table class="form-data-table" style="margin-bottom: 8px;">
+            <thead>
+              <tr>
+                <th style="width: 50%;">पी.पी.ओ.नं.<br>PPO No</th>
+                <th>क्षे. का. / उ. क्षे. का. द्वारा जारी<br>Issued by RO/SRO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" class="fill-input uppercase text-center" id="p3_ppoNo"></td>
+                <td><input type="text" class="fill-input uppercase text-center" id="p3_ppoIssuedBy"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 17: Documents Enclosed -->
+        <div style="margin-bottom: 8px;">
+          <div style="font-weight: 700; margin-bottom: 3px;">
+            17. संलग्न दस्तावेज (अनुदेशों के अनुसार दर्शायें) / Documents enclosed (Indicate as per the Instructions)
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; font-size: 11px;">
+            <div>1. <input type="text" class="fill-input uppercase font-bold" id="p3_doc1" placeholder="AADHAR (EMP AND SPOUSE)" style="width: 90%;"></div>
+            <div>4. <input type="text" class="fill-input uppercase font-bold" id="p3_doc4" placeholder="PAN (EMP AND SPOUSE)" style="width: 90%;"></div>
+            <div>2. <input type="text" class="fill-input uppercase font-bold" id="p3_doc2" placeholder="DEATH CERTIFICATE (PREMCHAND)" style="width: 90%;"></div>
+            <div>5. <input type="text" class="fill-input uppercase font-bold" id="p3_doc5" placeholder="COPY OF BANK PASSBOOK (EMP AND SPOUSE)" style="width: 90%;"></div>
+            <div>3. <input type="text" class="fill-input uppercase font-bold" id="p3_doc3" placeholder="CLARIFICATION OF LATE SUBMISSION OF CLAIM FROM ESTABLISHMENT AND CLAIMANT" style="width: 90%;"></div>
+            <div>6. <input type="text" class="fill-input uppercase font-bold" id="p3_doc6" placeholder="FAMILY DETAILS BY EMPLOYER" style="width: 90%;"></div>
+          </div>
+        </div>
+
+        <!-- Truth Certification -->
+        <div style="border-top: 0.5px solid #ddd; padding-top: 6px; margin-bottom: 12px; font-size: 10.5px; line-height: 1.45;">
+          <div class="font-bold">प्रमाणित किया जाता है / Certified that,</div>
+          <div>(i) मैं कर्मचारी पेंशन योजना, 1995 के अधीन पेंशन नहीं ले रहा हूँ। / I am not drawing Pension under Employee's Pension Scheme, 1995.</div>
+          <div>(ii) इस आवेदन पत्र में दिए विवरण सत्य एवं सही हैं। / The particulars given in this application are true and correct</div>
+        </div>
+
+        <!-- Date, Place & Signatures -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 14px;">
+          <div>
+            <div><strong>दिनांक / Date :</strong> <input type="text" class="fill-input" id="p3_date" placeholder="05.05.2026" style="width: 100px;"></div>
+            <div style="margin-top: 4px;"><strong>स्थान / Place :</strong> <input type="text" class="fill-input uppercase" id="p3_place" placeholder="Faridabad" style="width: 120px;"></div>
+          </div>
+          <div style="text-align: center;">
+            <input type="text" class="fill-input uppercase text-center font-bold" id="p3_signName" placeholder="VIMLA DEVI" style="font-size: 12.5px; margin-bottom: 2px;"><br>
+            <span style="font-size: 10px; font-weight: 700;">आवेदक के हस्ताक्षर / बाएं हाथ की अंगूठा निशानी<br>Signature / Left Hand Thumb Impression of the applicant</span>
+          </div>
+        </div>
+
+        <div style="text-align: right; font-size: 10px; font-weight: 700; margin-top: 8px;">
+          <div>नियोक्ता के हस्ताक्षर / Signature of Employer (स्थापना के नियोक्ता / प्राधिकृत अधिकारी द्वारा भरा जाना है)</div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>Form 10D (www.epfindia.gov.in)</span>
+        <span>Page 3 of 6</span>
+      </div>
+    </article>
+
+
+    <div class="sheet-divider no-print">
+      <span>Page Break — Page 4 of 6 Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 4: Page 4 of 6                                                      -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page4">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 4 — Employer Verification & 12 Months Wages (Page 4 of 6)</div>
+
+        <!-- Employer Heading -->
+        <div class="form-heading-block" style="margin-bottom: 8px;">
+          <h3>(TO BE FILLED UP BY THE EMPLOYER/ AUTHORISED OFFICER OF THE ESTABLISHMENT)</h3>
+        </div>
+
+        <div style="font-size: 11px; margin-bottom: 6px;">
+          <div class="font-bold">प्रमाणित किया जाता है कि / Certified that :</div>
+          <div style="margin: 3px 0;"><strong>1. सदस्य का विवरण सही है।</strong> / The particulars of the member are correct.</div>
+          <div style="margin: 3px 0; line-height: 1.4;">
+            <strong>2. सेवा छोड़ने की तिथि के पूर्व के 12 महीनों की अवधि का वेतन और पेंशन अंशदान का विवरण।</strong><br>
+            The particulars of Wages and Pension Contribution for the period of 12 months preceding the date of leaving service are as under :<br>
+            <span style="font-size: 10px;">यदि मजदूरी सभी 12 महीनों में अर्जित नहीं की गई है तो 12 महीनों का खण्ड अन्तिम बार लिए वेतन से प्रारम्भ होगा<br>(in case, the wages are not earned for all 12 months, the block of 12 months will commence backwards from the last pay drawn)</span>
+          </div>
+        </div>
+
+        <!-- 12-Month Wages Table -->
+        <table class="form-data-table" id="wagesTable" style="margin-bottom: 8px;">
+          <thead>
+            <tr>
+              <th rowspan="2" style="width: 45px;">वर्ष<br>Year</th>
+              <th rowspan="2" style="width: 55px;">माह<br>Month</th>
+              <th colspan="2">मजदूरी / Wages</th>
+              <th rowspan="2" style="width: 100px;">देय पेंशन अंशदान<br>Pension contribution due</th>
+              <th colspan="2">गैर अंशदायी सेवावधि का विवरण। यदि ऐसी कोई सेवावधि नहीं है तो 'शून्य' दर्शायें<br><span style="font-size: 9.5px; font-weight: normal;">Details of period of non-contributory service. If there is no such period, indicate 'Nil'</span></th>
+            </tr>
+            <tr>
+              <th style="width: 75px;">दिनों की सं.<br>No. of days</th>
+              <th style="width: 85px;">राशि<br>Amount</th>
+              <th style="width: 55px;">वर्ष / Year</th>
+              <th>दिनों की सं. जिनके हेतु कोई मजदूरी अर्जित नहीं की गई / No. of days for which no wages were earned</th>
+            </tr>
+            <tr style="font-size: 9px; background: #fafafa;">
+              <th>(1)</th>
+              <th>(2)</th>
+              <th>(3)</th>
+              <th>(4)</th>
+              <th>(5)</th>
+              <th>(6)</th>
+              <th>(7)</th>
+            </tr>
+          </thead>
+          <tbody id="wagesTableBody">
+            <!-- 12 standard rows -->
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+            <tr><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td><td><input type="text" class="fill-input text-center"></td></tr>
+          </tbody>
+        </table>
+
+        <!-- Enclosures -->
+        <div style="font-size: 11px; margin-bottom: 20px;">
+          <div class="font-bold">अनुलग्नक : Enclosures :</div>
+          <div>1. अनुदेशों में दिए दस्तावेज / Documents as given in the Instruction</div>
+          <div>2. विवरणात्मक रोल एवं नमूना हस्ताक्षर का प्रपत्र / Form of descriptive roll and specimen signature</div>
+        </div>
+
+        <!-- Date, Place & Employer Signature Block -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px;">
+          <div>
+            <div><strong>दिनांक / Date :</strong> <input type="text" class="fill-input" id="p4_date" style="width: 100px;"></div>
+            <div style="margin-top: 4px;"><strong>स्थान / Place :</strong> <input type="text" class="fill-input uppercase" id="p4_place" style="width: 120px;"></div>
+          </div>
+          <div style="text-align: right; max-width: 320px;">
+            <div style="font-weight: 700; font-size: 11px;">
+              स्थापना के नियोक्ता / प्राधिकृत अधिकारी के मोहर एवं दिनांक सहित हस्ताक्षर<br>
+              <span style="font-size: 10px; font-weight: normal;">Signature of Employer/ Authorised Official of the Establishment with Seal and Date</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>Form 10D (www.epfindia.gov.in)</span>
+        <span>Page 4 of 6</span>
+      </div>
+    </article>
+
+
+    <div class="sheet-divider no-print">
+      <span>Page Break — Page 5 of 6 Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 5: Page 5 of 6                                                      -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page5">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 5 — Descriptive Roll & Specimen Signatures (Page 5 of 6)</div>
+
+        <div class="form-heading-block" style="margin-bottom: 10px;">
+          <p style="font-size: 10.5px; font-weight: 700;">(पेंशन हेतु पात्र प्रत्येक व्यक्ति के संबंध में इसे 2 प्रतियों में प्रस्तुत किया जाए)</p>
+          <p style="font-size: 10px;">(To be submitted in duplicated in respect of each person eligible for pension)</p>
+          <h3 style="margin-top: 4px;">पेंशन भोगी का विवरण और उसके नमूना हस्ताक्षर/अंगूठा निशान</h3>
+          <h3 style="font-size: 11px;">Descriptive roll of Pensioner and his/her Specimen Signature/Thumb impression</h3>
+        </div>
+
+        <!-- 10 Details Items -->
+        <table class="table-sec3" style="margin-bottom: 8px;">
+          <tr>
+            <td style="width: 45%; font-weight: 700;">1. सदस्य का नाम / Name of the Member</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_memberName" placeholder="PREM CHAND"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">2. क.भ.नि. लेखा सं. / E.P.F Account Number</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_epfNo" placeholder="HR / FBD / 3908 / 144"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">3. पेंशन भोगी का नाम / Name of the Pensioner</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_pensionerName" placeholder="VIMLA DEVI"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">4. पिता / पति का नाम / Father's/Husband's Name</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_fatherHusbandName" placeholder="LATE PREM CHAND"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">5. लिंग / Sex</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_sex" placeholder="FEMALE" style="width: 120px;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">6. राष्ट्रीयता / Nationality</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_nationality" placeholder="INDIAN" style="width: 140px;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">7. धर्म / Religion</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_religion" placeholder="HINDU" style="width: 140px;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">8. लम्बाई / Height</td>
+            <td><input type="text" class="fill-input uppercase" id="p5_height" placeholder="5 FT 2 INCH" style="width: 140px;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; vertical-align: top;">
+              9. पहचान हेतु व्यक्तिगत चिन्ह<br>
+              <span style="font-weight: normal; font-size: 10px;">Personal Marks of Identification</span>
+            </td>
+            <td>
+              <div style="margin-bottom: 3px;">1. <input type="text" class="fill-input uppercase" id="p5_mark1" placeholder="MOLE ON FOREHEAD" style="width: 90%;"></div>
+              <div>2. <input type="text" class="fill-input uppercase" id="p5_mark2" placeholder="CUT MARK ON RIGHT HAND" style="width: 90%;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; vertical-align: top;">
+              10. पेंशन भोगी के नमूना हस्ताक्षर<br>
+              <span style="font-weight: normal; font-size: 10px;">Specimen signature of pensioner</span>
+            </td>
+            <td>
+              <div style="margin-bottom: 6px;">1. <input type="text" class="fill-input uppercase" style="width: 88%;"></div>
+              <div style="margin-bottom: 6px;">2. <input type="text" class="fill-input uppercase" style="width: 88%;"></div>
+              <div>3. <input type="text" class="fill-input uppercase" style="width: 88%;"></div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Section 11: Left Hand Finger Impressions -->
+        <div style="margin-bottom: 14px;">
+          <div style="font-weight: 700; font-size: 11px; margin-bottom: 3px;">
+            11. केवल निरक्षर दावेदार (पेंशन भोगी) होने की दशा में बायें हाथ की उंगलियों के निशान.<br>
+            <span style="font-size: 10px; font-weight: normal;">[Only in the case of illiterate Claimant (Pensioner) Left Hand Finger Impression]</span>
+          </div>
+
+          <table class="form-data-table" style="text-align: center; height: 90px;">
+            <thead>
+              <tr>
+                <th style="width: 20%;">अंगूठा / THUMB</th>
+                <th style="width: 20%;">तर्जनी / INDEX</th>
+                <th style="width: 20%;">मध्यमा / MIDDLE</th>
+                <th style="width: 20%;">अनामिका / RING</th>
+                <th style="width: 20%;">कनिष्ठा / SMALL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="height: 70px;"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Attestation Signature Block -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 24px;">
+          <div>
+            <div><strong>स्थान / Place :</strong> <input type="text" class="fill-input uppercase" id="p5_place" style="width: 120px;"></div>
+            <div style="margin-top: 4px;"><strong>दिनांक / Date :</strong> <input type="text" class="fill-input" id="p5_date" style="width: 100px;"></div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-weight: 700; font-size: 11px;">
+              हस्ताक्षर / Signature<br>
+              अभिप्रमाणन प्राधिकारी के नाम एवं मोहर<br>
+              <span style="font-size: 10px; font-weight: normal;">Name of the Attesting Authority Official Seal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>Form 10D (www.epfindia.gov.in)</span>
+        <span>Page 5 of 6</span>
+      </div>
+    </article>
+
+
+    <div class="sheet-divider no-print">
+      <span>Page Break — Page 6 of 6 Below</span>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 6: Page 6 of 6                                                      -->
+    <!-- ========================================================================= -->
+    <article class="form-sheet" id="page6">
+      <div class="sheet-main-content">
+        <div class="sheet-badge no-print">Sheet 6 — Office Use & Verifications (Page 6 of 6)</div>
+
+        <!-- Header -->
+        <div class="form-heading-block" style="margin-bottom: 6px;">
+          <h3>(केवल कार्यालय के प्रयोगार्थ)</h3>
+          <h3>(FOR OFFICE USE ONLY)</h3>
+          <h4>(पेंशन अनुभाग / लेखा अनुभाग)</h4>
+          <h4>(PENSION SECTION/ACCOUNTS SECTION)</h4>
+        </div>
+
+        <!-- Section 1 -->
+        <div style="font-size: 10.5px; line-height: 1.35; margin-bottom: 8px;">
+          <p>
+            प्रमाणित किया जाता है कि आवेदन पत्र में दिये विवरणों का संबंधित दस्तावेजों के साथ सत्यापन कर लिया गया है। दावेदार पेंशन हेतु पात्र है। आवक आंकड़ा पत्र (इनपुट डाटा शीट) नीचे अनुमोदनार्थ प्रस्तुत है।<br>
+            <span style="font-size: 9.5px;">Certified that the particulars in the application have been verified with the relevant concerned documents, the claimant is eligible for Pension. The Input Data Sheet is placed below for approval:</span>
+          </p>
+          <p style="margin-top: 3px;">
+            प्रपत्र-9/प्रपत्र-3 (पे. यो) मास्टर खाता पत्र/दावा आवक पंजी के प्रविष्टि कर ली गई है।<br>
+            <span style="font-size: 9.5px;">Entered in Form 9/Form 3(PS). Master Ledger Card/ Claim Inward Register</span>
+          </p>
+          <p style="margin-top: 3px;">
+            दावेदार द्वारा प्रस्तुत दस्तावेजों के साथ प्रपत्र-2 (आर) संलग्न है।<br>
+            <span style="font-size: 9.5px;">Form 2( R) enclosed along with the documents furnished by the Claimant.</span>
+          </p>
+        </div>
+
+        <table class="form-data-table" style="text-align: center; margin-bottom: 12px;">
+          <tr>
+            <td style="width: 25%;">सा.सु.सं. / S.S.A.<br><br>दिनांक / Date</td>
+            <td style="width: 25%;">अनु. पर्य/ S.S.<br><br>दिनांक / Date</td>
+            <td style="width: 25%;">स.ले. अधि./ A.O.<br><br>दिनांक / Date</td>
+            <td style="width: 25%;">स.म.नि.आयु(पेंशन) / A.P.F.C.(Pension)<br><br>दिनांक / Date</td>
+          </tr>
+        </table>
+
+        <!-- Section 2: Pension Pre-Audit Cell -->
+        <div style="border-top: 1px solid #000; padding-top: 6px; margin-bottom: 8px;">
+          <div class="text-center font-bold" style="font-size: 11px; margin-bottom: 4px;">
+            (पेंशन से पूर्व लेखा प्रकोष्ठ के प्रयोगार्थ)<br>
+            (FOR USE IN PENSION PRE-AUDIT CELL)
+          </div>
+          <p style="font-size: 10.5px; line-height: 1.35; margin-bottom: 6px;">
+            इनपुट डाटा शीट को आवेदन तथा संलग्न दस्तावेजों के साथ सत्यापित कर लिया गया है और सही पाया गया है। पें. अदायगी आदेश को कम्प्यूटर द्वारा तैयार कर लिया जाए।<br>
+            <span style="font-size: 9.5px;">The Input date sheet verified with reference to the application and the documents enclosed and found correct. P.P.O may be generated through Computer.</span>
+          </p>
+          <table class="form-data-table" style="text-align: center; margin-bottom: 12px;">
+            <tr>
+              <td style="width: 25%;">सा.सु.सं. / SSA<br><br>दिनांक / Date</td>
+              <td style="width: 25%;">अनु पर्य / S.S<br><br>दिनांक / Date</td>
+              <td style="width: 25%;">ले.अधि. / A.O.<br><br>दिनांक / Date</td>
+              <td style="width: 25%;">स.म.नि.आयुक्त(पेंशन)/ A.P.F.C.(Pension)<br><br>दिनांक / Date</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Section 3: Pension Disbursement Section -->
+        <div style="border-top: 1px solid #000; padding-top: 6px; margin-bottom: 8px;">
+          <div class="text-center font-bold" style="font-size: 11px; margin-bottom: 6px;">
+            (पेंशन वितरण अनुभाग के प्रयोगार्थ)<br>
+            (FOR USE IN PENSION DISBURSEMENT SECTION)
+          </div>
+          <table class="table-sec3" style="margin-bottom: 6px;">
+            <tr>
+              <td style="width: 50%; font-weight: 700;">
+                पें. अ. आ. सं. / P.P.O. NO. : <input type="text" class="fill-input" id="p6_ppoNo" style="width: 150px;">
+              </td>
+              <td style="font-weight: 700;">
+                बैंक / Bank : <input type="text" class="fill-input uppercase" id="p6_bank" style="width: 150px;">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="font-weight: 700;">
+                बैंक को जारी करने की तिथि / Date of issue to the Bank : <input type="text" class="fill-input" id="p6_issueDate" style="width: 120px;">
+              </td>
+            </tr>
+          </table>
+
+          <div style="font-size: 10.5px; margin: 6px 0 10px 0;">
+            दि. <input type="text" class="fill-input" id="p6_intimationDate" style="width: 110px;"> को दावेदार तथा लेखा अनुभाग को सूचना जारी कर दी गई है।<br>
+            <span style="font-size: 9.5px;">Intimation sent to the Claimant and also to Account Branch on</span>
+          </div>
+
+          <table class="form-data-table" style="text-align: center;">
+            <tr>
+              <td style="width: 25%;">सा.सु.सं. / S.S.A.<br><br>दिनांक / Date</td>
+              <td style="width: 25%;">अनु पर्य / S.S.<br><br>दिनांक / Date</td>
+              <td style="width: 25%;">ले. अधि. / A.O.<br><br>दिनांक / Date</td>
+              <td style="width: 25%;">स.म.नि.आयु (पेंशन)/ A.P.F.C.(Pension)<br><br>दिनांक / Date</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>Form 10D (www.epfindia.gov.in)</span>
+        <span>Page 6 of 6</span>
+      </div>
+    </article>
+
+  </main>
+
+  <script src="portal.js"></script>
+
+  <!-- Form 10-D Interaction & Sample Data Script -->
+  <script>
+    (function () {
+      'use strict';
+
+      // -------------------------------------------------------------
+      // Paper Size Selector
+      // -------------------------------------------------------------
+      const btnSizeA4 = document.getElementById('btnSizeA4');
+      const btnSizeLegal = document.getElementById('btnSizeLegal');
+      const dynamicPageSizeStyle = document.getElementById('dynamicPageSizeStyle');
+
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          document.body.classList.remove('size-a4');
+          document.body.classList.add('size-legal');
+          btnSizeLegal.classList.add('active');
+          btnSizeA4.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: legal portrait;
+              margin: 10mm 12mm 10mm 12mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(s => s.style.minHeight = '355.6mm');
+        } else {
+          document.body.classList.remove('size-legal');
+          document.body.classList.add('size-a4');
+          btnSizeA4.classList.add('active');
+          btnSizeLegal.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: A4 portrait;
+              margin: 10mm 12mm 10mm 12mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(s => s.style.minHeight = '297mm');
+        }
+      }
+
+      btnSizeA4.addEventListener('click', () => setPaperSize('a4'));
+      btnSizeLegal.addEventListener('click', () => setPaperSize('legal'));
+
+      // -------------------------------------------------------------
+      // Family Table Dynamic Rows (Page 2)
+      // -------------------------------------------------------------
+      const familyTableBody = document.getElementById('familyTableBody');
+
+      window.addFamilyRow = function () {
+        const rowCount = familyTableBody.children.length + 1;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="text-center font-bold">${rowCount}.</td>
+          <td><input type="text" class="fill-input uppercase fam-name" placeholder="Name"></td>
+          <td><input type="text" class="fill-input uppercase text-center fam-dob" placeholder="DD.MM.YYYY"></td>
+          <td><input type="text" class="fill-input uppercase text-center fam-rel" placeholder="Relation"></td>
+          <td><input type="text" class="fill-input uppercase text-center fam-guard" placeholder="Guardian"></td>
+          <td><input type="text" class="fill-input uppercase text-center fam-guard-rel" placeholder="Relation"></td>
+          <td class="col-action no-print text-center"><button type="button" class="btn-row-delete" onclick="deleteFamilyRow(this)">×</button></td>
+        `;
+        familyTableBody.appendChild(tr);
+      };
+
+      window.deleteFamilyRow = function (btn) {
+        if (familyTableBody.children.length <= 1) {
+          alert('कम से कम एक पंक्ति रहना आवश्यक है।');
+          return;
+        }
+        btn.closest('tr').remove();
+        Array.from(familyTableBody.children).forEach((r, idx) => {
+          r.querySelector('td:first-child').textContent = (idx + 1) + '.';
+        });
+      };
+
+      // -------------------------------------------------------------
+      // Digit Boxes Auto-Tab Navigation
+      // -------------------------------------------------------------
+      document.querySelectorAll('.digit-boxes-container').forEach(container => {
+        const cells = container.querySelectorAll('.digit-box-cell');
+        cells.forEach((cell, idx) => {
+          cell.addEventListener('input', (e) => {
+            if (cell.value && idx < cells.length - 1) {
+              cells[idx + 1].focus();
+            }
+          });
+          cell.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && !cell.value && idx > 0) {
+              cells[idx - 1].focus();
+            }
+          });
+        });
+      });
+
+      // -------------------------------------------------------------
+      // Sample Data Loader (Exact values from user's uploaded document)
+      // -------------------------------------------------------------
+      document.getElementById('btnSampleData').addEventListener('click', () => {
+        // Page 1
+        document.getElementById('p1_mobile').value = '8052848323';
+        document.getElementById('p1_claimedBy').value = 'VIMLA DEVI (widow)';
+        document.getElementById('p1_pensionType').value = 'SUPERANNUATION / WIDOW';
+        document.getElementById('p1_memberName').value = 'PREM CHAND';
+        document.getElementById('p1_sex').value = 'MALE';
+        document.getElementById('p1_maritalStatus').value = 'MARRIED';
+        
+        // DOB 20 07 1969
+        const dobDigits = ['2', '0', '0', '7', '1', '9', '6', '9'];
+        for (let i = 1; i <= 8; i++) {
+          const el = document.getElementById('p1_dob_' + i);
+          if (el) el.value = dobDigits[i - 1];
+        }
+
+        document.getElementById('p1_epf_ro').value = 'HR';
+        document.getElementById('p1_epf_office').value = 'FBD';
+        document.getElementById('p1_epf_estCode').value = '3908';
+        document.getElementById('p1_epf_memberNo').value = '144';
+
+        document.getElementById('p1_estAddress').value = 'M/S SANDEN VIKAS (INDIA) LTD\nPO BOX N.-98, 65/27-A, FARIDABAD';
+        
+        // Date of leaving 11 02 2010
+        const dolDigits = ['1', '1', '0', '2', '2', '0', '1', '0'];
+        for (let i = 1; i <= 8; i++) {
+          const el = document.getElementById('p1_dol_' + i);
+          if (el) el.value = dolDigits[i - 1];
+        }
+
+        document.getElementById('p1_reasonLeaving').value = 'RETIRMENT';
+        document.getElementById('p1_commAddress').value = 'VILL- BHULBHULAIYA PUR, MAHSAIYAN\nPO- THATHIA, TIRWA, KANNAUJ,\nUTTAR PRADESH';
+        document.getElementById('p1_commPin').value = '209734';
+
+        // Page 2: Family Table
+        const firstFam = familyTableBody.children[0];
+        if (firstFam) {
+          firstFam.querySelector('.fam-name').value = 'VIMLA DEVI';
+          firstFam.querySelector('.fam-dob').value = '25.06.1972';
+          firstFam.querySelector('.fam-rel').value = 'WIFE';
+          firstFam.querySelector('.fam-guard').value = 'NA';
+          firstFam.querySelector('.fam-guard-rel').value = 'NA';
+        }
+
+        // Date of Death 08 03 2024
+        const dodDigits = ['0', '8', '0', '3', '2', '0', '2', '4'];
+        for (let i = 1; i <= 8; i++) {
+          const el = document.getElementById('p2_dod_' + i);
+          if (el) el.value = dodDigits[i - 1];
+        }
+
+        // Page 3: Bank Account & Nominee
+        document.getElementById('p3_claimantName').value = 'VIMALA DEVI';
+        document.getElementById('p3_claimantAccount').value = '27260100042117\nBANK OF BARODA, THATHIYA\nIFSC- BARB0BLYAAN';
+        document.getElementById('p3_nom_name2').value = 'VIMLA DEVI';
+        document.getElementById('p3_nom_rel2').value = 'WIFE';
+
+        // Documents enclosed
+        document.getElementById('p3_doc1').value = 'AADHAR (EMP AND SPOUSE)';
+        document.getElementById('p3_doc2').value = 'DEATH CERTIFICATE (PREMCHAND)';
+        document.getElementById('p3_doc3').value = 'CLARIFICATION OF LATE SUBMISSION OF CLAIM FROM ESTABLISHMENT AND CLAIMANT';
+        document.getElementById('p3_doc4').value = 'PAN (EMP AND SPOUSE)';
+        document.getElementById('p3_doc5').value = 'COPY OF BANK PASSBOOK (EMP AND SPOUSE)';
+        document.getElementById('p3_doc6').value = 'FAMILY DETAILS BY EMPLOYER';
+
+        document.getElementById('p3_date').value = '05.05.2026';
+        document.getElementById('p3_place').value = 'Faridabad';
+        document.getElementById('p3_signName').value = 'VIMLA DEVI';
+
+        // Page 5
+        document.getElementById('p5_memberName').value = 'PREM CHAND';
+        document.getElementById('p5_epfNo').value = 'HR / FBD / 3908 / 144';
+        document.getElementById('p5_pensionerName').value = 'VIMLA DEVI';
+        document.getElementById('p5_fatherHusbandName').value = 'LATE PREM CHAND';
+        document.getElementById('p5_sex').value = 'FEMALE';
+        document.getElementById('p5_nationality').value = 'INDIAN';
+        document.getElementById('p5_religion').value = 'HINDU';
+        document.getElementById('p5_height').value = '5 FT 2 INCH';
+        document.getElementById('p5_mark1').value = 'MOLE ON FOREHEAD';
+        document.getElementById('p5_mark2').value = 'CUT MARK ON RIGHT HAND';
+      });
+
+      // -------------------------------------------------------------
+      // Clear Blank Form
+      // -------------------------------------------------------------
+      document.getElementById('btnClearForm').addEventListener('click', () => {
+        if (!confirm('क्या आप पूरे फॉर्म को रिक्त (Blank) करना चाहते हैं?')) return;
+        document.querySelectorAll('.fill-input, .boxed-input, .fill-textarea, .digit-box-cell').forEach(inp => {
+          inp.value = '';
+        });
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.checked = false;
+        });
+        document.getElementById('p3_sc_na').checked = true;
+      });
+
+      // -------------------------------------------------------------
+      // Save as PDF (html2pdf.js)
+      // -------------------------------------------------------------
+      document.getElementById('btnSavePdf').addEventListener('click', function () {
+        const memberName = document.getElementById('p1_memberName').value.trim() || 'Form_10D';
+        const filename = `EPFO_Form_10D_${memberName.replace(/\s+/g, '_')}.pdf`;
+        const area = document.getElementById('printableFormArea');
+
+        const opt = {
+          margin: [6, 8, 6, 8],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: 'mm', format: document.body.classList.contains('size-legal') ? 'legal' : 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        const btn = this;
+        const originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Generating PDF...';
+
+        html2pdf().set(opt).from(area).save().then(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }).catch(err => {
+          console.error(err);
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+          alert('PDF बनाने में समस्या आई, कृपया Print Form बटन पर क्लिक करके Save as PDF चुनें।');
+        });
+      });
+
+      // -------------------------------------------------------------
+      // Print Form
+      // -------------------------------------------------------------
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+    })();
+  </script>
+</body>
+</html>

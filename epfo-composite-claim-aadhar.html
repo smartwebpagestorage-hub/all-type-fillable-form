@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Composite Claim Form (Aadhar) - Form 19, 10C, 31 | संयुक्त दावा प्रपत्र (आधार)</title>
+  
+  <!-- Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for multi-page PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-hover: #0369a1;
+      --text-main: #000000;
+      --border-dark: #000000;
+      --bg-page: #f1f5f9;
+      --paper-bg: #ffffff;
+      --placeholder-color: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container for Sheets */
+    .document-sheets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 80px 16px;
+      gap: 32px;
+    }
+
+    /* Standard A4 Paper Sheet */
+    .form-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 14mm 12mm 14mm;
+      background: var(--paper-bg);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #000;
+      font-size: 11.5px;
+    }
+
+    /* Legal size screen view */
+    body.size-legal .form-sheet {
+      min-height: 356mm;
+      padding: 16mm 16mm;
+    }
+
+    /* Screen-only Sheet Badge */
+    .sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      width: fit-content;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    /* Screen-only Sheet Divider */
+    .sheet-divider {
+      width: 210mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #64748b;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .sheet-divider::before,
+    .sheet-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #cbd5e1;
+    }
+
+    /* Top right header info */
+    .header-top-line {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .mobile-field-wrap {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .mobile-box-input {
+      border: 1px solid #000;
+      padding: 3px 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: inherit;
+      width: 170px;
+      outline: none;
+      background: transparent;
+    }
+
+    /* Main Title Section */
+    .form-heading-block {
+      text-align: center;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .org-title-hi {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .org-title-en {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .claim-name-hi {
+      font-size: 13.5px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .claim-name-en {
+      font-size: 12.5px;
+      font-weight: 800;
+    }
+
+    .claim-note-hi {
+      font-size: 10px;
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
+    .claim-note-en {
+      font-size: 9.5px;
+      line-height: 1.2;
+    }
+
+    .claim-form-no {
+      font-size: 11px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    /* Master Table Layout matching authentic form */
+    .master-claim-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #000;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .master-claim-table td {
+      border: 1px solid #000;
+      padding: 4px 6px;
+      vertical-align: top;
+    }
+
+    .col-num {
+      width: 26px;
+      text-align: center;
+      font-weight: 700;
+      padding: 4px 2px !important;
+    }
+
+    .col-desc {
+      width: 320px;
+      line-height: 1.25;
+    }
+
+    .col-val {
+      line-height: 1.3;
+    }
+
+    /* Purpose 68 nested table */
+    .purpose-nested-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-top: 4px;
+      border: 1px solid #000;
+    }
+
+    .purpose-nested-table th,
+    .purpose-nested-table td {
+      border: 1px solid #000;
+      padding: 2.5px 4px;
+      vertical-align: middle;
+      line-height: 1.2;
+    }
+
+    .purpose-nested-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .purpose-nested-table td.center {
+      text-align: center;
+    }
+
+    /* Form Input Controls */
+    .fill-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px dotted #000;
+      outline: none;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 2px 4px;
+      background: transparent;
+      transition: border-bottom-color 0.15s;
+    }
+
+    .fill-input:focus {
+      border-bottom: 1.5px solid #0284c7;
+      background: #f0f9ff;
+    }
+
+    .fill-input::placeholder {
+      color: var(--placeholder-color);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .fill-textarea {
+      width: 100%;
+      border: 1px dotted #000;
+      outline: none;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 6px;
+      background: transparent;
+      resize: vertical;
+      line-height: 1.3;
+    }
+
+    .fill-textarea:focus {
+      border: 1.5px solid #0284c7;
+      background: #f0f9ff;
+    }
+
+    .fill-textarea::placeholder {
+      color: var(--placeholder-color);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .chk-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 3px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .chk-line input[type="checkbox"],
+    .chk-line input[type="radio"] {
+      margin-top: 2px;
+      cursor: pointer;
+      accent-color: #0284c7;
+    }
+
+    /* Bottom Declaration Section */
+    .declaration-block {
+      margin-top: 8px;
+      font-size: 10.5px;
+      line-height: 1.35;
+      text-align: justify;
+    }
+
+    .declaration-p {
+      margin-bottom: 6px;
+    }
+
+    .sign-block {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-top: 14px;
+      text-align: center;
+      padding-right: 16px;
+    }
+
+    .sign-title {
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* Instruction Sheets Styling */
+    .instruction-sheet h2 {
+      font-size: 13.5px;
+      text-align: center;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .instruction-sheet h3 {
+      font-size: 11.5px;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .instruction-sheet .intro-note {
+      font-size: 10.5px;
+      margin-bottom: 8px;
+      line-height: 1.35;
+      text-align: justify;
+    }
+
+    .instruction-sheet ol {
+      padding-left: 18px;
+      font-size: 10.5px;
+      line-height: 1.35;
+    }
+
+    .instruction-sheet ol > li {
+      margin-bottom: 8px;
+    }
+
+    .instruction-sheet ul {
+      padding-left: 16px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      list-style-type: disc;
+    }
+
+    .instruction-sheet ul > li {
+      margin-bottom: 3px;
+    }
+
+    .instruction-sheet .bullet-note {
+      margin-top: 6px;
+      margin-bottom: 6px;
+      font-size: 10.5px;
+      line-height: 1.35;
+    }
+
+    /* Print Formatting Rules */
+    @media print {
+      body {
+        padding-top: 0 !important;
+        background: #ffffff !important;
+      }
+      .no-print,
+      .app-toolbar,
+      .sheet-badge,
+      .sheet-divider {
+        display: none !important;
+      }
+      .document-sheets-container {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+      .form-sheet {
+        width: 100% !important;
+        min-height: 275mm !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 6mm 10mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .form-sheet:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      .fill-input {
+        background: transparent !important;
+        border-bottom: 0.5px dotted #000 !important;
+      }
+      .fill-input::placeholder,
+      .fill-textarea::placeholder,
+      .mobile-box-input::placeholder {
+        color: transparent !important;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4">
+
+  <!-- Floating Application Action Bar (Hidden in Print) -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <!-- Back to Home Portal -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Form List Dropdown Menu (5 Active Forms) -->
+      <div class="nav-dropdown" id="formListDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnDropdownForms">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
+          <span>Form List (प्रपत्र सूची)</span>
+          <svg class="chevron-icon" width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box">
+          <div class="dropdown-header-tag">
+            <span>Available Forms</span>
+            <span class="badge-count">5 Active</span>
+          </div>
+          
+          <!-- Form 1 -->
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Composite Claim Form (Death Cases)</span>
+              <span class="item-sub">प्रपत्र-20 (PF) / 10-डी (Pension) / 5-आईएफ (EDLI)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 2 -->
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#10b981" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">On-Roll & Family Description Form</span>
+              <span class="item-sub">ऑन-रोल एवं पारिवारिक विवरण प्रमाणपत्र (2 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 3 -->
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#f59e0b" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">EPFO Form 10-D (Monthly Pension)</span>
+              <span class="item-sub">मासिक पेंशन हेतु आवेदन प्रपत्र-10-डी (6 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 4 -->
+          <a href="gar14a-ta-bill.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#8b5cf6" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">G.A.R-14A: TA Bill for Tour</span>
+              <span class="item-sub">यात्रा भत्ता बिल प्रपत्र (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 5 (Current) -->
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link active">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Composite Claim Form (Aadhar)</span>
+              <span class="item-sub">प्रपत्र-19 / 10-सी / 31 (3 Sheets)</span>
+              <span class="item-tag tag-ready">Active Form</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="epfo-badge">EPFO AADHAR</div>
+      <div class="toolbar-title">
+        <strong>Composite Claim Form (Aadhar) [Form 19 / 10C / 31]</strong>
+        <span>संयुक्त दावा प्रपत्र (आधार) [प्रपत्र 19, 10-सी, 31]</span>
+      </div>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Paper Size Selector -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF">
+        <span class="switcher-label">Page Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Fill sample data from typical claim">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+        Fill Sample Data
+      </button>
+
+      <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear all fields to blank">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        Clear Blank Form
+      </button>
+
+      <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        Save as PDF
+      </button>
+
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        Print Form
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Multi-Sheet Container -->
+  <main class="document-sheets-container" id="printableFormArea">
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 1: THE APPLICATION FORM (Page 1) -->
+    <!-- ========================================================================= -->
+    <div class="form-sheet" id="sheet1">
+      <div class="sheet-badge no-print">Sheet 1: Application Form (संयुक्त दावा प्रपत्र - आधार)</div>
+
+      <div>
+        <div class="header-top-line">
+          <span>www.epfindia.gov.in</span>
+        </div>
+
+        <div class="mobile-field-wrap">
+          <label style="font-weight: 700; font-size: 11px;">मोबाइल नम्बर / Mobile Number:</label>
+          <input type="text" class="mobile-box-input" id="f_mobile" placeholder="98XXXXXXXX" maxlength="12">
+        </div>
+
+        <div class="form-heading-block">
+          <div class="org-title-hi">कर्मचारी भविष्य निधि संगठन</div>
+          <div class="org-title-en">EMPLOYEES' PROVIDENT FUNDS ORGANISATION</div>
+          <div class="claim-name-hi">संयुक्त दावा प्रपत्र (आधार)</div>
+          <div class="claim-name-en">COMPOSITE CLAIM FORM (AADHAR)</div>
+          <div class="claim-note-hi">(उन मामलों में, जहां फार्म-11 (न्यू) में सदस्य की पूर्ण जानकारी, जैसे आधार नम्बर एवं बैंक खाता विवरण यू.ए.एन. पोर्टल पर उपलब्ध है एवं यू.ए.एन. एक्टिवेटेड हो चुका है)</div>
+          <div class="claim-note-en">(APPLICABLE IN CASES WHERE EMPLOYEES' COMPLETE DETAILS IN FORM-11 (NEW), AADHAR NUMBER AND BANK ACCOUNT DETAILS ARE AVAILABLE ON UAN PORTAL AND UAN HAS BEEN ACTIVATED)</div>
+          <div class="claim-form-no">फार्म सं. - 19 (भविष्य निधि अंतिम निपटान) / 10सी (पेंशन प्रत्याहरण) / 31 (भविष्य निधि आंशिक प्रत्याहरण)</div>
+          <div style="font-size: 10px; font-weight: 700;">[FORM NO. - 19 (PF FINAL SETTLEMENT) / 10C (PENSION WITHDRAWAL BENEFITS) / 31 (PF PART WITHDRAWAL)]</div>
+        </div>
+
+        <!-- Master Claim Table -->
+        <table class="master-claim-table">
+          <!-- Row 1 -->
+          <tr>
+            <td class="col-num">1</td>
+            <td colspan="2">
+              <div style="font-weight: 700; margin-bottom: 4px;">दावा जिसके लिए आवेदन किया है/ Claim applied for:</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 4px;">
+                <label class="chk-line">
+                  <input type="checkbox" id="chk_claim_19" name="claim_type" value="19">
+                  <span><strong>i) भ.नि. अंतिम निपटान</strong> / Final PF Settlement</span>
+                </label>
+                <label class="chk-line">
+                  <input type="checkbox" id="chk_claim_10c" name="claim_type" value="10C">
+                  <span><strong>ii) पेंशन प्रत्याहरण लाभ</strong> / Pension Withdrawal Benefits</span>
+                </label>
+                <label class="chk-line">
+                  <input type="checkbox" id="chk_claim_31" name="claim_type" value="31">
+                  <span><strong>iii) भ.नि. आंशिक प्रत्याहरण</strong> / P.F. Part Withdrawal</span>
+                </label>
+              </div>
+              <div style="font-size: 10px; font-style: italic;">(जो लागू हो, उस पर √ का निशान लगाएं) / (Tick whichever is/are applicable)</div>
+            </td>
+          </tr>
+
+          <!-- Row 2 -->
+          <tr>
+            <td class="col-num">2</td>
+            <td class="col-desc">
+              <strong>सदस्य का नाम (स्पष्ट अक्षरों में):</strong><br>
+              Name of the member: (IN CAPITAL LETTERS)
+            </td>
+            <td class="col-val">
+              <input type="text" class="fill-input uppercase" id="f_memberName" placeholder="ENTER MEMBER FULL NAME IN CAPITAL">
+            </td>
+          </tr>
+
+          <!-- Row 3 -->
+          <tr>
+            <td class="col-num">3</td>
+            <td class="col-desc">
+              <strong>यू.ए.एन./Universal Account Number (UAN):</strong>
+            </td>
+            <td class="col-val">
+              <input type="text" class="fill-input" id="f_uan" placeholder="12-Digit UAN (e.g. 100026389870)" maxlength="12">
+            </td>
+          </tr>
+
+          <!-- Row 4 -->
+          <tr>
+            <td class="col-num">4</td>
+            <td class="col-desc">
+              <strong>आधार नम्बर / Aadhar Number:</strong>
+            </td>
+            <td class="col-val">
+              <input type="text" class="fill-input" id="f_aadhar" placeholder="12-Digit Aadhaar (e.g. 9112 8120 6072)" maxlength="14">
+            </td>
+          </tr>
+
+          <!-- Row 5 -->
+          <tr>
+            <td class="col-num">5</td>
+            <td class="col-desc">
+              <strong>स्थापना में कार्य ग्रहण की तिथि / Date of joining the establishment:</strong>
+            </td>
+            <td class="col-val">
+              <input type="text" class="fill-input" id="f_doj" placeholder="DD/MM/YYYY">
+            </td>
+          </tr>
+
+          <!-- Row 6 -->
+          <tr>
+            <td class="col-num">6</td>
+            <td colspan="2">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <div style="flex: 1.1;">
+                  <div style="font-weight: 700;">
+                    क) भ.नि. आंशिक प्रत्याहरण का उद्देश्य (जो लागू हो, उस पर √ का निशान लगाएं)<br>
+                    Purpose of PF Part Withdrawal: (Tick √ whichever applicable)
+                  </div>
+
+                  <div style="margin-top: 10px;">
+                    <div style="font-weight: 700; margin-bottom: 2px;">ख) राशि (रुपयों में)/ Amount (in Rs.):</div>
+                    <input type="text" class="fill-input" id="f_amount" placeholder="e.g. 50,000/-">
+                  </div>
+
+                  <div style="margin-top: 8px; font-size: 10.5px;">
+                    <strong>ग) साईट/मकान/फ्लैट या "एजेंसी" के माध्यम से निर्माण या आवासीय ऋण या एल.आई.सी. की अदायगी के उद्देश्य से दी जाने वाली राशि के लिए प्राप्तकर्ता का पता और चैक जिसके नाम से बनाया जाना है दर्शाएं</strong><br>
+                    <span style="font-size: 9.5px; color: #333;">For purpose of Site/House/Flat or Construction through "agency" or Repayment of Housing Loan or LIC, indicate cheque to be drawn "in favour of" and payee's address.</span>
+                    <textarea class="fill-textarea" id="f_payeeDetails" rows="2" style="margin-top: 4px;" placeholder="Cheque in favour of & Payee's full address..."></textarea>
+                  </div>
+                </div>
+
+                <!-- Right Side: Purpose Sub-table -->
+                <div style="flex: 1.3;">
+                  <table class="purpose-nested-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 22px;">क्र.सं/ S#</th>
+                        <th>भ.नि. आंशिक प्रत्याहरण का उद्देश्य / Purpose of PF Part Withdrawal</th>
+                        <th style="width: 26px;">√</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="center">i</td>
+                        <td>आवास ऋण/ स्वयं/मकान/प्लॉट की खरीद या निर्माण/ वर्तमान मकान में अतिरिक्त परिवर्तन/आवास ऋण को चुकाने में (पैरा 68बी/68बीबी/68बीबी)<br>Housing Loan/Purchase of site/House/Flat or for Construction/Addition, alteration in existing house/Repayment of Housing loan (Para 68B/68BB/68BC)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68B"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">ii</td>
+                        <td>फैक्टरी की तालाबंदी या बंद होना (पैरा 68एच) / Lockout or closure of factory (Para 68H)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68H"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">iii</td>
+                        <td>सदस्य/परिवार की बीमारी (पैरा 68जे) / Illness of member/family (Para 68J)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68J"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">iv</td>
+                        <td>स्वयं/पुत्र/पुत्री /भाई/बहन का विवाह (पैरा 68के) / Marriage of self/son/daughter/brother/sister (Para 68K)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68K_Marriage"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">v</td>
+                        <td>बच्चों के मैट्रिक के बाद की शिक्षा (पैरा 68के) / Post Matriculation education of Children (Para 68K)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68K_Edu"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">vi</td>
+                        <td>प्राकृतिक आपदा के मामले (पैरा 68एल) / Natural calamity (Para 68L)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68L"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">vii</td>
+                        <td>स्थापना में बिजली उपलब्ध न होने की स्थिति में (पैरा 68एम) / Cut in electricity in establishment (Para 68M)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68M"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">viii</td>
+                        <td>मेडिकल उपकरण की खरीद (पैरा 68एन) / Purchasing equipment by physically handicapped (Para 68N)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68N"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">ix</td>
+                        <td>सेवानिवृत्ति से एक वर्ष के पहले (पैरा 68एनएन) / One year before retirement (Para 68NN)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68NN"></td>
+                      </tr>
+                      <tr>
+                        <td class="center">x</td>
+                        <td>वरिष्ठ पेंशन बीमा योजना में निवेश (पैरा 68एनएनएन) / Investment in Varistha Pension Bima Yojana (Para 68NNN)</td>
+                        <td class="center"><input type="checkbox" name="pf_purpose" value="68NNN"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Row 7 -->
+          <tr>
+            <td class="col-num">7</td>
+            <td class="col-desc">
+              <strong>नौकरी छोड़ने की तिथि (यदि आवेदन भ.नि. आंशिक प्रत्याहरण हेतु है तो आवश्यक नहीं):</strong><br>
+              Date of leaving service: (not required if applying for PF Part Withdrawal)
+            </td>
+            <td class="col-val">
+              <input type="text" class="fill-input" id="f_dol" placeholder="DD/MM/YYYY">
+            </td>
+          </tr>
+
+          <!-- Row 8 -->
+          <tr>
+            <td class="col-num">8</td>
+            <td colspan="2">
+              <div style="margin-bottom: 6px;">
+                <strong>क) स्थायी खाता संख्या (पैन) (केवल 5 वर्ष से कम सेवाकाल होने पर) (कृपया फार्म 15जी/15एच की दो प्रतियां संलग्न करें, यदि लागू हो)</strong><br>
+                Permanent Account No. (PAN): (Only in case of service less than 5 years) (Please enclose two copies of Form No. 15G/15H, if applicable)<br>
+                <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+                  <span style="font-weight: 700;">PAN:</span>
+                  <input type="text" class="fill-input uppercase" id="f_pan" placeholder="ABCDE1234F" maxlength="10" style="width: 220px;">
+                </div>
+              </div>
+
+              <div style="border-top: 1px dotted #666; padding-top: 4px;">
+                <strong>ख) नौकरी छोड़ने का कारण / Reason of leaving service:</strong>
+                <div style="margin-top: 3px; display: flex; flex-direction: column; gap: 4px;">
+                  <label class="chk-line">
+                    <input type="radio" name="leaving_reason" id="r_leaving_1" value="service_terminated">
+                    <span>
+                      <strong>सेवा समाप्ति (क)</strong> खराब स्वास्थ्य के कारण <strong>(ख)</strong> नियोक्ता के व्यापार के संकुचन विच्छेदन के कारण या <strong>(ग)</strong> सदस्य के नियंत्रण से परे कोई कारण<br>
+                      Service terminated on account of (a) ill health of member (b) Contraction / Discontinuation of employer's business or (c) Other cause beyond the control of the member
+                    </span>
+                  </label>
+                  <label class="chk-line">
+                    <input type="radio" name="leaving_reason" id="r_leaving_2" value="personal">
+                    <span><strong>व्यक्तिगत कारण / Personal Reasons</strong> (जैसे अन्यत्र कार्यभार ग्रहण करना, सेवानिवृत्ति, त्यागपत्र आदि)</span>
+                  </label>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Row 9 -->
+          <tr>
+            <td class="col-num">9</td>
+            <td class="col-desc">
+              <strong>पत्र व्यवहार का पता:</strong><br>
+              Full Postal Address
+            </td>
+            <td class="col-val">
+              <textarea class="fill-textarea" id="f_address" rows="2" placeholder="Full communication address with House No, Street, Village/Town, District, State..."></textarea>
+              <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+                <span style="font-weight: 700;">पिन/Pin:</span>
+                <input type="text" class="fill-input" id="f_pin" placeholder="6-digit PIN" maxlength="6" style="width: 140px;">
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Declaration & Signatures -->
+        <div class="declaration-block">
+          <p class="declaration-p">
+            प्रमाणित करता हूं कि विवरण मेरी जानकारी के अनुसार सही है। मैं प्रमाणित करता हूं कि मैंने यू.ए.एन. पोर्टल में सीडेड डाटा देखा है और सभी डाटा प्रपत्र संख्या 11 (नया) सहित बैंक खाता विवरण और आधार संख्या, सही पाया है। कृपया यू.ए.एन. पोर्टल में दिए गए बैंक खाते में राशि का भुगतान करें। एक निरस्त चैक (जिसमें सदस्य का नाम, बैंक खाता संख्या और आईएफएससी कोड दिया गया है) संलग्न है।
+          </p>
+          <p class="declaration-p" style="color: #222; font-size: 10px;">
+            Certified that the particulars are true to the best of my knowledge. I certify that I have gone through the data seeded in UAN Portal and found all data, including Form No.-11 (New), bank account details and Aadhar number, to be correct. Please make the payment in the bank account mentioned in the UAN Portal. A cancelled cheque (containing member's name, bank account number and IFS Code) is attached herewith.
+          </p>
+          <p class="declaration-p" style="font-weight: 600;">
+            यदि राशि का उपयोग उपर्युक्त कॉलम (6) में दिए गए उद्देश्य के अलावा किसी अन्य उद्देश्य के लिए होता है तो मैं संपूर्ण राशि को ब्याज सहित वापस करने के लिए उत्तरदायी हूं।<br>
+            <span style="font-weight: normal; font-size: 10px;">In case the amount is used for any purpose other than stated in column (6) above, I am liable to return the entire amount with penal interest.</span>
+          </p>
+        </div>
+
+        <div class="sign-block">
+          <div>
+            <div style="height: 38px; border-bottom: 1px dotted #999; width: 180px; margin-bottom: 4px;"></div>
+            <div class="sign-title">सदस्य के हस्ताक्षर / Member's Signature</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 10px; color: #666; border-top: 0.5px solid #ccc; padding-top: 4px; display: flex; justify-content: space-between;">
+        <span>Composite Claim Form (Aadhar) — Form 19 / 10C / 31</span>
+        <span>Page 1 of 3</span>
+      </div>
+    </div>
+
+    <!-- Screen Divider -->
+    <div class="sheet-divider no-print">पृष्ठ 2: भरने हेतु अनुदेश / Page 2: Instructions</div>
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 2: INSTRUCTIONS PART 1 (Page 2) -->
+    <!-- ========================================================================= -->
+    <div class="form-sheet instruction-sheet" id="sheet2">
+      <div class="sheet-badge no-print">Sheet 2: Instructions (अनुदेश - भाग 1)</div>
+
+      <div>
+        <div class="header-top-line">
+          <span>www.epfindia.gov.in</span>
+        </div>
+
+        <h2>संयुक्त दावा प्रपत्र (आधार) भरने हेतु अनुदेश</h2>
+        <h3>INSTRUCTION FOR FILLING THE COMPOSITE CLAIM FORM (AADHAR)</h3>
+
+        <div class="intro-note">
+          (संयुक्त दावा प्रपत्र ऐसे मामलों में लागू होगा जहां सदस्य प्रपत्र-11(नया) में विवरण पूर्ण करता है, आधार नंबर तथा बैंक खाते का विवरण यू.ए.एन. पोर्टल पर उपलब्ध है तथा यू.ए.एन. सक्रिय किया गया है। ऐसे सदस्य नियोक्ता के सत्यापन के बिना सीधे संबंधित कर्मचारी भविष्य निधि कार्यालय में फार्म जमा कर सकते हैं।)<br>
+          <em>(The Composite Claim Form (Aadhar) is applicable in cases where a member's complete details in Form-11 (New), Aadhar number and bank account details are available on the UAN Portal and UAN has been activated. Such members can submit this form directly to the concerned EPFO office, without attestation of claim form by the employers.)</em>
+        </div>
+
+        <ol>
+          <li>
+            <strong>निम्नांकित हेतु आवेदन किया जा सकता है:- The application can be made for:</strong>
+            <ul>
+              <li><strong>i) भविष्य निधि के अंतिम निपटान / Final P.F. Settlement</strong></li>
+              <li><strong>ii) पेंशन प्रत्याहरण लाभ (केवल 10 वर्ष से कम सेवाकाल होने पर) / Pension Withdrawal Benefits (only if the service is less than 10 years)</strong></li>
+              <li><strong>iii) भविष्य निधि आंशिक प्रत्याहरण / PF Part Withdrawal</strong></li>
+            </ul>
+            तदनुसार बॉक्स में निशान लगाएं / Tick the boxes accordingly.
+          </li>
+
+          <li>
+            <strong>नाम: नाम स्पष्ट अक्षरों में लिखें / Name: NAME IN CAPITAL LETTERS</strong>
+          </li>
+
+          <li>
+            <strong>यू.ए.एन. : 12 अंकों की यूनिवर्सल खाता संख्या का उल्लेख करें / UAN: Please mention the 12 digit Universal Account Number.</strong>
+          </li>
+
+          <li>
+            <strong>कृपया बारह अंकों की आधार संख्या का उल्लेख करें / Kindly mention 12 digits Aadhar Number.</strong>
+          </li>
+
+          <li>
+            <strong>स्थापना में कार्य ग्रहण की तिथि: दिन/माह/वर्ष के फार्मेट में / Date of Joining the establishment: In DD/MM/YYYY format.</strong>
+          </li>
+
+          <li>
+            <strong>भविष्य निधि आंशिक प्रत्याहरण का उद्देश्य और आवश्यक राशि / Purpose of PF Part Withdrawal and Amount required:</strong><br>
+            (इनमें से कोई एक कारण होना चाहिए / The purpose may be one of the following):
+            <ul>
+              <li><strong>i) आवासीय ऋण/भूमि/घर/फ्लैट खरीदने हेतु / वर्तमान घर में निर्माण / अतिरिक्त फेर बदल / आवासीय ऋण को चुकाने के लिए:</strong> कोई दस्तावेज अपेक्षित नहीं है। किसी दस्तावेज (नया घोषणा पत्र/ उपयोगिता प्रमाण पत्र इत्यादि) की आवश्यकता नहीं है।<br><em>Housing Loan/purchase of site/house/flat or for construction/Addition alteration in existing house/Repayment of Housing loan: No document is required. No document (New Declaration Form/Utilization Certificate etc.) is required.</em><br>
+              यदि अग्रिम साईट/मकान/फ्लैट की खरीद या एजेंसी के माध्यम से निर्माण या आवासीय ऋण की अदायगी के लिए है तो जिसके पक्ष में अदा किया जाना है, उसका नाम दर्शाएं।<br>
+              <em>In case the advance is for purchase of site/house/flat or construction through Agency or repayment of Housing Loan then indicate the name in whose favour the payment has to be made.</em></li>
+              <li><strong>ii) फैक्टरी की तालाबंदी या बंद होना / Lockout or closure of factory:</strong> किसी दस्तावेज की आवश्यकता नहीं है / No document is required.</li>
+              <li><strong>iii) सदस्य/परिवार की बीमारी / Illness of member/family:</strong> i) डॉक्टर का प्रमाण पत्र और ii) नियोक्ता द्वारा प्रमाण पत्र कि सदस्य के पास कर्मचारी राज्य बीमा निगम की सुविधा उपलब्ध नहीं है / Certificate of doctor and ii) Certificate by employer that ESIC facility is not available to the member.</li>
+              <li><strong>iv) स्वयं/बेटा/बेटी/भाई/बहन की शादी / Marriage of self/son/daughter/brother/sister:</strong> किसी दस्तावेज/शादी कार्ड की आवश्यकता नहीं है / Marriage Card is not required.</li>
+              <li><strong>v) बच्चों की मैट्रिक के बाद की शिक्षा / Post Matriculation education of children:</strong> किसी दस्तावेज की आवश्यकता नहीं है / No document is required.</li>
+              <li><strong>vi) प्राकृतिक आपदा के असाधारण मामले / Natural calamity of exceptional cases:</strong> किसी दस्तावेज की आवश्यकता नहीं है / No document is required.</li>
+              <li><strong>vii) स्थापना में बिजली की कटौती / Cut in electricity in establishment:</strong> किसी दस्तावेज की आवश्यकता नहीं है / No document is required.</li>
+              <li><strong>viii) शारीरिक रूप से विकलांग द्वारा उपकरण की खरीद / Purchase of equipment by physically handicapped:</strong> चिकित्सा प्रमाण पत्र की आवश्यकता है / Medical certificate is required.</li>
+              <li><strong>ix) सेवानिवृत्ति से एक वर्ष पूर्व कुल भविष्य निधि बकाया का 90% तक निकाल सकते हैं / One year before retirement:</strong> किसी दस्तावेज की आवश्यकता नहीं है / 90% of total PF balance can be withdrawn. No document is required.</li>
+              <li><strong>x) वरिष्ठ पेंशन बीमा योजना में निवेश:</strong> कुल भविष्य निधि राशि का 90% तक एल.आई.सी. में अंतरित कर सकते हैं। किसी दस्तावेज की आवश्यकता नहीं है / Investment in Varistha Pension Bima Yojana: 90% of total PF balance can be transferred to LIC. No document is required.</li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>नौकरी छोड़ने की तिथि: दिन/माह/वर्ष के फार्मेट में / Date of leaving service: In DD/MM/YYYY format.</strong>
+          </li>
+
+          <li>
+            <strong>8. (क) स्थायी खाता संख्या (पैन): पांच वर्ष से कम सेवाकाल होने पर / Permanent Account Number (PAN): In case of service less than 5 years.</strong><br>
+            फार्म 15जी/15एच की दो प्रतियां संलग्न करें, यदि लागू हो / Please submit two copies of Form 15G/15H, if applicable.<br>
+            (यदि भ.नि. से आंशिक प्रत्याहरण के लिए आवेदन कर रहे हैं तो पैन की आवश्यकता नहीं है) / (PAN not required if applying for PF Part Withdrawal).
+          </li>
+        </ol>
+      </div>
+
+      <div style="font-size: 10px; color: #666; border-top: 0.5px solid #ccc; padding-top: 4px; display: flex; justify-content: space-between;">
+        <span>Composite Claim Form (Aadhar) — Instructions</span>
+        <span>Page 2 of 3</span>
+      </div>
+    </div>
+
+    <!-- Screen Divider -->
+    <div class="sheet-divider no-print">पृष्ठ 3: अनुदेश जारी / Page 3: Instructions Continued</div>
+
+    <!-- ========================================================================= -->
+    <!-- SHEET 3: INSTRUCTIONS PART 2 (Page 3) -->
+    <!-- ========================================================================= -->
+    <div class="form-sheet instruction-sheet" id="sheet3">
+      <div class="sheet-badge no-print">Sheet 3: Instructions Continued (अनुदेश - भाग 2)</div>
+
+      <div>
+        <div class="header-top-line">
+          <span>www.epfindia.gov.in</span>
+        </div>
+
+        <h3 style="text-align: left; margin-top: 6px;">8. (ख) नौकरी छोड़ने का कारण केवल भ.नि. अंतिम निपटान के मामले में: इनमें से कोई एक कारण होना चाहिए / Reason for leaving service : Only in case of PF Final Settlement. The reason may be:</h3>
+
+        <ol style="list-style-type: upper-roman; padding-left: 20px;">
+          <li>
+            <strong>समापन के कारण / Termination on account of:</strong>
+            <ul style="list-style-type: lower-alpha;">
+              <li>सदस्य की बीमारी / Ill health of member</li>
+              <li>नियोक्ता के व्यापार में कमी/बंद होना / Contraction / Discontinuation of employer's business</li>
+              <li>सदस्य के नियंत्रण से बाहर अन्य कारण / Other cause beyond the control of the member</li>
+              <li>व्यक्तिगत कारण / Personal Reasons</li>
+            </ul>
+          </li>
+          <li>
+            <strong>विवाह (महिला सदस्य के लिए) / Marriage (for female member)</strong>
+          </li>
+          <li>
+            <strong>विदेश में स्थायी रूप से बसने के कारण / Permanent Settlement Abroad</strong>
+          </li>
+        </ol>
+
+        <div style="margin-top: 14px; padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 4px;">
+          <h4 style="font-size: 11px; font-weight: 700; margin-bottom: 4px;">आयकर (टीडीएस) कटौती नियम / Tax Deducted at Source (TDS) Rules:</h4>
+          <p class="bullet-note">
+            • <strong>आयकर (टीडीएस) काटा जाएगा यदि सेवा 5 वर्ष (60 माह) से कम है।</strong> आयकर (टीडीएस) नहीं काटा जाएगा यदि कुल शेष रु. 50,000 से कम है। यद्यपि ऐसे मामलों में टीडीएस 10% की दर से काटा जाएगा यदि सदस्य पैन प्रस्तुत करता है। पैन प्रस्तुत नहीं किए जाने के मामले में 34.608% की दर से टीडीएस काटा जाएगा।
+          </p>
+          <p class="bullet-note" style="font-size: 10px; color: #333;">
+            Income Tax (TDS) is deducted if the service is less than 5 years (60 months). No Income Tax (TDS) is deducted in case the total balance is less than Rs. 50,000/-. However, TDS is deducted @10% if the member submits PAN in such cases. In case PAN is not submitted, then TDS @34.608% is deducted.
+          </p>
+        </div>
+
+        <div style="margin-top: 14px; padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 4px;">
+          <h4 style="font-size: 11px; font-weight: 700; margin-bottom: 4px;">सेवा गणना एवं खातों का विलय / Service Calculation & Account Merge:</h4>
+          <p class="bullet-note">
+            • <strong>वर्तमान स्थापना के साथ-साथ पिछली स्थापना की कुल सेवा की गणना की जाएगी, अतः सभी भविष्य निधि खातों को एक साथ मिलाने का सुझाव दिया जाता है।</strong>
+          </p>
+          <p class="bullet-note" style="font-size: 10px; color: #333;">
+            The total service in the present establishment as well as previous establishment is counted and, therefore, it is advisable to merge all PF accounts.
+          </p>
+        </div>
+
+        <ol start="9" style="margin-top: 14px; padding-left: 18px;">
+          <li>
+            <strong>कृपया सदस्य के पते का उल्लेख करें / Kindly mention the address of the member.</strong>
+          </li>
+          <li>
+            <strong>कृपया सदस्य द्वारा राजस्व स्टांप (रुपये 1/-) लगाने की आवश्यकता नहीं है / No Revenue stamp (Re. 1/-) is required to be affixed by the member.</strong>
+          </li>
+        </ol>
+
+        <div style="margin-top: 24px; padding: 12px; border: 1px dashed #0284c7; background: #f0f9ff; border-radius: 4px;">
+          <div style="font-weight: 700; font-size: 11px; color: #0369a1; margin-bottom: 4px;">महत्वपूर्ण सूचना / Key Highlights:</div>
+          <div style="font-size: 10.5px; line-height: 1.4;">
+            1. यदि आधार यूएएन से लिंक्ड एवं सत्यापित है, तो नियोक्ता (Employer) के हस्ताक्षर या मुहर की कोई आवश्यकता नहीं है।<br>
+            2. सदस्य सीधे अपने बैंक खाते के निरस्त चेक (Cancelled Cheque) की प्रति के साथ इस प्रपत्र को ईपीएफओ कार्यालय में जमा कर सकते हैं।
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 10px; color: #666; border-top: 0.5px solid #ccc; padding-top: 4px; display: flex; justify-content: space-between;">
+        <span>Composite Claim Form (Aadhar) — Instructions</span>
+        <span>Page 3 of 3</span>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="portal.js"></script>
+  <script>
+    (function() {
+      // Paper size switcher
+      const btnSizeA4 = document.getElementById('btnSizeA4');
+      const btnSizeLegal = document.getElementById('btnSizeLegal');
+      const dynamicPageSizeStyle = document.getElementById('dynamicPageSizeStyle');
+
+      btnSizeA4.addEventListener('click', () => {
+        document.body.classList.remove('size-legal');
+        document.body.classList.add('size-a4');
+        btnSizeA4.classList.add('active');
+        btnSizeLegal.classList.remove('active');
+        dynamicPageSizeStyle.innerHTML = `@page { size: A4 portrait; margin: 8mm 10mm 8mm 10mm; }`;
+      });
+
+      btnSizeLegal.addEventListener('click', () => {
+        document.body.classList.remove('size-a4');
+        document.body.classList.add('size-legal');
+        btnSizeLegal.classList.add('active');
+        btnSizeA4.classList.remove('active');
+        dynamicPageSizeStyle.innerHTML = `@page { size: legal portrait; margin: 10mm 12mm 10mm 12mm; }`;
+      });
+
+      // Sample Data Button
+      const btnSampleData = document.getElementById('btnSampleData');
+      btnSampleData.addEventListener('click', () => {
+        document.getElementById('f_mobile').value = "9876543210";
+        document.getElementById('chk_claim_19').checked = true;
+        document.getElementById('chk_claim_10c').checked = true;
+        document.getElementById('chk_claim_31').checked = false;
+
+        document.getElementById('f_memberName').value = "RAJESH CHOKIKAR";
+        document.getElementById('f_uan').value = "100026389870";
+        document.getElementById('f_aadhar').value = "9112 8120 6072";
+        document.getElementById('f_doj').value = "14/07/2014";
+        document.getElementById('f_dol').value = "31/01/2026";
+        document.getElementById('f_amount').value = "";
+        document.getElementById('f_payeeDetails').value = "";
+        document.getElementById('f_pan').value = "ABCDE1234F";
+        document.getElementById('r_leaving_2').checked = true;
+        document.getElementById('f_address').value = "H.NO. 124, SEC-77, FARIDABAD, HARYANA";
+        document.getElementById('f_pin').value = "121004";
+      });
+
+      // Clear Blank Form
+      const btnClearForm = document.getElementById('btnClearForm');
+      btnClearForm.addEventListener('click', () => {
+        const inputs = document.querySelectorAll('#printableFormArea input, #printableFormArea textarea');
+        inputs.forEach(el => {
+          if (el.type === 'checkbox' || el.type === 'radio') {
+            el.checked = false;
+          } else {
+            el.value = '';
+          }
+        });
+      });
+
+      // Print Form
+      const btnPrint = document.getElementById('btnPrint');
+      btnPrint.addEventListener('click', () => {
+        window.print();
+      });
+
+      // Save PDF via html2pdf
+      const btnSavePdf = document.getElementById('btnSavePdf');
+      btnSavePdf.addEventListener('click', () => {
+        const isLegal = document.body.classList.contains('size-legal');
+        const memberName = document.getElementById('f_memberName').value.trim() || 'Claimant';
+        const filename = `EPFO_Composite_Claim_Aadhar_Form19_10C_31_${memberName.replace(/\s+/g, '_')}.pdf`;
+
+        const opt = {
+          margin: [6, 8, 6, 8],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: {
+            unit: 'mm',
+            format: isLegal ? 'legal' : 'a4',
+            orientation: 'portrait'
+          },
+          pagebreak: { mode: ['css', 'legacy'], after: '.form-sheet' }
+        };
+
+        html2pdf().set(opt).from(document.getElementById('printableFormArea')).save();
+      });
+
+    })();
+  </script>
+</body>
+</html>
