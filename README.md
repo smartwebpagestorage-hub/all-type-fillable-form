@@ -40,7 +40,7 @@ Open `index.html` in any modern web browser or access the published GitHub Pages
 
 1. Clone or download this repository:
    ```bash
-   git clone https://github.com/samrtwebpagestorage-hub/all-type-fillable-form.git
+   git clone https://github.com/smartwebpagestorage-hub/all-type-fillable-form.git
    cd all-type-fillable-form
    ```
 2. Start any local HTTP server, e.g., using Python:
