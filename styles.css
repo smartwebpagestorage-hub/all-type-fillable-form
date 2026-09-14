@@ -1257,3 +1257,121 @@ body.size-legal .enclosure-list li {
     margin-bottom: 1.5px !important;
   }
 }
+
+/* ==========================================================================
+   Screen-Only Responsive Styles for Mobile & Tablet (max-width: 860px)
+   (Does NOT affect @media print or PDF Export)
+   ========================================================================== */
+@media screen and (max-width: 860px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .document-sheets-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 4px 60px 4px !important;
+    gap: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  body .page-container,
+  body .form-sheet,
+  .page-container,
+  .form-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    padding: 16px 12px !important;
+    margin: 0 0 16px 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.size-legal .page-container,
+  body.size-legal .form-sheet {
+    max-width: 100% !important;
+    padding: 16px 12px !important;
+  }
+
+  /* Form Tables: Enable Horizontal Touch Scroll if table is wider than screen */
+  .table-responsive-wrapper,
+  .table-responsive {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Form Header & Logo */
+  .form-header {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+  }
+
+  .header-left, .header-right {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .header-center {
+    width: 100% !important;
+  }
+
+  /* Inputs on mobile: comfortable tap height */
+  .form-input, .fill-input {
+    min-height: 28px;
+    font-size: 13px;
+  }
+
+  /* Signatures section on mobile */
+  .sign-section {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+  }
+
+  .sign-block-right {
+    min-width: auto !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .page-container,
+  .form-sheet {
+    padding: 12px 8px !important;
+    font-size: 11px !important;
+  }
+
+  .doc-main-title {
+    font-size: 13.5px !important;
+  }
+
+  .doc-sub-title {
+    font-size: 12px !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+
+  .form-table th, 
+  .form-table td,
+  .cea-table th,
+  .cea-table td {
+    padding: 5px 4px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* Guard for html2pdf.js export */
+body.exporting-pdf .form-sheet,
+body.exporting-pdf .page-container {
+  width: 210mm !important;
+  min-height: 297mm !important;
+  padding: 14mm 16mm !important;
+  max-width: none !important;
+}

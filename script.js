@@ -261,13 +261,17 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       btnSavePdf.disabled = true;
 
+      document.body.classList.add('exporting-pdf');
+
       html2pdf().set(opt).from(element).save().then(() => {
         btnSavePdf.innerHTML = originalText;
         btnSavePdf.disabled = false;
+        document.body.classList.remove('exporting-pdf');
       }).catch(err => {
         console.error('html2pdf generation error:', err);
         btnSavePdf.innerHTML = originalText;
         btnSavePdf.disabled = false;
+        document.body.classList.remove('exporting-pdf');
         // Fallback to native print dialog
         window.print();
       });
