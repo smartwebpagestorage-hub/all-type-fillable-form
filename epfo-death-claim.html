@@ -44,7 +44,7 @@
         <div class="dropdown-menu-box">
           <div class="dropdown-header-tag">
             <span>Available Forms</span>
-            <span class="badge-count">5 Active</span>
+            <span class="badge-count">6 Active</span>
           </div>
           
           <a href="epfo-death-claim.html" class="dropdown-item-link active">
@@ -102,16 +102,17 @@
             </div>
           </a>
 
-          <div class="dropdown-item-link disabled" title="Coming soon">
+          <!-- Form 6 -->
+          <a href="children-education-allowance.html" class="dropdown-item-link">
             <div class="item-icon">
-              <svg width="14" height="14" fill="#94a3b8" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+              <svg width="15" height="15" fill="#0ea5e9" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/><path d="M4.179 8.358 1 9.63v3.74a1 1 0 0 0 .553.894l6 3a1 1 0 0 0 .894 0l6-3a1 1 0 0 0 .553-.894V9.63l-3.179-1.272-3.666 1.467a1.5 1.5 0 0 1-1.108 0z"/></svg>
             </div>
             <div class="item-content">
-              <span class="item-title">EPFO Form 31 (PF Advance)</span>
-              <span class="item-sub">प्रपत्र-31 (भविष्य निधि अग्रिम)</span>
-              <span class="item-tag tag-soon">Next to Add</span>
+              <span class="item-title">Children Education Allowance (CEA)</span>
+              <span class="item-sub">बाल शिक्षा भत्ता दावा (4 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -377,7 +378,10 @@
                     <div class="lbl-en">PF Account Number (in case UAN not available)</div>
                   </td>
                   <td class="col-val">
-                    <input type="text" name="deceasedPFNo" id="deceasedPFNo" class="form-input font-mono" placeholder="e.g. MH/BAN/0000000/000/0000000">
+                    <div class="pf-account-group">
+                      <input type="text" name="deceasedPFPrefix" id="deceasedPFPrefix" class="form-input pf-prefix-input text-uppercase font-bold" value="HR/FBD/" placeholder="HR/FBD/" title="कार्यालय कोड / Office Prefix (e.g. HR/FBD/, DL/CPM/, UP/NOI/) — आवश्यकतानुसार बदलें">
+                      <input type="text" name="deceasedPFNo" id="deceasedPFNo" class="form-input pf-number-input font-mono font-bold" placeholder="58426/102" title="PF Code / Member ID">
+                    </div>
                   </td>
                 </tr>
               </table>

@@ -110,10 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
     inputs.forEach(input => {
       if (input.type === 'checkbox' || input.type === 'radio') {
         input.checked = false;
+      } else if (input.id === 'deceasedPFPrefix') {
+        input.value = 'HR/FBD/';
       } else {
         input.value = '';
       }
     });
+    saveSessionData();
   }
 
   /**
@@ -138,7 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Identifiers
     document.getElementById('deceasedAadhaar').value = '4321 8765 9012';
     document.getElementById('deceasedUAN').value = '100026389870';
-    document.getElementById('deceasedPFNo').value = 'MH/BAN/0014526/000/0087412';
+    document.getElementById('deceasedPFPrefix').value = 'HR/FBD/';
+    document.getElementById('deceasedPFNo').value = '58426/102';
 
     // Service & Death
     document.getElementById('dateOfLeaving').value = '15/04/2023';
@@ -271,5 +275,28 @@ document.addEventListener('DOMContentLoaded', () => {
       // Fallback: standard print which has Save as PDF
       window.print();
     }
+  }
+
+  // -------------------------------------------------------------
+  // Real-Time Session Storage Sync: Death Claim -> On-Roll Form
+  // -------------------------------------------------------------
+  function saveSessionData() {
+    try {
+      const data = {
+        deceasedName: document.getElementById('deceasedName')?.value || '',
+        pfPrefix: document.getElementById('deceasedPFPrefix')?.value || 'HR/FBD/',
+        pfAccountNo: document.getElementById('deceasedPFNo')?.value || '',
+        fatherOrHusbandName: document.getElementById('fatherName')?.value || document.getElementById('spouseName')?.value || '',
+        dateOfDeath: document.getElementById('dateOfDeath')?.value || ''
+      };
+      sessionStorage.setItem('epfoDeathClaimData', JSON.stringify(data));
+    } catch (e) {
+      console.warn('Could not write to sessionStorage', e);
+    }
+  }
+
+  if (form) {
+    form.addEventListener('input', saveSessionData);
+    saveSessionData();
   }
 });

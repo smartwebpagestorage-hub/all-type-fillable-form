@@ -175,7 +175,26 @@
       font-size: 12px;
     }
 
-    /* Prefix text inside dotted areas (like HR/FBD/) */
+    /* Editable Prefix fields (like HR/FBD/ and HR/FBD-) */
+    .pf-code-wrap {
+      display: inline-flex;
+      align-items: baseline;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+
+    .prefix-field {
+      font-weight: 700 !important;
+      color: #000 !important;
+      text-align: center;
+      padding: 1px 2px !important;
+      min-width: 58px;
+      width: 72px;
+      letter-spacing: 0.5px;
+      background: #f8fafc;
+      border-radius: 2px 2px 0 0;
+    }
+
     .prefix-span {
       font-weight: 700;
       color: #000;
@@ -403,6 +422,11 @@
         background: transparent !important;
         border-bottom: 1px dotted #000 !important;
       }
+      .prefix-field {
+        border-bottom: none !important;
+        font-weight: 700 !important;
+        padding: 0 !important;
+      }
       .beneficiary-table th {
         background: #f1f5f9 !important;
         -webkit-print-color-adjust: exact;
@@ -433,7 +457,7 @@
         <div class="dropdown-menu-box">
           <div class="dropdown-header-tag">
             <span>Available Forms</span>
-            <span class="badge-count">5 Active</span>
+            <span class="badge-count">6 Active</span>
           </div>
           
           <!-- Form 1 -->
@@ -492,6 +516,18 @@
             <div class="item-content">
               <span class="item-title">Composite Claim Form (Aadhar)</span>
               <span class="item-sub">प्रपत्र-19 / 10-सी / 31 (3 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
+
+          <!-- Form 6 -->
+          <a href="children-education-allowance.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0ea5e9" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/><path d="M4.179 8.358 1 9.63v3.74a1 1 0 0 0 .553.894l6 3a1 1 0 0 0 .894 0l6-3a1 1 0 0 0 .553-.894V9.63l-3.179-1.272-3.666 1.467a1.5 1.5 0 0 1-1.108 0z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Children Education Allowance (CEA)</span>
+              <span class="item-sub">बाल शिक्षा भत्ता दावा (4 Sheets)</span>
               <span class="item-tag tag-ready">Ready to Fill & Print</span>
             </div>
           </a>
@@ -587,7 +623,7 @@
         <div class="subject-line">
           Sub:- On Roll &amp; Legal beneficiary Certificate for Form 20/10D/5IF in respect of Late Sh.
           <input type="text" class="fill-field" id="s1_memberName" placeholder="मृतक कर्मचारी का नाम (Full Name)" style="width: 220px;">
-          bearing P.f Code No. <span class="prefix-span">HR/FBD/</span><input type="text" class="fill-field" id="s1_pfCode" placeholder="PF Code / Member ID" style="width: 140px;">
+          bearing P.f Code No. <span class="pf-code-wrap"><input type="text" class="fill-field prefix-field uppercase" id="s1_pfPrefix" value="HR/FBD/" style="width: 72px;" title="कार्यालय कोड / Office Prefix (e.g. HR/FBD/, DL/CPM/, UP/NOI/) — आवश्यकतानुसार बदलें"><input type="text" class="fill-field" id="s1_pfCode" placeholder="PF Code / Member ID" style="width: 140px;"></span>
         </div>
 
         <!-- Salutation -->
@@ -599,12 +635,12 @@
           <input type="text" class="fill-field" id="s1_memberName2" placeholder="Full Name" style="width: 210px;">
           S/o-
           <input type="text" class="fill-field" id="s1_fatherName" placeholder="पिता का नाम (Father's Name)" style="width: 210px;">
-          bearing P.f Code No. <span class="prefix-span">HR/FBD/</span><input type="text" class="fill-field" id="s1_pfCode2" placeholder="PF Code" style="width: 120px;">
+          bearing P.f Code No. <span class="pf-code-wrap"><input type="text" class="fill-field prefix-field uppercase" id="s1_pfPrefix2" value="HR/FBD/" style="width: 72px;" title="कार्यालय कोड / Office Prefix"><input type="text" class="fill-field" id="s1_pfCode2" placeholder="PF Code" style="width: 120px;"></span>
           was on roll till date of death i.e
           <input type="text" class="fill-field" id="s1_dateOfDeath" placeholder="DD/MM/YYYY" style="width: 110px;">
           in our establishment M/s-
           <input type="text" class="fill-field" id="s1_establishmentName" placeholder="प्रतिष्ठान/कंपनी का नाम (Establishment Name)" style="width: 260px;">
-          having P.F Code No. <span class="prefix-span">HR/FBD-</span><input type="text" class="fill-field" id="s1_estPfCode" placeholder="Est. PF Code" style="width: 110px;">
+          having P.F Code No. <span class="pf-code-wrap"><input type="text" class="fill-field prefix-field uppercase" id="s1_estPfPrefix" value="HR/FBD-" style="width: 72px;" title="Establishment PF Prefix (e.g. HR/FBD-)"><input type="text" class="fill-field" id="s1_estPfCode" placeholder="Est. PF Code" style="width: 110px;"></span>
         </div>
 
         <!-- Lead-in to Beneficiary Table -->
@@ -671,8 +707,8 @@
         <div class="form-paragraph">
           Above mentioned legal beneficiaries of the deceased member Late
           <input type="text" class="fill-field" id="s1_memberName3" placeholder="Member Name" style="width: 190px;">
-          having P.f Code No. <span class="prefix-span">HR/FBD/</span><input type="text" class="fill-field" id="s1_pfCode3" placeholder="PF Code" style="width: 120px;">
-          is eligible for payment form RPFC Faridabad within the provision of Employees Provident Fund &amp; Misc Act, 1952 and there is no matter pending sub-judice over eligibility of legal beneficiaries for F-20/10D/5IF.
+          having P.f Code No. <span class="pf-code-wrap"><input type="text" class="fill-field prefix-field uppercase" id="s1_pfPrefix3" value="HR/FBD/" style="width: 72px;" title="कार्यालय कोड / Office Prefix"><input type="text" class="fill-field" id="s1_pfCode3" placeholder="PF Code" style="width: 120px;"></span>
+          is eligible for payment from RPFC <input type="text" class="fill-field uppercase" id="s1_rpfcOffice" value="Faridabad" style="width: 95px;" title="RPFC Office City/Name"> within the provision of Employees Provident Fund &amp; Misc Act, 1952 and there is no matter pending sub-judice over eligibility of legal beneficiaries for F-20/10D/5IF.
         </div>
 
         <!-- Paragraph 3 -->
@@ -732,7 +768,7 @@
           Sub:- Family description in respect of
           <input type="text" class="fill-field" id="s2_memberName" placeholder="मृतक कर्मचारी का नाम" style="width: 230px;">
           bearing P.f Code No.
-          <input type="text" class="fill-field" id="s2_pfCode" placeholder="PF Code / Member ID" style="width: 190px;">
+          <span class="pf-code-wrap"><input type="text" class="fill-field prefix-field uppercase" id="s2_pfPrefix" value="HR/FBD/" style="width: 72px;" title="कार्यालय कोड / Office Prefix"><input type="text" class="fill-field" id="s2_pfCode" placeholder="PF Code / Member ID" style="width: 140px;"></span>
         </div>
 
         <!-- Salutation -->
@@ -745,7 +781,7 @@
           S/o-
           <input type="text" class="fill-field" id="s2_fatherName" placeholder="Father's Name" style="width: 200px;">
           bearing P.f Code No.
-          <input type="text" class="fill-field" id="s2_pfCode2" placeholder="PF Code" style="width: 140px;">
+          <span class="pf-code-wrap"><input type="text" class="fill-field prefix-field uppercase" id="s2_pfPrefix2" value="HR/FBD/" style="width: 72px;" title="कार्यालय कोड / Office Prefix"><input type="text" class="fill-field" id="s2_pfCode2" placeholder="PF Code" style="width: 120px;"></span>
           had been working from
           <input type="text" class="fill-field" id="s2_dateOfJoining" placeholder="DD/MM/YYYY" style="width: 110px;">
           to till date of death i.e
@@ -753,7 +789,7 @@
           in our establishment M/s-
           <input type="text" class="fill-field" id="s2_establishmentName" placeholder="Establishment Name" style="width: 250px;">
           having P.F Code No.
-          <input type="text" class="fill-field" id="s2_estPfCode" placeholder="Est. PF Code" style="width: 130px;">
+          <span class="pf-code-wrap"><input type="text" class="fill-field prefix-field uppercase" id="s2_estPfPrefix" value="HR/FBD-" style="width: 72px;" title="Establishment PF Prefix"><input type="text" class="fill-field" id="s2_estPfCode" placeholder="Est. PF Code" style="width: 110px;"></span>
           As per our office record. The details of his family member are as below.
         </div>
 
@@ -854,10 +890,15 @@
       function adjustWidth(input) {
         if (!input) return;
         const val = input.value || input.placeholder || '';
-        const len = Math.max(val.length, 6);
-        // Approx 8.5px per character in 13.5px font
-        const calculatedWidth = Math.max(80, (len + 2) * 8.5);
-        input.style.width = calculatedWidth + 'px';
+        const len = Math.max(val.length, 3);
+        if (input.classList.contains('prefix-field')) {
+          const calculatedWidth = Math.max(60, (len + 1.5) * 8.5);
+          input.style.width = calculatedWidth + 'px';
+        } else {
+          // Approx 8.5px per character in 13.5px font
+          const calculatedWidth = Math.max(80, (len + 2) * 8.5);
+          input.style.width = calculatedWidth + 'px';
+        }
       }
 
       function initFieldAutoWidth() {
@@ -913,6 +954,10 @@
       // Real-Time Sync: Sheet 1 Inputs -> Sheet 2 Inputs
       // -------------------------------------------------------------
       const syncMap = [
+        // PF Code Prefix sync
+        { src: 's1_pfPrefix', targets: ['s1_pfPrefix2', 's1_pfPrefix3', 's2_pfPrefix', 's2_pfPrefix2'] },
+        // Establishment PF Prefix sync
+        { src: 's1_estPfPrefix', targets: ['s2_estPfPrefix'] },
         // Member name sync
         { src: 's1_memberName', targets: ['s1_memberName2', 's1_memberName3', 's2_memberName', 's2_memberName2', 's2_memberName3'] },
         // PF Code sync
@@ -931,6 +976,20 @@
         { src: 's1_formDate', targets: ['s2_formDate'] },
         { src: 's1_formPlace', targets: ['s2_formPlace'] }
       ];
+
+      // Auto-derive establishment prefix from main PF prefix unless customized
+      const s1PfPrefixEl = document.getElementById('s1_pfPrefix');
+      if (s1PfPrefixEl) {
+        s1PfPrefixEl.addEventListener('input', () => {
+          const raw = s1PfPrefixEl.value.trim();
+          const clean = raw.replace(/\/+$/, '');
+          const estVal = clean ? clean + '-' : '';
+          const s1Est = document.getElementById('s1_estPfPrefix');
+          const s2Est = document.getElementById('s2_estPfPrefix');
+          if (s1Est) { s1Est.value = estVal; adjustWidth(s1Est); }
+          if (s2Est) { s2Est.value = estVal; adjustWidth(s2Est); }
+        });
+      }
 
       syncMap.forEach(rule => {
         const srcEl = document.getElementById(rule.src);
@@ -1042,6 +1101,8 @@
       document.getElementById('btnSampleData').addEventListener('click', () => {
         // Sheet 1 fields
         const sample = {
+          pfPrefix: 'HR/FBD/',
+          estPfPrefix: 'HR/FBD-',
           memberName: 'Mange Ram',
           pfCode: '58426/102',
           fatherName: 'Harpal Singh',
@@ -1050,10 +1111,13 @@
           establishmentName: 'Apex Precision Engineering Pvt. Ltd.',
           estPfCode: '58426',
           officeLocation: 'Sector-15A, Faridabad',
+          rpfcOffice: 'Faridabad',
           formDate: new Date().toISOString().slice(0, 10).split('-').reverse().join('/'),
           formPlace: 'Faridabad'
         };
 
+        document.getElementById('s1_pfPrefix').value = sample.pfPrefix;
+        document.getElementById('s1_estPfPrefix').value = sample.estPfPrefix;
         document.getElementById('s1_memberName').value = sample.memberName;
         document.getElementById('s1_pfCode').value = sample.pfCode;
         document.getElementById('s1_fatherName').value = sample.fatherName;
@@ -1061,6 +1125,7 @@
         document.getElementById('s1_establishmentName').value = sample.establishmentName;
         document.getElementById('s1_estPfCode').value = sample.estPfCode;
         document.getElementById('s1_officeLocation').value = sample.officeLocation;
+        document.getElementById('s1_rpfcOffice').value = sample.rpfcOffice;
         document.getElementById('s1_formDate').value = sample.formDate;
         document.getElementById('s1_formPlace').value = sample.formPlace;
 
@@ -1111,7 +1176,7 @@
         if (!confirm('क्या आप पूरे फॉर्म को रिक्त (Blank) करना चाहते हैं?')) return;
 
         document.querySelectorAll('.fill-field').forEach(input => {
-          if (input.id !== 's1_officeLocation' && input.id !== 's2_officeLocation' && input.id !== 's1_formPlace' && input.id !== 's2_formPlace') {
+          if (input.id !== 's1_officeLocation' && input.id !== 's2_officeLocation' && input.id !== 's1_formPlace' && input.id !== 's2_formPlace' && !input.classList.contains('prefix-field') && input.id !== 's1_rpfcOffice') {
             input.value = '';
           }
           adjustWidth(input);
@@ -1193,6 +1258,9 @@
             const data = JSON.parse(stored);
             if (data.deceasedName) {
               document.getElementById('s1_memberName').value = data.deceasedName;
+            }
+            if (data.pfPrefix) {
+              document.getElementById('s1_pfPrefix').value = data.pfPrefix;
             }
             if (data.pfAccountNo) {
               document.getElementById('s1_pfCode').value = data.pfAccountNo;

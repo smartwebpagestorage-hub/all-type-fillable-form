@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forms Portal | शासकीय एवं वैधानिक प्रपत्र पोर्टल</title>
+  <title>Government & Statutory Forms Portal | By Niraj Kumar, PF Wale</title>
   
   <!-- Fonts: Inter & Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,31 @@
 </head>
 <body class="portal-body">
 
-  <!-- Top Portal Navigation Bar -->
+  <!-- Top Hero Section (Sabse Upar) -->
+  <section class="portal-hero">
+    <div class="hero-inner">
+      <h2 class="hero-title">Government &amp; Statutory Forms Portal</h2>
+      <div class="hero-author-badge">
+        <svg class="author-icon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+        </svg>
+        <span>By Niraj Kumar, PF Wale</span>
+      </div>
+      <p class="hero-sub">
+        आधिकारिक प्रपत्रों को डिजिटल रूप से भरें, A4 या Legal साइज़ में PDF सेव करें और सीधे प्रिंट निकालें।
+      </p>
+
+      <!-- Live Search Bar -->
+      <div class="search-bar-wrap">
+        <svg class="search-icon-svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+        <input type="text" id="searchFormsInput" class="search-input" placeholder="Search forms by name, number, or department (e.g. Death Claim, EPFO, 20, 10-D)...">
+      </div>
+    </div>
+  </section>
+
+  <!-- Portal Navigation Bar (Hero Div Ke Niche) -->
   <header class="portal-navbar">
     <a href="index.html" class="portal-brand">
       <div class="portal-logo-icon">
@@ -47,7 +71,7 @@
         <div class="dropdown-menu-box">
           <div class="dropdown-header-tag">
             <span>Available Forms</span>
-            <span class="badge-count">5 Active</span>
+            <span class="badge-count">6 Active</span>
           </div>
           
           <!-- Form 1: Active -->
@@ -109,29 +133,22 @@
               <span class="item-tag tag-ready">Ready to Fill & Print</span>
             </div>
           </a>
+
+          <!-- Form 6: Active -->
+          <a href="children-education-allowance.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="16" height="16" fill="#0ea5e9" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/><path d="M4.179 8.358 1 9.63v3.74a1 1 0 0 0 .553.894l6 3a1 1 0 0 0 .894 0l6-3a1 1 0 0 0 .553-.894V9.63l-3.179-1.272-3.666 1.467a1.5 1.5 0 0 1-1.108 0z"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Children Education Allowance (CEA)</span>
+              <span class="item-sub">बाल शिक्षा भत्ता दावा (4 Sheets)</span>
+              <span class="item-tag tag-ready">Ready to Fill & Print</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
   </header>
-
-  <!-- Hero Section -->
-  <section class="portal-hero">
-    <div class="hero-inner">
-      <div class="hero-badge">⚡ Interactive Official Forms System</div>
-      <h2 class="hero-title">Government & Statutory Forms Portal</h2>
-      <p class="hero-sub">
-        आधिकारिक प्रपत्रों को डिजिटल रूप से भरें, A4 या Legal साइज़ में PDF सेव करें और सीधे प्रिंट निकालें।
-      </p>
-
-      <!-- Live Search Bar -->
-      <div class="search-bar-wrap">
-        <svg class="search-icon-svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-        </svg>
-        <input type="text" id="searchFormsInput" class="search-input" placeholder="Search forms by name, number, or department (e.g. Death Claim, EPFO, 20, 10-D)...">
-      </div>
-    </div>
-  </section>
 
   <!-- Main Content Area: Forms Cards Grid -->
   <main class="portal-content">
@@ -359,12 +376,55 @@
         </div>
       </div>
 
+      <!-- Card 6: Children Education Allowance (CEA) & Hostel Subsidy (Active) -->
+      <div class="form-card" data-category="central-govt">
+        <div>
+          <div class="form-card-header">
+            <span class="dept-badge" style="background:#e0f2fe; color:#0369a1;">Govt of India / Allowance</span>
+            <span class="status-badge status-active">● Active & Ready</span>
+          </div>
+
+          <div class="form-card-body">
+            <h3>Children Education Allowance (CEA) &amp; Hostel Subsidy</h3>
+            <p class="sub-hi">
+              बाल शिक्षा भत्ता एवं छात्रावास अनुदान प्रतिपूर्ति दावा — केंद्र सरकार के कार्मिकों हेतु प्रपत्र, व्यय विवरण, स्कूल बोनाफाइड प्रमाणपत्र एवं स्वघोषणा (4 पृष्ठों का सम्पूर्ण प्रारूप)।
+            </p>
+
+            <ul class="form-features-list">
+              <li>
+                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                Sheet 1: Claim Application Particulars &amp; Expenditure Table (Points 1 to 8)
+              </li>
+              <li>
+                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                Sheet 2: Points 9-18 (Disability details, Undertaking &amp; Signatures)
+              </li>
+              <li>
+                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                Sheet 3: Bonafide Certificate from Head of Institution / School
+              </li>
+              <li>
+                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                Sheet 4: Self Declaration by Govt. Servant &amp; Smart Real-time Auto-Sync
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-card-footer">
+          <a href="children-education-allowance.html" class="btn-open-form" style="background:#0284c7;">
+            <span>Open & Fill Form / फॉर्म खोलें</span>
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
+          </a>
+        </div>
+      </div>
+
 
     </div>
   </main>
 
   <footer class="portal-footer">
-    <p>Forms Portal © 2026 — Designed for high-fidelity government & statutory document generation.</p>
+    <p>Government &amp; Statutory Forms Portal © 2026 — <strong>By Niraj Kumar, PF Wale</strong>. Designed for high-fidelity government &amp; statutory document generation.</p>
   </footer>
 
   <script src="portal.js"></script>

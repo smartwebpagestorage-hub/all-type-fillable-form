@@ -534,6 +534,27 @@ body.size-legal .enclosure-list li {
   line-height: 1.4;
 }
 
+/* PF Account with Editable Region/Office Prefix */
+.pf-account-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.pf-prefix-input {
+  width: 90px;
+  min-width: 80px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background-color: #f1f5f9;
+}
+
+.pf-number-input {
+  flex: 1;
+}
+
 /* ==========================================================================
    Row 1: Exactly 4 Columns Layout
    ========================================================================== */
@@ -997,6 +1018,19 @@ body.size-legal .enclosure-list li {
   /* For blank print: when value is empty, do not show gray border */
   .form-input::placeholder, .form-textarea::placeholder {
     color: transparent !important;
+  }
+
+  .pf-account-group {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+  }
+
+  .pf-prefix-input {
+    width: auto !important;
+    min-width: 0 !important;
+    text-align: left !important;
+    font-weight: 700 !important;
   }
 
   /* Checkboxes in print */
