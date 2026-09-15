@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. YouTube Video Guides Dictionary (Niraj Kumar can customize links here)
   // =========================================================================
   const formVideoTutorials = {
+    'epfo-leave-and-joining': {
+      title: 'Govt & EPFO All Types of Leave Application & Joining Report Guide',
+      url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
+    },
     'epfo-form-31-advance': {
       title: 'EPFO Form 31: PF Advance Claim (अग्रिम पीएफ निकासी) कैसे भरें? Complete Guide',
       url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ' // Custom link for Form 31

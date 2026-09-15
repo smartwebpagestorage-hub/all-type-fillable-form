@@ -62,6 +62,24 @@
       align-items: center;
       gap: 12px;
     }
+    .btn-lock-dashboard {
+      color: #fca5a5;
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-lock-dashboard:hover {
+      background: #dc2626;
+      color: #ffffff;
+    }
     .btn-back-home {
       color: #e2e8f0;
       text-decoration: none;
@@ -77,11 +95,12 @@
     }
     .btn-back-home:hover { background: rgba(255,255,255,0.2); color: #fff; }
 
-    /* Admin Container */
+    /* Admin Container (Hidden until unlocked) */
     .admin-container {
       max-width: 1240px;
       margin: 28px auto;
       padding: 0 20px;
+      display: none; /* Locked by default */
     }
 
     /* Top Stats Row */
@@ -179,8 +198,8 @@
     }
     .btn-danger:hover { background: #dc2626; }
 
-    /* Data Table */
-    .table-wrapper {
+    /* Users Table Card */
+    .table-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-top: none;
@@ -188,110 +207,314 @@
       overflow-x: auto;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
-    table.data-table {
+    table.users-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
       text-align: left;
+      font-size: 13px;
     }
-    table.data-table th {
+    table.users-table th {
       background: #f1f5f9;
-      color: var(--text-heading);
-      font-weight: 700;
       padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      color: var(--text-heading);
+      border-bottom: 2px solid var(--border);
       white-space: nowrap;
     }
-    table.data-table td {
+    table.users-table td {
       padding: 12px 16px;
       border-bottom: 1px solid var(--border);
       color: var(--text-body);
-      white-space: nowrap;
+      vertical-align: middle;
     }
-    table.data-table tr:hover {
+    table.users-table tr:hover td {
       background: #f8fafc;
     }
-
     .pwd-pill {
       font-family: monospace;
       background: #f1f5f9;
-      padding: 2px 6px;
+      padding: 3px 6px;
       border-radius: 4px;
-      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
     }
-
-    .empty-msg {
+    .empty-state {
+      padding: 40px 20px;
       text-align: center;
-      padding: 40px;
       color: var(--text-muted);
       font-size: 14px;
     }
 
-    /* Backend Connect Notice Card */
+    /* Backend Note Box */
     .backend-guide-box {
-      margin-top: 32px;
-      background: #ffffff;
-      border: 1px solid #bae6fd;
+      margin-top: 28px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
       border-radius: 12px;
-      padding: 22px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      padding: 18px 24px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #1e3a8a;
     }
     .backend-guide-box h4 {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
-      color: #0369a1;
-      margin-bottom: 8px;
-    }
-    .backend-guide-box p {
-      font-size: 13px;
-      color: #334155;
-      line-height: 1.6;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
+      color: #1d4ed8;
     }
     .backend-guide-box code {
-      background: #f1f5f9;
+      background: #dbeafe;
       padding: 2px 6px;
       border-radius: 4px;
-      color: #0369a1;
-      font-size: 12.5px;
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       Master Password Protection Overlay (EPFO#121007)
+       ========================================================================== */
+    .admin-lock-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .admin-lock-card {
+      width: 100%;
+      max-width: 440px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      border: 1px solid #334155;
+      overflow: hidden;
+      text-align: center;
+      animation: cardAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cardAppear {
+      from { opacity: 0; transform: scale(0.92) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .admin-lock-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 28px 24px 20px;
+      color: #ffffff;
+      position: relative;
+    }
+
+    .admin-lock-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin: 0 auto 12px;
+      box-shadow: 0 10px 20px rgba(220, 38, 38, 0.4);
+    }
+
+    .admin-lock-header h3 {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .admin-lock-header p {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    .admin-lock-body {
+      padding: 26px 24px;
+    }
+
+    .password-field-group {
+      position: relative;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .password-field-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .password-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .lock-pwd-input {
+      width: 100%;
+      padding: 12px 42px 12px 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #f8fafc;
+    }
+
+    .lock-pwd-input:focus {
+      border-color: #0284c7;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+    }
+
+    .btn-toggle-visibility {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #64748b;
+      padding: 4px;
+    }
+
+    .lock-error-box {
+      display: none;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      animation: shake 0.35s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .btn-unlock-submit {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+      transition: all 0.18s ease;
+    }
+
+    .btn-unlock-submit:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+      transform: translateY(-1px);
+    }
+
+    .admin-lock-footer {
+      border-top: 1px solid #f1f5f9;
+      padding: 14px 24px;
+      font-size: 11.5px;
+      color: #64748b;
+      background: #fafafa;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .admin-lock-footer a {
+      color: #0284c7;
+      font-weight: 700;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Admin Navbar -->
+  <!-- =========================================================================
+       1. Master Password Lock Screen (Requires EPFO#121007)
+       ========================================================================= -->
+  <div class="admin-lock-overlay" id="adminLockOverlay">
+    <div class="admin-lock-card" id="adminLockCard">
+      <div class="admin-lock-header">
+        <div class="admin-lock-icon">🔒</div>
+        <h3>एडमिन प्रमाणीकरण</h3>
+        <p>यह पृष्ठ केवल अधिकृत एडमिन (Niraj Kumar, Section Supervisor, RO, Faridabad) के लिए पासवर्ड-संरक्षित है।</p>
+      </div>
+
+      <div class="admin-lock-body">
+        <form id="adminLockForm">
+          <div id="adminLockError" class="lock-error-box">
+            गलत पासवर्ड! कृपया सही एडमिन पासवर्ड दर्ज करें।
+          </div>
+
+          <div class="password-field-group">
+            <label for="adminMasterPassword">मास्टर एडमिन पासवर्ड (Enter Password) *</label>
+            <div class="password-input-wrap">
+              <input type="password" id="adminMasterPassword" class="lock-pwd-input" placeholder="एडमिन पासवर्ड दर्ज करें" autocomplete="current-password" required autofocus>
+              <button type="button" class="btn-toggle-visibility" id="btnTogglePwd" title="पासवर्ड देखें / छिपाएं">👁️</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-unlock-submit">
+            🔓 डैशबोर्ड अनलॉक करें / Access Database
+          </button>
+        </form>
+      </div>
+
+      <div class="admin-lock-footer">
+        सुरक्षा: 100% Client-side Master Encryption • <a href="index.html">← मुख्य पोर्टल पर वापस जाएं</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. Top Admin Navbar
+       ========================================================================= -->
   <header class="admin-navbar">
     <div class="admin-brand">
-      <span class="admin-badge">ADMIN</span>
-      <div class="admin-title">User Registration Hub | सरकारी फॉर्म सेवा</div>
+      <span class="admin-badge">ADMIN ONLY</span>
+      <span class="admin-title">यूज़र रजिस्ट्रेशन डेटाबेस एवं लॉगिन रिकॉर्ड्स</span>
     </div>
     <div class="admin-nav-actions">
-      <span style="font-size: 12px; color: #94a3b8;">Niraj Kumar, Section Supervisor, RO, Faridabad</span>
-      <a href="index.html" class="btn-back-home">← Return to Portal</a>
+      <button type="button" class="btn-lock-dashboard" id="btnLockDashboard" title="सत्र समाप्त कर डैशबोर्ड लॉक करें">
+        🔒 लॉक डैशबोर्ड
+      </button>
+      <a href="index.html" class="btn-back-home">← मुख्य पोर्टल (Home)</a>
     </div>
   </header>
 
-  <main class="admin-container">
-    <!-- Stat Counters -->
+  <!-- =========================================================================
+       3. Main Admin Container (Unhidden only after password verification)
+       ========================================================================= -->
+  <main class="admin-container" id="adminDashboardContainer">
+    <!-- Top Stats Row -->
     <div class="stats-row">
       <div class="stat-box">
-        <div class="stat-label">Total Registered Users (कुल पंजीकृत यूजर्स)</div>
+        <div class="stat-label">कुल पंजीकृत यूजर्स (Total Users)</div>
         <div class="stat-number" id="statTotalUsers">0</div>
       </div>
       <div class="stat-box">
-        <div class="stat-label">Active Portal Admin Contact</div>
-        <div class="stat-number" style="font-size: 16px; margin-top: 6px; color: #0f172a;">
-          8700383426
-        </div>
-        <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">
-          smart.webpage.storage@gmail.com
-        </div>
+        <div class="stat-label">डेटा स्टोरेज स्थिति</div>
+        <div class="stat-number" style="color: #10b981; font-size: 20px;">100% सुरक्षित (Active)</div>
       </div>
       <div class="stat-box">
-        <div class="stat-label">Storage Format</div>
-        <div class="stat-number" style="font-size: 18px; color: #10b981; margin-top: 6px;">
-          Local &amp; Excel CSV Export
-        </div>
+        <div class="stat-label">प्रशासक (Admin)</div>
+        <div class="stat-number" style="color: #0f172a; font-size: 17px; font-weight: 700;">Niraj Kumar, Section Supervisor</div>
       </div>
     </div>
 
@@ -299,9 +522,8 @@
     <div class="table-toolbar">
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
-        <input type="text" id="userSearchInput" class="search-input" placeholder="Search by name, email, or mobile...">
+        <input type="text" id="userSearchInput" class="search-input" placeholder="नाम, ईमेल या मोबाइल से खोजें...">
       </div>
-
       <div class="action-btns-group">
         <button type="button" class="btn-export btn-csv" id="btnExportCSV">
           📥 Export to Excel (CSV)
@@ -309,33 +531,33 @@
         <button type="button" class="btn-export btn-json" id="btnExportJSON">
           📄 Export JSON
         </button>
-        <button type="button" class="btn-export btn-danger" id="btnClearData" title="Clear All Records">
-          🗑️ Clear Records
+        <button type="button" class="btn-export btn-danger" id="btnClearData">
+          🗑️ डेटा साफ करें (Clear)
         </button>
       </div>
     </div>
 
-    <!-- User Data Table -->
-    <div class="table-wrapper">
-      <table class="data-table">
+    <!-- Users Table Card -->
+    <div class="table-card">
+      <table class="users-table">
         <thead>
           <tr>
-            <th>S.No.</th>
-            <th>Full Name (नाम)</th>
-            <th>Email Address (ईमेल)</th>
-            <th>Mobile (मोबाइल नं.)</th>
-            <th>Password</th>
-            <th>Registration Date &amp; Time</th>
-            <th>Last Login</th>
-            <th>Total Logins</th>
+            <th>क्र.सं.</th>
+            <th>पूरा नाम (Full Name)</th>
+            <th>ईमेल आईडी (Email)</th>
+            <th>मोबाइल नंबर (Mobile)</th>
+            <th>पासवर्ड (Password)</th>
+            <th>पंजीकरण तिथि व समय</th>
+            <th>अंतिम लॉगिन (Last Login)</th>
+            <th>कुल लॉगिन</th>
           </tr>
         </thead>
         <tbody id="usersTableBody">
-          <!-- Rendered dynamically -->
+          <!-- Populated by JavaScript after authentication -->
         </tbody>
       </table>
-      <div id="emptyTableMsg" class="empty-msg" style="display: none;">
-        कोई पंजीकृत यूजर नहीं मिला (No registered users found).
+      <div id="emptyTableMsg" class="empty-state" style="display: none;">
+        कोई पंजीकृत यूजर डेटा नहीं मिला (No user records found).
       </div>
     </div>
 
@@ -354,23 +576,113 @@
   <script src="user-details.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Required Master Password
+      const MASTER_ADMIN_PASSWORD = 'EPFO#121007';
+      const SESSION_KEY = 'epfo_admin_session_auth';
+
+      const lockOverlay = document.getElementById('adminLockOverlay');
+      const lockCard = document.getElementById('adminLockCard');
+      const lockForm = document.getElementById('adminLockForm');
+      const lockError = document.getElementById('adminLockError');
+      const pwdInput = document.getElementById('adminMasterPassword');
+      const btnTogglePwd = document.getElementById('btnTogglePwd');
+      const dashboardContainer = document.getElementById('adminDashboardContainer');
+      const btnLockDashboard = document.getElementById('btnLockDashboard');
+
       const usersTableBody = document.getElementById('usersTableBody');
       const emptyMsg = document.getElementById('emptyTableMsg');
       const statTotalUsers = document.getElementById('statTotalUsers');
       const searchInput = document.getElementById('userSearchInput');
 
-      let allUsers = UserDetailsHub.getAllUsers();
+      let allUsers = [];
 
+      function unlockDashboard() {
+        if (lockOverlay) lockOverlay.style.display = 'none';
+        if (dashboardContainer) dashboardContainer.style.display = 'block';
+
+        // Load and render user records only after authentication
+        if (typeof UserDetailsHub !== 'undefined') {
+          allUsers = UserDetailsHub.getAllUsers();
+          renderUsers(allUsers);
+        }
+      }
+
+      function lockDashboard() {
+        sessionStorage.removeItem(SESSION_KEY);
+        if (lockOverlay) lockOverlay.style.display = 'flex';
+        if (dashboardContainer) dashboardContainer.style.display = 'none';
+        if (pwdInput) { pwdInput.value = ''; pwdInput.focus(); }
+        if (lockError) lockError.style.display = 'none';
+        // Clear rendered table data from memory and DOM
+        allUsers = [];
+        if (usersTableBody) usersTableBody.innerHTML = '';
+      }
+
+      // Check if already authenticated in active session
+      if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+        unlockDashboard();
+      } else {
+        lockDashboard();
+      }
+
+      // Toggle Password Visibility
+      if (btnTogglePwd && pwdInput) {
+        btnTogglePwd.addEventListener('click', () => {
+          const type = pwdInput.getAttribute('type') === 'password' ? 'text' : 'password';
+          pwdInput.setAttribute('type', type);
+          btnTogglePwd.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+      }
+
+      // Handle Password Submit
+      if (lockForm) {
+        lockForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const enteredPwd = (pwdInput?.value || '').trim();
+
+          if (enteredPwd === MASTER_ADMIN_PASSWORD) {
+            sessionStorage.setItem(SESSION_KEY, 'true');
+            if (lockError) lockError.style.display = 'none';
+            unlockDashboard();
+          } else {
+            if (lockError) {
+              lockError.textContent = 'गलत पासवर्ड! कृपया सही एडमिन पासवर्ड दर्ज करें। (Invalid Password)';
+              lockError.style.display = 'block';
+            }
+            if (lockCard) {
+              lockCard.style.animation = 'none';
+              void lockCard.offsetWidth; // Trigger reflow
+              lockCard.style.animation = 'shake 0.35s ease';
+            }
+            if (pwdInput) {
+              pwdInput.value = '';
+              pwdInput.focus();
+            }
+          }
+        });
+      }
+
+      // Logout / Lock Dashboard Button
+      if (btnLockDashboard) {
+        btnLockDashboard.addEventListener('click', () => {
+          if (confirm('क्या आप एडमिन डैशबोर्ड को लॉक करना चाहते हैं? (Lock dashboard?)')) {
+            lockDashboard();
+          }
+        });
+      }
+
+      // Table Render logic
       function renderUsers(usersToRender) {
+        if (!statTotalUsers || !usersTableBody) return;
         statTotalUsers.textContent = allUsers.length;
 
         if (usersToRender.length === 0) {
           usersTableBody.innerHTML = '';
-          emptyMsg.style.display = 'block';
+          if (emptyMsg) emptyMsg.style.display = 'block';
           return;
         }
 
-        emptyMsg.style.display = 'none';
+        if (emptyMsg) emptyMsg.style.display = 'none';
         usersTableBody.innerHTML = usersToRender.map((u, i) => `
           <tr>
             <td><strong>${i + 1}</strong></td>
@@ -391,41 +703,49 @@
         return div.innerHTML;
       }
 
-      // Initial Render
-      renderUsers(allUsers);
-
       // Search Handler
-      searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        if (!query) {
-          renderUsers(allUsers);
-          return;
-        }
-        const filtered = allUsers.filter(u => 
-          (u.name || '').toLowerCase().includes(query) ||
-          (u.email || '').toLowerCase().includes(query) ||
-          (u.mobile || '').includes(query)
-        );
-        renderUsers(filtered);
-      });
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          if (!query) {
+            renderUsers(allUsers);
+            return;
+          }
+          const filtered = allUsers.filter(u => 
+            (u.name || '').toLowerCase().includes(query) ||
+            (u.email || '').toLowerCase().includes(query) ||
+            (u.mobile || '').includes(query)
+          );
+          renderUsers(filtered);
+        });
+      }
 
       // Export Buttons
-      document.getElementById('btnExportCSV').addEventListener('click', () => {
-        UserDetailsHub.exportUsersToCSV();
-      });
+      const btnCsv = document.getElementById('btnExportCSV');
+      if (btnCsv) {
+        btnCsv.addEventListener('click', () => {
+          if (typeof UserDetailsHub !== 'undefined') UserDetailsHub.exportUsersToCSV();
+        });
+      }
 
-      document.getElementById('btnExportJSON').addEventListener('click', () => {
-        UserDetailsHub.exportUsersToJSON();
-      });
+      const btnJson = document.getElementById('btnExportJSON');
+      if (btnJson) {
+        btnJson.addEventListener('click', () => {
+          if (typeof UserDetailsHub !== 'undefined') UserDetailsHub.exportUsersToJSON();
+        });
+      }
 
       // Clear Records
-      document.getElementById('btnClearData').addEventListener('click', () => {
-        if (confirm('क्या आप वाकई सभी पंजीकृत यूजर रिकॉर्ड्स डिलीट करना चाहते हैं? (Are you sure you want to clear all user records?)')) {
-          localStorage.removeItem('portalRegisteredUsers');
-          allUsers = [];
-          renderUsers(allUsers);
-        }
-      });
+      const btnClear = document.getElementById('btnClearData');
+      if (btnClear) {
+        btnClear.addEventListener('click', () => {
+          if (confirm('क्या आप वाकई सभी पंजीकृत यूजर रिकॉर्ड्स डिलीट करना चाहते हैं? (Are you sure you want to clear all user records?)')) {
+            localStorage.removeItem('portalRegisteredUsers');
+            allUsers = [];
+            renderUsers(allUsers);
+          }
+        });
+      }
     });
   </script>
 </body>

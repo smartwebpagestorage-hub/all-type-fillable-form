@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO / Govt Leave Application & Joining Report | अवकाश आवेदन एवं कार्यग्रहण आख्या प्रपत्र</title>
+  <meta name="description" content="Central Govt & EPFO All Types of Leave Application (CL, EL, HPL, Commuted, CCL) & Joining Report Form. By Niraj Kumar, Section Supervisor, RO, Faridabad.">
+  
+  <!-- Google Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf for direct PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="portal.css">
+
+  <style id="printPageStyle">
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --paper-bg: #ffffff;
+      --border-color: #000000;
+      --text-color: #000000;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, sans-serif;
+      background: #f1f5f9;
+      color: #000000;
+      line-height: 1.35;
+      padding-bottom: 60px;
+    }
+
+    /* Top Control Ribbon */
+    .form-ctrl-ribbon {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-ctrl-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-portal-home {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    .btn-portal-home:hover { background: rgba(255, 255, 255, 0.25); color: #ffffff; }
+
+    .tabs-switch-wrap {
+      display: flex;
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 3px;
+      border: 1px solid #334155;
+    }
+
+    .tab-toggle-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .tab-toggle-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
+    }
+
+    .form-ctrl-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-sample { background: #334155; color: #f8fafc; }
+    .btn-sample:hover { background: #475569; }
+    .btn-clear { background: #fee2e2; color: #dc2626; }
+    .btn-clear:hover { background: #fecaca; }
+    .btn-print { background: #0284c7; color: #ffffff; }
+    .btn-print:hover { background: #0369a1; }
+    .btn-pdf { background: #10b981; color: #ffffff; }
+    .btn-pdf:hover { background: #059669; }
+
+    /* Form Paper Wrapper */
+    .form-page-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 14px;
+    }
+
+    .sheet-a4-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      padding: 12mm 14mm;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid #cbd5e1;
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    /* Official Form Header */
+    .gov-form-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .header-logo-box {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-logo-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .header-text-center {
+      text-align: center;
+      flex: 1;
+      padding: 0 10px;
+    }
+
+    .header-text-center h2 {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      text-transform: uppercase;
+    }
+
+    .header-text-center h3 {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 1px;
+    }
+
+    .header-text-center p {
+      font-size: 11px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .form-title-banner {
+      background: #f1f5f9;
+      border: 1.5px solid #000000;
+      text-align: center;
+      padding: 6px 10px;
+      margin-bottom: 14px;
+    }
+
+    .form-title-banner h1 {
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+
+    .form-title-banner span {
+      font-size: 11px;
+      font-weight: 600;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Form Table Grid Layout */
+    .statutory-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+    }
+
+    .statutory-table th, 
+    .statutory-table td {
+      border: 1px solid #000000;
+      padding: 6px 8px;
+      font-size: 11.5px;
+      vertical-align: middle;
+    }
+
+    .statutory-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .sec-subheading {
+      background: #e2e8f0;
+      font-weight: 800;
+      font-size: 11.5px;
+      padding: 4px 8px;
+      border: 1px solid #000000;
+      margin-top: 8px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Interactive Inputs */
+    .field-input {
+      width: 100%;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 12px;
+      font-family: inherit;
+      color: #000000;
+      background: #fafafa;
+      outline: none;
+      transition: all 0.15s;
+    }
+
+    .field-input:focus {
+      background: #ffffff;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+    }
+
+    select.field-input {
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .radio-pill-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .signature-area-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 18px;
+      padding-top: 10px;
+    }
+
+    .sig-block {
+      width: 46%;
+      text-align: center;
+      font-size: 11.5px;
+    }
+
+    .sig-line {
+      border-top: 1px dashed #000000;
+      margin-top: 40px;
+      padding-top: 4px;
+      font-weight: 700;
+    }
+
+    .official-order-box {
+      border: 1.5px solid #000000;
+      padding: 10px;
+      margin-top: 12px;
+      background: #fcfcfc;
+    }
+
+    .official-order-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    /* Print Overrides */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .form-ctrl-ribbon, .portal-navbar, .portal-footer {
+        display: none !important;
+      }
+      .form-page-wrapper {
+        padding: 0;
+      }
+      .sheet-a4-page {
+        width: 100% !important;
+        min-height: auto !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        page-break-after: always;
+      }
+      .field-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-weight: 600 !important;
+      }
+      select.field-input {
+        -webkit-appearance: none;
+        appearance: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. Top Action Ribbon & Tab Switcher
+       ========================================================================= -->
+  <div class="form-ctrl-ribbon">
+    <div class="form-ctrl-left">
+      <a href="index.html" class="btn-portal-home">← मुख्य पोर्टल (Home)</a>
+      <div class="tabs-switch-wrap">
+        <button type="button" class="tab-toggle-btn active" id="tabBtnLeave">
+          📝 1. अवकाश आवेदन (Leave Application)
+        </button>
+        <button type="button" class="tab-toggle-btn" id="tabBtnJoining">
+          📋 2. कार्यग्रहण आख्या (Joining Report)
+        </button>
+      </div>
+    </div>
+
+    <div class="form-ctrl-right">
+      <button type="button" class="btn-action btn-sample" id="btnFillSample">
+        ✨ नमूना डेटा भरें
+      </button>
+      <button type="button" class="btn-action btn-clear" id="btnClearForm">
+        🗑️ साफ करें
+      </button>
+      <button type="button" class="btn-action btn-print" id="btnPrintForm">
+        🖨️ A4 प्रिंट
+      </button>
+      <button type="button" class="btn-action btn-pdf" id="btnExportPDF">
+        📥 PDF डाउनलोड
+      </button>
+    </div>
+  </div>
+
+  <div class="form-page-wrapper">
+    
+    <!-- =======================================================================
+         PANE 1: ALL TYPES OF LEAVE APPLICATION FORM (अवकाश आवेदन प्रपत्र)
+         ======================================================================= -->
+    <div class="sheet-a4-page" id="sheetLeaveApp" style="display: block;">
+      
+      <!-- Header -->
+      <div class="gov-form-header">
+        <div class="header-logo-box">
+          <img src="image/ashok_stambh.svg" alt="Ashok Stambh Emblem">
+        </div>
+        <div class="header-text-center">
+          <h2>कर्मचारी भविष्य निधि संगठन / भारत सरकार</h2>
+          <h3>EMPLOYEES' PROVIDENT FUND ORGANISATION</h3>
+          <p>क्षेत्रीय कार्यालय, फरीदाबाद / Regional Office, Faridabad</p>
+        </div>
+        <div class="header-logo-box">
+          <img src="image/epfo_logo.png" alt="EPFO Seal">
+        </div>
+      </div>
+
+      <!-- Title Banner -->
+      <div class="form-title-banner">
+        <h1>अवकाश हेतु आवेदन प्रपत्र (APPLICATION FOR LEAVE)</h1>
+        <span>[केन्द्रीय सिविल सेवा (अवकाश) नियम, 1972 के नियम 14 के अंतर्गत / Under Rule 14 of CCS (Leave) Rules, 1972]</span>
+      </div>
+
+      <!-- Applicant Details Table -->
+      <table class="statutory-table">
+        <tr>
+          <td style="width: 5%;"><strong>1.</strong></td>
+          <td style="width: 40%;"><strong>आवेदक का पूरा नाम (Name of Applicant):</strong></td>
+          <td style="width: 55%;"><input type="text" id="leave_name" class="field-input" placeholder="उदा. Niraj Kumar"></td>
+        </tr>
+        <tr>
+          <td><strong>2.</strong></td>
+          <td><strong>पदनाम (Designation):</strong></td>
+          <td><input type="text" id="leave_desig" class="field-input" placeholder="उदा. Section Supervisor"></td>
+        </tr>
+        <tr>
+          <td><strong>3.</strong></td>
+          <td><strong>कर्मचारी संख्या / पीएफ कोड (Emp Code / ID):</strong></td>
+          <td><input type="text" id="leave_empid" class="field-input" placeholder="उदा. HR/FBD/0012345/0098"></td>
+        </tr>
+        <tr>
+          <td><strong>4.</strong></td>
+          <td><strong>शाखा / अनुभाग (Section / Branch):</strong></td>
+          <td><input type="text" id="leave_section" class="field-input" placeholder="उदा. पेंशन अनुभाग (Pension Branch), RO Faridabad"></td>
+        </tr>
+        <tr>
+          <td><strong>5.</strong></td>
+          <td><strong>मूल वेतन एवं पे-लेवल (Basic Pay & Pay Level):</strong></td>
+          <td><input type="text" id="leave_pay" class="field-input" placeholder="उदा. ₹ 44,900/- (Pay Level-7)"></td>
+        </tr>
+      </table>
+
+      <!-- Leave Details Table -->
+      <div class="sec-subheading">अवकाश का प्रकार, अवधि एवं कारण (Nature, Period & Grounds of Leave)</div>
+      <table class="statutory-table">
+        <tr>
+          <td style="width: 5%;"><strong>6.</strong></td>
+          <td style="width: 40%;"><strong>आवेदित अवकाश का प्रकार (Nature of Leave):</strong></td>
+          <td style="width: 55%;">
+            <select id="leave_type" class="field-input">
+              <option value="">-- अवकाश प्रकार चुनें (Select Leave Type) --</option>
+              <option value="CL">1. आकस्मिक अवकाश (Casual Leave - CL)</option>
+              <option value="SCL">2. विशेष आकस्मिक अवकाश (Special Casual Leave - SCL)</option>
+              <option value="EL">3. अर्जित अवकाश (Earned Leave - EL)</option>
+              <option value="HPL">4. अर्ध वेतन अवकाश (Half Pay Leave - HPL)</option>
+              <option value="Commuted">5. रूपांतरित अवकाश (चिकित्सा आधार) (Commuted Leave)</option>
+              <option value="Maternity">6. मातृत्व अवकाश (Maternity Leave - 180 Days)</option>
+              <option value="Paternity">7. पितृत्व अवकाश (Paternity Leave - 15 Days)</option>
+              <option value="CCL">8. बाल देखरेख अवकाश (Child Care Leave - CCL)</option>
+              <option value="Study">9. अध्ययन अवकाश (Study Leave)</option>
+              <option value="EOL">10. असाधारण अवकाश (Extraordinary Leave - EOL without pay)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>7.</strong></td>
+          <td><strong>अवकाश की अवधि (Period of Leave):</strong></td>
+          <td>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span>दिनांक (From):</span>
+              <input type="date" id="leave_from" class="field-input" style="width: 140px;">
+              <span>से (To):</span>
+              <input type="date" id="leave_to" class="field-input" style="width: 140px;">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>8.</strong></td>
+          <td><strong>कुल दिनों की संख्या (Total Number of Days):</strong></td>
+          <td><input type="text" id="leave_days" class="field-input" placeholder="उदा. 03 दिन (Three Days)"></td>
+        </tr>
+        <tr>
+          <td><strong>9.</strong></td>
+          <td><strong>पूर्ववर्ती अवकाश / शनिवार / रविवार (Prefix Holidays):</strong></td>
+          <td><input type="text" id="leave_prefix" class="field-input" placeholder="उदा. 12/10/2026 (द्वितीय शनिवार) एवं 13/10/2026 (रविवार)"></td>
+        </tr>
+        <tr>
+          <td><strong>10.</strong></td>
+          <td><strong>उत्तरवर्ती अवकाश / रविवार (Suffix Holidays):</strong></td>
+          <td><input type="text" id="leave_suffix" class="field-input" placeholder="उदा. 19/10/2026 (रविवार) अथवा कोई नहीं"></td>
+        </tr>
+        <tr>
+          <td><strong>11.</strong></td>
+          <td><strong>अवकाश का कारण (Grounds / Reason for Leave):</strong></td>
+          <td><input type="text" id="leave_reason" class="field-input" placeholder="उदा. आवश्यक घरेलू कार्य / परिवार में सामाजिक समारोह / स्वास्थ्य परीक्षण"></td>
+        </tr>
+      </table>
+
+      <!-- Station Leave Permission Table -->
+      <div class="sec-subheading">स्टेशन (मुख्यालय) छोड़ने की अनुमति व संपर्क पता (Station Leave & Contact Details)</div>
+      <table class="statutory-table">
+        <tr>
+          <td style="width: 5%;"><strong>12.</strong></td>
+          <td style="width: 40%;"><strong>क्या स्टेशन छोड़ने की अनुमति आवश्यक है?</strong></td>
+          <td style="width: 55%;">
+            <select id="leave_station_req" class="field-input">
+              <option value="नहीं (No)">नहीं (No - Station leave not required)</option>
+              <option value="हाँ (Yes)">हाँ (Yes - Station leave required)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>13.</strong></td>
+          <td><strong>स्टेशन से प्रस्थान एवं वापसी का समय:</strong></td>
+          <td>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span>प्रस्थान:</span>
+              <input type="text" id="leave_dept_time" class="field-input" placeholder="13/10/2026 सायं 6:00">
+              <span>वापसी:</span>
+              <input type="text" id="leave_arr_time" class="field-input" placeholder="18/10/2026 प्रातः 9:00">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>14.</strong></td>
+          <td><strong>अवकाश अवधि के दौरान संपर्क पता (Address):</strong></td>
+          <td><input type="text" id="leave_address" class="field-input" placeholder="उदा. मकान नं. 452, सेक्टर 16-ए, फरीदाबाद (हरियाणा) - 121002"></td>
+        </tr>
+        <tr>
+          <td><strong>15.</strong></td>
+          <td><strong>अवकाश के दौरान मोबाइल नं. व ईमेल (Mobile & Email):</strong></td>
+          <td>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="leave_mobile" class="field-input" placeholder="मोबाइल: 8700383426">
+              <input type="text" id="leave_email" class="field-input" placeholder="ईमेल: smart.webpage.storage@gmail.com">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>16.</strong></td>
+          <td><strong>संलग्नक (Attachments):</strong></td>
+          <td>
+            <input type="text" id="leave_attachments" class="field-input" placeholder="उदा. चिकित्सा प्रमाण-पत्र (Medical Certificate) / आमंत्रण पत्र">
+          </td>
+        </tr>
+      </table>
+
+      <!-- Declarations & Applicant Signatures -->
+      <div style="font-size: 11px; margin-top: 8px; line-height: 1.4;">
+        <strong>घोषणा (Declaration):</strong> मैं प्रमाणित करता/करती हूँ कि उपर्युक्त विवरण पूर्णतः सत्य हैं। अवकाश अवधि के दौरान मैं नियमानुसार कार्यालय के संपर्क में रहूँगा/रहूँगी।
+      </div>
+
+      <div class="signature-area-row">
+        <div class="sig-block" style="text-align: left;">
+          <div>स्थान: <strong>फरीदाबाद (Faridabad)</strong></div>
+          <div style="margin-top: 4px;">दिनांक: <input type="text" id="leave_sig_date" class="field-input" style="width: 120px; display: inline-block;" value="15/09/2026"></div>
+        </div>
+        <div class="sig-block" style="text-align: right;">
+          <div class="sig-line" style="display: inline-block; width: 220px; text-align: center;">
+            आवेदक के हस्ताक्षर (Signature of Applicant)<br>
+            <span style="font-size: 10px; font-weight: normal; color: #475569;">(नाम, पदनाम एवं अनुभाग)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Official Order / Recommendation Box -->
+      <div class="official-order-box">
+        <div class="official-order-title">नियंत्रक अधिकारी की संस्तुति एवं स्वीकृति आदेश (FOR OFFICE USE ONLY)</div>
+        <div style="font-size: 11px; line-height: 1.6;">
+          (क) प्रमाणित किया जाता है कि कार्मिक के अवकाश खाते की जांच कर ली गई है तथा आवेदित <strong><span id="txt_disp_leave_type">अवकाश</span></strong> नियमानुसार देय एवं शेष है।<br>
+          (ख) <strong>अनुभाग पर्यवेक्षक / शाखा अधिकारी की संस्तुति:</strong> अवकाश स्वीकृत किया जाना संस्तुत है।
+        </div>
+
+        <div class="signature-area-row" style="margin-top: 24px;">
+          <div class="sig-block" style="text-align: center;">
+            <div style="font-weight: 700; border-top: 1px dashed #000000; padding-top: 4px;">
+              (Niraj Kumar)<br>
+              Section Supervisor, RO, Faridabad<br>
+              <span style="font-size: 10px; color: #475569;">संस्तुतिकर्ता / पर्यवेक्षक</span>
+            </div>
+          </div>
+          <div class="sig-block" style="text-align: center;">
+            <div style="font-weight: 700; border-top: 1px dashed #000000; padding-top: 4px;">
+              क्षेत्रीय भविष्य निधि आयुक्त / सक्षम प्राधिकारी<br>
+              Regional P.F. Commissioner / Competent Authority<br>
+              <span style="font-size: 10px; color: #475569;">स्वीकृति आदेश / कार्यालय मोहर</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- =======================================================================
+         PANE 2: JOINING REPORT AFTER AVAILING LEAVE (कार्यग्रहण आख्या प्रपत्र)
+         ======================================================================= -->
+    <div class="sheet-a4-page" id="sheetJoiningReport" style="display: none;">
+      
+      <!-- Header -->
+      <div class="gov-form-header">
+        <div class="header-logo-box">
+          <img src="image/ashok_stambh.svg" alt="Ashok Stambh Emblem">
+        </div>
+        <div class="header-text-center">
+          <h2>कर्मचारी भविष्य निधि संगठन / भारत सरकार</h2>
+          <h3>EMPLOYEES' PROVIDENT FUND ORGANISATION</h3>
+          <p>क्षेत्रीय कार्यालय, फरीदाबाद / Regional Office, Faridabad</p>
+        </div>
+        <div class="header-logo-box">
+          <img src="image/epfo_logo.png" alt="EPFO Seal">
+        </div>
+      </div>
+
+      <!-- Title Banner -->
+      <div class="form-title-banner">
+        <h1>कार्यग्रहण आख्या प्रपत्र (JOINING REPORT AFTER LEAVE)</h1>
+        <span>[अवकाश उपभोग के उपरांत पुनः कार्यभार ग्रहण करने का आधिकारिक प्रतिवेदन]</span>
+      </div>
+
+      <!-- Reference Details -->
+      <div style="font-size: 12px; margin-bottom: 12px; line-height: 1.6;">
+        <strong>सेवा में (To),</strong><br>
+        क्षेत्रीय भविष्य निधि आयुक्त / सक्षम प्राधिकारी,<br>
+        कर्मचारी भविष्य निधि संगठन, क्षेत्रीय कार्यालय, फरीदाबाद।<br><br>
+        <strong>विषय:</strong> स्वीकृत अवकाश उपभोग के उपरांत कर्तव्य पर कार्यभार ग्रहण करने के संबंध में।
+      </div>
+
+      <!-- Joining Table Details -->
+      <table class="statutory-table">
+        <tr>
+          <td style="width: 5%;"><strong>1.</strong></td>
+          <td style="width: 40%;"><strong>कर्मचारी का पूरा नाम (Full Name):</strong></td>
+          <td style="width: 55%;"><input type="text" id="join_name" class="field-input" placeholder="उदा. Niraj Kumar"></td>
+        </tr>
+        <tr>
+          <td><strong>2.</strong></td>
+          <td><strong>पदनाम (Designation):</strong></td>
+          <td><input type="text" id="join_desig" class="field-input" placeholder="उदा. Section Supervisor"></td>
+        </tr>
+        <tr>
+          <td><strong>3.</strong></td>
+          <td><strong>कर्मचारी संख्या / PF कोड (Emp Code):</strong></td>
+          <td><input type="text" id="join_empid" class="field-input" placeholder="उदा. HR/FBD/0012345/0098"></td>
+        </tr>
+        <tr>
+          <td><strong>4.</strong></td>
+          <td><strong>अनुभाग / शाखा (Section / Branch):</strong></td>
+          <td><input type="text" id="join_section" class="field-input" placeholder="उदा. पेंशन अनुभाग / Pension Branch"></td>
+        </tr>
+        <tr>
+          <td><strong>5.</strong></td>
+          <td><strong>स्वीकृत अवकाश का प्रकार (Nature of Leave Availed):</strong></td>
+          <td>
+            <select id="join_leave_type" class="field-input">
+              <option value="आकस्मिक अवकाश (Casual Leave - CL)">आकस्मिक अवकाश (Casual Leave - CL)</option>
+              <option value="अर्जित अवकाश (Earned Leave - EL)">अर्जित अवकाश (Earned Leave - EL)</option>
+              <option value="अर्ध वेतन / रूपांतरित अवकाश (Commuted Leave)">अर्ध वेतन / रूपांतरित अवकाश (Commuted Leave)</option>
+              <option value="विशेष आकस्मिक अवकाश (Special Casual Leave)">विशेष आकस्मिक अवकाश (Special Casual Leave)</option>
+              <option value="बाल देखरेख अवकाश (Child Care Leave - CCL)">बाल देखरेख अवकाश (Child Care Leave - CCL)</option>
+              <option value="मातृत्व / पितृत्व अवकाश (Maternity/Paternity)">मातृत्व / पितृत्व अवकाश (Maternity/Paternity)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>6.</strong></td>
+          <td><strong>अवकाश स्वीकृति आदेश सं. व दिनांक:</strong></td>
+          <td>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="join_order_no" class="field-input" placeholder="आदेश सं.: EPFO/RO/FBD/Adm/2026/412">
+              <input type="date" id="join_order_date" class="field-input" style="width: 140px;">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>7.</strong></td>
+          <td><strong>उपभोग किए गए अवकाश की अवधि:</strong></td>
+          <td>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span>दिनांक:</span>
+              <input type="date" id="join_from" class="field-input" style="width: 140px;">
+              <span>से</span>
+              <input type="date" id="join_to" class="field-input" style="width: 140px;">
+              <span>(कुल दिन:</span>
+              <input type="text" id="join_days" class="field-input" style="width: 70px;" placeholder="3 दिन">
+              <span>)</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>8.</strong></td>
+          <td><strong>कार्यभार ग्रहण करने की तिथि व समय:</strong></td>
+          <td>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span>दिनांक:</span>
+              <input type="date" id="join_date" class="field-input" style="width: 140px;">
+              <span>समय:</span>
+              <select id="join_time" class="field-input" style="width: 160px;">
+                <option value="पूर्वाह्न (Forenoon)">पूर्वाह्न (Forenoon / F.N.)</option>
+                <option value="अपराह्न (Afternoon)">अपराह्न (Afternoon / A.N.)</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>9.</strong></td>
+          <td><strong>मुख्यालय (स्टेशन) वापसी का विवरण:</strong></td>
+          <td>
+            <input type="text" id="join_station_return" class="field-input" placeholder="उदा. दिनांक 18/10/2026 को सायं 8:00 बजे फरीदाबाद वापसी हुई।">
+          </td>
+        </tr>
+        <tr>
+          <td><strong>10.</strong></td>
+          <td><strong>चिकित्सा आरोग्यता प्रमाणपत्र (Fitness Certificate):</strong></td>
+          <td>
+            <select id="join_fitness" class="field-input">
+              <option value="लागू नहीं (Not Applicable)">लागू नहीं (Not Applicable - गैर-चिकित्सीय अवकाश)</option>
+              <option value="संलग्न है (Attached - Fitness Certificate in Original)">संलग्न है (Attached - Fitness Certificate in Original)</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Employee Declaration -->
+      <div style="font-size: 11.5px; margin-top: 14px; line-height: 1.6;">
+        महोदय,<br>
+        उपर्युक्त संदर्भित स्वीकृत अवकाश का नियमानुसार उपभोग करने के उपरांत मैंने आज दिनांक 
+        <strong id="disp_join_date">[दिनांक]</strong> को 
+        <strong id="disp_join_time">[पूर्वाह्न/अपराह्न]</strong> में अपने पद का कार्यभार ग्रहण कर लिया है। कृपया मेरी कार्यग्रहण आख्या स्वीकार करने की कृपा करें।
+      </div>
+
+      <!-- Applicant Signatures -->
+      <div class="signature-area-row" style="margin-top: 24px;">
+        <div class="sig-block" style="text-align: left;">
+          <div>स्थान: <strong>फरीदाबाद (Faridabad)</strong></div>
+          <div style="margin-top: 4px;">दिनांक: <input type="text" id="join_sig_date" class="field-input" style="width: 120px; display: inline-block;" value="19/10/2026"></div>
+          <div style="margin-top: 4px;">मो.: <input type="text" id="join_sig_mobile" class="field-input" style="width: 140px; display: inline-block;" value="8700383426"></div>
+        </div>
+        <div class="sig-block" style="text-align: right;">
+          <div class="sig-line" style="display: inline-block; width: 220px; text-align: center;">
+            कार्यभार ग्रहणकर्ता के हस्ताक्षर<br>
+            <strong>(Signature of Employee)</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supervisor Verification & Section Order -->
+      <div class="official-order-box" style="margin-top: 20px;">
+        <div class="official-order-title">अनुभाग पर्यवेक्षक / प्रभारी अधिकारी की सत्यापन रिपोर्ट</div>
+        <div style="font-size: 11.5px; line-height: 1.6;">
+          प्रमाणित किया जाता है कि श्री/श्रीमती <strong id="disp_join_empname">[कर्मचारी का नाम]</strong>, 
+          पदनाम <strong id="disp_join_empdesig">[पदनाम]</strong> ने स्वीकृत अवकाश उपभोगोपरांत आज 
+          दिनांक <strong><span id="disp_join_rec_date">[दिनांक]</span></strong> को 
+          <strong><span id="disp_join_rec_time">[पूर्वाह्न/अपराह्न]</span></strong> में उपस्थित होकर अपने अनुभाग में विधिवत कार्यभार ग्रहण कर लिया है। कार्यग्रहण आख्या अभिलेख एवं आवश्यक आदेशार्थ प्रस्तुत है।
+        </div>
+
+        <div class="signature-area-row" style="margin-top: 30px;">
+          <div class="sig-block" style="text-align: center;">
+            <div style="font-weight: 700; border-top: 1px dashed #000000; padding-top: 4px;">
+              (Niraj Kumar)<br>
+              Section Supervisor, RO, Faridabad<br>
+              <span style="font-size: 10px; color: #475569;">अनुभाग पर्यवेक्षक / सत्यापनकर्ता</span>
+            </div>
+          </div>
+          <div class="sig-block" style="text-align: center;">
+            <div style="font-weight: 700; border-top: 1px dashed #000000; padding-top: 4px;">
+              क्षेत्रीय भविष्य निधि आयुक्त / सक्षम प्राधिकारी<br>
+              Regional P.F. Commissioner (Accepting Authority)<br>
+              <span style="font-size: 10px; color: #475569;">स्वीकृति आदेश व हस्ताक्षर</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabBtnLeave = document.getElementById('tabBtnLeave');
+      const tabBtnJoining = document.getElementById('tabBtnJoining');
+      const sheetLeaveApp = document.getElementById('sheetLeaveApp');
+      const sheetJoiningReport = document.getElementById('sheetJoiningReport');
+
+      let activeTab = 'leave';
+
+      function switchTab(tab) {
+        activeTab = tab;
+        if (tab === 'leave') {
+          tabBtnLeave.classList.add('active');
+          tabBtnJoining.classList.remove('active');
+          sheetLeaveApp.style.display = 'block';
+          sheetJoiningReport.style.display = 'none';
+        } else {
+          tabBtnJoining.classList.add('active');
+          tabBtnLeave.classList.remove('active');
+          sheetJoiningReport.style.display = 'block';
+          sheetLeaveApp.style.display = 'none';
+        }
+      }
+
+      tabBtnLeave.addEventListener('click', () => switchTab('leave'));
+      tabBtnJoining.addEventListener('click', () => switchTab('joining'));
+
+      // Sample Data Fill
+      document.getElementById('btnFillSample').addEventListener('click', () => {
+        // Fill Leave Application Form
+        document.getElementById('leave_name').value = 'Niraj Kumar';
+        document.getElementById('leave_desig').value = 'Section Supervisor';
+        document.getElementById('leave_empid').value = 'HR/FBD/0012345/SS098';
+        document.getElementById('leave_section').value = 'पेंशन अनुभाग (Pension Branch), RO Faridabad';
+        document.getElementById('leave_pay').value = '₹ 47,600/- (Pay Level-7)';
+        document.getElementById('leave_type').value = 'EL';
+        document.getElementById('leave_from').value = '2026-10-14';
+        document.getElementById('leave_to').value = '2026-10-17';
+        document.getElementById('leave_days').value = '04 दिन (Four Days)';
+        document.getElementById('leave_prefix').value = '11/10/2026 (रविवार), 12/10/2026 (द्वितीय शनिवार) एवं 13/10/2026 (राजपत्रित अवकाश)';
+        document.getElementById('leave_suffix').value = '18/10/2026 (रविवार)';
+        document.getElementById('leave_reason').value = 'पारिवारिक मांगलिक कार्य एवं आवश्यक व्यक्तिगत कार्य हेतु';
+        document.getElementById('leave_station_req').value = 'हाँ (Yes)';
+        document.getElementById('leave_dept_time').value = '13/10/2026 सायं 7:00 बजे';
+        document.getElementById('leave_arr_time').value = '18/10/2026 सायं 8:00 बजे';
+        document.getElementById('leave_address').value = 'मकान नं. 452, सेक्टर 16-ए, फरीदाबाद (हरियाणा) - 121002';
+        document.getElementById('leave_mobile').value = '8700383426';
+        document.getElementById('leave_email').value = 'smart.webpage.storage@gmail.com';
+        document.getElementById('leave_attachments').value = 'पारिवारिक कार्यक्रम आमंत्रण पत्र (Invitation Attached)';
+        document.getElementById('leave_sig_date').value = '10/10/2026';
+
+        // Fill Joining Report Form
+        document.getElementById('join_name').value = 'Niraj Kumar';
+        document.getElementById('join_desig').value = 'Section Supervisor';
+        document.getElementById('join_empid').value = 'HR/FBD/0012345/SS098';
+        document.getElementById('join_section').value = 'पेंशन अनुभाग (Pension Branch), RO Faridabad';
+        document.getElementById('join_leave_type').value = 'अर्जित अवकाश (Earned Leave - EL)';
+        document.getElementById('join_order_no').value = 'EPFO/RO/FBD/Adm/Leave/2026/518';
+        document.getElementById('join_order_date').value = '2026-10-12';
+        document.getElementById('join_from').value = '2026-10-14';
+        document.getElementById('join_to').value = '2026-10-17';
+        document.getElementById('join_days').value = '04 दिन';
+        document.getElementById('join_date').value = '2026-10-19';
+        document.getElementById('join_time').value = 'पूर्वाह्न (Forenoon)';
+        document.getElementById('join_station_return').value = 'दिनांक 18/10/2026 सायं 7:30 बजे फरीदाबाद वापसी हुई।';
+        document.getElementById('join_fitness').value = 'लागू नहीं (Not Applicable)';
+        document.getElementById('join_sig_date').value = '19/10/2026';
+        document.getElementById('join_sig_mobile').value = '8700383426';
+
+        // Update display spans
+        updateDisplaySpans();
+      });
+
+      function updateDisplaySpans() {
+        const joinDate = document.getElementById('join_date')?.value || '19/10/2026';
+        const joinTime = document.getElementById('join_time')?.value || 'पूर्वाह्न';
+        const empName = document.getElementById('join_name')?.value || 'Niraj Kumar';
+        const empDesig = document.getElementById('join_desig')?.value || 'Section Supervisor';
+
+        const dispDate = document.getElementById('disp_join_date');
+        const dispTime = document.getElementById('disp_join_time');
+        const dispRecDate = document.getElementById('disp_join_rec_date');
+        const dispRecTime = document.getElementById('disp_join_rec_time');
+        const dispName = document.getElementById('disp_join_empname');
+        const dispDesig = document.getElementById('disp_join_empdesig');
+
+        if (dispDate) dispDate.textContent = joinDate;
+        if (dispTime) dispTime.textContent = joinTime;
+        if (dispRecDate) dispRecDate.textContent = joinDate;
+        if (dispRecTime) dispRecTime.textContent = joinTime;
+        if (dispName) dispName.textContent = empName;
+        if (dispDesig) dispDesig.textContent = empDesig;
+      }
+
+      ['join_date', 'join_time', 'join_name', 'join_desig'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', updateDisplaySpans);
+      });
+
+      // Clear Form Button
+      document.getElementById('btnClearForm').addEventListener('click', () => {
+        if (confirm('क्या आप फॉर्म का डेटा साफ करना चाहते हैं? (Clear form data?)')) {
+          const currentSheet = activeTab === 'leave' ? sheetLeaveApp : sheetJoiningReport;
+          currentSheet.querySelectorAll('input').forEach(i => i.value = '');
+          currentSheet.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+          updateDisplaySpans();
+        }
+      });
+
+      // Print Button
+      document.getElementById('btnPrintForm').addEventListener('click', () => {
+        updateDisplaySpans();
+        window.print();
+      });
+
+      // Export PDF Button
+      document.getElementById('btnExportPDF').addEventListener('click', () => {
+        updateDisplaySpans();
+        const element = activeTab === 'leave' ? sheetLeaveApp : sheetJoiningReport;
+        const filename = activeTab === 'leave' 
+          ? 'EPFO_Central_Govt_Leave_Application.pdf' 
+          : 'EPFO_Joining_Report_After_Leave.pdf';
+
+        const opt = {
+          margin: [8, 8, 8, 8],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+      });
+    });
+  </script>
+</body>
+</html>
