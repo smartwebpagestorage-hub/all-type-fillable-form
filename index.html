@@ -3,195 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Government & Statutory Forms Portal | By Niraj Kumar, PF Wale</title>
-  <meta name="description" content="All Government and Statutory Forms Simplified for You. Curated by Niraj Kumar (PF Wale). Fill, auto-calculate, save as PDF, and print EPFO claims, pension forms, tour bills, CEA, and stationery notes.">
+  <title>सरकारी फॉर्म सेवा | एक ही जगह, सभी सरकारी फॉर्म | By Niraj Kumar, PF Wale</title>
+  <meta name="description" content="सरकारी फॉर्म अब ऑनलाइन भरें और प्रिंट करें। EPFO दावों, मासिक पेंशन प्रपत्र-10D, केंद्र सरकार यात्रा भत्ता (GAR-14A), CEA एवं कार्यालयीन नोटिंग हेतु आधिकारिक डिजिटल सेवा।">
   
-  <!-- Modern Google Fonts: Outfit, Plus Jakarta Sans, Noto Sans Devanagari -->
+  <!-- Google Fonts: Noto Sans Devanagari, Outfit, Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="portal.css">
 </head>
 <body class="portal-body">
 
   <!-- =========================================================================
-       1. Modern Sticky Navigation Bar (sarkaridocs.in Style)
+       1. Top Header (Matching Reference Screenshot)
        ========================================================================= -->
   <header class="portal-navbar">
     <a href="index.html" class="portal-brand">
-      <div class="portal-brand-badge">IN</div>
-      <div class="portal-brand-title">
-        Forms<span class="brand-accent">Portal</span>
+      <img src="image/ashok_stambh.svg" alt="Ashok Stambh Emblem" class="emblem-img">
+      <div class="portal-brand-text">
+        <h1>सरकारी फॉर्म सेवा</h1>
+        <span>एक ही जगह, सभी सरकारी फॉर्म</span>
       </div>
     </a>
 
     <!-- Center Navigation Links -->
     <nav class="portal-nav-links">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="#formsSection" class="nav-link">Documents</a>
-      <a href="#categoriesSection" class="nav-link">Categories</a>
-      <a href="#formsSection" class="nav-link" id="navBookmarksLink">
-        Bookmarks <span class="bookmark-count-badge" id="navBookmarkCount">0</span>
-      </a>
-      <a href="#creatorSection" class="nav-link">About Creator</a>
-      <a href="#contactSection" class="nav-link">Contact Us</a>
+      <a href="index.html" class="nav-link active">🏠 होम</a>
+      <a href="#formsSection" class="nav-link">📄 सभी फॉर्म</a>
+      <a href="#departmentsSection" class="nav-link">🏛️ विभाग</a>
+      <a href="#videoGuidesSection" class="nav-link">🎥 वीडियो गाइड</a>
+      <a href="#howItWorksSection" class="nav-link">❓ सहायता</a>
+      <a href="#contactSection" class="nav-link">📞 संपर्क</a>
     </nav>
 
-    <!-- Right Controls: Form List Dropdown & Dark/Light Mode Toggle -->
+    <!-- Right Controls: Language & Theme Toggle -->
     <div class="navbar-right-controls">
-      <!-- Form List Dropdown -->
-      <div class="nav-dropdown" id="formListDropdown">
-        <button type="button" class="nav-dropdown-toggle" id="btnDropdownForms">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
-          <span>Forms List</span>
-          <svg class="chevron-icon" width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
-        </button>
-
-        <div class="dropdown-menu-box">
-          <div class="dropdown-header-tag">
-            <span>Available Forms</span>
-            <span class="badge-count">9 Ready</span>
-          </div>
-          
-          <a href="epfo-death-claim.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#38bdf8" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">EPFO Composite Claim (Death)</span>
-              <span class="item-sub">प्रपत्र-20 (PF) / 10-डी / 5-आईएफ</span>
-            </div>
-          </a>
-
-          <a href="onroll-family-form.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#34d399" viewBox="0 0 16 16"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">On-Roll &amp; Family Description</span>
-              <span class="item-sub">पारिवारिक विवरण प्रमाणपत्र (2 Sheets)</span>
-            </div>
-          </a>
-
-          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#38bdf8" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 7.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">Composite Claim (Aadhar)</span>
-              <span class="item-sub">प्रपत्र-19 / 10-सी / 31 (3 Sheets)</span>
-            </div>
-          </a>
-
-          <a href="epfo-form-10d.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#fbbf24" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M10.97 7.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 11.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">EPFO Form 10-D (Pension)</span>
-              <span class="item-sub">मासिक पेंशन प्रपत्र-10-डी (6 Sheets)</span>
-            </div>
-          </a>
-
-          <a href="gar14a-ta-bill.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#c084fc" viewBox="0 0 16 16"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-4 0 1 1 0 0 1-1-1z"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">G.A.R-14A: TA Bill (Tour)</span>
-              <span class="item-sub">दौरा यात्रा भत्ता बिल प्रपत्र (3 Sheets)</span>
-            </div>
-          </a>
-
-          <a href="children-education-allowance.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#38bdf8" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">Children Education Allowance</span>
-              <span class="item-sub">बाल शिक्षा भत्ता दावा (4 Sheets)</span>
-            </div>
-          </a>
-
-          <a href="stationery-requirement-form.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#38bdf8" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">Stationery Requisition Note</span>
-              <span class="item-sub">लेखन सामग्री मांग प्रपत्र (EPFO Indent)</span>
-            </div>
-          </a>
-
-          <a href="stationery-requisition.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#fbbf24" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168z"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">Stationery Requisition Form</span>
-              <span class="item-sub">कस्टमाइजेबल स्टेशनरी मांग पत्र</span>
-            </div>
-          </a>
-
-          <a href="epfo-letterhead-noting.html" class="dropdown-item-link">
-            <div class="item-icon">
-              <svg width="15" height="15" fill="#34d399" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/></svg>
-            </div>
-            <div class="item-content">
-              <span class="item-title">Letterhead &amp; Noting Sheet</span>
-              <span class="item-sub">कोरा लेटरहेड एवं कार्यालयीन नोटिंग</span>
-            </div>
-          </a>
-        </div>
+      <div class="lang-switch-pill">
+        <button type="button" class="lang-btn active">हिंदी</button>
+        <button type="button" class="lang-btn">English</button>
       </div>
-
-      <!-- Theme Switcher (Moon/Sun) -->
-      <button type="button" class="btn-theme-toggle" id="btnThemeToggle" title="Toggle Dark/Light Mode">
-        🌙
-      </button>
+      <button type="button" class="btn-theme-toggle" id="btnThemeToggle" title="Toggle Dark/Light Mode">🌙</button>
     </div>
   </header>
 
   <!-- =========================================================================
-       2. Hero Section (Vibrant Sapphire Blue from sarkaridocs.in)
+       2. Hero Banner (Matching Reference Screenshot)
        ========================================================================= -->
   <section class="portal-hero">
-    <div class="hero-inner">
+    <div class="hero-inner-row">
       
-      <!-- Top Pill Badge -->
-      <div class="hero-pill-badge">
-        <span class="pulse-dot"></span>
-        <span class="in-tag">IN</span>
-        <span>Trusted by Government Employees &amp; Citizens • Curated by Niraj Kumar, PF Wale</span>
-      </div>
+      <!-- Left Content -->
+      <div class="hero-content">
+        <h2 class="hero-main-title">
+          सरकारी फॉर्म अब <span class="text-blue">ऑनलाइन</span><br>भरें और <span class="text-blue">प्रिंट करें</span>
+        </h2>
+        <p class="hero-subtext">
+          अपने विभाग और फॉर्म को खोजें, जानकारी भरें और तैयार फॉर्म डाउनलोड/प्रिंट करें — आसानी से, सुरक्षित और तेज़ी से।
+        </p>
 
-      <!-- Dual-Tone Headline (from screenshot) -->
-      <h1 class="hero-headline">
-        <span class="headline-white">All Government Forms</span>
-        <span class="headline-orange">Simplified for You</span>
-      </h1>
-
-      <!-- Subtitle -->
-      <p class="hero-sub">
-        Official statutory forms, fillable templates, and print-perfect formats. Everything you need — EPFO Claims, Pension 10-D, TA Bills, CEA, Noting &amp; Stationery — in one place.
-      </p>
-
-      <!-- Floating Search Bar (exact from screenshot) -->
-      <div class="hero-search-container">
-        <div class="search-bar-wrap">
-          <input type="text" id="searchFormsInput" class="search-input" placeholder="Search for documents... (e.g., Death Claim, Form 10-D, Pension, TA Bill, Stationery)">
-          <button type="button" id="btnSearchClear" class="btn-search-clear" title="Clear">✕</button>
-          <button type="button" class="btn-search-action" title="Search">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-            </svg>
-          </button>
+        <!-- Big Search Bar -->
+        <div class="hero-search-box">
+          <span class="search-icon-span">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
+          </span>
+          <input type="text" id="searchFormsInput" placeholder="उदाहरण: PF Form 10D, Death Claim, TA Bill, Pension, Stationery...">
+          <button type="button" id="btnSearchSubmit" class="btn-search-submit">खोजें</button>
         </div>
 
-        <!-- Floating Assistant Badge -->
-        <div class="hero-assistant-badge">
-          <span>⚡ Smart Forms Engine!</span>
+        <!-- Popular Searches Chips (लोकप्रिय खोजें) -->
+        <div class="popular-searches-row">
+          <span class="label">लोकप्रिय खोजें:</span>
+          <button type="button" class="search-chip" data-search="10-D">PF Form 10-D</button>
+          <button type="button" class="search-chip" data-search="Death Claim">Death Claim</button>
+          <button type="button" class="search-chip" data-search="GAR-14A">G.A.R-14A TA Bill</button>
+          <button type="button" class="search-chip" data-search="Aadhar">Form 19/10C Aadhar</button>
+          <button type="button" class="search-chip" data-search="Education">CEA Allowance</button>
+          <button type="button" class="search-chip" data-search="Stationery">Stationery Note</button>
+        </div>
+      </div>
+
+      <!-- Right Illustration / Laptop & Printer -->
+      <div class="hero-graphic-wrap">
+        <div class="hero-svg-card">
+          <span class="hero-ribbon-tag">सरल प्रक्रिया सभी के लिए</span>
+          <svg width="280" height="190" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Laptop Base -->
+            <rect x="25" y="145" width="220" height="12" rx="6" fill="#0f172a"/>
+            <rect x="90" y="145" width="90" height="6" rx="3" fill="#334155"/>
+            <!-- Laptop Screen -->
+            <rect x="45" y="30" width="180" height="120" rx="8" fill="#1e293b"/>
+            <rect x="52" y="37" width="166" height="106" rx="4" fill="#f8fafc"/>
+            <!-- Form content on screen -->
+            <rect x="62" y="46" width="70" height="8" rx="2" fill="#0284c7"/>
+            <rect x="62" y="60" width="146" height="6" rx="2" fill="#cbd5e1"/>
+            <rect x="62" y="72" width="120" height="6" rx="2" fill="#e2e8f0"/>
+            <rect x="62" y="84" width="140" height="6" rx="2" fill="#e2e8f0"/>
+            <circle cx="70" cy="106" r="6" fill="#10b981"/>
+            <path d="M68 106L70 108L73 104" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="82" y="103" width="90" height="6" rx="2" fill="#334155"/>
+            <!-- Printer Body -->
+            <rect x="180" y="100" width="115" height="60" rx="8" fill="#334155"/>
+            <rect x="195" y="80" width="85" height="30" rx="4" fill="#f1f5f9"/>
+            <!-- Paper coming out with print lines -->
+            <rect x="200" y="65" width="75" height="45" rx="3" fill="#ffffff" stroke="#cbd5e1"/>
+            <line x1="208" y1="75" x2="260" y2="75" stroke="#0284c7" stroke-width="2"/>
+            <line x1="208" y1="83" x2="250" y2="83" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="208" y1="91" x2="255" y2="91" stroke="#94a3b8" stroke-width="2"/>
+            <!-- Green light on printer -->
+            <circle cx="280" cy="115" r="4" fill="#10b981"/>
+          </svg>
         </div>
       </div>
 
@@ -199,607 +120,673 @@
   </section>
 
   <!-- =========================================================================
-       3. Categories & Bookmarks Filter Bar
+       3. Browse by Department (विभागों के अनुसार फॉर्म खोजें)
        ========================================================================= -->
-  <section class="categories-filter-section" id="categoriesSection">
-    <div class="categories-bar-card">
-      <div class="filter-pills-wrap" id="filterPills">
-        <button type="button" class="filter-pill active" data-filter="all">
-          <span>🌟 All Forms</span>
-          <span class="pill-count">9</span>
-        </button>
-        <button type="button" class="filter-pill" data-filter="epfo">
-          <span>🏛️ EPFO &amp; Pension</span>
-          <span class="pill-count">4</span>
-        </button>
-        <button type="button" class="filter-pill" data-filter="central-govt">
-          <span>🇮🇳 Central Govt (TA / CEA)</span>
-          <span class="pill-count">2</span>
-        </button>
-        <button type="button" class="filter-pill" data-filter="general-office">
-          <span>📝 Office Notes &amp; Stationery</span>
-          <span class="pill-count">3</span>
-        </button>
-        <button type="button" class="filter-pill" data-filter="bookmarks">
-          <span>⭐ Bookmarks</span>
-          <span class="pill-count" id="filterBookmarkCount">0</span>
-        </button>
+  <section class="departments-section" id="departmentsSection">
+    <div class="section-top-header">
+      <h3>विभागों के अनुसार फॉर्म खोजें</h3>
+      <a href="#formsSection" class="link-all-departments">सभी विभाग देखें →</a>
+    </div>
+
+    <div class="dept-grid">
+      <!-- Dept 1: EPFO / PF / Pension -->
+      <div class="dept-card active" data-category="epfo">
+        <div class="dept-icon-circle" style="background: #e0f2fe; color: #0284c7;">🏛️</div>
+        <h4>EPFO / PF / पेंशन</h4>
+        <span>PF, Pension, 10D आदि</span>
       </div>
 
-      <div class="live-results-count" id="liveFormsCount">
-        Showing <strong>9</strong> of 9 Forms
+      <!-- Dept 2: Central Govt -->
+      <div class="dept-card" data-category="central-govt">
+        <div class="dept-icon-circle" style="background: #ede9fe; color: #7c3aed;">🇮🇳</div>
+        <h4>केंद्रीय सरकार</h4>
+        <span>TA Bill, CEA Allowance</span>
       </div>
+
+      <!-- Dept 3: Office Noting & Drafting -->
+      <div class="dept-card" data-category="general-office">
+        <div class="dept-icon-circle" style="background: #fef3c7; color: #d97706;">🏢</div>
+        <h4>कार्यालयीन नोटिंग</h4>
+        <span>Letterhead, Noting Sheet</span>
+      </div>
+
+      <!-- Dept 4: Certificates & On-Roll -->
+      <div class="dept-card" data-category="epfo-cert">
+        <div class="dept-icon-circle" style="background: #ecfdf5; color: #059669;">👨‍👩‍👧‍👦</div>
+        <h4>पारिवारिक व ऑन-रोल</h4>
+        <span>Beneficiary, Family Form</span>
+      </div>
+
+      <!-- Dept 5: Store & Stationery -->
+      <div class="dept-card" data-category="general-office">
+        <div class="dept-icon-circle" style="background: #ffedd5; color: #ea580c;">📦</div>
+        <h4>स्टेशनरी व स्टोर</h4>
+        <span>Store Indent, Requisition</span>
+      </div>
+
+      <!-- Dept 6: Video Tutorials -->
+      <a href="#videoGuidesSection" class="dept-card" style="text-decoration: none;">
+        <div class="dept-icon-circle" style="background: #fee2e2; color: #dc2626;">🎥</div>
+        <h4>वीडियो ट्यूटोरियल</h4>
+        <span>फॉर्म भरने की वीडियो</span>
+      </a>
     </div>
   </section>
 
   <!-- =========================================================================
-       4. Forms Grid Section
+       4. Forms Grid Section (लोकप्रिय एवं सभी सरकारी फॉर्म)
        ========================================================================= -->
-  <main class="portal-content" id="formsSection">
-    <div class="section-title-wrap">
-      <h2>Available Statutory Forms &amp; Templates</h2>
-      <p>शासकीय एवं वैधानिक प्रपत्र — सीधे भरें, नमूना डेटा लोड करें, Legal/A4 में PDF सेव करें या प्रिंट निकालें।</p>
+  <section class="forms-main-section" id="formsSection">
+    <div class="section-top-header">
+      <div>
+        <h3>लोकप्रिय फॉर्म / उपलब्ध प्रपत्र</h3>
+        <p style="font-size: 13px; color: var(--text-muted);">अपनी आवश्यकतानुसार फॉर्म चुनें, ऑनलाइन भरें अथवा वीडियो गाइड देखकर भरें।</p>
+      </div>
+      <span id="liveFormsCount" style="font-size: 12.5px; font-weight: 700; color: #0284c7;">Showing 9 Forms</span>
     </div>
 
     <div class="forms-grid" id="formsGrid">
 
-      <!-- Form Card 1: Death Claim -->
-      <div class="form-card" data-category="epfo" data-form-id="epfo-death-claim">
-        <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge">EPFO / PF</span>
-              <span class="sheet-badge">Single Sheet • Legal/A4</span>
-            </div>
-            <button class="btn-bookmark-star" data-form-id="epfo-death-claim" title="Bookmark this Form">☆</button>
-          </div>
-
-          <div class="form-card-body">
-            <h3>EPFO Composite Claim (Death Cases)</h3>
-            <p class="sub-hi">
-              मृत्यु मामले में कम्पोजिट दावा प्रपत्र — प्रपत्र-20 (भविष्य निधि भुगतान) / प्रपत्र 10-डी (पेंशन) / प्रपत्र -5 आईएफ़ (ईडिएलआई)
-            </p>
-
-            <ul class="form-features-list">
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Complete 14 Data Rows:</strong> 4-Column First Row with all parameters</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Multiple Claimants &amp; Banks:</strong> PF, EDLI &amp; Pension payee accounts</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Dual Paper Size:</strong> Balanced Single-Sheet Legal and A4 output</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="form-card-footer">
-          <a href="epfo-death-claim.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Form Card 2: On-Roll & Family Description -->
-      <div class="form-card" data-category="epfo-cert" data-form-id="onroll-family-form">
-        <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge" style="background:#ecfdf5; color:#047857;">EPFO / Certificate</span>
-              <span class="sheet-badge">2 Sheets • Auto-Sync</span>
-            </div>
-            <button class="btn-bookmark-star" data-form-id="onroll-family-form" title="Bookmark this Form">☆</button>
-          </div>
-
-          <div class="form-card-body">
-            <h3>On-Roll &amp; Family Description Form</h3>
-            <p class="sub-hi">
-              ऑन-रोल एवं विधिक लाभार्थी व पारिवारिक विवरण प्रमाणपत्र — मृतक सदस्य के क्लेम हेतु नियोक्ता (Employer) द्वारा जारी 2 अलग-अलग पत्र।
-            </p>
-
-            <ul class="form-features-list">
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 1:</strong> On-Roll &amp; Legal Beneficiary Certificate</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 2:</strong> Family Description Form (Joining to Till Death)</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Smart Auto-Sync:</strong> Sheet 1 विवरण से Sheet 2 स्वतः भरती है</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="form-card-footer">
-          <a href="onroll-family-form.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Form Card 3: Composite Claim Aadhar -->
-      <div class="form-card" data-category="epfo" data-form-id="epfo-composite-claim-aadhar">
-        <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge">EPFO / Settlement</span>
-              <span class="sheet-badge">3 Sheets • Instructions</span>
-            </div>
-            <button class="btn-bookmark-star" data-form-id="epfo-composite-claim-aadhar" title="Bookmark this Form">☆</button>
-          </div>
-
-          <div class="form-card-body">
-            <h3>EPFO Composite Claim Form (Aadhar)</h3>
-            <p class="sub-hi">
-              संयुक्त दावा प्रपत्र (आधार) — प्रपत्र-19 (PF अंतिम निपटान) / 10-सी (पेंशन लाभ) / 31 (PF अग्रिम) हेतु एकल प्रपत्र।
-            </p>
-
-            <ul class="form-features-list">
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Unified Single Form:</strong> Replaces standalone Form 19, 10C &amp; 31</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>10 Withdrawal Purposes:</strong> Para 68B, 68H, 68J etc. selectable</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>No Attestation Needed:</strong> For Aadhar-linked UAN holders</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="form-card-footer">
-          <a href="epfo-composite-claim-aadhar.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Form Card 4: EPFO Form 10-D (Pension) -->
+      <!-- Form 1: Form 10-D Pension -->
       <div class="form-card" data-category="epfo" data-form-id="epfo-form-10d">
         <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge" style="background:#fef3c7; color:#b45309;">EPFO / Pension</span>
-              <span class="sheet-badge">6 Pages Complete</span>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/epfo_logo.png" alt="EPFO Seal">
             </div>
-            <button class="btn-bookmark-star" data-form-id="epfo-form-10d" title="Bookmark this Form">☆</button>
+            <div class="form-badges-right">
+              <span class="badge-tag badge-blue">Form 10-D</span>
+              <button class="btn-star-bookmark" data-form-id="epfo-form-10d" title="Bookmark">☆</button>
+            </div>
           </div>
 
           <div class="form-card-body">
             <h3>EPFO Form 10-D (Monthly Pension)</h3>
-            <p class="sub-hi">
-              मासिक पेंशन हेतु आवेदन प्रपत्र — कर्मचारी पेंशन योजना (EPS), 1995 के अंतर्गत सुपरएनुएशन अथवा विधवा/परिवार पेंशन दावा (6 पृष्ठों का प्रारूप)।
-            </p>
+            <p class="hindi-desc">मासिक पेंशन हेतु आवेदन प्रपत्र — कर्मचारी पेंशन योजना (EPS), 1995 (सम्पूर्ण 6 पृष्ठों का प्रारूप)।</p>
 
-            <ul class="form-features-list">
+            <ul class="features-check-list">
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Complete 6 Pages:</strong> Full statutory layout matching official format</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>सम्पूर्ण 6 पृष्ठ गजट प्रारूप अनुसार</span>
               </li>
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>12-Month Wages:</strong> Detailed wage particulars breakdown table</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Descriptive Roll:</strong> Family particulars &amp; specimen signatures</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>12-माह वेतन विवरण एवं पारिवारिक तालिका</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="form-card-footer">
-          <a href="epfo-form-10d.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
+        <div class="form-card-actions">
+          <a href="epfo-form-10d.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="epfo-form-10d" data-video-title="EPFO Form 10-D Pension Claim Kaise Bharein? By Niraj Kumar, PF Wale">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="epfo-form-10d.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
         </div>
       </div>
 
-      <!-- Form Card 5: GAR-14A TA Bill -->
+      <!-- Form 2: Death Claim -->
+      <div class="form-card" data-category="epfo" data-form-id="epfo-death-claim">
+        <div>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/epfo_logo.png" alt="EPFO Seal">
+            </div>
+            <div class="form-badges-right">
+              <span class="badge-tag badge-blue">Form 20/10D/5IF</span>
+              <button class="btn-star-bookmark" data-form-id="epfo-death-claim" title="Bookmark">☆</button>
+            </div>
+          </div>
+
+          <div class="form-card-body">
+            <h3>EPFO Composite Claim (Death Cases)</h3>
+            <p class="hindi-desc">मृत्यु मामले में कम्पोजिट दावा प्रपत्र — PF, पेंशन एवं EDLI भुगतान हेतु एकल प्रपत्र।</p>
+
+            <ul class="features-check-list">
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>4-कॉलम प्रथम पंक्ति एवं पूर्ण 14 डेटा पंक्तियां</span>
+              </li>
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>Legal एवं A4 सिंगल-शीट प्रिंट सपोर्ट</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-card-actions">
+          <a href="epfo-death-claim.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="epfo-death-claim" data-video-title="EPFO Death Claim Form 20, 10-D & 5-IF Video Tutorial By Niraj Kumar, PF Wale">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="epfo-death-claim.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form 3: Composite Claim Aadhar -->
+      <div class="form-card" data-category="epfo" data-form-id="epfo-composite-claim-aadhar">
+        <div>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/epfo_logo.png" alt="EPFO Seal">
+            </div>
+            <div class="form-badges-right">
+              <span class="badge-tag badge-blue">Form 19/10C/31</span>
+              <button class="btn-star-bookmark" data-form-id="epfo-composite-claim-aadhar" title="Bookmark">☆</button>
+            </div>
+          </div>
+
+          <div class="form-card-body">
+            <h3>Composite Claim Form (Aadhar)</h3>
+            <p class="hindi-desc">संयुक्त दावा प्रपत्र (आधार) — PF अंतिम निपटान, पेंशन प्रत्याहरण एवं आंशिक अग्रिम दावा।</p>
+
+            <ul class="features-check-list">
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>10 प्रकार के अग्रिम उद्देश्य (Para 68B, 68H, 68J)</span>
+              </li>
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>नियोक्ता के हस्ताक्षर की आवश्यकता नहीं (आधार लिंक)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-card-actions">
+          <a href="epfo-composite-claim-aadhar.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="epfo-composite-claim-aadhar" data-video-title="EPFO Form 19, 10C, 31 Aadhar Claim Step-by-Step Video Guide">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="epfo-composite-claim-aadhar.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form 4: On-Roll & Family Certificate -->
+      <div class="form-card" data-category="epfo-cert" data-form-id="onroll-family-form">
+        <div>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/ashok_stambh.svg" alt="National Emblem">
+            </div>
+            <div class="form-badges-right">
+              <span class="badge-tag" style="background:#ecfdf5; color:#059669;">Employer Cert</span>
+              <button class="btn-star-bookmark" data-form-id="onroll-family-form" title="Bookmark">☆</button>
+            </div>
+          </div>
+
+          <div class="form-card-body">
+            <h3>On-Roll &amp; Family Description Form</h3>
+            <p class="hindi-desc">ऑन-रोल एवं विधिक लाभार्थी व पारिवारिक विवरण प्रमाणपत्र (नियोक्ता द्वारा जारी 2 शीट्स)।</p>
+
+            <ul class="features-check-list">
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>Sheet 1 से Sheet 2 में रियल-टाइम ऑटो-सिंक</span>
+              </li>
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>पारिवारिक सदस्य विवरण एवं ऑटो सीरियल नंबर</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-card-actions">
+          <a href="onroll-family-form.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="onroll-family-form" data-video-title="On-Roll Certificate & Family Details Employer Form Kaise Bharein?">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="onroll-family-form.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form 5: GAR-14A TA Bill -->
       <div class="form-card" data-category="central-govt" data-form-id="gar14a-ta-bill">
         <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge" style="background:#ede9fe; color:#6d28d9;">Govt of India / TA</span>
-              <span class="sheet-badge">3 Sheets • Calculations</span>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/ashok_stambh.svg" alt="National Emblem">
             </div>
-            <button class="btn-bookmark-star" data-form-id="gar14a-ta-bill" title="Bookmark this Form">☆</button>
+            <div class="form-badges-right">
+              <span class="badge-tag" style="background:#ede9fe; color:#7c3aed;">Govt TA Bill</span>
+              <button class="btn-star-bookmark" data-form-id="gar14a-ta-bill" title="Bookmark">☆</button>
+            </div>
           </div>
 
           <div class="form-card-body">
             <h3>G.A.R-14A: TA Bill for Tour</h3>
-            <p class="sub-hi">
-              दौरा यात्रा भत्ता बिल (Rule 66(1) &amp; 90(1)(i)) — केंद्र सरकार के अधिकारियों/कर्मचारियों हेतु टूर क्लेम बिल (3 पृष्ठ: भाग-क विवरण व भाग-ख बिल)।
-            </p>
+            <p class="hindi-desc">दौरा यात्रा भत्ता बिल (Rule 66 व 90) — केंद्र सरकार के अधिकारियों/कर्मचारियों हेतु टूर बिल (3 पृष्ठ)।</p>
 
-            <ul class="form-features-list">
+            <ul class="features-check-list">
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 1:</strong> Part-A Journey Details &amp; Bank Account particulars</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>यात्रा विवरण, होटल व्यय एवं पास आदेश</span>
               </li>
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 2:</strong> Hotel Stay, Higher Class journey &amp; Advance details</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 3:</strong> Part-B Entitlement live calculation &amp; pass orders</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>लाइव ऑटो-कैलकुलेशन एवं योग परिकलन</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="form-card-footer">
-          <a href="gar14a-ta-bill.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
+        <div class="form-card-actions">
+          <a href="gar14a-ta-bill.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="gar14a-ta-bill" data-video-title="Central Govt GAR-14A TA Bill Tour Calculation & Filling Guide">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="gar14a-ta-bill.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
         </div>
       </div>
 
-      <!-- Form Card 6: Children Education Allowance -->
+      <!-- Form 6: Children Education Allowance -->
       <div class="form-card" data-category="central-govt" data-form-id="children-education-allowance">
         <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge">Govt of India / Allowance</span>
-              <span class="sheet-badge">4 Sheets Complete</span>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/ashok_stambh.svg" alt="National Emblem">
             </div>
-            <button class="btn-bookmark-star" data-form-id="children-education-allowance" title="Bookmark this Form">☆</button>
+            <div class="form-badges-right">
+              <span class="badge-tag" style="background:#e0f2fe; color:#0369a1;">Govt Allowance</span>
+              <button class="btn-star-bookmark" data-form-id="children-education-allowance" title="Bookmark">☆</button>
+            </div>
           </div>
 
           <div class="form-card-body">
             <h3>Children Education Allowance (CEA)</h3>
-            <p class="sub-hi">
-              बाल शिक्षा भत्ता एवं छात्रावास अनुदान प्रतिपूर्ति दावा — केंद्र सरकार के कार्मिकों हेतु प्रपत्र, व्यय विवरण, स्कूल बोनाफाइड प्रमाणपत्र एवं स्वघोषणा।
-            </p>
+            <p class="hindi-desc">बाल शिक्षा भत्ता एवं छात्रावास अनुदान प्रतिपूर्ति दावा — प्रपत्र, स्कूल बोनाफाइड प्रमाणपत्र व स्वघोषणा।</p>
 
-            <ul class="form-features-list">
+            <ul class="features-check-list">
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 1:</strong> Claim Application &amp; Expenditure Breakdown Table</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>व्यय तालिका, स्कूल प्रमाणपत्र व स्वघोषणा (4 शीट्स)</span>
               </li>
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 2-3:</strong> Disability details &amp; School Bonafide Certificate</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Sheet 4:</strong> Self Declaration with real-time synchronized data</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>7वें वेतन आयोग (7th CPC) नियमों अनुसार तैयार</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="form-card-footer">
-          <a href="children-education-allowance.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
+        <div class="form-card-actions">
+          <a href="children-education-allowance.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="children-education-allowance" data-video-title="Children Education Allowance (CEA) Claim Form Video Tutorial">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="children-education-allowance.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
         </div>
       </div>
 
-      <!-- Form Card 7: Stationery Requisition Note -->
+      <!-- Form 7: Stationery Requisition Note -->
       <div class="form-card" data-category="general-office" data-form-id="stationery-requirement-form">
         <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge">EPFO / Store</span>
-              <span class="sheet-badge">Single Sheet • Indent</span>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/epfo_logo.png" alt="EPFO Seal">
             </div>
-            <button class="btn-bookmark-star" data-form-id="stationery-requirement-form" title="Bookmark this Form">☆</button>
+            <div class="form-badges-right">
+              <span class="badge-tag" style="background:#ffedd5; color:#c2410c;">EPFO Store</span>
+              <button class="btn-star-bookmark" data-form-id="stationery-requirement-form" title="Bookmark">☆</button>
+            </div>
           </div>
 
           <div class="form-card-body">
             <h3>Stationery Requisition Office Note</h3>
-            <p class="sub-hi">
-              कार्यालयीन टिप्पणी - कार्यालय उपयोग हेतु लेखन सामग्री (स्टेशनरी) मांग प्रपत्र। 1 से 10 मात्रा चयन, त्वरित सामग्री जोड़ने/हटाने की सुविधा।
-            </p>
+            <p class="hindi-desc">कार्यालयीन टिप्पणी - कार्यालय उपयोग हेतु लेखन सामग्री मांग प्रपत्र एवं स्टोर पावती वाउचर।</p>
 
-            <ul class="form-features-list">
+            <ul class="features-check-list">
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Official Header:</strong> EPFO Logo &amp; Bilingual Heading</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>1 से 10 मात्रा चयन एवं 18 पूर्व-निर्धारित सामग्री</span>
               </li>
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>18 Preset Items:</strong> 1 to 10 quantity selector for official stationery</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Official Vouchers:</strong> Indenter, Officer &amp; Store Issue block</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>मांगकर्ता, अनुशंसक अधिकारी व स्टोर निर्गमन ब्लॉक</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="form-card-footer">
-          <a href="stationery-requirement-form.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
+        <div class="form-card-actions">
+          <a href="stationery-requirement-form.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="stationery-requirement-form" data-video-title="EPFO Stationery Office Note Filling Video Guide">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="stationery-requirement-form.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
         </div>
       </div>
 
-      <!-- Form Card 8: Stationery Requisition Form -->
+      <!-- Form 8: Stationery Requisition Form -->
       <div class="form-card" data-category="general-office" data-form-id="stationery-requisition">
         <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge" style="background:#fef3c7; color:#b45309;">Office Store / Indent</span>
-              <span class="sheet-badge">Single Sheet • Customizable</span>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/ashok_stambh.svg" alt="National Emblem">
             </div>
-            <button class="btn-bookmark-star" data-form-id="stationery-requisition" title="Bookmark this Form">☆</button>
+            <div class="form-badges-right">
+              <span class="badge-tag" style="background:#fef3c7; color:#b45309;">Custom Office</span>
+              <button class="btn-star-bookmark" data-form-id="stationery-requisition" title="Bookmark">☆</button>
+            </div>
           </div>
 
           <div class="form-card-body">
             <h3>Stationery Requisition Form (मांग पत्र)</h3>
-            <p class="sub-hi">
-              कार्यालय उपयोग हेतु स्टेशनरी सामग्री मांग पत्र — कस्टमाइजेबल लेटरहेड (नाम व पता बदलने की सुविधा), डायनेमिक आइटम जोड़ने व [+] [-] मात्रा घटाने/बढ़ाने की सुविधा।
-            </p>
+            <p class="hindi-desc">कस्टमाइजेबल लेटरहेड युक्त स्टेशनरी सामग्री मांग पत्र — किसी भी कार्यालय हेतु अनुकूल।</p>
 
-            <ul class="form-features-list">
+            <ul class="features-check-list">
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Customizable Header:</strong> Type your office name, address in-line</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>[+] एवं [-] बटन से 1-क्लिक में मात्रा समायोजन</span>
               </li>
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Quantity Adjuster:</strong> Instant [+] and [-] stepper buttons</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Storekeeper &amp; Indenter:</strong> Complete action block, print &amp; PDF</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>कार्यालय नाम व पता इन-लाइन बदलने की सुविधा</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="form-card-footer">
-          <a href="stationery-requisition.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
+        <div class="form-card-actions">
+          <a href="stationery-requisition.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="stationery-requisition" data-video-title="Custom Office Stationery Requisition Form Video Tutorial">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="stationery-requisition.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
         </div>
       </div>
 
-      <!-- Form Card 9: Blank Letterhead & Official Noting Sheet -->
+      <!-- Form 9: Letterhead & Noting -->
       <div class="form-card" data-category="general-office" data-form-id="epfo-letterhead-noting">
         <div>
-          <div class="form-card-header">
-            <div class="header-badges-left">
-              <span class="dept-badge" style="background:#ecfdf5; color:#047857;">Drafting / Letterhead</span>
-              <span class="sheet-badge">Multi-Page • Dual Logo</span>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/ashok_stambh.svg" alt="National Emblem">
             </div>
-            <button class="btn-bookmark-star" data-form-id="epfo-letterhead-noting" title="Bookmark this Form">☆</button>
+            <div class="form-badges-right">
+              <span class="badge-tag" style="background:#ecfdf5; color:#059669;">Noting &amp; Letter</span>
+              <button class="btn-star-bookmark" data-form-id="epfo-letterhead-noting" title="Bookmark">☆</button>
+            </div>
           </div>
 
           <div class="form-card-body">
             <h3>Blank Letterhead &amp; Official Noting Sheet</h3>
-            <p class="sub-hi">
-              कस्टमाइजेबल आधिकारिक लेटरहेड (EPFO लोगो एवं अशोक स्तंभ), कार्यालय टिप्पणी (नोटिंग), शासकीय पत्र, कार्यालय आदेश व कोरा लेटरहेड ड्राफ्टिंग टूल।
-            </p>
+            <p class="hindi-desc">कस्टमाइजेबल आधिकारिक लेटरहेड (EPFO लोगो एवं अशोक स्तंभ), कार्यालयीन टिप्पणी व आदेश ड्राफ्टिंग टूल।</p>
 
-            <ul class="form-features-list">
+            <ul class="features-check-list">
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Dual Logos:</strong> EPFO insignia &amp; National Emblem (Ashok Stambh)</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>द्वैत प्रतीक चिह्न: EPFO लोगो + अशोक स्तंभ</span>
               </li>
               <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>4 Ready Presets:</strong> टिप्पणी (Office Note), पत्र, आदेश व कोरा लेटरहेड</span>
-              </li>
-              <li>
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
-                <span><strong>Rich Text Toolbar:</strong> Bold, italic, lists, font size &amp; continuation pages</span>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>रिच टेक्स्ट टूलबार एवं पृष्ठ विस्तार (Continuation Sheet)</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="form-card-footer">
-          <a href="epfo-letterhead-noting.html" class="btn-open-form">
-            <span>Open &amp; Fill Form / फॉर्म खोलें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
-          </a>
+        <div class="form-card-actions">
+          <a href="epfo-letterhead-noting.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="epfo-letterhead-noting" data-video-title="EPFO Letterhead & Official Noting Sheet Drafting Video Guide">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="epfo-letterhead-noting.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
         </div>
-      </div>
-
-      <!-- Empty Search State -->
-      <div id="emptySearchState" class="empty-search-state">
-        <div class="empty-icon-wrap">
-          <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-          </svg>
-        </div>
-        <h3>No Forms Found</h3>
-        <p>No forms match your search: <strong id="emptySearchQuery">""</strong>.</p>
-        <button type="button" id="btnResetSearch" class="btn-reset-search">Reset Search &amp; Show All Forms</button>
       </div>
 
     </div>
-  </main>
+  </section>
 
   <!-- =========================================================================
-       5. Creator Profile & Expertise Section ("About Niraj Kumar, PF Wale")
+       5. Dedicated Video Tutorials Hub (वीडियो देखकर सीखें — फॉर्म कैसे भरें?)
        ========================================================================= -->
-  <section class="creator-section" id="creatorSection">
-    <div class="section-title-wrap" style="text-align: center; margin-bottom: 28px;">
-      <h2>About the Creator &amp; Author</h2>
-      <p>पोर्टल निर्माता एवं वैधानिक प्रपत्र विशेषज्ञ परिचय</p>
+  <section class="video-hub-section" id="videoGuidesSection">
+    <div class="section-top-header">
+      <div>
+        <h3>🎥 वीडियो ट्यूटोरियल गाइड — फॉर्म कैसे भरें?</h3>
+        <p style="font-size: 13px; color: var(--text-muted);">Niraj Kumar (PF Wale) द्वारा तैयार किए गए स्टेप-बाय-स्टेप ऑनलाइन फॉर्म भरने के वीडियो देखें।</p>
+      </div>
     </div>
 
-    <div class="creator-card">
-      <div class="creator-avatar-wrap">
-        <div class="creator-avatar">NK</div>
-        <span class="creator-badge-verified">
-          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>
-          Verified Author
-        </span>
+    <div class="video-grid">
+      <!-- Video 1 -->
+      <div class="video-guide-card">
+        <div class="video-thumb-wrap" data-form-id="epfo-form-10d">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=60" alt="Pension Form Tutorial">
+          <div class="play-button-overlay">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>
+          </div>
+          <span class="video-duration-badge">12:45 Min</span>
+        </div>
+        <div class="video-card-info">
+          <h4>EPFO Form 10-D Monthly Pension Form Online Kaise Bharein?</h4>
+          <p>सुपरएनुएशन एवं विधवा/परिवार पेंशन फॉर्म भरने की सम्पूर्ण प्रक्रिया (पृष्ठ 1 से 6 तक)।</p>
+          <div class="video-card-footer">
+            <span class="video-speaker-tag">By Niraj Kumar (PF Wale)</span>
+            <button type="button" class="btn-video-guide" data-form-id="epfo-form-10d">▶ वीडियो देखें</button>
+          </div>
+        </div>
       </div>
 
-      <div class="creator-details">
-        <h3>Niraj Kumar <span>(PF Wale)</span></h3>
-        <div class="creator-tagline">Author, Statutory Forms Specialist &amp; Digital Architect</div>
-        <p class="creator-bio">
-          कर्मचारी भविष्य निधि संगठन (EPFO), केंद्र सरकार के नियम (Central Govt Service Rules), पेंशन प्रावधानों (EPS-95) एवं आधिकारिक कार्यालयीन नोटिंग हेतु समर्पित विशेषज्ञ। इस पोर्टल का उद्देश्य नागरिकों, कर्मचारियों एवं नियोक्ताओं को 100% सटीक, प्रिंटेबल (A4 व Legal प्रारूप) और बिना किसी सर्वर स्टोरेज के सुरक्षित डिजिटल प्रपत्र उपलब्ध कराना है।
-        </p>
+      <!-- Video 2 -->
+      <div class="video-guide-card">
+        <div class="video-thumb-wrap" data-form-id="epfo-death-claim">
+          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?w=600&auto=format&fit=crop&q=60" alt="Death Claim Tutorial">
+          <div class="play-button-overlay">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>
+          </div>
+          <span class="video-duration-badge">15:20 Min</span>
+        </div>
+        <div class="video-card-info">
+          <h4>EPFO Composite Death Claim Form 20, 10-D &amp; 5-IF Complete Video Guide</h4>
+          <p>मृतक सदस्य के दावेदारों के बैंक खाते, हिस्सेदारी एवं Legal/A4 में प्रिंट निकालने का सही तरीका।</p>
+          <div class="video-card-footer">
+            <span class="video-speaker-tag">By Niraj Kumar (PF Wale)</span>
+            <button type="button" class="btn-video-guide" data-form-id="epfo-death-claim">▶ वीडियो देखें</button>
+          </div>
+        </div>
+      </div>
 
-        <div class="creator-skills-row">
-          <span class="skill-tag">🏛️ EPFO Composite Claims</span>
-          <span class="skill-tag">📑 EPS-95 Form 10-D Pension</span>
-          <span class="skill-tag">✈️ Central Govt TA Bill (G.A.R-14A)</span>
-          <span class="skill-tag">🎓 Children Education Allowance (CEA)</span>
-          <span class="skill-tag">✍️ Official Noting &amp; Drafting</span>
-          <span class="skill-tag">🔒 100% Client-Side Privacy</span>
+      <!-- Video 3 -->
+      <div class="video-guide-card">
+        <div class="video-thumb-wrap" data-form-id="gar14a-ta-bill">
+          <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600&auto=format&fit=crop&q=60" alt="TA Bill Tutorial">
+          <div class="play-button-overlay">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>
+          </div>
+          <span class="video-duration-badge">09:15 Min</span>
+        </div>
+        <div class="video-card-info">
+          <h4>Central Govt G.A.R-14A TA Bill (Tour Claim) Auto-Calculation Guide</h4>
+          <p>यात्रा बिल, होटल स्टे एवं माइलेज भत्ते का सही परिकलन और पास आदेश तैयार करना।</p>
+          <div class="video-card-footer">
+            <span class="video-speaker-tag">By Niraj Kumar (PF Wale)</span>
+            <button type="button" class="btn-video-guide" data-form-id="gar14a-ta-bill">▶ वीडियो देखें</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- =========================================================================
-       6. Interactive Contact Us Section
+       6. Process Bar: कैसे काम करता है? (Matching Reference Screenshot)
        ========================================================================= -->
-  <section class="contact-section" id="contactSection">
-    <div class="section-title-wrap" style="text-align: center; margin-bottom: 28px;">
-      <h2>Contact Us / संपर्क करें</h2>
-      <p>किसी प्रपत्र के संबंध में मार्गदर्शन अथवा नए प्रपत्र जोड़ने हेतु सीधे संपर्क करें</p>
-    </div>
-
-    <div class="contact-container">
+  <section class="how-it-works-section" id="howItWorksSection">
+    <div class="process-card-bar">
+      <h3>कैसे काम करता है?</h3>
       
-      <!-- Left: Contact Details Cards -->
-      <div class="contact-info-panel">
-        <div class="contact-info-card">
-          <div class="contact-icon-box">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.655.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.591-6.586 6.591"/></svg>
-          </div>
-          <div class="contact-info-text">
-            <h4>WhatsApp &amp; Query Assistance</h4>
-            <p>EPFO दावों, पेंशन एवं शासकीय प्रपत्रों संबंधी त्वरित सहायता</p>
-            <p style="margin-top: 4px; font-weight: 700; color: #2563eb;">Connect: Niraj Kumar (PF Wale)</p>
+      <div class="steps-flow-row">
+        <!-- Step 1 -->
+        <div class="step-flow-item">
+          <div class="step-circle-icon">🔍</div>
+          <div class="step-flow-text">
+            <h4>1. फॉर्म खोजें</h4>
+            <p>अपने विभाग, श्रेणी या फॉर्म के नाम से खोजें।</p>
           </div>
         </div>
 
-        <div class="contact-info-card">
-          <div class="contact-icon-box">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></svg>
-          </div>
-          <div class="contact-info-text">
-            <h4>Official Email &amp; Feedback</h4>
-            <p>नए प्रपत्रों के सुझाव एवं फीडबैक हेतु ईमेल भेजें</p>
-            <p style="margin-top: 4px; font-weight: 700; color: #2563eb;">support@pfwale.gov-forms.in</p>
+        <!-- Step 2 -->
+        <div class="step-flow-item">
+          <div class="step-circle-icon">✍️</div>
+          <div class="step-flow-text">
+            <h4>2. ऑनलाइन भरें</h4>
+            <p>अपनी जानकारी भरें (वीडियो गाइड या सैंपल डेटा से)।</p>
           </div>
         </div>
 
-        <div class="contact-info-card">
-          <div class="contact-icon-box">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+        <!-- Step 3 -->
+        <div class="step-flow-item">
+          <div class="step-circle-icon">👁️</div>
+          <div class="step-flow-text">
+            <h4>3. Preview करें</h4>
+            <p>फॉर्म का वास्तविक पूर्वावलोकन जांचें।</p>
           </div>
-          <div class="contact-info-text">
-            <h4>Coverage &amp; Compliance</h4>
-            <p>संपूर्ण भारत — Central Govt, EPFO All Regional Offices &amp; Autonomous Bodies</p>
-            <p style="margin-top: 4px; font-size: 11.5px; color: #10b981; font-weight: 700;">● Active Service Support</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-flow-item">
+          <div class="step-circle-icon">🖨️</div>
+          <div class="step-flow-text">
+            <h4>4. PDF/Print करें</h4>
+            <p>A4 या Legal साइज में PDF डाउनलोड या प्रिंट लें।</p>
           </div>
         </div>
       </div>
 
-      <!-- Right: Interactive Contact Form -->
-      <div class="contact-form-card">
-        <h3>Send a Message / संदेश भेजें</h3>
-        <p class="form-desc">अपने प्रश्न या प्रपत्र संबंधी सुझाव यहां दर्ज करें। हम शीघ्र संपर्क करेंगे।</p>
-
-        <form id="portalContactForm">
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label for="contactName">Your Name (आपका नाम) *</label>
-              <input type="text" id="contactName" class="form-control" placeholder="e.g. Rahul Sharma" required>
-            </div>
-            <div class="form-group">
-              <label for="contactEmail">Email / Phone (ईमेल या फोन) *</label>
-              <input type="text" id="contactEmail" class="form-control" placeholder="e.g. rahul@example.com / 98765..." required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="contactSubject">Form / Topic (संबंधित प्रपत्र या विषय) *</label>
-            <select id="contactSubject" class="form-control" required>
-              <option value="">-- Choose Subject / Form --</option>
-              <option value="epfo-claims">EPFO Death Claim / PF Settlement</option>
-              <option value="pension">Form 10-D Monthly Pension</option>
-              <option value="ta-bill">Central Govt TA Bill (GAR-14A)</option>
-              <option value="cea">Children Education Allowance (CEA)</option>
-              <option value="stationery-noting">Stationery / Letterhead &amp; Noting</option>
-              <option value="request-new-form">Request a New Form Format</option>
-              <option value="other">General Query / Help</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="contactMessage">Your Message (विवरण / संदेश) *</label>
-            <textarea id="contactMessage" class="form-control" placeholder="Type your query or form requirement here..." required></textarea>
-          </div>
-
-          <button type="submit" class="btn-submit-contact">
-            <span>Send Message / संदेश भेजें</span>
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.854.146a.5.5 0 0 1 .11.54l-5.8 14.5a.5.5 0 0 1-.928-.016L6.5 9.5 1.184 6.764a.5.5 0 0 1-.016-.928L15.668.036a.5.5 0 0 1 .186.11z"/></svg>
-          </button>
-        </form>
+      <!-- Advisory Box (महत्वपूर्ण सूचना) -->
+      <div class="advisory-box">
+        <div class="advisory-icon">ℹ️</div>
+        <div class="advisory-text">
+          <h5>महत्वपूर्ण सूचना / 100% Privacy Assurance</h5>
+          <p>यह पोर्टल सरकारी फॉर्म भरने, ऑटो-कैलकुलेट करने और प्रिंट/डाउनलोड करने हेतु पूर्णतः निःशुल्क व सुरक्षित है। आपका कोई भी व्यक्तिगत डेटा किसी बाहरी सर्वर पर स्टोर नहीं किया जाता।</p>
+        </div>
       </div>
 
     </div>
   </section>
 
   <!-- =========================================================================
-       7. Footer
+       7. Creator Profile & Contact Form
+       ========================================================================= -->
+  <section class="creator-contact-wrap" id="contactSection">
+    <!-- Creator Profile -->
+    <div class="profile-card">
+      <h3>पोर्टल निर्माता (Creator Profile)</h3>
+      <div class="profile-inner">
+        <div class="avatar-badge">NK</div>
+        <div class="profile-info">
+          <h4>Niraj Kumar (PF Wale)</h4>
+          <p class="title">Author &amp; Statutory Documentation Specialist</p>
+          <p class="desc">
+            कर्मचारी भविष्य निधि संगठन (EPFO), पेंशन नियमों (EPS-95), एवं केंद्र सरकार के प्रशासनिक प्रपत्रों के विशेषज्ञ। सभी प्रपत्रों के सटीक प्रारूप एवं वीडियो ट्यूटोरियल नागरिकों व कार्मिकों की सुविधा हेतु उपलब्ध कराए गए हैं।
+          </p>
+          <div style="margin-top: 10px; font-size: 12px; font-weight: 700; color: #0284c7;">
+            YouTube &amp; Guidance: "PF Wale" Channel
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Contact Form -->
+    <div class="contact-card">
+      <h3>संपर्क एवं सहायता (Contact Us)</h3>
+      <form class="quick-form" id="portalQuickContactForm">
+        <input type="text" placeholder="आपका नाम (Your Name)" required>
+        <input type="text" placeholder="ईमेल या व्हाट्सएप नंबर" required>
+        <textarea placeholder="आपका प्रश्न या नए फॉर्म का सुझाव..." required></textarea>
+        <button type="submit" class="btn-send-msg">संदेश भेजें / Submit Query</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. Footer (Matching Reference Screenshot)
        ========================================================================= -->
   <footer class="portal-footer">
-    <div class="portal-footer-inner">
-      <div class="footer-author-brand">
-        <span>Forms Portal Hub</span>
-        • Curated by Niraj Kumar, PF Wale
+    <div class="footer-columns-row">
+      <div class="footer-col">
+        <h5 style="font-size: 16px;">सरकारी फॉर्म सेवा</h5>
+        <p style="font-size: 12px; line-height: 1.6; color: #94a3b8; margin-top: 6px;">
+          एक ही जगह, सभी सरकारी एवं वैधानिक फॉर्म। आधिकारिक प्रारूपों में ऑनलाइन प्रपत्र सृजन, नमूना डेटा भरण एवं उच्च गुणवत्ता प्रिंटिंग हेतु समर्पित पोर्टल।
+        </p>
+        <p style="font-size: 11.5px; color: #38bdf8; margin-top: 10px; font-weight: 700;">
+          Curated by Niraj Kumar, PF Wale
+        </p>
       </div>
-      <p style="font-size: 12.5px; color: #94a3b8; font-family: 'Noto Sans Devanagari', sans-serif; max-width: 680px;">
-        शासकीय एवं वैधानिक प्रपत्रों के डिजिटल सृजन, नमूना भरण एवं A4 व Legal प्रारूपों में प्रिंट हेतु समर्पित निःशुल्क पोर्टल।
-      </p>
-      <div class="footer-quick-links">
-        <a href="index.html">Home</a>
-        <span>•</span>
-        <a href="#formsSection">All Forms</a>
-        <span>•</span>
-        <a href="#creatorSection">About Creator</a>
-        <span>•</span>
-        <a href="#contactSection">Contact Us</a>
-        <span>•</span>
-        <a href="epfo-death-claim.html">Death Claim</a>
-        <span>•</span>
-        <a href="epfo-form-10d.html">Pension 10-D</a>
-        <span>•</span>
-        <a href="gar14a-ta-bill.html">TA Bill (Tour)</a>
-        <span>•</span>
-        <a href="epfo-letterhead-noting.html">Noting Sheet</a>
+
+      <div class="footer-col">
+        <h5>त्वरित लिंक</h5>
+        <ul>
+          <li><a href="index.html">होम</a></li>
+          <li><a href="#formsSection">सभी फॉर्म</a></li>
+          <li><a href="#videoGuidesSection">वीडियो गाइड</a></li>
+          <li><a href="#howItWorksSection">सहायता</a></li>
+        </ul>
       </div>
-      <p style="font-size: 11px; color: #64748b; margin-top: 6px;">
-        © 2026 Forms Portal Hub. All rights reserved. Created for precision government document generation.
-      </p>
+
+      <div class="footer-col">
+        <h5>प्रमुख फॉर्म</h5>
+        <ul>
+          <li><a href="epfo-form-10d.html">पेंशन Form 10-D</a></li>
+          <li><a href="epfo-death-claim.html">डेथ क्लेम (Death Claim)</a></li>
+          <li><a href="gar14a-ta-bill.html">यात्रा भत्ता (TA Bill)</a></li>
+          <li><a href="children-education-allowance.html">शिक्षा भत्ता (CEA)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>हमसे संपर्क करें</h5>
+        <ul>
+          <li style="color: #cbd5e1;">✉️ support@pfwale.gov-forms.in</li>
+          <li style="color: #cbd5e1;">💬 व्हाट्सएप / PF Wale चैनल</li>
+          <li style="color: #cbd5e1;">⏰ समय: 9:00 AM - 6:00 PM</li>
+          <li style="color: #10b981; font-weight: 700; margin-top: 4px;">● सेवा सक्रिय एवं निःशुल्क</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <span>© 2026 सरकारी फॉर्म सेवा. सभी अधिकार सुरक्षित।</span>
+      <span>🇮🇳 Made for India</span>
     </div>
   </footer>
+
+  <!-- =========================================================================
+       9. Video Player Modal (YouTube / Video Guide Player)
+       ========================================================================= -->
+  <div class="video-modal-backdrop" id="videoModal">
+    <div class="video-modal-container">
+      <div class="video-modal-header">
+        <h3 id="videoModalTitle">Online Form Filling Video Guide</h3>
+        <button type="button" class="btn-close-modal" id="btnCloseVideoModal" title="Close Video">✕</button>
+      </div>
+      <div class="video-modal-frame-wrap">
+        <iframe id="videoModalIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="portal.js"></script>
 </body>
