@@ -722,13 +722,12 @@
       <table class="items-table" id="stationeryTable">
         <thead>
           <tr>
-            <th style="width: 36px;">क्र.सं.<br>S.No.</th>
+            <th style="width: 42px;">क्र.सं.<br>S.No.</th>
             <th style="text-align: left;">सामग्री का विवरण / Name & Description of Stationery Item</th>
-            <th style="width: 85px;">इकाई<br>Unit</th>
-            <th style="width: 120px;">मांगी गई मात्रा<br>Qty Required</th>
-            <th style="width: 100px;">जारी मात्रा<br>Qty Issued</th>
-            <th style="width: 140px;">प्रयोजन / विवरण<br>Purpose / Remarks</th>
-            <th style="width: 36px;" class="col-action no-print">हटाएं<br>Del</th>
+            <th style="width: 110px;">इकाई<br>Unit</th>
+            <th style="width: 140px;">मांगी गई मात्रा<br>Qty Required</th>
+            <th style="width: 130px;">जारी मात्रा<br>Qty Issued</th>
+            <th style="width: 42px;" class="col-action no-print">हटाएं<br>Del</th>
           </tr>
         </thead>
         <tbody id="stationeryTableBody">
@@ -861,16 +860,16 @@
     (function () {
       // Default Items requested by user
       const defaultItems = [
-        { name: "A4 Size Paper", unit: "Reams", qty: 10, remarks: "Routine official printing" },
-        { name: "Ball Pens (Blue)", unit: "Nos.", qty: 50, remarks: "Official writing & signing" },
-        { name: "Ball Pens (Black)", unit: "Nos.", qty: 20, remarks: "Official documentation" },
-        { name: "Pencils", unit: "Nos.", qty: 20, remarks: "Drafting & note taking" },
-        { name: "Erasers", unit: "Nos.", qty: 20, remarks: "Draft corrections" },
-        { name: "Stapler", unit: "Nos.", qty: 5, remarks: "Filing & dispatch" },
-        { name: "Stapler Pins", unit: "Boxes", qty: 10, remarks: "Routine filing" },
-        { name: "File Folders", unit: "Nos.", qty: 50, remarks: "Member claim files" },
-        { name: "Note Sheets/Pads", unit: "Nos.", qty: 20, remarks: "Approval note sheets" },
-        { name: "Permanent Markers", unit: "Nos.", qty: 10, remarks: "File tagging & indexing" }
+        { name: "A4 Size Paper", unit: "Reams", qty: 10 },
+        { name: "Ball Pens (Blue)", unit: "Nos.", qty: 50 },
+        { name: "Ball Pens (Black)", unit: "Nos.", qty: 20 },
+        { name: "Pencils", unit: "Nos.", qty: 20 },
+        { name: "Erasers", unit: "Nos.", qty: 20 },
+        { name: "Stapler", unit: "Nos.", qty: 5 },
+        { name: "Stapler Pins", unit: "Boxes", qty: 10 },
+        { name: "File Folders", unit: "Nos.", qty: 50 },
+        { name: "Note Sheets/Pads", unit: "Nos.", qty: 20 },
+        { name: "Permanent Markers", unit: "Nos.", qty: 10 }
       ];
 
       const tbody = document.getElementById('stationeryTableBody');
@@ -895,9 +894,6 @@
           </td>
           <td>
             <input type="text" class="fill-input text-center item-issued" placeholder="—" style="color: #0369a1; font-weight: 700;">
-          </td>
-          <td>
-            <input type="text" class="fill-input item-remarks" value="${item.remarks || ''}" placeholder="Purpose / Section">
           </td>
           <td class="text-center col-action no-print">
             <button type="button" class="btn-del-row" title="Delete Row" onclick="deleteRow(this)">✕</button>
@@ -928,7 +924,7 @@
 
       // Add Row
       window.addRow = function (itemObj) {
-        const item = itemObj || { name: '', unit: 'Nos.', qty: 1, remarks: '' };
+        const item = itemObj || { name: '', unit: 'Nos.', qty: 1 };
         const rowCount = tbody.children.length + 1;
         tbody.appendChild(createRow(item, rowCount));
         const lastRow = tbody.lastElementChild;
@@ -939,7 +935,7 @@
 
       // Quick Add Item
       window.quickAddItem = function (name, unit, qty) {
-        window.addRow({ name, unit, qty, remarks: 'Routine official work' });
+        window.addRow({ name, unit, qty });
       };
 
       // Delete Row
