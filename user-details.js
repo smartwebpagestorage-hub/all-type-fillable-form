@@ -1,7 +1,7 @@
 /**
  * User Details & Authentication Data Hub
  * Manages user registration, local persistence, session management,
- * and export functions for admin view.
+ * Google Sheets real-time synchronization, and export functions for admin view.
  * 
  * Curated by Niraj Kumar, Section Supervisor, RO, Faridabad
  * Contact: smart.webpage.storage@gmail.com | 8700383426
@@ -10,10 +10,79 @@
 const UserDetailsHub = (function() {
   const STORAGE_KEY_USERS = 'portalRegisteredUsers';
   const STORAGE_KEY_SESSION = 'portalActiveUserSession';
+  const STORAGE_KEY_WEBHOOK = 'portalGoogleSheetWebhookUrl';
 
-  // Optional: Place your Google Sheets Webhook URL or Backend API endpoint here
-  // Data will be automatically forwarded if this URL is set!
-  const GOOGLE_SHEET_WEBHOOK_URL = ''; 
+  // Fallback Google Sheets Webhook URL (can also be saved via Admin Dashboard)
+  let GOOGLE_SHEET_WEBHOOK_URL = ''; 
+
+  // Webhook URL getter & setter
+  function getWebhookUrl() {
+    try {
+      return (localStorage.getItem(STORAGE_KEY_WEBHOOK) || GOOGLE_SHEET_WEBHOOK_URL || '').trim();
+    } catch (e) {
+      return GOOGLE_SHEET_WEBHOOK_URL;
+    }
+  }
+
+  function setWebhookUrl(url) {
+    try {
+      const cleanUrl = (url || '').trim();
+      localStorage.setItem(STORAGE_KEY_WEBHOOK, cleanUrl);
+      GOOGLE_SHEET_WEBHOOK_URL = cleanUrl;
+      return true;
+    } catch (e) {
+      console.error('Error saving webhook URL', e);
+      return false;
+    }
+  }
+
+  // Forward user data to Google Sheet
+  function forwardToGoogleSheet(userData) {
+    const webhookUrl = getWebhookUrl();
+    if (!webhookUrl) return Promise.resolve({ success: false, message: 'No webhook URL configured' });
+
+    // Note: 'no-cors' mode with text/plain body allows direct submission to Google Apps Script Web Apps
+    return fetch(webhookUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(userData)
+    }).then(() => {
+      console.log('Data successfully forwarded to Google Sheet');
+      return { success: true };
+    }).catch(err => {
+      console.warn('Webhook forwarding notice:', err);
+      return { success: false, error: err };
+    });
+  }
+
+  // Test Webhook connection
+  function testWebhook(customUrl = null) {
+    const targetUrl = customUrl ? customUrl.trim() : getWebhookUrl();
+    if (!targetUrl) {
+      return Promise.reject(new Error('कृपया पहले मान्य Google Apps Script Webhook URL दर्ज करें।'));
+    }
+
+    const testPayload = {
+      id: 'TEST_' + Date.now(),
+      name: 'परीक्षण यूजर (Test Entry - Niraj Kumar)',
+      email: 'smart.webpage.storage@gmail.com',
+      mobile: '8700383426',
+      password: 'EPFO#TEST123',
+      registeredAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      lastLoginAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      totalLogins: 1
+    };
+
+    return fetch(targetUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(testPayload)
+    }).then(() => {
+      return { success: true, message: 'परीक्षण डेटा आपकी Google Sheet में सफलतापूर्वक भेज दिया गया है!' };
+    });
+  }
 
   // Initialize storage if empty
   function getAllUsers() {
@@ -88,7 +157,7 @@ const UserDetailsHub = (function() {
       name: name,
       email: email,
       mobile: mobile,
-      password: password, // In production, hash passwords on backend
+      password: password,
       registeredAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
       registeredTimestamp: Date.now(),
       lastLoginAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
@@ -100,17 +169,8 @@ const UserDetailsHub = (function() {
     saveAllUsers(users);
     setActiveUser(newUser);
 
-    // Optional webhook forward to Google Sheet
-    if (GOOGLE_SHEET_WEBHOOK_URL) {
-      try {
-        fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newUser)
-        }).catch(err => console.log('Webhook forward note:', err));
-      } catch (err) {}
-    }
+    // Forward automatically to Google Sheet in real-time
+    forwardToGoogleSheet(newUser);
 
     return { success: true, user: newUser, message: 'पंजीकरण सफल रहा! (Registration successful)' };
   }
@@ -201,7 +261,10 @@ const UserDetailsHub = (function() {
     logoutUser,
     getActiveUser,
     exportUsersToCSV,
-    exportUsersToJSON
+    exportUsersToJSON,
+    getWebhookUrl,
+    setWebhookUrl,
+    testWebhook
   };
 })();
 

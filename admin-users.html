@@ -561,15 +561,53 @@
       </div>
     </div>
 
-    <!-- Backend Integration Guide -->
-    <div class="backend-guide-box">
-      <h4>💡 Free Backend &amp; Real-time Google Sheet Connection Guide</h4>
-      <p>
-        वर्तमान में सभी पंजीकृत यूजर्स का डेटा सुरक्षित रूप से आपके ब्राउज़र के स्टोरेज में सेव होता है, जिसे आप ऊपर दिए गए <strong>"📥 Export to Excel (CSV)"</strong> बटन से 1-क्लिक में एक्सेल फाइल के रूप में डाउनलोड कर सकते हैं।
+    <!-- Google Sheets Real-time Auto-Sync Configuration Box -->
+    <div class="stat-box" style="margin-top: 24px; border: 2px solid #0284c7; background: #ffffff;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 22px;">📊</span>
+          <h3 style="font-size: 16px; font-weight: 800; color: #0f172a;">Google Sheets Real-time Auto-Sync (100% Free)</h3>
+        </div>
+        <span id="webhookStatusBadge" style="font-size: 11.5px; font-weight: 800; padding: 4px 10px; border-radius: 20px; background: #f1f5f9; color: #64748b;">
+          ⚪ स्थिति: असक्रिय (Not Configured)
+        </span>
+      </div>
+
+      <p style="font-size: 13px; color: #475569; line-height: 1.5; margin-bottom: 14px;">
+        जैसे ही कोई नया यूजर पोर्टल पर फॉर्म खोलने हेतु रजिस्टर करेगा, उसका विवरण (नाम, ईमेल, मोबाइल, पासवर्ड, तारीख) <strong>तुरंत आपकी निजी Google Sheet में ऑटो-सेव</strong> हो जाएगा।
       </p>
-      <p>
-        यदि आप चाहते हैं कि यूजर जैसे ही फॉर्म पर रजिस्टर करे, उसका डेटा <strong>सीधे आपके Google Sheets में ऑटो-सेव हो जाए</strong> (बिना किसी खर्च के 100% Free), तो आप एक साधारण <code>Google Apps Script Webhook</code> लिंक बनाकर <code>user-details.js</code> के <code>GOOGLE_SHEET_WEBHOOK_URL</code> में पेस्ट कर सकते हैं।
-      </p>
+
+      <!-- Webhook URL Configuration Form -->
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
+        <input type="url" id="inputWebhookUrl" class="search-input" style="flex: 1; min-width: 320px; padding: 10px 14px; font-size: 13px;" placeholder="पेस्ट करें: Google Apps Script Web App URL (https://script.google.com/macros/s/.../exec)">
+        <button type="button" class="btn-export btn-csv" id="btnSaveWebhook" style="padding: 10px 16px;">
+          💾 वेबहुक सेव करें (Save)
+        </button>
+        <button type="button" class="btn-export btn-json" id="btnTestWebhook" style="padding: 10px 16px;">
+          🚀 टेस्ट डेटा भेजें (Test)
+        </button>
+      </div>
+
+      <div id="webhookFeedbackMsg" style="display: none; padding: 8px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; margin-bottom: 14px;"></div>
+
+      <!-- Quick Setup Instructions -->
+      <div style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 14px; font-size: 12px; line-height: 1.6; color: #334155;">
+        <strong style="color: #0284c7; font-size: 13px;">📌 Google Sheet में लगाने के आसान 4 स्टेप्स (2 मिनट):</strong>
+        <ol style="margin-left: 20px; margin-top: 6px;">
+          <li>अपने Google Drive में नई Google Sheet बनाएं और उसका नाम रखें <strong>"Sarkari Portal Users"</strong>।</li>
+          <li>ऊपर मेनू में <strong>Extensions → Apps Script</strong> पर क्लिक करें।</li>
+          <li>नीचे दिए गए कोड को कॉपी करें, Apps Script में पेस्ट करके <strong>Save (Ctrl+S)</strong> करें।</li>
+          <li>ऊपर नीले बटन <strong>Deploy → New deployment</strong> पर क्लिक करें (Type: <strong>Web app</strong>, Execute as: <strong>Me</strong>, Who has access: <strong>Anyone</strong>), और प्राप्त <code>Web app URL</code> को ऊपर बॉक्स में पेस्ट करके <strong>Save</strong> करें!</li>
+        </ol>
+        
+        <div style="margin-top: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+          <span style="font-weight: 700; color: #0f172a;">📄 Apps Script Code (Code.gs):</span>
+          <button type="button" class="btn-export btn-sample" id="btnCopyScriptCode" style="font-size: 11px; padding: 4px 10px; background: #0f172a; color: #fff;">
+            📋 कोड कॉपी करें (Copy Code)
+          </button>
+        </div>
+        <textarea id="appsScriptCodeBlock" readonly style="width: 100%; height: 130px; margin-top: 6px; font-family: monospace; font-size: 11px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px; color: #0f172a; resize: vertical;"></textarea>
+      </div>
     </div>
   </main>
 
@@ -744,6 +782,118 @@
             allUsers = [];
             renderUsers(allUsers);
           }
+        });
+      }
+
+      // =====================================================================
+      // Google Sheets Real-time Webhook Manager Logic
+      // =====================================================================
+      const inputWebhookUrl = document.getElementById('inputWebhookUrl');
+      const btnSaveWebhook = document.getElementById('btnSaveWebhook');
+      const btnTestWebhook = document.getElementById('btnTestWebhook');
+      const webhookStatusBadge = document.getElementById('webhookStatusBadge');
+      const webhookFeedbackMsg = document.getElementById('webhookFeedbackMsg');
+      const btnCopyScriptCode = document.getElementById('btnCopyScriptCode');
+      const appsScriptCodeBlock = document.getElementById('appsScriptCodeBlock');
+
+      const GS_SCRIPT_CONTENT = `function doPost(e) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getActiveSheet();
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["S.No", "User ID", "Full Name (नाम)", "Email Address (ईमेल)", "Mobile Number (मोबाइल)", "Password (पासवर्ड)", "Registration Date", "Last Login", "Total Logins"]);
+      var headerRange = sheet.getRange(1, 1, 1, 9);
+      headerRange.setBackground("#0284c7").setFontColor("#ffffff").setFontWeight("bold");
+      sheet.setFrozenRows(1);
+    }
+    var data = JSON.parse(e.postData.contents);
+    sheet.appendRow([sheet.getLastRow(), data.id || ("USR_" + new Date().getTime()), data.name || "", data.email || "", "'" + (data.mobile || ""), data.password || "", data.registeredAt || new Date().toLocaleString("en-IN"), data.lastLoginAt || new Date().toLocaleString("en-IN"), data.totalLogins || 1]);
+    return ContentService.createTextOutput(JSON.stringify({ status: "success" })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ status: "error", error: err.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}`;
+
+      if (appsScriptCodeBlock) {
+        appsScriptCodeBlock.value = GS_SCRIPT_CONTENT;
+      }
+
+      function refreshWebhookBadge() {
+        const url = (typeof UserDetailsHub !== 'undefined') ? UserDetailsHub.getWebhookUrl() : '';
+        if (inputWebhookUrl) inputWebhookUrl.value = url;
+        if (webhookStatusBadge) {
+          if (url) {
+            webhookStatusBadge.textContent = '🟢 स्थिति: सक्रिय (Live Auto-Sync On)';
+            webhookStatusBadge.style.background = '#ecfdf5';
+            webhookStatusBadge.style.color = '#059669';
+          } else {
+            webhookStatusBadge.textContent = '⚪ स्थिति: असक्रिय (Not Configured)';
+            webhookStatusBadge.style.background = '#f1f5f9';
+            webhookStatusBadge.style.color = '#64748b';
+          }
+        }
+      }
+      refreshWebhookBadge();
+
+      // Save Webhook URL
+      if (btnSaveWebhook) {
+        btnSaveWebhook.addEventListener('click', () => {
+          const url = (inputWebhookUrl?.value || '').trim();
+          if (typeof UserDetailsHub !== 'undefined') {
+            UserDetailsHub.setWebhookUrl(url);
+            refreshWebhookBadge();
+            if (webhookFeedbackMsg) {
+              webhookFeedbackMsg.textContent = url ? '✅ Google Apps Script Webhook URL सफलतापूर्वक सेव हो गया है!' : 'वेबहुक URL हटा दिया गया है।';
+              webhookFeedbackMsg.style.background = '#ecfdf5';
+              webhookFeedbackMsg.style.color = '#059669';
+              webhookFeedbackMsg.style.display = 'block';
+              setTimeout(() => { webhookFeedbackMsg.style.display = 'none'; }, 4000);
+            }
+          }
+        });
+      }
+
+      // Test Webhook URL
+      if (btnTestWebhook) {
+        btnTestWebhook.addEventListener('click', () => {
+          const url = (inputWebhookUrl?.value || '').trim();
+          if (!url) {
+            alert('कृपया पहले Google Apps Script Webhook URL दर्ज करें।');
+            return;
+          }
+          if (typeof UserDetailsHub !== 'undefined') {
+            UserDetailsHub.setWebhookUrl(url);
+            btnTestWebhook.textContent = '⏳ भेजा जा रहा है...';
+            UserDetailsHub.testWebhook(url).then(() => {
+              btnTestWebhook.textContent = '🚀 टेस्ट डेटा भेजें (Test)';
+              refreshWebhookBadge();
+              if (webhookFeedbackMsg) {
+                webhookFeedbackMsg.textContent = '🎉 परीक्षण सफल! टेस्ट डेटा आपकी Google Sheet में जुड़ गया है। कृपया अपनी Google Sheet खोलकर देखें!';
+                webhookFeedbackMsg.style.background = '#ecfdf5';
+                webhookFeedbackMsg.style.color = '#059669';
+                webhookFeedbackMsg.style.display = 'block';
+              }
+              alert('बधाई हो! आपकी Google Sheet से कनेक्शन सफल रहा और टेस्ट एंट्री जुड़ गई है!');
+            }).catch(err => {
+              btnTestWebhook.textContent = '🚀 टेस्ट डेटा भेजें (Test)';
+              alert('त्रुटि: ' + err.message);
+            });
+          }
+        });
+      }
+
+      // Copy Code Button
+      if (btnCopyScriptCode && appsScriptCodeBlock) {
+        btnCopyScriptCode.addEventListener('click', () => {
+          navigator.clipboard.writeText(GS_SCRIPT_CONTENT).then(() => {
+            const originalText = btnCopyScriptCode.textContent;
+            btnCopyScriptCode.textContent = '✅ कोड कॉपी हो गया!';
+            setTimeout(() => { btnCopyScriptCode.textContent = originalText; }, 2500);
+          }).catch(() => {
+            appsScriptCodeBlock.select();
+            document.execCommand('copy');
+            alert('कोड कॉपी हो गया है!');
+          });
         });
       }
     });
