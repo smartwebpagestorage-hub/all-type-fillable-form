@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Form 31: Application for PF Advance | प्रपत्र-31 भविष्य निधि अग्रिम दावा</title>
+  <meta name="description" content="Official EPFO Form 31 - Application for Advance from the Provident Fund. Fill online, auto-calculate, download PDF, and print in A4 or Legal format. By Niraj Kumar, Section Supervisor, RO, Faridabad.">
+  
+  <!-- Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for direct PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="portal.css">
+  
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --paper-bg: #ffffff;
+      --border-color: #000000;
+      --text-color: #000000;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, sans-serif;
+      background: #f1f5f9;
+      color: #000000;
+      line-height: 1.35;
+      padding-bottom: 60px;
+    }
+
+    .form-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 14px;
+    }
+
+    .sheet-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      padding: 12mm 14mm;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+      border: 1px solid #cbd5e1;
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    /* Form Header */
+    .form-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #000000;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .header-logo-box img {
+      height: 58px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .header-text-box {
+      text-align: center;
+      flex: 1;
+    }
+
+    .header-text-box h2 {
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .header-text-box h3 {
+      font-size: 13.5px;
+      font-weight: 700;
+      margin: 2px 0;
+    }
+
+    .form-tag-pill {
+      border: 1.5px solid #000000;
+      padding: 3px 10px;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      background: #f8fafc;
+      white-space: nowrap;
+    }
+
+    /* Table Grid Layout */
+    .form-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #000000;
+      margin-bottom: 14px;
+      font-size: 12px;
+    }
+
+    .form-data-table th, .form-data-table td {
+      border: 1px solid #000000;
+      padding: 6px 8px;
+      vertical-align: middle;
+    }
+
+    .col-sno { width: 38px; text-align: center; font-weight: 700; }
+    .col-label { width: 44%; font-weight: 600; line-height: 1.35; }
+    .col-input { width: 56%; }
+
+    .fill-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px dashed #475569;
+      background: transparent;
+      font-family: inherit;
+      font-size: 12px;
+      padding: 3px 4px;
+      outline: none;
+      color: #000000;
+    }
+
+    .fill-input:focus {
+      border-bottom: 1.5px solid #0284c7;
+      background: #f0f9ff;
+    }
+
+    select.fill-select {
+      width: 100%;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      padding: 4px;
+      font-size: 11.5px;
+      font-family: inherit;
+      outline: none;
+      background: #ffffff;
+    }
+
+    /* Bank Account Block */
+    .bank-box-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    /* Section Subheaders */
+    .section-band {
+      background: #f1f5f9;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 5px 8px;
+      text-transform: uppercase;
+      border: 1px solid #000000;
+      border-bottom: none;
+      margin-top: 10px;
+    }
+
+    /* Declarations & Signatures */
+    .declaration-text {
+      font-size: 11px;
+      line-height: 1.5;
+      text-align: justify;
+      margin-bottom: 14px;
+      padding: 6px;
+      border: 1px dashed #64748b;
+      background: #fafafa;
+    }
+
+    .signatures-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .sig-box {
+      border: 1px solid #000000;
+      padding: 10px;
+      text-align: center;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sig-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .sig-line {
+      margin-top: 36px;
+      border-top: 1px dashed #000000;
+      font-size: 11px;
+      padding-top: 3px;
+    }
+
+    /* Legal size styles */
+    body.paper-legal .sheet-page {
+      min-height: 355.6mm;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: #ffffff !important; padding: 0 !important; }
+      .app-toolbar, .no-print { display: none !important; }
+      .form-wrapper { padding: 0 !important; }
+      .sheet-page {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 6mm 8mm !important;
+        width: 100% !important;
+        page-break-after: always;
+      }
+      .fill-input { border-bottom: 1px solid #000000 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Application Toolbar -->
+  <div class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <a href="index.html" class="btn btn-secondary" style="padding: 5px 10px; font-size: 11.5px;">← Home</a>
+      <span class="epfo-badge">EPFO FORM 31</span>
+      <div class="toolbar-title">
+        <strong>PF Advance Claim Form / भविष्य निधि अग्रिम प्रपत्र</strong>
+        <span>कर्मचारी भविष्य निधि योजना, 1952 (Para 68-B, 68-J, 68-K, etc.)</span>
+      </div>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Paper Size Switcher -->
+      <div class="paper-size-switcher">
+        <span class="switcher-label">Page:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-outline" id="btnFillSampleData">⚡ Sample Data</button>
+      <button type="button" class="btn btn-secondary" id="btnClearForm">🗑️ Clear</button>
+      <button type="button" class="btn btn-primary" id="btnPrintForm">🖨️ Direct Print</button>
+      <button type="button" class="btn btn-success" id="btnExportPDF">📄 Save as PDF</button>
+    </div>
+  </div>
+
+  <div class="form-wrapper">
+    <div class="sheet-page" id="printableFormSheet">
+      
+      <!-- Form Header -->
+      <div class="form-header">
+        <div class="header-logo-box">
+          <img src="image/epfo_logo.png" alt="EPFO Emblem">
+        </div>
+        <div class="header-text-box">
+          <h2>Employees' Provident Fund Scheme, 1952</h2>
+          <h3>कर्मचारी भविष्य निधि योजना, 1952</h3>
+          <p style="font-size: 12.5px; font-weight: 800; margin-top: 3px; color: #0f172a;">
+            APPLICATION FOR ADVANCE FROM THE FUND / भविष्य निधि से अग्रिम आहरण हेतु आवेदन
+          </p>
+        </div>
+        <div class="form-tag-pill">
+          FORM 31<br><span style="font-size: 11px;">प्रपत्र-31</span>
+        </div>
+      </div>
+
+      <!-- Data Table -->
+      <table class="form-data-table">
+        <tbody>
+          <!-- Row 1 -->
+          <tr>
+            <td class="col-sno">1</td>
+            <td class="col-label">
+              Name of the Member (in Block Letters)<br>
+              <span style="font-size: 11px; color: #475569;">सदस्य का नाम (बड़े अक्षरों में)</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_memberName" class="fill-input" placeholder="e.g. RAMESH CHANDRA SHARMA">
+            </td>
+          </tr>
+
+          <!-- Row 2 -->
+          <tr>
+            <td class="col-sno">2</td>
+            <td class="col-label">
+              Father's / Husband's Name<br>
+              <span style="font-size: 11px; color: #475569;">पिता / पति का नाम</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_fatherName" class="fill-input" placeholder="e.g. SH. SURESH CHANDRA SHARMA">
+            </td>
+          </tr>
+
+          <!-- Row 3 -->
+          <tr>
+            <td class="col-sno">3</td>
+            <td class="col-label">
+              Universal Account Number (UAN)<br>
+              <span style="font-size: 11px; color: #475569;">सार्वभौमिक खाता संख्या (यूएएन)</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_uan" class="fill-input" maxlength="12" placeholder="12 Digit UAN (e.g. 100987654321)">
+            </td>
+          </tr>
+
+          <!-- Row 4 -->
+          <tr>
+            <td class="col-sno">4</td>
+            <td class="col-label">
+              EPF Account Number<br>
+              <span style="font-size: 11px; color: #475569;">भविष्य निधि खाता संख्या (Member ID)</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_pfNo" class="fill-input" placeholder="e.g. DL/CPM/0012345/000/0067890">
+            </td>
+          </tr>
+
+          <!-- Row 5 -->
+          <tr>
+            <td class="col-sno">5</td>
+            <td class="col-label">
+              Name &amp; Address of the Establishment<br>
+              <span style="font-size: 11px; color: #475569;">प्रतिष्ठान (कंपनी/कार्यालय) का नाम व पता</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_estName" class="fill-input" placeholder="e.g. M/S BHARAT ENGINEERING WORKS LTD., FARIDABAD">
+            </td>
+          </tr>
+
+          <!-- Row 6 -->
+          <tr>
+            <td class="col-sno">6</td>
+            <td class="col-label">
+              Basic Wages &amp; D.A. per month<br>
+              <span style="font-size: 11px; color: #475569;">मूल वेतन एवं महंगाई भत्ता प्रति माह (रु.)</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_monthlyWages" class="fill-input" placeholder="₹ 18,500/-">
+            </td>
+          </tr>
+
+          <!-- Row 7: Purpose for Advance (Crucial Section) -->
+          <tr>
+            <td class="col-sno">7</td>
+            <td class="col-label">
+              <strong>Purpose for which Advance is required</strong><br>
+              <span style="font-size: 11px; color: #475569;">अग्रिम का प्रयोजन (पैरा 68 के अंतर्गत)</span>
+            </td>
+            <td class="col-input">
+              <select id="f31_purpose" class="fill-select">
+                <option value="">-- प्रयोजन चुनें (Select Purpose) --</option>
+                <option value="68J">Para 68-J: Illness of Member/Family (गंभीर बीमारी/उपचार)</option>
+                <option value="68B">Para 68-B: Purchase of Dwelling House/Plot/Construction (मकान/प्लाट क्रय या निर्माण)</option>
+                <option value="68BB">Para 68-BB: Repayment of Housing Loan (आवास ऋण की अदायगी)</option>
+                <option value="68K-M">Para 68-K: Marriage of Self / Daughter / Son / Sibling (विवाह हेतु)</option>
+                <option value="68K-E">Para 68-K: Post-Matriculation Education of Children (बच्चों की उच्च शिक्षा)</option>
+                <option value="68H">Para 68-H: Lock-out or Closure of Establishment (प्रतिष्ठान बंद/तालाबंदी)</option>
+                <option value="68L">Para 68-L: Abnormal Conditions / Natural Calamity (प्राकृतिक आपदा/बाढ़)</option>
+                <option value="68N">Para 68-N: Equipment by Physically Handicapped (दिव्यांग सहायता उपकरण)</option>
+                <option value="68NN">Para 68-NN: Within 1 Year before Retirement (सेवानिवृत्ति से 1 वर्ष पूर्व)</option>
+                <option value="special">Special Epidemic Relief (विशेष महामारी / आपातकालीन अग्रिम)</option>
+              </select>
+            </td>
+          </tr>
+
+          <!-- Row 8 -->
+          <tr>
+            <td class="col-sno">8</td>
+            <td class="col-label">
+              Amount of Advance Required (in Rs.)<br>
+              <span style="font-size: 11px; color: #475569;">वांछित अग्रिम राशि (अंकों व शब्दों में)</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_amountReq" class="fill-input" placeholder="₹ 75,000/- (Seventy Five Thousand Only)">
+            </td>
+          </tr>
+
+          <!-- Row 9: Bank Account Details -->
+          <tr>
+            <td class="col-sno">9</td>
+            <td class="col-label">
+              <strong>Member's Bank Account Particulars</strong><br>
+              <span style="font-size: 11px; color: #475569;">सदस्य का बैंक खाता विवरण (जिसमें राशि भेजी जानी है)</span>
+            </td>
+            <td class="col-input">
+              <div class="bank-box-grid">
+                <div>
+                  <label style="font-size: 10.5px; color: #475569;">A/c No. (खाता सं.):</label>
+                  <input type="text" id="f31_bankAcc" class="fill-input" placeholder="11 Digits A/c No.">
+                </div>
+                <div>
+                  <label style="font-size: 10.5px; color: #475569;">IFSC Code (आईएफएससी):</label>
+                  <input type="text" id="f31_bankIfsc" class="fill-input" placeholder="e.g. SBIN0001234">
+                </div>
+                <div>
+                  <label style="font-size: 10.5px; color: #475569;">Bank Name (बैंक):</label>
+                  <input type="text" id="f31_bankName" class="fill-input" placeholder="State Bank of India">
+                </div>
+                <div>
+                  <label style="font-size: 10.5px; color: #475569;">Branch (शाखा):</label>
+                  <input type="text" id="f31_bankBranch" class="fill-input" placeholder="Faridabad Main Branch">
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Row 10: Address & Contact -->
+          <tr>
+            <td class="col-sno">10</td>
+            <td class="col-label">
+              Full Postal Address &amp; Mobile Number<br>
+              <span style="font-size: 11px; color: #475569;">सदस्य का पूर्ण स्थायी पता एवं मोबाइल नंबर</span>
+            </td>
+            <td class="col-input">
+              <input type="text" id="f31_address" class="fill-input" placeholder="H.No. 124, Sector 15, Faridabad, Haryana - 121007">
+              <div style="margin-top: 4px; display: flex; gap: 8px;">
+                <input type="text" id="f31_mobile" class="fill-input" placeholder="Mobile: 8700383426" style="width: 50%;">
+                <input type="text" id="f31_aadhaar" class="fill-input" placeholder="Aadhaar: XXXX XXXX 1234" style="width: 50%;">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Declaration -->
+      <div class="declaration-text">
+        <strong>घोषणा (DECLARATION BY MEMBER):</strong> प्रमाणित किया जाता है कि मेरे द्वारा ऊपर दी गई समस्त जानकारी सत्य एवं सही है। मैंने पूर्व में इस प्रयोजन हेतु कोई अग्रिम नहीं लिया है / या देय नियमों के अनुसार अग्रिम की पात्रता रखता हूँ। यदि कोई जानकारी असत्य पाई जाती है, तो मैं भविष्य निधि अधिनियम के अंतर्गत दण्ड का भागी होऊँगा/होऊँगी।
+      </div>
+
+      <!-- Signatures Row -->
+      <div class="signatures-row">
+        <!-- Member Signature -->
+        <div class="sig-box">
+          <div class="sig-title">
+            Signature or Left Hand Thumb Impression of Member<br>
+            <span style="font-size: 10.5px; color: #475569;">सदस्य के हस्ताक्षर अथवा बाएं हाथ के अंगूठे का निशान</span>
+          </div>
+          <div class="sig-line">
+            Date / दिनांक: <span id="f31_dateToday">15/09/2026</span>
+          </div>
+        </div>
+
+        <!-- Employer Certificate -->
+        <div class="sig-box">
+          <div class="sig-title">
+            Certificate by Employer (यदि आवश्यक हो)<br>
+            <span style="font-size: 10.5px; color: #475569;">नियोक्ता द्वारा प्रमाणन एवं आधिकारिक मुहर</span>
+          </div>
+          <div class="sig-line">
+            Signature &amp; Stamp of Authorized Officer
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Note -->
+      <div style="margin-top: 14px; text-align: center; font-size: 10.5px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 6px;">
+        Designed for High-Precision Official Print | By Niraj Kumar, Section Supervisor, RO, Faridabad | Contact: 8700383426
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Date setup
+      const today = new Date().toLocaleDateString('en-GB');
+      const dateElem = document.getElementById('f31_dateToday');
+      if (dateElem) dateElem.textContent = today;
+
+      // Page size switcher (A4 / Legal)
+      const btnA4 = document.getElementById('btnSizeA4');
+      const btnLegal = document.getElementById('btnSizeLegal');
+      const styleTag = document.getElementById('dynamicPageSizeStyle');
+
+      btnA4.addEventListener('click', () => {
+        btnA4.classList.add('active');
+        btnLegal.classList.remove('active');
+        document.body.classList.remove('paper-legal');
+        styleTag.innerHTML = `@page { size: A4 portrait; margin: 8mm 10mm 8mm 10mm; }`;
+      });
+
+      btnLegal.addEventListener('click', () => {
+        btnLegal.classList.add('active');
+        btnA4.classList.remove('active');
+        document.body.classList.add('paper-legal');
+        styleTag.innerHTML = `@page { size: legal portrait; margin: 10mm 12mm 10mm 12mm; }`;
+      });
+
+      // Sample Data Button
+      document.getElementById('btnFillSampleData').addEventListener('click', () => {
+        document.getElementById('f31_memberName').value = 'RAMESH CHANDRA SHARMA';
+        document.getElementById('f31_fatherName').value = 'SH. SURESH CHANDRA SHARMA';
+        document.getElementById('f31_uan').value = '100987654321';
+        document.getElementById('f31_pfNo').value = 'HR/FBD/0012345/000/0078901';
+        document.getElementById('f31_estName').value = 'M/S BHARAT HEAVY ELECTRICALS LTD., INDUSTRIAL AREA, FARIDABAD';
+        document.getElementById('f31_monthlyWages').value = '₹ 28,500/-';
+        document.getElementById('f31_purpose').value = '68J';
+        document.getElementById('f31_amountReq').value = '₹ 85,000/- (Rupees Eighty Five Thousand Only)';
+        document.getElementById('f31_bankAcc').value = '34567890123';
+        document.getElementById('f31_bankIfsc').value = 'SBIN0001234';
+        document.getElementById('f31_bankName').value = 'State Bank of India';
+        document.getElementById('f31_bankBranch').value = 'Neelam Bata Road, NIT Faridabad';
+        document.getElementById('f31_address').value = 'House No. 452, Sector 16-A, Faridabad, Haryana - 121002';
+        document.getElementById('f31_mobile').value = 'Mobile: 8700383426';
+        document.getElementById('f31_aadhaar').value = 'Aadhaar: XXXX XXXX 5678';
+      });
+
+      // Clear Form
+      document.getElementById('btnClearForm').addEventListener('click', () => {
+        if (confirm('क्या आप फॉर्म का डेटा साफ करना चाहते हैं? (Clear form data?)')) {
+          document.querySelectorAll('.fill-input').forEach(i => i.value = '');
+          document.getElementById('f31_purpose').value = '';
+        }
+      });
+
+      // Print Form
+      document.getElementById('btnPrintForm').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Save PDF using html2pdf
+      document.getElementById('btnExportPDF').addEventListener('click', () => {
+        const element = document.getElementById('printableFormSheet');
+        const opt = {
+          margin: [8, 8, 8, 8],
+          filename: 'EPFO_Form_31_Advance_Claim.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+      });
+    });
+  </script>
+</body>
+</html>

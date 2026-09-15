@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>सरकारी फॉर्म सेवा | एक ही जगह, सभी सरकारी फॉर्म | By Niraj Kumar, PF Wale</title>
+  <title>सरकारी फॉर्म सेवा | एक ही जगह, सभी सरकारी फॉर्म | By Niraj Kumar, Section Supervisor, RO, Faridabad</title>
   <meta name="description" content="सरकारी फॉर्म अब ऑनलाइन भरें और प्रिंट करें। EPFO दावों, मासिक पेंशन प्रपत्र-10D, केंद्र सरकार यात्रा भत्ता (GAR-14A), CEA एवं कार्यालयीन नोटिंग हेतु आधिकारिक डिजिटल सेवा।">
   
   <!-- Google Fonts: Noto Sans Devanagari, Outfit, Plus Jakarta Sans -->
@@ -39,6 +39,7 @@
 
     <!-- Right Controls: Language & Theme Toggle -->
     <div class="navbar-right-controls">
+      <div id="navbarUserContainer" class="navbar-user-container"></div>
       <div class="lang-switch-pill">
         <button type="button" class="lang-btn active">हिंदी</button>
         <button type="button" class="lang-btn">English</button>
@@ -74,6 +75,7 @@
         <!-- Popular Searches Chips (लोकप्रिय खोजें) -->
         <div class="popular-searches-row">
           <span class="label">लोकप्रिय खोजें:</span>
+          <button type="button" class="search-chip" data-search="Form 31" style="border-color: #0284c7; color: #0284c7; font-weight: 700;">🔥 PF अग्रिम (Form 31)</button>
           <button type="button" class="search-chip" data-search="10-D">PF Form 10-D</button>
           <button type="button" class="search-chip" data-search="Death Claim">Death Claim</button>
           <button type="button" class="search-chip" data-search="GAR-14A">G.A.R-14A TA Bill</button>
@@ -182,10 +184,52 @@
         <h3>लोकप्रिय फॉर्म / उपलब्ध प्रपत्र</h3>
         <p style="font-size: 13px; color: var(--text-muted);">अपनी आवश्यकतानुसार फॉर्म चुनें, ऑनलाइन भरें अथवा वीडियो गाइड देखकर भरें।</p>
       </div>
-      <span id="liveFormsCount" style="font-size: 12.5px; font-weight: 700; color: #0284c7;">Showing 9 Forms</span>
+      <span id="liveFormsCount" style="font-size: 12.5px; font-weight: 700; color: #0284c7;">Showing 10 Forms</span>
     </div>
 
     <div class="forms-grid" id="formsGrid">
+
+      <!-- Form 0: EPFO Form 31 (PF Advance - Most Popular in India) -->
+      <div class="form-card" data-category="epfo" data-form-id="epfo-form-31-advance">
+        <div>
+          <div class="form-card-top">
+            <div class="form-seal-box">
+              <img src="image/epfo_logo.png" alt="EPFO Seal">
+            </div>
+            <div class="form-badges-right">
+              <span class="badge-tag" style="background: #ecfdf5; color: #059669; border-color: #a7f3d0; font-weight: 800;">🔥 सर्वाधिक खोजा व भरा जाने वाला</span>
+              <span class="badge-tag badge-blue">Form 31 (PF Advance)</span>
+              <button class="btn-star-bookmark" data-form-id="epfo-form-31-advance" title="Bookmark">☆</button>
+            </div>
+          </div>
+
+          <div class="form-card-body">
+            <h3>EPFO Form 31: Application for PF Advance (अग्रिम पीएफ निकासी)</h3>
+            <p class="hindi-desc">बीमारी (68-J), गृह निर्माण/क्रय (68-B), विवाह/शिक्षा (68-K), महामारी आदि 10 वैधानिक कारणों हेतु अग्रिम पीएफ निकासी दावा।</p>
+
+            <ul class="features-check-list">
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>10 अग्रिम कारण (Illness, Marriage, Flat/House, Special)</span>
+              </li>
+              <li>
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                <span>A4 एवं Legal सिंगल-क्लिक प्रिंट व PDF डाउनलोड</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-card-actions">
+          <a href="epfo-form-31-advance.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
+          <div class="action-sub-buttons">
+            <button type="button" class="btn-video-guide" data-form-id="epfo-form-31-advance" data-video-title="EPFO Form 31 PF Advance Claim Video Guide By Niraj Kumar, Section Supervisor, RO, Faridabad">
+              🎥 वीडियो गाइड
+            </button>
+            <a href="epfo-form-31-advance.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
+          </div>
+        </div>
+      </div>
 
       <!-- Form 1: Form 10-D Pension -->
       <div class="form-card" data-category="epfo" data-form-id="epfo-form-10d">
@@ -220,7 +264,7 @@
         <div class="form-card-actions">
           <a href="epfo-form-10d.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
           <div class="action-sub-buttons">
-            <button type="button" class="btn-video-guide" data-form-id="epfo-form-10d" data-video-title="EPFO Form 10-D Pension Claim Kaise Bharein? By Niraj Kumar, PF Wale">
+            <button type="button" class="btn-video-guide" data-form-id="epfo-form-10d" data-video-title="EPFO Form 10-D Pension Claim Kaise Bharein? By Niraj Kumar, Section Supervisor, RO, Faridabad">
               🎥 वीडियो गाइड
             </button>
             <a href="epfo-form-10d.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
@@ -261,7 +305,7 @@
         <div class="form-card-actions">
           <a href="epfo-death-claim.html" class="btn-fill-online">✏️ ऑनलाइन भरें</a>
           <div class="action-sub-buttons">
-            <button type="button" class="btn-video-guide" data-form-id="epfo-death-claim" data-video-title="EPFO Death Claim Form 20, 10-D & 5-IF Video Tutorial By Niraj Kumar, PF Wale">
+            <button type="button" class="btn-video-guide" data-form-id="epfo-death-claim" data-video-title="EPFO Death Claim Form 20, 10-D & 5-IF Video Tutorial By Niraj Kumar, Section Supervisor, RO, Faridabad">
               🎥 वीडियो गाइड
             </button>
             <a href="epfo-death-claim.html" class="btn-direct-print">🖨️ डायरेक्ट प्रिंट</a>
@@ -566,11 +610,30 @@
     <div class="section-top-header">
       <div>
         <h3>🎥 वीडियो ट्यूटोरियल गाइड — फॉर्म कैसे भरें?</h3>
-        <p style="font-size: 13px; color: var(--text-muted);">Niraj Kumar (PF Wale) द्वारा तैयार किए गए स्टेप-बाय-स्टेप ऑनलाइन फॉर्म भरने के वीडियो देखें।</p>
+        <p style="font-size: 13px; color: var(--text-muted);">Niraj Kumar, Section Supervisor, RO, Faridabad द्वारा तैयार किए गए स्टेप-बाय-स्टेप ऑनलाइन फॉर्म भरने के वीडियो देखें।</p>
       </div>
     </div>
 
     <div class="video-grid">
+      <!-- Video 0: Form 31 PF Advance -->
+      <div class="video-guide-card">
+        <div class="video-thumb-wrap" data-form-id="epfo-form-31-advance">
+          <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&auto=format&fit=crop&q=60" alt="PF Advance Form 31 Tutorial">
+          <div class="play-button-overlay">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>
+          </div>
+          <span class="video-duration-badge">10:30 Min</span>
+        </div>
+        <div class="video-card-info">
+          <h4>EPFO Form 31: PF Advance Claim Online Kaise Bharein? Step-by-Step</h4>
+          <p>बीमारी, मकान निर्माण, शादी एवं शिक्षा हेतु अग्रिम पीएफ दावा फॉर्म भरने व दस्तावेज संलग्न करने की विधि।</p>
+          <div class="video-card-footer">
+            <span class="video-speaker-tag">By Niraj Kumar, Section Supervisor, RO, Faridabad</span>
+            <button type="button" class="btn-video-guide" data-form-id="epfo-form-31-advance">▶ वीडियो देखें</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Video 1 -->
       <div class="video-guide-card">
         <div class="video-thumb-wrap" data-form-id="epfo-form-10d">
@@ -584,7 +647,7 @@
           <h4>EPFO Form 10-D Monthly Pension Form Online Kaise Bharein?</h4>
           <p>सुपरएनुएशन एवं विधवा/परिवार पेंशन फॉर्म भरने की सम्पूर्ण प्रक्रिया (पृष्ठ 1 से 6 तक)।</p>
           <div class="video-card-footer">
-            <span class="video-speaker-tag">By Niraj Kumar (PF Wale)</span>
+            <span class="video-speaker-tag">By Niraj Kumar, Section Supervisor, RO, Faridabad</span>
             <button type="button" class="btn-video-guide" data-form-id="epfo-form-10d">▶ वीडियो देखें</button>
           </div>
         </div>
@@ -603,7 +666,7 @@
           <h4>EPFO Composite Death Claim Form 20, 10-D &amp; 5-IF Complete Video Guide</h4>
           <p>मृतक सदस्य के दावेदारों के बैंक खाते, हिस्सेदारी एवं Legal/A4 में प्रिंट निकालने का सही तरीका।</p>
           <div class="video-card-footer">
-            <span class="video-speaker-tag">By Niraj Kumar (PF Wale)</span>
+            <span class="video-speaker-tag">By Niraj Kumar, Section Supervisor, RO, Faridabad</span>
             <button type="button" class="btn-video-guide" data-form-id="epfo-death-claim">▶ वीडियो देखें</button>
           </div>
         </div>
@@ -622,7 +685,7 @@
           <h4>Central Govt G.A.R-14A TA Bill (Tour Claim) Auto-Calculation Guide</h4>
           <p>यात्रा बिल, होटल स्टे एवं माइलेज भत्ते का सही परिकलन और पास आदेश तैयार करना।</p>
           <div class="video-card-footer">
-            <span class="video-speaker-tag">By Niraj Kumar (PF Wale)</span>
+            <span class="video-speaker-tag">By Niraj Kumar, Section Supervisor, RO, Faridabad</span>
             <button type="button" class="btn-video-guide" data-form-id="gar14a-ta-bill">▶ वीडियो देखें</button>
           </div>
         </div>
@@ -697,13 +760,25 @@
       <div class="profile-inner">
         <div class="avatar-badge">NK</div>
         <div class="profile-info">
-          <h4>Niraj Kumar (PF Wale)</h4>
-          <p class="title">Author &amp; Statutory Documentation Specialist</p>
+          <h4>Niraj Kumar, Section Supervisor, RO, Faridabad</h4>
+          <p class="title">Section Supervisor, Regional Office, Faridabad (EPFO)</p>
           <p class="desc">
             कर्मचारी भविष्य निधि संगठन (EPFO), पेंशन नियमों (EPS-95), एवं केंद्र सरकार के प्रशासनिक प्रपत्रों के विशेषज्ञ। सभी प्रपत्रों के सटीक प्रारूप एवं वीडियो ट्यूटोरियल नागरिकों व कार्मिकों की सुविधा हेतु उपलब्ध कराए गए हैं।
           </p>
           <div style="margin-top: 10px; font-size: 12px; font-weight: 700; color: #0284c7;">
-            YouTube &amp; Guidance: "PF Wale" Channel
+            Regional Office, Faridabad • EPFO Guidance &amp; Portal Assistance
+          </div>
+          <!-- Direct Contact & Social Action Buttons -->
+          <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px;">
+            <a href="mailto:smart.webpage.storage@gmail.com" class="btn btn-secondary" style="font-size: 11.5px; text-decoration: none; padding: 6px 12px;">
+              ✉️ smart.webpage.storage@gmail.com
+            </a>
+            <a href="tel:8700383426" class="btn btn-primary" style="font-size: 11.5px; text-decoration: none; padding: 6px 12px;">
+              📞 Call: 8700383426
+            </a>
+            <a href="https://wa.me/918700383426" target="_blank" class="btn btn-success" style="font-size: 11.5px; text-decoration: none; padding: 6px 12px;">
+              💬 WhatsApp: 8700383426
+            </a>
           </div>
         </div>
       </div>
@@ -732,7 +807,7 @@
           एक ही जगह, सभी सरकारी एवं वैधानिक फॉर्म। आधिकारिक प्रारूपों में ऑनलाइन प्रपत्र सृजन, नमूना डेटा भरण एवं उच्च गुणवत्ता प्रिंटिंग हेतु समर्पित पोर्टल।
         </p>
         <p style="font-size: 11.5px; color: #38bdf8; margin-top: 10px; font-weight: 700;">
-          Curated by Niraj Kumar, PF Wale
+          Curated by Niraj Kumar, Section Supervisor, RO, Faridabad
         </p>
       </div>
 
@@ -749,6 +824,7 @@
       <div class="footer-col">
         <h5>प्रमुख फॉर्म</h5>
         <ul>
+          <li><a href="epfo-form-31-advance.html" style="color: #38bdf8; font-weight: 700;">🔥 PF अग्रिम (Form 31)</a></li>
           <li><a href="epfo-form-10d.html">पेंशन Form 10-D</a></li>
           <li><a href="epfo-death-claim.html">डेथ क्लेम (Death Claim)</a></li>
           <li><a href="gar14a-ta-bill.html">यात्रा भत्ता (TA Bill)</a></li>
@@ -759,9 +835,15 @@
       <div class="footer-col">
         <h5>हमसे संपर्क करें</h5>
         <ul>
-          <li style="color: #cbd5e1;">✉️ support@pfwale.gov-forms.in</li>
-          <li style="color: #cbd5e1;">💬 व्हाट्सएप / PF Wale चैनल</li>
-          <li style="color: #cbd5e1;">⏰ समय: 9:00 AM - 6:00 PM</li>
+          <li><a href="mailto:smart.webpage.storage@gmail.com" style="color: #cbd5e1; text-decoration: none;">✉️ smart.webpage.storage@gmail.com</a></li>
+          <li><a href="tel:8700383426" style="color: #cbd5e1; text-decoration: none;">📞 मो.: 8700383426</a></li>
+          <li><a href="https://wa.me/918700383426" target="_blank" style="color: #22c55e; text-decoration: none; font-weight: 600;">💬 WhatsApp: 8700383426</a></li>
+          <li style="color: #cbd5e1;">🏢 RO Faridabad Official Guidance</li>
+          <li style="margin-top: 8px;">
+            <a href="admin-users.html" style="display: inline-block; background: rgba(2, 132, 199, 0.2); color: #38bdf8; padding: 5px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; text-decoration: none; border: 1px solid rgba(56, 189, 248, 0.4);">
+              🔑 एडमिन: यूज़र डेटाबेस / लॉगिन रिकॉर्ड्स
+            </a>
+          </li>
           <li style="color: #10b981; font-weight: 700; margin-top: 4px;">● सेवा सक्रिय एवं निःशुल्क</li>
         </ul>
       </div>
@@ -788,6 +870,84 @@
     </div>
   </div>
 
+  <!-- =========================================================================
+       10. Auth Gatekeeper Modal (पंजीकरण एवं लॉगिन पॉप-अप)
+       ========================================================================= -->
+  <div class="auth-modal-backdrop" id="authGateModal">
+    <div class="auth-modal-card">
+      <div class="auth-modal-header">
+        <button type="button" class="btn-close-auth-modal" id="btnCloseAuthModal" title="बंद करें">✕</button>
+        <h3>सरकारी फॉर्म सेवा — यूज़र सत्यापन</h3>
+        <p>फॉर्म भरने और प्रिंट करने से पूर्व कृपया अपना विवरण दर्ज करें</p>
+      </div>
+
+      <div class="auth-tabs-row">
+        <button type="button" class="auth-tab-btn active" id="tabBtnSignUp">📝 नया यूज़र (Sign Up)</button>
+        <button type="button" class="auth-tab-btn" id="tabBtnSignIn">🔑 पहले से रजिस्टर्ड? (Sign In)</button>
+      </div>
+
+      <div class="auth-modal-body">
+        <!-- Tab Pane 1: Sign Up -->
+        <div id="formSignUpPane">
+          <form id="formSignUp">
+            <div id="signUpError" style="display: none; background: #fee2e2; color: #dc2626; padding: 8px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 12px; font-weight: 600;"></div>
+            
+            <div class="auth-form-group">
+              <label for="signUpName">पूरा नाम (Full Name) *</label>
+              <input type="text" id="signUpName" class="auth-form-control" placeholder="उदा. Ramesh Kumar" required>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="signUpEmail">ईमेल आईडी (Email Address) *</label>
+              <input type="email" id="signUpEmail" class="auth-form-control" placeholder="उदा. ramesh@gmail.com" required>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="signUpMobile">मोबाइल नंबर (10-Digit Mobile) *</label>
+              <input type="tel" id="signUpMobile" class="auth-form-control" placeholder="उदा. 9876543210" pattern="[0-9]{10}" maxlength="10" required>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="signUpPassword">पासवर्ड बनाएं (Create Password) *</label>
+              <input type="password" id="signUpPassword" class="auth-form-control" placeholder="कम से कम 4 अक्षर या अंक" minlength="4" required>
+            </div>
+
+            <button type="submit" class="auth-btn-submit">
+              पंजीकरण करें एवं फॉर्म खोलें →
+            </button>
+          </form>
+        </div>
+
+        <!-- Tab Pane 2: Sign In -->
+        <div id="formSignInPane" style="display: none;">
+          <form id="formSignIn">
+            <div id="signInError" style="display: none; background: #fee2e2; color: #dc2626; padding: 8px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 12px; font-weight: 600;"></div>
+
+            <div class="auth-form-group">
+              <label for="signInEmail">रजिस्टर्ड ईमेल या मोबाइल *</label>
+              <input type="text" id="signInEmail" class="auth-form-control" placeholder="ईमेल आईडी या 10-अंकीय मोबाइल" required>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="signInPassword">पासवर्ड (Password) *</label>
+              <input type="password" id="signInPassword" class="auth-form-control" placeholder="अपना पासवर्ड दर्ज करें" required>
+            </div>
+
+            <button type="submit" class="auth-btn-submit">
+              साइन इन करें एवं आगे बढ़ें →
+            </button>
+          </form>
+        </div>
+
+        <p class="auth-privacy-notice">
+          🔒 <strong>100% सुरक्षित:</strong> आपका डेटा केवल फॉर्म सेवा सत्यापन एवं अभिलेख हेतु सुरक्षित रखा जाता है।<br>
+          एडमिन सहायता: smart.webpage.storage@gmail.com | 8700383426
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="user-details.js"></script>
   <script src="portal.js"></script>
 </body>
 </html>

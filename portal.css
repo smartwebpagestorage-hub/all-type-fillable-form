@@ -1,7 +1,7 @@
 /* ==========================================================================
    सरकारी फॉर्म सेवा (Sarkari Form Seva) - Official Forms Portal Stylesheet
    Directly matching official Government Forms Hub UI
-   Curated by Niraj Kumar, PF Wale
+   Curated by Niraj Kumar, Section Supervisor, RO, Faridabad
    ========================================================================== */
 
 /* Google Fonts: Plus Jakarta Sans, Outfit, Noto Sans Devanagari */
@@ -1297,6 +1297,231 @@ body.dark-mode .advisory-text p {
 .btn-success {
   background: #10b981;
   color: #ffffff;
+}
+
+/* ==========================================================================
+   User Auth & Gatekeeper Modal System
+   ========================================================================== */
+.auth-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeInModal 0.2s ease-out forwards;
+}
+
+.auth-modal-backdrop.active {
+  display: flex;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.auth-modal-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #e2e8f0;
+  animation: scaleInCard 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+body.dark-mode .auth-modal-card {
+  background: #131e33;
+  border-color: #1e293b;
+  color: #f8fafc;
+}
+
+@keyframes scaleInCard {
+  from { transform: scale(0.95) translateY(10px); }
+  to { transform: scale(1) translateY(0); }
+}
+
+.auth-modal-header {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  padding: 20px 24px;
+  position: relative;
+  text-align: center;
+}
+
+.auth-modal-header h3 {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.auth-modal-header p {
+  font-size: 12px;
+  color: #e0f2fe;
+  margin-top: 3px;
+}
+
+.btn-close-auth-modal {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.btn-close-auth-modal:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.auth-tabs-row {
+  display: flex;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+body.dark-mode .auth-tabs-row {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  border-bottom: 3px solid transparent;
+}
+
+.auth-tab-btn.active {
+  color: #0284c7;
+  background: #ffffff;
+  border-bottom-color: #0284c7;
+}
+
+body.dark-mode .auth-tab-btn.active {
+  background: #131e33;
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+}
+
+.auth-modal-body {
+  padding: 22px;
+}
+
+.auth-form-group {
+  margin-bottom: 13px;
+}
+
+.auth-form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 5px;
+}
+
+.auth-form-control {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-family: inherit;
+  background: #f8fafc;
+  color: var(--text-heading);
+  outline: none;
+  transition: all 0.15s;
+}
+
+body.dark-mode .auth-form-control {
+  background: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+.auth-form-control:focus {
+  border-color: #0284c7;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.auth-btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.18s;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.auth-btn-submit:hover {
+  background: #0369a1;
+}
+
+.auth-privacy-notice {
+  font-size: 11px;
+  color: #64748b;
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.4;
+}
+
+/* User Profile Navbar Badge */
+.user-navbar-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+body.dark-mode .user-navbar-profile {
+  background: rgba(2, 132, 199, 0.2);
+  color: #38bdf8;
+}
+
+.btn-navbar-logout {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-left: 4px;
+  text-decoration: underline;
 }
 
 /* ==========================================================================

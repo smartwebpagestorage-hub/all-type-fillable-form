@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - User Registrations | सरकारी फॉर्म सेवा | Niraj Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --border: #e2e8f0;
+      --text-heading: #0f172a;
+      --text-body: #334155;
+      --text-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-body);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* Admin Navbar */
+    .admin-navbar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-badge {
+      background: #dc2626;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+    .admin-title {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .admin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-back-home {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.1);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    .btn-back-home:hover { background: rgba(255,255,255,0.2); color: #fff; }
+
+    /* Admin Container */
+    .admin-container {
+      max-width: 1240px;
+      margin: 28px auto;
+      padding: 0 20px;
+    }
+
+    /* Top Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .stat-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* Table Toolbar */
+    .table-toolbar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px 12px 0 0;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .search-wrap {
+      flex: 1;
+      max-width: 380px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 8px 14px 8px 34px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 13.5px;
+      font-family: inherit;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+    .action-btns-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-export {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+    .btn-csv {
+      background: #10b981;
+      color: #ffffff;
+    }
+    .btn-csv:hover { background: #059669; }
+    .btn-json {
+      background: #6366f1;
+      color: #ffffff;
+    }
+    .btn-json:hover { background: #4f46e5; }
+    .btn-danger {
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .btn-danger:hover { background: #dc2626; }
+
+    /* Data Table */
+    .table-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow-x: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+    table.data-table th {
+      background: #f1f5f9;
+      color: var(--text-heading);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    table.data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-body);
+      white-space: nowrap;
+    }
+    table.data-table tr:hover {
+      background: #f8fafc;
+    }
+
+    .pwd-pill {
+      font-family: monospace;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .empty-msg {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Backend Connect Notice Card */
+    .backend-guide-box {
+      margin-top: 32px;
+      background: #ffffff;
+      border: 1px solid #bae6fd;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .backend-guide-box h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0369a1;
+      margin-bottom: 8px;
+    }
+    .backend-guide-box p {
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .backend-guide-box code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #0369a1;
+      font-size: 12.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Navbar -->
+  <header class="admin-navbar">
+    <div class="admin-brand">
+      <span class="admin-badge">ADMIN</span>
+      <div class="admin-title">User Registration Hub | सरकारी फॉर्म सेवा</div>
+    </div>
+    <div class="admin-nav-actions">
+      <span style="font-size: 12px; color: #94a3b8;">Niraj Kumar, Section Supervisor, RO, Faridabad</span>
+      <a href="index.html" class="btn-back-home">← Return to Portal</a>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <!-- Stat Counters -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-label">Total Registered Users (कुल पंजीकृत यूजर्स)</div>
+        <div class="stat-number" id="statTotalUsers">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Active Portal Admin Contact</div>
+        <div class="stat-number" style="font-size: 16px; margin-top: 6px; color: #0f172a;">
+          8700383426
+        </div>
+        <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">
+          smart.webpage.storage@gmail.com
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Storage Format</div>
+        <div class="stat-number" style="font-size: 18px; color: #10b981; margin-top: 6px;">
+          Local &amp; Excel CSV Export
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Toolbar -->
+    <div class="table-toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="userSearchInput" class="search-input" placeholder="Search by name, email, or mobile...">
+      </div>
+
+      <div class="action-btns-group">
+        <button type="button" class="btn-export btn-csv" id="btnExportCSV">
+          📥 Export to Excel (CSV)
+        </button>
+        <button type="button" class="btn-export btn-json" id="btnExportJSON">
+          📄 Export JSON
+        </button>
+        <button type="button" class="btn-export btn-danger" id="btnClearData" title="Clear All Records">
+          🗑️ Clear Records
+        </button>
+      </div>
+    </div>
+
+    <!-- User Data Table -->
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>S.No.</th>
+            <th>Full Name (नाम)</th>
+            <th>Email Address (ईमेल)</th>
+            <th>Mobile (मोबाइल नं.)</th>
+            <th>Password</th>
+            <th>Registration Date &amp; Time</th>
+            <th>Last Login</th>
+            <th>Total Logins</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody">
+          <!-- Rendered dynamically -->
+        </tbody>
+      </table>
+      <div id="emptyTableMsg" class="empty-msg" style="display: none;">
+        कोई पंजीकृत यूजर नहीं मिला (No registered users found).
+      </div>
+    </div>
+
+    <!-- Backend Integration Guide -->
+    <div class="backend-guide-box">
+      <h4>💡 Free Backend &amp; Real-time Google Sheet Connection Guide</h4>
+      <p>
+        वर्तमान में सभी पंजीकृत यूजर्स का डेटा सुरक्षित रूप से आपके ब्राउज़र के स्टोरेज में सेव होता है, जिसे आप ऊपर दिए गए <strong>"📥 Export to Excel (CSV)"</strong> बटन से 1-क्लिक में एक्सेल फाइल के रूप में डाउनलोड कर सकते हैं।
+      </p>
+      <p>
+        यदि आप चाहते हैं कि यूजर जैसे ही फॉर्म पर रजिस्टर करे, उसका डेटा <strong>सीधे आपके Google Sheets में ऑटो-सेव हो जाए</strong> (बिना किसी खर्च के 100% Free), तो आप एक साधारण <code>Google Apps Script Webhook</code> लिंक बनाकर <code>user-details.js</code> के <code>GOOGLE_SHEET_WEBHOOK_URL</code> में पेस्ट कर सकते हैं।
+      </p>
+    </div>
+  </main>
+
+  <script src="user-details.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const usersTableBody = document.getElementById('usersTableBody');
+      const emptyMsg = document.getElementById('emptyTableMsg');
+      const statTotalUsers = document.getElementById('statTotalUsers');
+      const searchInput = document.getElementById('userSearchInput');
+
+      let allUsers = UserDetailsHub.getAllUsers();
+
+      function renderUsers(usersToRender) {
+        statTotalUsers.textContent = allUsers.length;
+
+        if (usersToRender.length === 0) {
+          usersTableBody.innerHTML = '';
+          emptyMsg.style.display = 'block';
+          return;
+        }
+
+        emptyMsg.style.display = 'none';
+        usersTableBody.innerHTML = usersToRender.map((u, i) => `
+          <tr>
+            <td><strong>${i + 1}</strong></td>
+            <td><strong>${escapeHtml(u.name || '')}</strong></td>
+            <td><a href="mailto:${escapeHtml(u.email || '')}" style="color:#0284c7; text-decoration:none;">${escapeHtml(u.email || '')}</a></td>
+            <td><a href="tel:${escapeHtml(u.mobile || '')}" style="color:#10b981; font-weight:700; text-decoration:none;">${escapeHtml(u.mobile || '')}</a></td>
+            <td><span class="pwd-pill">${escapeHtml(u.password || '')}</span></td>
+            <td>${escapeHtml(u.registeredAt || '')}</td>
+            <td>${escapeHtml(u.lastLoginAt || '')}</td>
+            <td><strong>${u.totalLogins || 1}</strong></td>
+          </tr>
+        `).join('');
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Initial Render
+      renderUsers(allUsers);
+
+      // Search Handler
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) {
+          renderUsers(allUsers);
+          return;
+        }
+        const filtered = allUsers.filter(u => 
+          (u.name || '').toLowerCase().includes(query) ||
+          (u.email || '').toLowerCase().includes(query) ||
+          (u.mobile || '').includes(query)
+        );
+        renderUsers(filtered);
+      });
+
+      // Export Buttons
+      document.getElementById('btnExportCSV').addEventListener('click', () => {
+        UserDetailsHub.exportUsersToCSV();
+      });
+
+      document.getElementById('btnExportJSON').addEventListener('click', () => {
+        UserDetailsHub.exportUsersToJSON();
+      });
+
+      // Clear Records
+      document.getElementById('btnClearData').addEventListener('click', () => {
+        if (confirm('क्या आप वाकई सभी पंजीकृत यूजर रिकॉर्ड्स डिलीट करना चाहते हैं? (Are you sure you want to clear all user records?)')) {
+          localStorage.removeItem('portalRegisteredUsers');
+          allUsers = [];
+          renderUsers(allUsers);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
