@@ -638,47 +638,6 @@
         <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
         Home
       </a>
-
-      <!-- Form List Dropdown Menu -->
-      <div class="nav-dropdown" id="formListDropdown">
-        <button type="button" class="nav-dropdown-toggle" id="btnDropdownForms">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
-          <span>Form List (प्रपत्र सूची)</span>
-          <svg class="chevron-icon" width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
-        </button>
-
-        <div class="dropdown-menu-box">
-          <div class="dropdown-header-tag">
-            <span>Available Forms</span>
-            <span class="badge-count">8 Active</span>
-          </div>
-
-          <a href="stationery-requisition.html" class="dropdown-item-link">
-            <span>📝 Stationery Requisition Note</span>
-          </a>
-          <a href="epfo-death-claim.html" class="dropdown-item-link">
-            <span>📜 Composite Claim (Death)</span>
-          </a>
-          <a href="onroll-family-form.html" class="dropdown-item-link">
-            <span>👨‍👩‍👧‍👦 On-Roll & Family Form</span>
-          </a>
-          <a href="epfo-form-10d.html" class="dropdown-item-link">
-            <span>👴 EPFO Form 10-D (Pension)</span>
-          </a>
-          <a href="gar14a-ta-bill.html" class="dropdown-item-link">
-            <span>🚆 G.A.R-14A: TA Bill</span>
-          </a>
-          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
-            <span>📑 Composite Claim Form (Aadhar)</span>
-          </a>
-          <a href="children-education-allowance.html" class="dropdown-item-link">
-            <span>🎓 Children Education Allowance</span>
-          </a>
-          <a href="epfo-letterhead-noting.html" class="dropdown-item-link active">
-            <span>🏛️ Blank Letterhead & Noting Sheet</span>
-          </a>
-        </div>
-      </div>
     </div>
 
     <div class="toolbar-actions">
@@ -911,18 +870,6 @@
 
     // Initialize Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
-      // Dropdown toggle
-      const dropdown = document.getElementById('formListDropdown');
-      const btnDropdown = document.getElementById('btnDropdownForms');
-      btnDropdown.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('active');
-      });
-
-      document.addEventListener('click', () => {
-        dropdown.classList.remove('active');
-      });
-
       // Office Preset change
       document.getElementById('officePresetSelect').addEventListener('change', (e) => {
         applyOffice(e.target.value);
