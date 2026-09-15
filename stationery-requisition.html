@@ -71,7 +71,7 @@
       flex-direction: column;
       justify-content: flex-start;
       color: #000;
-      font-size: 11.5px;
+      font-size: 13px;
     }
 
     /* Screen-only Sheet Header Badge */
@@ -81,7 +81,7 @@
       gap: 6px;
       padding: 3px 8px;
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
@@ -94,30 +94,62 @@
 
     /* Official Letterhead Header Section */
     .letterhead-header {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 2px double #000;
       padding-bottom: 8px;
       margin-bottom: 10px;
+      gap: 12px;
+    }
+
+    .letterhead-logo-left,
+    .letterhead-logo-right {
+      flex: 0 0 74px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hdr-logo {
+      display: block;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .epfo-logo {
+      width: 70px;
+      max-height: 72px;
+    }
+
+    .emblem-logo {
+      width: 52px;
+      max-height: 74px;
+    }
+
+    .letterhead-center {
+      flex: 1;
+      text-align: center;
     }
 
     .org-title-hi {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 800;
       line-height: 1.25;
     }
 
     .org-title-en {
-      font-size: 13.5px;
+      font-size: 15px;
       font-weight: 800;
       letter-spacing: 0.5px;
       line-height: 1.25;
     }
 
     .ministry-title {
-      font-size: 11px;
+      font-size: 12.5px;
       font-weight: 600;
       color: #222;
-      margin: 1px 0;
+      margin: 2px 0;
     }
 
     .office-name-row {
@@ -125,30 +157,30 @@
       justify-content: center;
       align-items: center;
       gap: 8px;
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     .office-title-hi {
-      font-size: 12px;
+      font-size: 13.5px;
       font-weight: 700;
     }
 
     .office-title-en {
-      font-size: 11.5px;
+      font-size: 13px;
       font-weight: 700;
     }
 
     .office-address-line {
-      font-size: 10.5px;
+      font-size: 12px;
       font-weight: 500;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .office-contact-line {
-      font-size: 10px;
+      font-size: 11.5px;
       font-weight: 500;
       color: #333;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     /* Editable inline text on document */
@@ -176,7 +208,7 @@
       justify-content: space-between;
       align-items: center;
       margin: 8px 0;
-      font-size: 11.5px;
+      font-size: 13px;
       font-weight: 600;
     }
 
@@ -189,17 +221,17 @@
     /* Subject Box */
     .subject-block {
       margin: 8px 0;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
-      line-height: 1.35;
-      padding: 4px 6px;
+      line-height: 1.4;
+      padding: 5px 8px;
       background: #f8fafc;
-      border-left: 3px solid #000;
+      border-left: 3.5px solid #000;
     }
 
     .opening-note {
-      font-size: 11.5px;
-      line-height: 1.45;
+      font-size: 13px;
+      line-height: 1.5;
       margin: 8px 0 10px 0;
       text-align: justify;
     }
@@ -208,14 +240,14 @@
     .items-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 11px;
+      font-size: 12.5px;
       margin-bottom: 10px;
     }
 
     .items-table th,
     .items-table td {
       border: 1px solid #000;
-      padding: 4px 6px;
+      padding: 5px 6px;
       vertical-align: middle;
     }
 
@@ -260,12 +292,12 @@
     }
 
     .qty-input {
-      width: 48px;
+      width: 52px;
       text-align: center;
       border: 1px solid #94a3b8;
       border-radius: 2px;
       font-weight: 700;
-      font-size: 11.5px;
+      font-size: 13px;
       padding: 2px 2px;
       outline: none;
     }
@@ -306,13 +338,13 @@
       border: 1px solid #fecaca;
       color: #dc2626;
       border-radius: 3px;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: bold;
       transition: all 0.15s;
     }
@@ -336,9 +368,9 @@
       background: #f0fdf4;
       border: 1px dashed #16a34a;
       color: #15803d;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
@@ -359,9 +391,9 @@
     .quick-tag {
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
-      padding: 2px 6px;
+      padding: 3px 8px;
       border-radius: 3px;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
       color: #334155;
       cursor: pointer;
@@ -376,8 +408,8 @@
 
     /* Closing Paragraph & Signatures */
     .closing-para {
-      font-size: 11.5px;
-      line-height: 1.45;
+      font-size: 13px;
+      line-height: 1.5;
       margin-bottom: 12px;
       text-align: justify;
     }
@@ -387,50 +419,39 @@
       justify-content: space-between;
       align-items: flex-end;
       margin: 16px 0 12px 0;
-      font-size: 11px;
+      font-size: 13px;
     }
 
     .addressed-to-box {
       width: 48%;
-      line-height: 1.4;
+      line-height: 1.5;
       font-weight: 600;
+      font-size: 13px;
     }
 
     .requester-sign-box {
-      width: 45%;
+      width: 46%;
       text-align: right;
-      line-height: 1.4;
+      line-height: 1.5;
       font-weight: 600;
+      font-size: 13px;
     }
 
-    /* Office / Store Action Box at bottom */
-    .store-action-card {
-      border: 1px solid #000;
-      margin-top: 14px;
-      padding: 6px 10px;
-      font-size: 10.5px;
-      background: #fafafa;
-    }
-
-    .store-card-header {
-      font-weight: 800;
+    /* Office Note Heading */
+    .office-note-heading {
       text-align: center;
-      border-bottom: 0.5px solid #666;
-      padding-bottom: 3px;
-      margin-bottom: 6px;
-      letter-spacing: 0.5px;
+      margin: 10px 0 12px 0;
+    }
+
+    .office-note-badge {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-    }
-
-    .store-grid-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 6px;
-    }
-
-    .store-grid-col {
-      flex: 1;
+      padding: 4px 20px;
+      border: 1.5px solid #000;
+      background: #f8fafc;
     }
 
     /* Sheet Footer */
@@ -438,7 +459,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 9.5px;
+      font-size: 11px;
       font-weight: 600;
       padding-top: 6px;
       border-top: 0.5px solid #ccc;
@@ -502,7 +523,7 @@
         border: none !important;
         background: transparent !important;
         width: auto !important;
-        font-size: 11px !important;
+        font-size: 12.5px !important;
       }
       .edit-inline {
         border: none !important;
@@ -613,6 +634,18 @@
               <span class="item-tag tag-ready">Ready</span>
             </div>
           </a>
+
+          <!-- Form 8 -->
+          <a href="epfo-letterhead-noting.html" class="dropdown-item-link">
+            <div class="item-icon">
+              <svg width="15" height="15" fill="#0284c7" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.5 9a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/></svg>
+            </div>
+            <div class="item-content">
+              <span class="item-title">Blank Letterhead &amp; Noting</span>
+              <span class="item-sub">कोरा लेटरहेड एवं कार्यालय टिप्पणी</span>
+              <span class="item-tag tag-ready">Ready</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -667,22 +700,32 @@
       <!-- CUSTOMIZABLE OFFICIAL LETTERHEAD HEADER                                   -->
       <!-- ========================================================================= -->
       <header class="letterhead-header">
-        <div class="org-title-hi edit-inline" contenteditable="true" id="hdr_org_hi" title="Click to edit Organization Name (Hindi)">कर्मचारी भविष्यनिधि संगठन</div>
-        <div class="org-title-en edit-inline" contenteditable="true" id="hdr_org_en" title="Click to edit Organization Name (English)">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
-        <div class="ministry-title edit-inline" contenteditable="true" id="hdr_ministry" title="Click to edit Ministry details">श्रम एवं रोजगार मंत्रालय, भारत सरकार / (Ministry of Labour & Employment, Govt. of India)</div>
-        
-        <div class="office-name-row">
-          <span class="office-title-hi edit-inline" contenteditable="true" id="hdr_office_hi" title="Click to edit Office Name (Hindi)">क्षेत्रीय कार्यालय, फरीदाबाद</span>
-          <span>|</span>
-          <span class="office-title-en edit-inline" contenteditable="true" id="hdr_office_en" title="Click to edit Office Name (English)">Regional Office: Faridabad - 121007</span>
+        <div class="letterhead-logo-left">
+          <img src="image/epfo_logo.png" alt="EPFO Logo" class="hdr-logo epfo-logo">
         </div>
 
-        <div class="office-address-line edit-inline" contenteditable="true" id="hdr_address" title="Click to edit Office Address">
-          Bhavishay Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)
+        <div class="letterhead-center">
+          <div class="org-title-hi edit-inline" contenteditable="true" id="hdr_org_hi" title="Click to edit Organization Name (Hindi)">कर्मचारी भविष्यनिधि संगठन</div>
+          <div class="org-title-en edit-inline" contenteditable="true" id="hdr_org_en" title="Click to edit Organization Name (English)">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="ministry-title edit-inline" contenteditable="true" id="hdr_ministry" title="Click to edit Ministry details">श्रम एवं रोजगार मंत्रालय, भारत सरकार / (Ministry of Labour & Employment, Govt. of India)</div>
+          
+          <div class="office-name-row">
+            <span class="office-title-hi edit-inline" contenteditable="true" id="hdr_office_hi" title="Click to edit Office Name (Hindi)">क्षेत्रीय कार्यालय, फरीदाबाद</span>
+            <span>|</span>
+            <span class="office-title-en edit-inline" contenteditable="true" id="hdr_office_en" title="Click to edit Office Name (English)">Regional Office: Faridabad - 121007</span>
+          </div>
+
+          <div class="office-address-line edit-inline" contenteditable="true" id="hdr_address" title="Click to edit Office Address">
+            Bhavishay Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)
+          </div>
+
+          <div class="office-contact-line edit-inline" contenteditable="true" id="hdr_contact" title="Click to edit Phone and Email">
+            Phone: 0129-2288068 &nbsp;|&nbsp; Email: ro.faridabad@epfindia.gov.in
+          </div>
         </div>
 
-        <div class="office-contact-line edit-inline" contenteditable="true" id="hdr_contact" title="Click to edit Phone and Email">
-          Phone: 0129-2288068 &nbsp;|&nbsp; Email: ro.faridabad@epfindia.gov.in
+        <div class="letterhead-logo-right">
+          <img src="image/emblem_of_india.svg" alt="State Emblem of India" class="hdr-logo emblem-logo">
         </div>
       </header>
 
@@ -698,14 +741,9 @@
         </div>
       </div>
 
-      <!-- Addressed To -->
-      <div style="margin-bottom: 8px; font-weight: 600; line-height: 1.4;">
-        <div>सेवा में / To,</div>
-        <div style="padding-left: 18px;">
-          <input type="text" class="fill-input" id="toOfficer" value="The Assistant P.F. Commissioner / Section Supervisor" style="width: 380px; font-weight: 700;"><br>
-          <input type="text" class="fill-input" id="toSection" value="Stationery Cell / Caretaker Section" style="width: 300px;"><br>
-          <input type="text" class="fill-input" id="toOffice" value="Regional Office, Faridabad" style="width: 260px;">
-        </div>
+      <!-- Office Note Header -->
+      <div class="office-note-heading">
+        <span class="office-note-badge edit-inline" contenteditable="true" title="Click to edit heading">कार्यालय टिप्पणी / OFFICE NOTE</span>
       </div>
 
       <!-- Subject Block -->
@@ -744,12 +782,12 @@
 
         <div class="quick-add-tags">
           <span style="font-size: 10.5px; font-weight: 700; color: #64748b;">त्वरित जोड़ें (Quick Add):</span>
-          <span class="quick-tag" onclick="quickAddItem('A4 Size Paper', 'Reams', 10)">+ A4 Paper</span>
-          <span class="quick-tag" onclick="quickAddItem('Ball Pens (Blue)', 'Nos.', 50)">+ Blue Pen</span>
-          <span class="quick-tag" onclick="quickAddItem('Ball Pens (Black)', 'Nos.', 20)">+ Black Pen</span>
-          <span class="quick-tag" onclick="quickAddItem('Stapler Pins', 'Boxes', 10)">+ Stapler Pin</span>
-          <span class="quick-tag" onclick="quickAddItem('File Folders', 'Nos.', 50)">+ Folders</span>
-          <span class="quick-tag" onclick="quickAddItem('Note Sheets/Pads', 'Nos.', 20)">+ Note Sheets</span>
+          <span class="quick-tag" onclick="quickAddItem('A4 Size Paper', 'Reams', 5)">+ A4 Paper</span>
+          <span class="quick-tag" onclick="quickAddItem('Ball Pens (Blue)', 'Nos.', 5)">+ Blue Pen</span>
+          <span class="quick-tag" onclick="quickAddItem('Ball Pens (Black)', 'Nos.', 5)">+ Black Pen</span>
+          <span class="quick-tag" onclick="quickAddItem('Stapler Pins', 'Boxes', 5)">+ Stapler Pin</span>
+          <span class="quick-tag" onclick="quickAddItem('File Folders', 'Nos.', 5)">+ Folders</span>
+          <span class="quick-tag" onclick="quickAddItem('Note Sheets/Pads', 'Nos.', 5)">+ Note Sheets</span>
         </div>
       </div>
 
@@ -762,38 +800,19 @@
       <!-- Signatures Row -->
       <div class="signatures-section">
         <div class="addressed-to-box">
-          <div style="color: #666; font-size: 10px; margin-bottom: 2px;">प्रतिलिपि / अग्रेषित (Forwarded To):</div>
-          <div style="font-weight: 700;">APFC / Section Supervisor</div>
-          <div>Stationery Cell / Caretaker Section</div>
-          <div>EPFO, Regional Office</div>
+          <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 2px;">To,</div>
+          <div style="padding-left: 6px; line-height: 1.5;">
+            <div style="font-weight: 700;">APFC / Section Supervisor</div>
+            <div>Stationery Cell / Caretaker Section</div>
+            <div>EPFO, Regional Office</div>
+          </div>
         </div>
 
         <div class="requester-sign-box">
-          <div style="margin-bottom: 22px;">हस्ताक्षर / Signature: __________________________</div>
+          <div style="margin-bottom: 28px;">हस्ताक्षर / Signature: __________________________</div>
           <div>नाम / Name: <input type="text" class="fill-input uppercase" id="reqName" placeholder="Employee Name" style="width: 170px; font-weight: 700;"></div>
-          <div style="margin-top: 3px;">पदनाम / Designation: <input type="text" class="fill-input uppercase" id="reqDesig" placeholder="Section Officer / SSSA" style="width: 170px;"></div>
-          <div style="margin-top: 3px;">अनुभाग / Section: <input type="text" class="fill-input uppercase" id="reqSection" placeholder="Administration / Accounts" style="width: 170px;"></div>
-        </div>
-      </div>
-
-      <!-- Office / Store Action Box at bottom -->
-      <div class="store-action-card">
-        <div class="store-card-header">
-          (केवल स्टोर / केयरटेकर अनुभाग के प्रयोगार्थ / FOR STORE & CARETAKER SECTION USE ONLY)
-        </div>
-        <div class="store-grid-row">
-          <div class="store-grid-col">
-            <div>स्वीकृत मात्रा / Sanctioned Qty: <input type="text" class="fill-input" style="width: 130px;" placeholder="As requested / Modified"></div>
-            <div style="margin-top: 4px;">स्वीकृति अधिकारी के हस्ताक्षर: __________________</div>
-          </div>
-          <div class="store-grid-col">
-            <div>स्टॉक पंजी पृष्ठ सं. / Stock Register Page No.: <input type="text" class="fill-input" style="width: 70px;" placeholder="Pg 45/Vol 2"></div>
-            <div style="margin-top: 4px;">जारीकर्ता के हस्ताक्षर / Store In-charge: ___________</div>
-          </div>
-          <div class="store-grid-col" style="text-align: right;">
-            <div>जारी करने की तिथि / Issue Date: <input type="text" class="fill-input text-center" style="width: 85px;" placeholder="DD/MM/YYYY"></div>
-            <div style="margin-top: 4px;">प्राप्तकर्ता के हस्ताक्षर / Receiver: ______________</div>
-          </div>
+          <div style="margin-top: 4px;">पदनाम / Designation: <input type="text" class="fill-input uppercase" id="reqDesig" placeholder="Section Officer / SSSA" style="width: 170px;"></div>
+          <div style="margin-top: 4px;">अनुभाग / Section: <input type="text" class="fill-input uppercase" id="reqSection" placeholder="Administration / Accounts" style="width: 170px;"></div>
         </div>
       </div>
 
@@ -858,18 +877,18 @@
   <!-- Interactive JavaScript Logic -->
   <script>
     (function () {
-      // Default Items requested by user
+      // Default Items (Default Qty Required: 5)
       const defaultItems = [
-        { name: "A4 Size Paper", unit: "Reams", qty: 10 },
-        { name: "Ball Pens (Blue)", unit: "Nos.", qty: 50 },
-        { name: "Ball Pens (Black)", unit: "Nos.", qty: 20 },
-        { name: "Pencils", unit: "Nos.", qty: 20 },
-        { name: "Erasers", unit: "Nos.", qty: 20 },
+        { name: "A4 Size Paper", unit: "Reams", qty: 5 },
+        { name: "Ball Pens (Blue)", unit: "Nos.", qty: 5 },
+        { name: "Ball Pens (Black)", unit: "Nos.", qty: 5 },
+        { name: "Pencils", unit: "Nos.", qty: 5 },
+        { name: "Erasers", unit: "Nos.", qty: 5 },
         { name: "Stapler", unit: "Nos.", qty: 5 },
-        { name: "Stapler Pins", unit: "Boxes", qty: 10 },
-        { name: "File Folders", unit: "Nos.", qty: 50 },
-        { name: "Note Sheets/Pads", unit: "Nos.", qty: 20 },
-        { name: "Permanent Markers", unit: "Nos.", qty: 10 }
+        { name: "Stapler Pins", unit: "Boxes", qty: 5 },
+        { name: "File Folders", unit: "Nos.", qty: 5 },
+        { name: "Note Sheets/Pads", unit: "Nos.", qty: 5 },
+        { name: "Permanent Markers", unit: "Nos.", qty: 5 }
       ];
 
       const tbody = document.getElementById('stationeryTableBody');
@@ -888,7 +907,7 @@
           <td>
             <div class="qty-control-wrap">
               <button type="button" class="btn-qty btn-minus no-print" title="Decrease quantity" onclick="adjustQty(this, -1)">-</button>
-              <input type="number" class="qty-input item-qty" value="${item.qty || 1}" min="1" max="9999" onchange="validateQty(this)">
+              <input type="number" class="qty-input item-qty" value="${item.qty !== undefined ? item.qty : 5}" min="1" max="9999" onchange="validateQty(this)">
               <button type="button" class="btn-qty btn-plus no-print" title="Increase quantity" onclick="adjustQty(this, 1)">+</button>
             </div>
           </td>
@@ -924,7 +943,7 @@
 
       // Add Row
       window.addRow = function (itemObj) {
-        const item = itemObj || { name: '', unit: 'Nos.', qty: 1 };
+        const item = itemObj || { name: '', unit: 'Nos.', qty: 5 };
         const rowCount = tbody.children.length + 1;
         tbody.appendChild(createRow(item, rowCount));
         const lastRow = tbody.lastElementChild;
@@ -935,7 +954,7 @@
 
       // Quick Add Item
       window.quickAddItem = function (name, unit, qty) {
-        window.addRow({ name, unit, qty });
+        window.addRow({ name, unit, qty: qty || 5 });
       };
 
       // Delete Row
