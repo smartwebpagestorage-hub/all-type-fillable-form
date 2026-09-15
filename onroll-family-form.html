@@ -21,7 +21,7 @@
   <style id="dynamicPageSizeStyle">
     @page {
       size: A4 portrait;
-      margin: 10mm 12mm 10mm 12mm;
+      margin: 8mm 10mm 8mm 10mm;
     }
   </style>
 
@@ -407,12 +407,16 @@
       }
       .form-sheet {
         width: 100% !important;
-        min-height: 275mm !important;
+        height: auto !important;
+        min-height: 0 !important;
         box-shadow: none !important;
         border: none !important;
-        padding: 8mm 12mm !important;
+        padding: 0 !important;
+        margin: 0 !important;
         page-break-after: always !important;
         break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
       }
       .form-sheet:last-child {
         page-break-after: auto !important;

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stationery Requisition Form (कार्यालय उपयोग हेतु स्टेशनरी मांग पत्र)</title>
+  
+  <!-- Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for multi-page PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-hover: #0369a1;
+      --text-main: #000000;
+      --text-muted: #555555;
+      --border-dark: #000000;
+      --bg-page: #f1f5f9;
+      --paper-bg: #ffffff;
+      --placeholder-color: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container for printable sheets */
+    .document-sheets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 80px 16px;
+      gap: 32px;
+    }
+
+    /* Standard A4 Paper Sheet */
+    .form-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 14mm 12mm 14mm;
+      background: var(--paper-bg);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: #000;
+      font-size: 13px;
+    }
+
+    /* Screen-only Sheet Header Badge */
+    .sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      width: fit-content;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    /* Official Letterhead Header Section */
+    .letterhead-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px double #000;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+
+    .letterhead-logo-left,
+    .letterhead-logo-right {
+      flex: 0 0 74px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hdr-logo {
+      display: block;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .epfo-logo {
+      width: 70px;
+      max-height: 72px;
+    }
+
+    .emblem-logo {
+      width: 52px;
+      max-height: 74px;
+    }
+
+    .letterhead-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .org-title-hi {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .org-title-en {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+    }
+
+    .ministry-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #222;
+      margin: 2px 0;
+    }
+
+    .office-name-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .office-title-hi {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .office-title-en {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .office-address-line {
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .office-contact-line {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #333;
+      margin-top: 2px;
+    }
+
+    /* Editable inline text on document */
+    .edit-inline {
+      border: 1px dashed transparent;
+      padding: 1px 4px;
+      border-radius: 2px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .edit-inline:hover {
+      border-color: #93c5fd;
+      background-color: #f0f9ff;
+    }
+
+    .edit-inline:focus {
+      border-color: #0284c7;
+      background-color: #e0f2fe;
+    }
+
+    /* Reference & Date Meta Bar */
+    .doc-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Subject Box */
+    .subject-block {
+      margin: 8px 0;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      padding: 5px 8px;
+      background: #f8fafc;
+      border-left: 3.5px solid #000;
+    }
+
+    .opening-note {
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 8px 0 10px 0;
+      text-align: justify;
+    }
+
+    /* Modern Responsive Data Table for Items */
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin-bottom: 10px;
+    }
+
+    .items-table th,
+    .items-table td {
+      border: 1px solid #000;
+      padding: 5px 6px;
+      vertical-align: middle;
+    }
+
+    .items-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Quantity Control Group */
+    .qty-control-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .btn-qty {
+      width: 20px;
+      height: 20px;
+      background: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s;
+    }
+
+    .btn-qty:hover {
+      background: #0284c7;
+      color: #fff;
+      border-color: #0284c7;
+    }
+
+    .btn-qty:active {
+      transform: scale(0.92);
+    }
+
+    .qty-input {
+      width: 52px;
+      text-align: center;
+      border: 1px solid #94a3b8;
+      border-radius: 2px;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 2px 2px;
+      outline: none;
+    }
+
+    .qty-input:focus {
+      border-color: #0284c7;
+      background: #f0f9ff;
+    }
+
+    /* Inline Fillable Inputs */
+    .fill-input {
+      border: none;
+      border-bottom: 1px dotted #333;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 600;
+      background: rgba(2, 132, 199, 0.02);
+      padding: 1px 4px;
+      color: #000;
+      width: 100%;
+    }
+
+    .fill-input:focus {
+      border-bottom: 1.5px solid var(--primary-color);
+      background: #f0f9ff;
+    }
+
+    .fill-input::placeholder {
+      color: var(--placeholder-color);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Table Action Buttons */
+    .btn-del-row {
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      border-radius: 3px;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all 0.15s;
+    }
+
+    .btn-del-row:hover {
+      background: #dc2626;
+      color: #fff;
+    }
+
+    .table-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .btn-add-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #f0fdf4;
+      border: 1px dashed #16a34a;
+      color: #15803d;
+      padding: 5px 14px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-add-item:hover {
+      background: #dcfce7;
+      border-style: solid;
+    }
+
+    .quick-add-tags {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .quick-tag {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .quick-tag:hover {
+      background: #e0f2fe;
+      color: #0369a1;
+      border-color: #bae6fd;
+    }
+
+    /* Closing Paragraph & Signatures */
+    .closing-para {
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
+    .signatures-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin: 16px 0 12px 0;
+      font-size: 13px;
+    }
+
+    .addressed-to-box {
+      width: 48%;
+      line-height: 1.5;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .requester-sign-box {
+      width: 46%;
+      text-align: right;
+      line-height: 1.5;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* Office Note Heading */
+    .office-note-heading {
+      text-align: center;
+      margin: 10px 0 12px 0;
+    }
+
+    .office-note-badge {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 20px;
+      border: 1.5px solid #000;
+      background: #f8fafc;
+    }
+
+    /* Sheet Footer */
+    .sheet-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      padding-top: 6px;
+      border-top: 0.5px solid #ccc;
+      margin-top: 10px;
+      color: #444;
+    }
+
+    /* Print Formatting Rules */
+    @media print {
+      body {
+        padding-top: 0 !important;
+        background: #ffffff !important;
+      }
+      .no-print,
+      .app-toolbar,
+      .sheet-badge,
+      .table-actions-row,
+      .col-action,
+      .btn-qty,
+      .btn-del-row {
+        display: none !important;
+      }
+      .document-sheets-container {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+      .form-sheet {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+      }
+      .form-sheet:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      .sheet-footer {
+        margin-top: 10px !important;
+        padding-top: 6px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .fill-input {
+        background: transparent !important;
+        border-bottom: 0.5px dotted #000 !important;
+      }
+      .fill-input::placeholder {
+        color: transparent !important;
+      }
+      .qty-input {
+        border: none !important;
+        background: transparent !important;
+        width: auto !important;
+        font-size: 12.5px !important;
+      }
+      .edit-inline {
+        border: none !important;
+        background: transparent !important;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4">
+
+  <!-- Top Application Action Bar (No Print) -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <!-- Back to Home Portal -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+    </div>
+
+    <!-- Toolbar Right Actions -->
+    <div class="toolbar-actions">
+      <!-- Paper Size Switcher -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF">
+        <span class="switcher-label">Page Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Fill sample data from your request">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+        <span class="btn-text-full">Fill Sample Data</span>
+        <span class="btn-text-short">Sample</span>
+      </button>
+
+      <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear table to blank">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        <span class="btn-text-full">Clear Table</span>
+        <span class="btn-text-short">Clear</span>
+      </button>
+
+      <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        <span class="btn-text-full">Save as PDF</span>
+        <span class="btn-text-short">PDF</span>
+      </button>
+
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        <span class="btn-text-full">Print Form</span>
+        <span class="btn-text-short">Print</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Printable Sheet Container -->
+  <main class="document-sheets-container" id="printableFormArea">
+
+    <article class="form-sheet" id="stationerySheet">
+      <div class="sheet-badge no-print">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168z"/></svg>
+        Stationery Requisition Note / Slip
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- CUSTOMIZABLE OFFICIAL LETTERHEAD HEADER                                   -->
+      <!-- ========================================================================= -->
+      <header class="letterhead-header">
+        <div class="letterhead-logo-left">
+          <img src="image/epfo_logo.png" alt="EPFO Logo" class="hdr-logo epfo-logo">
+        </div>
+
+        <div class="letterhead-center">
+          <div class="org-title-hi edit-inline" contenteditable="true" id="hdr_org_hi" title="Click to edit Organization Name (Hindi)">कर्मचारी भविष्यनिधि संगठन</div>
+          <div class="org-title-en edit-inline" contenteditable="true" id="hdr_org_en" title="Click to edit Organization Name (English)">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="ministry-title edit-inline" contenteditable="true" id="hdr_ministry" title="Click to edit Ministry details">श्रम एवं रोजगार मंत्रालय, भारत सरकार / (Ministry of Labour & Employment, Govt. of India)</div>
+          
+          <div class="office-name-row">
+            <span class="office-title-hi edit-inline" contenteditable="true" id="hdr_office_hi" title="Click to edit Office Name (Hindi)">क्षेत्रीय कार्यालय, फरीदाबाद</span>
+            <span>|</span>
+            <span class="office-title-en edit-inline" contenteditable="true" id="hdr_office_en" title="Click to edit Office Name (English)">Regional Office: Faridabad - 121007</span>
+          </div>
+
+          <div class="office-address-line edit-inline" contenteditable="true" id="hdr_address" title="Click to edit Office Address">
+            Bhavishay Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)
+          </div>
+
+          <div class="office-contact-line edit-inline" contenteditable="true" id="hdr_contact" title="Click to edit Phone and Email">
+            Phone: 0129-2288068 &nbsp;|&nbsp; Email: ro.faridabad@epfindia.gov.in
+          </div>
+        </div>
+
+        <div class="letterhead-logo-right">
+          <img src="image/emblem_of_india.svg" alt="State Emblem of India" class="hdr-logo emblem-logo">
+        </div>
+      </header>
+
+      <!-- Reference No. and Date Bar -->
+      <div class="doc-meta-row">
+        <div class="meta-item">
+          <span>पत्रांक / No. :</span>
+          <input type="text" class="fill-input uppercase" id="metaRefNo" value="HR/FBD/AS/106" style="width: 220px; font-weight: 700;">
+        </div>
+        <div class="meta-item">
+          <span>दिनांक / Date :</span>
+          <input type="text" class="fill-input" id="metaDate" value="27.08.2026" style="width: 110px; font-weight: 700; text-align: center;">
+        </div>
+      </div>
+
+      <!-- Office Note Header -->
+      <div class="office-note-heading">
+        <span class="office-note-badge edit-inline" contenteditable="true" title="Click to edit heading">कार्यालय टिप्पणी / OFFICE NOTE</span>
+      </div>
+
+      <!-- Subject Block -->
+      <div class="subject-block">
+        विषय / Subject : <span class="edit-inline" contenteditable="true" id="docSubject">Requisition for Stationery Items for Office Use (कार्यालय उपयोग हेतु स्टेशनरी सामग्री मांग पत्र)</span>
+      </div>
+
+      <!-- Opening Note / Body Paragraph -->
+      <div class="opening-note edit-inline" contenteditable="true" id="openingText">
+        It is requested that the following stationery items may kindly be issued for day-to-day official work and smooth functioning of the office:
+      </div>
+
+      <!-- Interactive Stationery Items Table -->
+      <table class="items-table" id="stationeryTable">
+        <thead>
+          <tr>
+            <th style="width: 42px;">क्र.सं.<br>S.No.</th>
+            <th style="text-align: left;">सामग्री का विवरण / Name & Description of Stationery Item</th>
+            <th style="width: 110px;">इकाई<br>Unit</th>
+            <th style="width: 140px;">मांगी गई मात्रा<br>Qty Required</th>
+            <th style="width: 130px;">जारी मात्रा<br>Qty Issued</th>
+            <th style="width: 42px;" class="col-action no-print">हटाएं<br>Del</th>
+          </tr>
+        </thead>
+        <tbody id="stationeryTableBody">
+          <!-- Rows will be injected and managed by JS -->
+        </tbody>
+      </table>
+
+      <!-- Table Action Bar (Add Item & Quick Add Chips) -->
+      <div class="table-actions-row no-print">
+        <button type="button" class="btn-add-item" id="btnAddRow" title="Add another stationery row">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+          नया आइटम जोड़ें (+ Add Item)
+        </button>
+
+        <div class="quick-add-tags">
+          <span style="font-size: 10.5px; font-weight: 700; color: #64748b;">त्वरित जोड़ें (Quick Add):</span>
+          <span class="quick-tag" onclick="quickAddItem('A4 Size Paper', 'Reams', 5)">+ A4 Paper</span>
+          <span class="quick-tag" onclick="quickAddItem('Ball Pens (Blue)', 'Nos.', 5)">+ Blue Pen</span>
+          <span class="quick-tag" onclick="quickAddItem('Ball Pens (Black)', 'Nos.', 5)">+ Black Pen</span>
+          <span class="quick-tag" onclick="quickAddItem('Stapler Pins', 'Boxes', 5)">+ Stapler Pin</span>
+          <span class="quick-tag" onclick="quickAddItem('File Folders', 'Nos.', 5)">+ Folders</span>
+          <span class="quick-tag" onclick="quickAddItem('Note Sheets/Pads', 'Nos.', 5)">+ Note Sheets</span>
+        </div>
+      </div>
+
+      <!-- Closing Paragraph -->
+      <div class="closing-para edit-inline" contenteditable="true" id="closingText">
+        The above stationery items are required for routine official work. It is, therefore, requested that the above-mentioned stationery items may kindly be provided/issued at the earliest, so as to ensure the smooth and uninterrupted functioning of the office.<br>
+        <strong>Submitted for kind consideration and necessary action, please.</strong>
+      </div>
+
+      <!-- Signatures Row -->
+      <div class="signatures-section">
+        <div class="addressed-to-box">
+          <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 2px;">To,</div>
+          <div style="padding-left: 6px; line-height: 1.5;">
+            <div style="font-weight: 700;">APFC / Section Supervisor</div>
+            <div>Stationery Cell / Caretaker Section</div>
+            <div>EPFO, Regional Office</div>
+          </div>
+        </div>
+
+        <div class="requester-sign-box">
+          <div style="margin-bottom: 28px;">हस्ताक्षर / Signature: __________________________</div>
+          <div>नाम / Name: <input type="text" class="fill-input uppercase" id="reqName" placeholder="Employee Name" style="width: 170px; font-weight: 700;"></div>
+          <div style="margin-top: 4px;">पदनाम / Designation: <input type="text" class="fill-input uppercase" id="reqDesig" placeholder="Section Officer / SSSA" style="width: 170px;"></div>
+          <div style="margin-top: 4px;">अनुभाग / Section: <input type="text" class="fill-input uppercase" id="reqSection" placeholder="Administration / Accounts" style="width: 170px;"></div>
+        </div>
+      </div>
+
+      <!-- Clean Sheet Footer -->
+      <div class="sheet-footer">
+        <span>EPFO Regional Office Stationery Management Portal</span>
+        <span>Requisition Slip — Form AS-106</span>
+      </div>
+
+    </article>
+
+  </main>
+
+  <!-- Common Suggestions Datalist for Items and Units -->
+  <datalist id="stationerySuggestions">
+    <option value="A4 Size Paper (75 GSM)">
+    <option value="A4 Size Paper (80 GSM)">
+    <option value="Legal Size Paper">
+    <option value="Ball Pens (Blue)">
+    <option value="Ball Pens (Black)">
+    <option value="Ball Pens (Red)">
+    <option value="Gel Pens (Blue)">
+    <option value="Pencils (HB)">
+    <option value="Erasers">
+    <option value="Sharpeners">
+    <option value="Stapler (Small)">
+    <option value="Stapler (Heavy Duty)">
+    <option value="Stapler Pins (No. 10)">
+    <option value="Stapler Pins (24/6)">
+    <option value="File Folders (Office Laminated)">
+    <option value="File Board with Lace">
+    <option value="Note Sheets/Pads (Green/White)">
+    <option value="Permanent Markers (Black/Blue)">
+    <option value="Highlighters (Assorted)">
+    <option value="Whiteboard Markers">
+    <option value="Paper Pins / Gem Clips">
+    <option value="Binder Clips (19mm / 25mm / 32mm)">
+    <option value="Glue Sticks / Adhesive Paste">
+    <option value="Correction Pen / Whitener">
+    <option value="Sticky Notes / Post-it (3x3)">
+    <option value="Stamp Pad (Blue/Purple)">
+    <option value="Stamp Pad Ink (100ml)">
+    <option value="Punching Machine (Single/Double Hole)">
+    <option value="Scissors (Medium/Large)">
+    <option value="Carbon Paper (Blue/Black)">
+    <option value="Calculator (12 Digit Citizen)">
+    <option value="Plastic Ruler / Scale (12 Inch)">
+  </datalist>
+
+  <datalist id="unitSuggestions">
+    <option value="Reams">
+    <option value="Nos.">
+    <option value="Boxes">
+    <option value="Pkts">
+    <option value="Pads">
+    <option value="Sets">
+    <option value="Rolls">
+    <option value="Bottles">
+    <option value="Pairs">
+  </datalist>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    (function () {
+      // Default Items (Default Qty Required: 5)
+      const defaultItems = [
+        { name: "A4 Size Paper", unit: "Reams", qty: 5 },
+        { name: "Ball Pens (Blue)", unit: "Nos.", qty: 5 },
+        { name: "Ball Pens (Black)", unit: "Nos.", qty: 5 },
+        { name: "Pencils", unit: "Nos.", qty: 5 },
+        { name: "Erasers", unit: "Nos.", qty: 5 },
+        { name: "Stapler", unit: "Nos.", qty: 5 },
+        { name: "Stapler Pins", unit: "Boxes", qty: 5 },
+        { name: "File Folders", unit: "Nos.", qty: 5 },
+        { name: "Note Sheets/Pads", unit: "Nos.", qty: 5 },
+        { name: "Permanent Markers", unit: "Nos.", qty: 5 }
+      ];
+
+      const tbody = document.getElementById('stationeryTableBody');
+
+      // Function to render row
+      function createRow(item, index) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="text-center" style="font-weight: 700;">${index}</td>
+          <td>
+            <input type="text" list="stationerySuggestions" class="fill-input item-name" value="${item.name || ''}" placeholder="Item Name (e.g. A4 Paper, Pens)">
+          </td>
+          <td>
+            <input type="text" list="unitSuggestions" class="fill-input text-center item-unit" value="${item.unit || 'Nos.'}" placeholder="Unit">
+          </td>
+          <td>
+            <div class="qty-control-wrap">
+              <button type="button" class="btn-qty btn-minus no-print" title="Decrease quantity" onclick="adjustQty(this, -1)">-</button>
+              <input type="number" class="qty-input item-qty" value="${item.qty !== undefined ? item.qty : 5}" min="1" max="9999" onchange="validateQty(this)">
+              <button type="button" class="btn-qty btn-plus no-print" title="Increase quantity" onclick="adjustQty(this, 1)">+</button>
+            </div>
+          </td>
+          <td>
+            <input type="text" class="fill-input text-center item-issued" placeholder="—" style="color: #0369a1; font-weight: 700;">
+          </td>
+          <td class="text-center col-action no-print">
+            <button type="button" class="btn-del-row" title="Delete Row" onclick="deleteRow(this)">✕</button>
+          </td>
+        `;
+        return tr;
+      }
+
+      // Re-index row numbers
+      function updateRowNumbers() {
+        Array.from(tbody.children).forEach((row, idx) => {
+          row.querySelector('td:first-child').textContent = idx + 1;
+        });
+      }
+
+      // Populate Table
+      function loadDefaultData() {
+        tbody.innerHTML = '';
+        defaultItems.forEach((item, idx) => {
+          tbody.appendChild(createRow(item, idx + 1));
+        });
+        document.getElementById('metaRefNo').value = 'HR/FBD/AS/106';
+        document.getElementById('metaDate').value = '27.08.2026';
+        document.getElementById('reqName').value = 'RAMESH KUMAR';
+        document.getElementById('reqDesig').value = 'SENIOR SOCIAL SECURITY ASSISTANT (SSSA)';
+        document.getElementById('reqSection').value = 'ADMINISTRATION SECTION';
+      }
+
+      // Add Row
+      window.addRow = function (itemObj) {
+        const item = itemObj || { name: '', unit: 'Nos.', qty: 5 };
+        const rowCount = tbody.children.length + 1;
+        tbody.appendChild(createRow(item, rowCount));
+        const lastRow = tbody.lastElementChild;
+        if (!itemObj) {
+          lastRow.querySelector('.item-name').focus();
+        }
+      };
+
+      // Quick Add Item
+      window.quickAddItem = function (name, unit, qty) {
+        window.addRow({ name, unit, qty: qty || 5 });
+      };
+
+      // Delete Row
+      window.deleteRow = function (btn) {
+        if (tbody.children.length <= 1) {
+          alert('कम से कम एक सामग्री पंक्ति (Row) रहना आवश्यक है।');
+          return;
+        }
+        btn.closest('tr').remove();
+        updateRowNumbers();
+      };
+
+      // Adjust Quantity with [+] and [-]
+      window.adjustQty = function (btn, delta) {
+        const input = btn.parentElement.querySelector('.item-qty');
+        let current = parseInt(input.value, 10);
+        if (isNaN(current)) current = 1;
+        let next = current + delta;
+        if (next < 1) next = 1;
+        input.value = next;
+      };
+
+      window.validateQty = function (input) {
+        let val = parseInt(input.value, 10);
+        if (isNaN(val) || val < 1) {
+          input.value = 1;
+        }
+      };
+
+      // Event Listeners
+      document.getElementById('btnAddRow').addEventListener('click', () => window.addRow());
+      document.getElementById('btnSampleData').addEventListener('click', loadDefaultData);
+
+      document.getElementById('btnClearForm').addEventListener('click', () => {
+        if (!confirm('क्या आप स्टेशनरी तालिका को रिक्त (Clear) करना चाहते हैं?')) return;
+        tbody.innerHTML = '';
+        window.addRow();
+      });
+
+      // -------------------------------------------------------------
+      // Paper Size Selector (A4 / Legal)
+      // -------------------------------------------------------------
+      const btnSizeA4 = document.getElementById('btnSizeA4');
+      const btnSizeLegal = document.getElementById('btnSizeLegal');
+      const dynamicPageSizeStyle = document.getElementById('dynamicPageSizeStyle');
+
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          document.body.classList.remove('size-a4');
+          document.body.classList.add('size-legal');
+          btnSizeLegal.classList.add('active');
+          btnSizeA4.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: legal portrait;
+              margin: 8mm 10mm 8mm 10mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(s => s.style.minHeight = '355.6mm');
+        } else {
+          document.body.classList.remove('size-legal');
+          document.body.classList.add('size-a4');
+          btnSizeA4.classList.add('active');
+          btnSizeLegal.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = `
+            @page {
+              size: A4 portrait;
+              margin: 8mm 10mm 8mm 10mm;
+            }
+          `;
+          document.querySelectorAll('.form-sheet').forEach(s => s.style.minHeight = '297mm');
+        }
+      }
+
+      btnSizeA4.addEventListener('click', () => setPaperSize('a4'));
+      btnSizeLegal.addEventListener('click', () => setPaperSize('legal'));
+
+      // -------------------------------------------------------------
+      // Save as PDF (html2pdf.js)
+      // -------------------------------------------------------------
+      document.getElementById('btnSavePdf').addEventListener('click', function () {
+        const refNo = document.getElementById('metaRefNo').value.trim() || 'Stationery_Requisition';
+        const filename = `Stationery_Requisition_${refNo.replace(/[\/\\:]/g, '_')}.pdf`;
+        const area = document.getElementById('printableFormArea');
+
+        const opt = {
+          margin: [6, 8, 6, 8],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: 'mm', format: document.body.classList.contains('size-legal') ? 'legal' : 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        const btn = this;
+        const originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Generating PDF...';
+
+        document.body.classList.add('exporting-pdf');
+
+        html2pdf().set(opt).from(area).save().then(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+        }).catch(err => {
+          console.error(err);
+          btn.disabled = false;
+          btn.innerHTML = originalHtml;
+          alert('PDF बनाने में समस्या आई, कृपया Print Form बटन पर क्लिक करके Save as PDF चुनें।');
+        }).finally(() => {
+          document.body.classList.remove('exporting-pdf');
+        });
+      });
+
+      // -------------------------------------------------------------
+      // Print Form
+      // -------------------------------------------------------------
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Initial Load
+      loadDefaultData();
+
+    })();
+  </script>
+</body>
+</html>

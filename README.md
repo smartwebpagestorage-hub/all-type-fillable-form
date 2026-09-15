@@ -18,6 +18,9 @@ Open `index.html` in any modern web browser or access the published GitHub Pages
 | 3 | **[EPFO Form 10-D (Monthly Pension)](epfo-form-10d.html)** | Application for monthly pension under EPS 1995 (Full 6 Sheets) | Complete 6 pages, 12-month wages table, family particulars, descriptive roll |
 | 4 | **[G.A.R-14A: TA Bill for Tour](gar14a-ta-bill.html)** | Tour Traveling Allowance Bill under Rules 66(1) & 90(1)(i) (3 Sheets) | Journey particulars, **dynamic row addition/deletion**, **live total auto-calculation**, Part-B entitlement section |
 | 5 | **[EPFO Composite Claim Form (Aadhar)](epfo-composite-claim-aadhar.html)** | Unified single form combining **Form 19, 10C & 31** (3 Sheets) | 10 withdrawal purpose options, PAN details, Page 1 form + Pages 2-3 official instructions |
+| 6 | **[Children Education Allowance (CEA)](children-education-allowance.html)** | CEA & Hostel Subsidy claim form for Central Govt employees (4 Sheets) | 4 complete pages, expenditure table, dynamic child rows, Bonafide school certificate, self-declaration |
+| 7 | **[Stationery Requisition Form](stationery-requisition.html)** | Office Stationery Requisition Slip / Note Sheet | **Dual Logos (EPFO & Ashok Stambh)**, **Customizable Office Header**, dynamic item rows, **[+] / [-] qty adjusters**, clean 1-sheet print |
+| 8 | **[Blank Letterhead & Official Noting Sheet](epfo-letterhead-noting.html)** | Blank Letterhead & Official Drafting / Note Sheet Tool | **EPFO logo on left, Ashok Stambh on right**, 4 instant presets (Office Note, Official Letter, Office Order, Blank), Rich Text Toolbar, Multi-page support |
 
 ---
 

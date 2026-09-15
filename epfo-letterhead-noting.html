@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Blank Letterhead & Official Noting Sheet | कर्मचारी भविष्य निधि संगठन लेटरहेड एवं नोटिंग प्रपत्र</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-dark: #0369a1;
+      --accent-color: #16a34a;
+      --text-main: #000000;
+      --sheet-bg: #ffffff;
+      --desk-bg: #e2e8f0;
+      --noting-green-border: #15803d;
+      --noting-green-bg: #f0fdf4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--desk-bg);
+      font-family: 'Noto Sans Devanagari', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 60px;
+    }
+
+    /* Fixed Application Toolbar */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 56px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    /* Dropdown for Forms */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      cursor: pointer;
+    }
+
+    .nav-dropdown-toggle:hover {
+      background: #334155;
+    }
+
+    .dropdown-menu-box {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #ffffff;
+      color: #0f172a;
+      min-width: 290px;
+      border-radius: 8px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      z-index: 1100;
+    }
+
+    .nav-dropdown.active .dropdown-menu-box {
+      display: block;
+    }
+
+    .dropdown-header-tag {
+      background: #f8fafc;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .dropdown-item-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      color: #1e293b;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s;
+    }
+
+    .dropdown-item-link:hover {
+      background: #f0f9ff;
+      color: #0284c7;
+    }
+
+    .dropdown-item-link.active {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .paper-size-switcher {
+      display: flex;
+      align-items: center;
+      background: #1e293b;
+      border-radius: 6px;
+      padding: 2px 4px;
+      border: 1px solid #334155;
+    }
+
+    .switcher-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      padding: 0 6px;
+    }
+
+    .size-btn-group {
+      display: flex;
+      gap: 2px;
+    }
+
+    .btn-size-toggle {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-size-toggle.active {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .btn-primary {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: #0369a1;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: #ffffff;
+    }
+    .btn-success:hover {
+      background: #15803d;
+    }
+
+    /* Sub-bar: Document Formats & Rich Text Controls (Screen only) */
+    .formatting-toolbar {
+      width: 100%;
+      max-width: 210mm;
+      background: #ffffff;
+      margin: 12px 0 8px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .format-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f8fafc;
+      padding: 3px 6px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .format-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      color: #1e293b;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
+      cursor: pointer;
+      min-width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .format-btn:hover {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+      color: #0369a1;
+    }
+
+    .format-select {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      color: #1e293b;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Printable Sheets Container */
+    .document-sheets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding-bottom: 40px;
+      width: 100%;
+    }
+
+    /* Printable Page Sheet */
+    .form-sheet {
+      background-color: var(--sheet-bg);
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 14mm 12mm 14mm;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+      border-radius: 2px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: #000000;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    body.size-legal .form-sheet {
+      width: 215.9mm;
+      min-height: 355.6mm;
+      padding: 14mm 16mm 14mm 16mm;
+    }
+
+    /* Screen-only Sheet Badge */
+    .sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      width: fit-content;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    /* ========================================================================= */
+    /* OFFICIAL LETTERHEAD HEADER                                                */
+    /* ========================================================================= */
+    .letterhead-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px double #000000;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .letterhead-logo-left,
+    .letterhead-logo-right {
+      flex: 0 0 74px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hdr-logo {
+      display: block;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .epfo-logo {
+      width: 72px;
+      max-height: 74px;
+    }
+
+    .emblem-logo {
+      width: 52px;
+      max-height: 76px;
+    }
+
+    .letterhead-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .org-title-hi {
+      font-size: 16.5px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #000;
+    }
+
+    .org-title-en {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      color: #000;
+    }
+
+    .ministry-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #222;
+      margin: 2px 0;
+    }
+
+    .office-name-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 3px;
+    }
+
+    .office-title-hi {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .office-title-en {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .office-address-line {
+      font-size: 12.5px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .office-contact-line {
+      font-size: 12px;
+      font-weight: 500;
+      color: #333;
+      margin-top: 2px;
+    }
+
+    /* Editable inline text styling */
+    .edit-inline {
+      border: 1px dashed transparent;
+      padding: 1px 4px;
+      border-radius: 2px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .edit-inline:hover {
+      border-color: #93c5fd;
+      background-color: #f0f9ff;
+    }
+
+    .edit-inline:focus {
+      border-color: #0284c7;
+      background-color: #e0f2fe;
+    }
+
+    /* Document Reference & Date Row */
+    .doc-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0 12px 0;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fill-input {
+      border: none;
+      border-bottom: 1px dotted #333;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 600;
+      background: rgba(2, 132, 199, 0.02);
+      padding: 1px 4px;
+      color: #000;
+    }
+
+    .fill-input:focus {
+      border-bottom: 1.5px solid var(--primary-color);
+      background: #f0f9ff;
+    }
+
+    /* Subject Banner */
+    .subject-block {
+      margin: 10px 0 14px 0;
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.5;
+      padding: 6px 10px;
+      background: #f8fafc;
+      border-left: 3.5px solid #000;
+    }
+
+    /* Main Content Editable Area */
+    .document-body-editor {
+      flex: 1;
+      outline: none;
+      min-height: 200mm;
+      padding: 10px 4px;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: justify;
+      color: #000000;
+    }
+
+    .document-body-editor p {
+      margin-bottom: 12px;
+    }
+
+    .document-body-editor ol,
+    .document-body-editor ul {
+      margin-left: 26px;
+      margin-bottom: 12px;
+    }
+
+    .document-body-editor li {
+      margin-bottom: 5px;
+    }
+
+    /* Sheet Footer */
+    .sheet-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding-top: 6px;
+      border-top: 0.5px solid #ccc;
+      margin-top: 14px;
+      color: #444;
+    }
+
+    /* Page Addition / Deletion Bar (Screen only) */
+    .sheet-controls-bottom {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0 20px 0;
+    }
+
+    /* Print Specific Rules */
+    @media print {
+      body {
+        padding-top: 0 !important;
+        background: #ffffff !important;
+      }
+
+      .no-print,
+      .app-toolbar,
+      .formatting-toolbar,
+      .sheet-badge,
+      .sheet-controls-bottom {
+        display: none !important;
+      }
+
+      .document-sheets-container {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+
+      .form-sheet {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+      }
+
+      .form-sheet:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+
+      .edit-inline {
+        border: none !important;
+        background: transparent !important;
+      }
+
+      .fill-input {
+        background: transparent !important;
+        border-bottom: 0.5px dotted #000 !important;
+      }
+
+      .fill-input::placeholder {
+        color: transparent !important;
+      }
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+
+    body.size-legal {
+      --legal-dummy: 1;
+    }
+  </style>
+</head>
+<body class="size-a4">
+
+  <!-- ========================================================================= -->
+  <!-- TOP APPLICATION TOOLBAR (NO PRINT)                                        -->
+  <!-- ========================================================================= -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <!-- Back to Portal Home -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Paper Size Switcher -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF">
+        <span class="switcher-label">Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <!-- Add New Continuation Page -->
+      <button type="button" class="btn btn-secondary" id="btnAddPage" title="Add another sheet for long note/letter">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+        + Add Page
+      </button>
+
+      <!-- Print Button -->
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document or save to PDF">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        <span>Print / Save PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- FORMATTING & TEMPLATE PRESET TOOLBAR (SCREEN ONLY)                        -->
+  <!-- ========================================================================= -->
+  <aside class="formatting-toolbar no-print">
+    <!-- Office Preset Selector -->
+    <div class="format-group">
+      <span style="font-size: 11px; font-weight: 700; color: #64748b;">कार्यालय (Office):</span>
+      <select class="format-select" id="officePresetSelect">
+        <option value="faridabad" selected>क्षेत्रीय कार्यालय, फरीदाबाद</option>
+        <option value="delhinorth">क्षेत्रीय कार्यालय, दिल्ली (उत्तर)</option>
+        <option value="gurugram">क्षेत्रीय कार्यालय, गुरुग्राम</option>
+        <option value="headoffice">मुख्य कार्यालय, नई दिल्ली (Head Office)</option>
+      </select>
+    </div>
+
+    <!-- Rich Text Tools -->
+    <div class="format-group">
+      <button type="button" class="format-btn" onclick="formatDoc('bold')" title="Bold (Ctrl+B)"><b>B</b></button>
+      <button type="button" class="format-btn" onclick="formatDoc('italic')" title="Italic (Ctrl+I)"><i>I</i></button>
+      <button type="button" class="format-btn" onclick="formatDoc('underline')" title="Underline (Ctrl+U)"><u>U</u></button>
+      <button type="button" class="format-btn" onclick="formatDoc('justifyLeft')" title="Align Left">⇤</button>
+      <button type="button" class="format-btn" onclick="formatDoc('justifyCenter')" title="Align Center">⇹</button>
+      <button type="button" class="format-btn" onclick="formatDoc('justifyRight')" title="Align Right">⇥</button>
+      <button type="button" class="format-btn" onclick="formatDoc('justifyFull')" title="Justify">≡</button>
+      <button type="button" class="format-btn" onclick="formatDoc('insertOrderedList')" title="Numbered List (1, 2, 3)">1.</button>
+      <button type="button" class="format-btn" onclick="formatDoc('insertUnorderedList')" title="Bullet List">•</button>
+    </div>
+
+    <!-- Optional Insert Tools -->
+    <div class="format-group">
+      <button type="button" class="format-btn" onclick="insertSubject()" title="Insert Subject line" style="font-size: 11px; padding: 4px 8px;">+ Subject</button>
+      <button type="button" class="format-btn" onclick="insertSignature()" title="Insert Signature block" style="font-size: 11px; padding: 4px 8px;">+ Signature</button>
+    </div>
+
+    <div class="format-group">
+      <button type="button" class="format-btn" onclick="adjustFontSize(1)" title="Increase Font Size">A+</button>
+      <button type="button" class="format-btn" onclick="adjustFontSize(-1)" title="Decrease Font Size">A-</button>
+      <button type="button" class="format-btn" onclick="clearContent()" title="Clear editor content" style="color: #dc2626;">Clear</button>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN PRINTABLE SHEETS CONTAINER                                           -->
+  <!-- ========================================================================= -->
+  <main class="document-sheets-container" id="sheetsContainer">
+
+    <!-- SHEET 1 -->
+    <article class="form-sheet" id="sheet-1">
+      
+      <div class="sheet-badge no-print">
+        <span>Sheet 1</span>
+        <span>• Blank Letterhead</span>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- OFFICIAL LETTERHEAD HEADER (EPFO LEFT, ASHOK STAMBH RIGHT)                -->
+      <!-- ========================================================================= -->
+      <header class="letterhead-header">
+        <div class="letterhead-logo-left">
+          <img src="image/epfo_logo.png" alt="EPFO Logo" class="hdr-logo epfo-logo">
+        </div>
+
+        <div class="letterhead-center">
+          <div class="org-title-hi edit-inline" contenteditable="true" id="hdr_org_hi" title="Click to edit Organization Name (Hindi)">कर्मचारी भविष्य निधि संगठन</div>
+          <div class="org-title-en edit-inline" contenteditable="true" id="hdr_org_en" title="Click to edit Organization Name (English)">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="ministry-title edit-inline" contenteditable="true" id="hdr_ministry" title="Click to edit Ministry details">श्रम एवं रोजगार मंत्रालय, भारत सरकार / (Ministry of Labour & Employment, Govt. of India)</div>
+          
+          <div class="office-name-row">
+            <span class="office-title-hi edit-inline" contenteditable="true" id="hdr_office_hi" title="Click to edit Office Name (Hindi)">क्षेत्रीय कार्यालय, फरीदाबाद</span>
+            <span>|</span>
+            <span class="office-title-en edit-inline" contenteditable="true" id="hdr_office_en" title="Click to edit Office Name (English)">Regional Office: Faridabad - 121007</span>
+          </div>
+
+          <div class="office-address-line edit-inline" contenteditable="true" id="hdr_address" title="Click to edit Office Address">
+            Bhavishya Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)
+          </div>
+
+          <div class="office-contact-line edit-inline" contenteditable="true" id="hdr_contact" title="Click to edit Phone and Email">
+            Phone: 0129-2288068 &nbsp;|&nbsp; Email: ro.faridabad@epfindia.gov.in &nbsp;|&nbsp; Web: www.epfindia.gov.in
+          </div>
+        </div>
+
+        <div class="letterhead-logo-right">
+          <img src="image/emblem_of_india.svg" alt="State Emblem of India" class="hdr-logo emblem-logo">
+        </div>
+      </header>
+
+      <!-- Reference No. and Date Bar -->
+      <div class="doc-meta-row" id="docMetaRow">
+        <div class="meta-item">
+          <span id="lblRefNo">पत्रांक / Ref No. :</span>
+          <input type="text" class="fill-input uppercase" id="metaRefNo" value="EPFO/RO/FBD/2026/___" style="width: 260px; font-weight: 700;">
+        </div>
+        <div class="meta-item">
+          <span id="lblDate">दिनांक / Date :</span>
+          <input type="text" class="fill-input" id="metaDate" value="15.09.2026" style="width: 110px; font-weight: 700; text-align: center;">
+        </div>
+      </div>
+
+      <!-- Clean Full-Page Editable Document Canvas -->
+      <div class="document-body-editor" id="docEditor" contenteditable="true" spellcheck="false">
+        <p><br></p>
+      </div>
+
+      <!-- Clean Sheet Footer -->
+      <div class="sheet-footer">
+        <span></span>
+        <span class="edit-inline" contenteditable="true">Page 1 of 1</span>
+      </div>
+
+    </article>
+
+  </main>
+
+  <script>
+    // Helper Insert Functions for Quick Drafting
+    function insertSubject() {
+      const editor = document.getElementById('docEditor');
+      editor.focus();
+      document.execCommand('insertHTML', false, '<p style="margin: 8px 0; font-weight: 700; font-size: 14px;"><strong>विषय / Subject : __________________________________________________</strong></p><p><br></p>');
+    }
+
+    function insertSignature() {
+      const editor = document.getElementById('docEditor');
+      editor.focus();
+      document.execCommand('insertHTML', false, '<br><div style="display: flex; justify-content: flex-end; text-align: right; margin-top: 25px;"><div><div style="margin-bottom: 28px;">हस्ताक्षर / Signature: __________________________</div><div><strong>नाम व पदनाम / Name & Designation</strong></div><div>कार्यालय / Office</div></div></div><p><br></p>');
+    }
+
+    // Apply Office Preset
+    function applyOffice(key) {
+      const o = officePresets[key];
+      if (!o) return;
+
+      document.getElementById('hdr_office_hi').textContent = o.hi;
+      document.getElementById('hdr_office_en').textContent = o.en;
+      document.getElementById('hdr_address').textContent = o.addr;
+      document.getElementById('hdr_contact').textContent = o.contact;
+
+      const refInput = document.getElementById('metaRefNo');
+      if (refInput && !refInput.value.includes('/')) {
+        refInput.value = o.refPrefix + '2026/___';
+      }
+    }
+
+    // Rich Text Document Commands
+    function formatDoc(cmd, value = null) {
+      document.getElementById('docEditor').focus();
+      document.execCommand(cmd, false, value);
+    }
+
+    let currentFontSize = 13.5;
+    function adjustFontSize(delta) {
+      currentFontSize = Math.min(Math.max(currentFontSize + delta, 11), 18);
+      document.getElementById('docEditor').style.fontSize = currentFontSize + 'px';
+    }
+
+    function clearContent() {
+      if (confirm('क्या आप एडिटर का टेक्स्ट मिटाना चाहते हैं? (Do you want to clear content?)')) {
+        document.getElementById('docEditor').innerHTML = '<p><br></p>';
+        document.getElementById('docEditor').focus();
+      }
+    }
+
+    // Add Continuation Page
+    let sheetCount = 1;
+    function addNewPage() {
+      sheetCount++;
+      const container = document.getElementById('sheetsContainer');
+      const newSheet = document.createElement('article');
+      newSheet.className = 'form-sheet';
+      newSheet.id = `sheet-${sheetCount}`;
+
+      newSheet.innerHTML = `
+        <div class="sheet-badge no-print" style="display: flex; justify-content: space-between; width: 100%;">
+          <span>Sheet ${sheetCount} (Continuation Sheet)</span>
+          <button type="button" onclick="removeSheet(${sheetCount})" style="background: #fee2e2; border: 1px solid #fecaca; color: #dc2626; border-radius: 3px; padding: 1px 6px; font-size: 11px; cursor: pointer;">- Delete Page</button>
+        </div>
+
+        <div style="border-bottom: 1.5px solid #000; padding-bottom: 4px; margin-bottom: 12px; display: flex; justify-content: space-between; font-size: 12px; font-weight: 700;">
+          <span>कर्मचारी भविष्य निधि संगठन (EPFO) — पृष्ठ संख्या / Page ${sheetCount}</span>
+          <span>फ़ाइल सं. / File No: <input type="text" class="fill-input" style="width: 140px; font-size: 11.5px;" value="${document.getElementById('metaRefNo').value}"></span>
+        </div>
+
+        <div class="document-body-editor" contenteditable="true" style="min-height: 230mm;" spellcheck="false">
+          <p>[यहाँ पृष्ठ ${sheetCount} की नोटिंग / विवरण जारी रखें... Continue note / letter content here...]</p>
+        </div>
+
+        <div class="sheet-footer">
+          <span>कर्मचारी भविष्य निधि संगठन</span>
+          <span>Page ${sheetCount}</span>
+        </div>
+      `;
+
+      container.appendChild(newSheet);
+      newSheet.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function removeSheet(num) {
+      const sheet = document.getElementById(`sheet-${num}`);
+      if (sheet && confirm(`पृष्ठ ${num} हटाएं? (Delete sheet ${num}?)`)) {
+        sheet.remove();
+      }
+    }
+
+    // Initialize Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Office Preset change
+      document.getElementById('officePresetSelect').addEventListener('change', (e) => {
+        applyOffice(e.target.value);
+      });
+
+      // Paper Size Toggle
+      const btnA4 = document.getElementById('btnSizeA4');
+      const btnLegal = document.getElementById('btnSizeLegal');
+      btnA4.addEventListener('click', () => {
+        document.body.classList.remove('size-legal');
+        document.body.classList.add('size-a4');
+        btnA4.classList.add('active');
+        btnLegal.classList.remove('active');
+      });
+
+      btnLegal.addEventListener('click', () => {
+        document.body.classList.remove('size-a4');
+        document.body.classList.add('size-legal');
+        btnLegal.classList.add('active');
+        btnA4.classList.remove('active');
+      });
+
+      // Add Page button
+      document.getElementById('btnAddPage').addEventListener('click', addNewPage);
+
+      // Print Button
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Default Date setup
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const yyyy = today.getFullYear();
+      document.getElementById('metaDate').value = `${dd}.${mm}.${yyyy}`;
+    });
+  </script>
+</body>
+</html>
