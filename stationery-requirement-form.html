@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Stationery Requisition Office Note | कार्यालय उपयोग हेतु लेखन सामग्री मांग प्रपत्र</title>
+  
+  <!-- Google Fonts: Inter and Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf.js for direct high-quality PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portal.css">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 4mm 6mm 4mm 6mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-hover: #0369a1;
+      --text-main: #000000;
+      --border-dark: #000000;
+      --bg-page: #f1f5f9;
+      --paper-bg: #ffffff;
+      --accent-color: #0369a1;
+      --danger-color: #dc2626;
+      --danger-hover: #b91c1c;
+      --success-color: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .document-container {
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 80px 16px;
+    }
+
+    /* Standard A4 Paper Form Container */
+    .form-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 8mm 12mm 8mm 12mm;
+      background: var(--paper-bg);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+      position: relative;
+      color: #000000;
+      font-size: 11px;
+      box-sizing: border-box;
+    }
+
+    body.size-legal .form-sheet {
+      min-height: 356mm;
+    }
+
+    /* Screen-Only Quick Controls Banner */
+    .screen-control-bar {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .quick-add-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .quick-add-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1e40af;
+      margin-right: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chip-btn {
+      background: #ffffff;
+      border: 1px solid #93c5fd;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 9px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chip-btn:hover {
+      background: #dbeafe;
+      border-color: #3b82f6;
+      color: #1e40af;
+      transform: translateY(-1px);
+    }
+
+    /* Organization Header */
+    .org-header-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid #000000;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      gap: 12px;
+    }
+
+    .epfo-logo-wrap {
+      flex-shrink: 0;
+      width: 60px;
+      text-align: center;
+    }
+
+    .epfo-logo-img {
+      width: 56px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-center-info {
+      flex: 1;
+      text-align: center;
+    }
+
+    .org-hi {
+      font-size: 16.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #000000;
+      margin-bottom: 1px;
+      line-height: 1.2;
+    }
+
+    .org-en {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #000000;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      line-height: 1.2;
+    }
+
+    .org-sub-hi {
+      font-size: 11px;
+      font-weight: 500;
+      color: #334155;
+      margin-bottom: 2px;
+    }
+
+    .office-editable-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .office-lbl {
+      font-weight: 700;
+      font-size: 12px;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    .office-input {
+      border: 1px dashed #94a3b8;
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #000000;
+      min-width: 380px;
+      max-width: 92%;
+      text-align: center;
+      background: #fafafa;
+      transition: all 0.2s ease;
+    }
+
+    .office-input:focus {
+      outline: none;
+      border: 1px solid var(--primary-color);
+      background: #ffffff;
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+    }
+
+    .office-input:hover {
+      border-color: #0284c7;
+      background: #f0f9ff;
+    }
+
+    .header-right-meta {
+      flex-shrink: 0;
+      text-align: right;
+      font-size: 11px;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      min-width: 115px;
+    }
+
+    .portal-link-text {
+      font-weight: 700;
+      color: #0284c7;
+      text-decoration: none;
+    }
+
+    .badge-iso {
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    /* Note Title Banner */
+    .note-title-box {
+      text-align: center;
+      margin-bottom: 6px;
+      padding: 4px 8px;
+      background: #f8fafc;
+      border: 1.5px solid #000000;
+      border-radius: 4px;
+    }
+
+    .note-heading-hi {
+      font-size: 14.5px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-decoration: underline;
+    }
+
+    .note-heading-en {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 1px;
+    }
+
+    /* Meta Details Bar (File No. & Date) */
+    .meta-details-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 12px;
+      gap: 12px;
+    }
+
+    .meta-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .meta-group label {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .meta-input {
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-family: inherit;
+      background: #ffffff;
+      min-width: 170px;
+    }
+
+    .meta-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+    }
+
+    /* Subject & Preamble */
+    .subject-section {
+      background: #fdfdfd;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 6px 10px;
+      margin-bottom: 6px;
+    }
+
+    .subject-line {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 12.5px;
+    }
+
+    .subject-label {
+      font-weight: 800;
+      white-space: nowrap;
+      color: #000000;
+    }
+
+    .subject-text-input {
+      flex: 1;
+      font-weight: 700;
+      font-size: 12.5px;
+      border: none;
+      border-bottom: 1px dotted #64748b;
+      padding: 1px 3px;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    .subject-text-input:focus {
+      outline: none;
+      border-bottom: 1.5px solid var(--primary-color);
+      background: #f8fafc;
+    }
+
+    .preamble-line {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .section-select-input {
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #ffffff;
+      min-width: 220px;
+    }
+
+    .section-select-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    /* Main Stationery Table */
+    .table-container {
+      width: 100%;
+      margin-bottom: 6px;
+      overflow-x: auto;
+    }
+
+    .stationery-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #000000;
+      font-size: 11.5px;
+    }
+
+    .stationery-table th {
+      background: #f1f5f9;
+      color: #000000;
+      font-weight: 700;
+      border: 1px solid #000000;
+      padding: 4px 6px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 1.25;
+      font-size: 12px;
+    }
+
+    .stationery-table td {
+      border: 1px solid #000000;
+      padding: 2.5px 5px;
+      vertical-align: middle;
+    }
+
+    .col-sno {
+      width: 44px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .col-item-name {
+      width: 48%;
+    }
+
+    .col-qty {
+      width: 26%;
+    }
+
+    .col-remarks {
+      width: 20%;
+    }
+
+    .col-action {
+      width: 38px;
+      text-align: center;
+    }
+
+    /* Editable Fields inside Table */
+    .item-input {
+      width: 100%;
+      border: 1px solid transparent;
+      padding: 3px 6px;
+      font-size: 12px;
+      font-family: inherit;
+      background: transparent;
+      border-radius: 3px;
+    }
+
+    .item-input:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+
+    .item-input:focus {
+      outline: none;
+      border: 1px solid var(--primary-color);
+      background: #ffffff;
+      box-shadow: 0 0 0 1px rgba(2, 132, 199, 0.2);
+    }
+
+    /* Quantity Control: 1 to 10 Select + Unit */
+    .qty-control-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .qty-select {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 4px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      background: #ffffff;
+      color: #0f172a;
+      min-width: 54px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .qty-select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .custom-qty-box {
+      width: 48px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 4px;
+      border: 1px solid #3b82f6;
+      border-radius: 4px;
+      text-align: center;
+      display: none;
+    }
+
+    .unit-select {
+      font-size: 12px;
+      padding: 2px 4px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #ffffff;
+      color: #334155;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .unit-select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .remarks-input {
+      width: 100%;
+      border: 1px solid transparent;
+      padding: 3px 6px;
+      font-size: 11.5px;
+      font-family: inherit;
+      background: transparent;
+      border-radius: 3px;
+      color: #475569;
+    }
+
+    .remarks-input:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+
+    .remarks-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* Delete Row Button */
+    .btn-delete-row {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      padding: 3px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .btn-delete-row:hover {
+      color: var(--danger-color);
+      background: #fee2e2;
+      transform: scale(1.1);
+    }
+
+    /* Table Actions Bottom Bar */
+    .table-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+
+    .btn-add-item {
+      background: #f0fdf4;
+      border: 1px dashed #22c55e;
+      color: #15803d;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-add-item:hover {
+      background: #22c55e;
+      color: #ffffff;
+      border-style: solid;
+      box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+    }
+
+    .items-count-tag {
+      font-size: 11.5px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Closing Justification Note */
+    .closing-note-box {
+      font-size: 11px;
+      line-height: 1.4;
+      text-align: justify;
+      margin-bottom: 8px;
+      padding: 4px 8px;
+      border-left: 3px solid #000000;
+      background: #fcfcfc;
+    }
+
+    .closing-note-hi {
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .closing-note-en {
+      font-weight: 500;
+      color: #1e293b;
+    }
+
+    /* Signatures Section: Right-aligned for Indenting Official */
+    .signatures-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .sign-block-right {
+      width: 280px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .sign-space {
+      height: 26px;
+      border-bottom: 1px dotted #94a3b8;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: flex-end;
+      color: #94a3b8;
+      font-size: 10px;
+      font-style: italic;
+    }
+
+    .sign-line {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+    }
+
+    .sign-line label {
+      font-weight: 700;
+      white-space: nowrap;
+      min-width: 70px;
+    }
+
+    .sign-input {
+      border: none;
+      border-bottom: 1px solid #94a3b8;
+      padding: 1px 3px;
+      font-size: 11.5px;
+      font-family: inherit;
+      width: 100%;
+      background: transparent;
+    }
+
+    .sign-input:focus {
+      outline: none;
+      border-bottom: 1.5px solid var(--primary-color);
+      background: #f8fafc;
+    }
+
+    /* Addressed To Box */
+    .addressing-box {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      padding: 5px 10px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 4px;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .address-to-title {
+      font-weight: 700;
+      color: #0f172a;
+      text-decoration: underline;
+    }
+
+    /* Store Issue & Receipt Voucher Box */
+    .store-issue-voucher {
+      border: 1.5px solid #000000;
+      border-radius: 4px;
+      padding: 5px 10px;
+      background: #ffffff;
+      margin-top: 4px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .voucher-title {
+      text-align: center;
+      font-weight: 800;
+      font-size: 11.5px;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 3px;
+      margin-bottom: 5px;
+    }
+
+    .voucher-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .voucher-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 10.5px;
+      line-height: 1.25;
+    }
+
+    .voucher-space {
+      height: 20px;
+      border-bottom: 1px dotted #94a3b8;
+      margin-bottom: 2px;
+    }
+
+    /* ==========================================================================
+       Print & PDF Single-Page Layout (@media print & .exporting-pdf)
+       Guarantees EXACTLY ONE A4 PAGE output with zero spillover
+       ========================================================================== */
+    @media print {
+      html, body {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .no-print,
+      .screen-control-bar,
+      .table-actions-bar,
+      .col-action,
+      .btn-delete-row,
+      .btn-add-item {
+        display: none !important;
+      }
+
+      .document-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+      }
+
+      .form-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+      }
+
+      .org-header-wrapper {
+        padding-bottom: 3px !important;
+        margin-bottom: 4px !important;
+        border-bottom: 1.5px solid #000000 !important;
+      }
+
+      .epfo-logo-wrap {
+        width: 50px !important;
+      }
+
+      .epfo-logo-img {
+        width: 46px !important;
+      }
+
+      .org-hi {
+        font-size: 15px !important;
+        margin-bottom: 0px !important;
+        line-height: 1.15 !important;
+      }
+
+      .org-en {
+        font-size: 12px !important;
+        margin-bottom: 1px !important;
+        line-height: 1.15 !important;
+      }
+
+      .org-sub-hi {
+        font-size: 9.5px !important;
+        margin-bottom: 1px !important;
+      }
+
+      .office-editable-row {
+        margin-top: 1px !important;
+      }
+
+      .office-input {
+        font-size: 11px !important;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+        font-weight: 700 !important;
+      }
+
+      .header-right-meta {
+        font-size: 9.5px !important;
+        min-width: 90px !important;
+        gap: 1px !important;
+      }
+
+      .note-title-box {
+        padding: 2px 4px !important;
+        margin-bottom: 4px !important;
+        border: 1px solid #000000 !important;
+      }
+
+      .note-heading-hi {
+        font-size: 12.5px !important;
+      }
+
+      .note-heading-en {
+        font-size: 11px !important;
+      }
+
+      .meta-details-bar {
+        margin-bottom: 3px !important;
+        font-size: 10px !important;
+      }
+
+      .meta-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+        font-weight: 600 !important;
+        font-size: 10.5px !important;
+      }
+
+      .subject-section {
+        padding: 3px 6px !important;
+        margin-bottom: 4px !important;
+        border: 1px solid #000000 !important;
+      }
+
+      .subject-line {
+        font-size: 11px !important;
+        margin-bottom: 2px !important;
+        gap: 4px !important;
+      }
+
+      .subject-text-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+      }
+
+      .preamble-line {
+        font-size: 10.5px !important;
+        line-height: 1.25 !important;
+        gap: 4px !important;
+      }
+
+      .section-select-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+        font-weight: 700 !important;
+        font-size: 10.5px !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+      }
+
+      .table-container {
+        margin-bottom: 3px !important;
+      }
+
+      .stationery-table {
+        border: 1.5px solid #000000 !important;
+        width: 100% !important;
+        font-size: 10px !important;
+      }
+
+      .stationery-table th {
+        border: 1px solid #000000 !important;
+        padding: 2.5px 4px !important;
+        font-size: 10px !important;
+        line-height: 1.15 !important;
+        background: #f1f5f9 !important;
+      }
+
+      .stationery-table td {
+        border: 1px solid #000000 !important;
+        padding: 2px 4px !important;
+        font-size: 10px !important;
+        line-height: 1.15 !important;
+      }
+
+      .item-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-size: 10.5px !important;
+        font-weight: 600 !important;
+      }
+
+      .qty-control-wrapper {
+        display: flex !important;
+        gap: 2px !important;
+      }
+
+      .qty-select, .unit-select {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        min-width: 0 !important;
+      }
+
+      .custom-qty-box {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-size: 10px !important;
+      }
+
+      .remarks-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-size: 9.5px !important;
+      }
+
+      .closing-note-box {
+        padding: 2px 4px !important;
+        margin-bottom: 4px !important;
+        font-size: 9.5px !important;
+        line-height: 1.25 !important;
+        border-left: 2px solid #000000 !important;
+      }
+
+      .signatures-container {
+        margin-top: 3px !important;
+        margin-bottom: 3px !important;
+      }
+
+      .sign-block-right {
+        width: 260px !important;
+        gap: 1px !important;
+      }
+
+      .sign-space {
+        height: 20px !important;
+        margin-bottom: 1px !important;
+        font-size: 9px !important;
+        border-bottom: 1px dotted #000000 !important;
+      }
+
+      .sign-line {
+        font-size: 9.5px !important;
+        line-height: 1.2 !important;
+        gap: 3px !important;
+      }
+
+      .sign-line label {
+        min-width: 60px !important;
+      }
+
+      .sign-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        font-size: 9.5px !important;
+        font-weight: 600 !important;
+      }
+
+      .addressing-box {
+        padding: 3px 6px !important;
+        margin-top: 3px !important;
+        margin-bottom: 3px !important;
+        font-size: 9.5px !important;
+        line-height: 1.2 !important;
+        border: 1px dashed #64748b !important;
+      }
+
+      .store-issue-voucher {
+        padding: 3px 6px !important;
+        margin-top: 3px !important;
+        border: 1.5px solid #000000 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .voucher-title {
+        font-size: 9.5px !important;
+        padding-bottom: 1px !important;
+        margin-bottom: 2px !important;
+      }
+
+      .voucher-grid {
+        gap: 8px !important;
+      }
+
+      .voucher-col {
+        font-size: 8.5px !important;
+        gap: 1px !important;
+        line-height: 1.15 !important;
+      }
+
+      .voucher-space {
+        height: 15px !important;
+        margin-bottom: 1px !important;
+        border-bottom: 1px dotted #000000 !important;
+      }
+    }
+
+    /* PDF Exporting Class matching print compact styles */
+    body.exporting-pdf .no-print,
+    body.exporting-pdf .screen-control-bar,
+    body.exporting-pdf .table-actions-bar,
+    body.exporting-pdf .col-action,
+    body.exporting-pdf .btn-delete-row,
+    body.exporting-pdf .btn-add-item {
+      display: none !important;
+    }
+
+    body.exporting-pdf .form-sheet {
+      box-shadow: none !important;
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* Responsive adjustments for Mobile & Tablets */
+    @media screen and (max-width: 860px) {
+      .form-sheet {
+        width: 100%;
+        padding: 16px 12px;
+      }
+
+      .org-header-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .header-right-meta {
+        align-items: center;
+        text-align: center;
+      }
+
+      .meta-details-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .signatures-container {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .voucher-grid {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+
+      .stationery-table {
+        min-width: 600px;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4">
+
+  <!-- Floating Application Action Bar (Hidden in Print) -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-brand">
+      <!-- Back to Home Portal Button -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Page Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Paper Size Selector (A4 / Legal) -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF (A4 / Legal)">
+        <span class="switcher-label">Page Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4" data-size="a4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal" data-size="legal">Legal</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Load the standard 18 items with sample details">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+        <span class="btn-text-full">Fill Sample Data</span>
+        <span class="btn-text-short">Sample</span>
+      </button>
+
+      <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear all items to start fresh">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        <span class="btn-text-full">Reset Blank Form</span>
+        <span class="btn-text-short">Clear</span>
+      </button>
+
+      <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF file">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        <span class="btn-text-full">Save as PDF</span>
+        <span class="btn-text-short">PDF</span>
+      </button>
+
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document or Save via system dialog">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        <span class="btn-text-full">Print Note</span>
+        <span class="btn-text-short">Print</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Printable Area -->
+  <main class="document-container">
+    <div class="form-sheet" id="printableFormArea">
+
+      <!-- Screen-Only Quick Preset Chips -->
+      <div class="screen-control-bar no-print">
+        <div class="quick-add-group">
+          <span class="quick-add-label">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+            त्वरित सामग्री जोड़ें (Quick Add):
+          </span>
+          <button type="button" class="chip-btn" data-name="A-4 Size Paper (ए-4 साइज पेपर)" data-qty="2" data-unit="Reams">+ A-4 Paper (Ream)</button>
+          <button type="button" class="chip-btn" data-name="Ball Pen Blue (बॉल पेन - नीला)" data-qty="10" data-unit="Nos.">+ Ball Pen (Blue)</button>
+          <button type="button" class="chip-btn" data-name="File Covers (फाइल कवर)" data-qty="50" data-unit="Nos.">+ File Covers (50)</button>
+          <button type="button" class="chip-btn" data-name="Office File (ऑफिस फाइल)" data-qty="20" data-unit="Nos.">+ Office Files (20)</button>
+          <button type="button" class="chip-btn" data-name="Note Sheet Pad (नोट शीट पैड)" data-qty="10" data-unit="Nos.">+ Note Pad (10)</button>
+          <button type="button" class="chip-btn" data-name="Highlighter Pen (हाइलाइटर पेन)" data-qty="4" data-unit="Nos.">+ Highlighter</button>
+          <button type="button" class="chip-btn" data-name="Calculator (कैलकुलेटर)" data-qty="1" data-unit="Nos.">+ Calculator</button>
+          <button type="button" class="chip-btn" data-name="Stamp Pad & Ink (स्टाम्प पैड एवं स्याही)" data-qty="2" data-unit="Set">+ Stamp Pad</button>
+        </div>
+      </div>
+
+      <!-- Organization Official Bilingual Header with Logo -->
+      <div class="org-header-wrapper">
+        <div class="epfo-logo-wrap">
+          <img src="image/epfo_logo.png" alt="EPFO Emblem" class="epfo-logo-img">
+        </div>
+
+        <div class="header-center-info">
+          <h1 class="org-hi">कर्मचारी भविष्य निधि संगठन</h1>
+          <h2 class="org-en">EMPLOYEES' PROVIDENT FUND ORGANISATION</h2>
+          <div class="org-sub-hi">श्रम एवं रोजगार मंत्रालय, भारत सरकार / Ministry of Labour &amp; Employment, Govt. of India</div>
+          <div class="office-editable-row">
+            <input type="text" id="officeName" class="office-input" list="officePresets" value="क्षेत्रीय कार्यालय, सेक्टर-15, फरीदाबाद / Regional Office, Sector-15, Faridabad" placeholder="Enter Regional Office" title="अपने कार्यालय अनुसार बदलें / Edit Office Name">
+            <datalist id="officePresets">
+              <option value="क्षेत्रीय कार्यालय, सेक्टर-15, फरीदाबाद / Regional Office, Sector-15, Faridabad">
+              <option value="क्षेत्रीय कार्यालय, फरीदाबाद / Regional Office, Faridabad">
+              <option value="क्षेत्रीय कार्यालय, भविष्य निधि भवन, आर.के. पुरम, नई दिल्ली / Regional Office, R.K. Puram, New Delhi">
+              <option value="क्षेत्रीय कार्यालय, पटना / Regional Office, Patna">
+              <option value="क्षेत्रीय कार्यालय, बान्द्रा, मुम्बई / Regional Office, Bandra, Mumbai">
+              <option value="क्षेत्रीय कार्यालय, हैदराबाद / Regional Office, Hyderabad">
+              <option value="क्षेत्रीय कार्यालय, बेंगलुरु / Regional Office, Bengaluru">
+            </datalist>
+          </div>
+        </div>
+
+        <div class="header-right-meta">
+          <a href="https://www.epfindia.gov.in" target="_blank" class="portal-link-text">www.epfindia.gov.in</a>
+          <span class="badge-iso">EPFO Official Note</span>
+        </div>
+      </div>
+
+      <!-- Main Document Title -->
+      <div class="note-title-box">
+        <div class="note-heading-hi">कार्यालयीन टिप्पणी / मांग प्रपत्र</div>
+        <div class="note-heading-en">OFFICE NOTE / STATIONERY REQUISITION INDENT</div>
+      </div>
+
+      <!-- Meta Details: Note/File Number & Date -->
+      <div class="meta-details-bar">
+        <div class="meta-group">
+          <label for="noteFileNo">पत्रांक / Note Sheet No.:</label>
+          <input type="text" id="noteFileNo" class="meta-input" value="EPFO/RO/STA/2026/" placeholder="File / Note No.">
+        </div>
+        <div class="meta-group">
+          <label for="requisitionDate">दिनांक / Date:</label>
+          <input type="date" id="requisitionDate" class="meta-input">
+        </div>
+      </div>
+
+      <!-- Subject & Preamble Section -->
+      <div class="subject-section">
+        <div class="subject-line">
+          <span class="subject-label">विषय / Subject:</span>
+          <input type="text" id="subjectText" class="subject-text-input" value="Requirement of Stationery Items for Office Use / कार्यालय उपयोग हेतु लेखन सामग्री (स्टेशनरी) की आवश्यकता">
+        </div>
+        <div class="preamble-line">
+          <span>It is requested that the following stationery items may kindly be provided for day-to-day official work in the</span>
+          <select id="sectionNameSelect" class="section-select-input">
+            <option value="Administration Section / प्रशासन अनुभाग" selected>Administration Section / प्रशासन अनुभाग</option>
+            <option value="Accounts Section / लेखा अनुभाग">Accounts Section / लेखा अनुभाग</option>
+            <option value="Pension Section / पेंशन अनुभाग">Pension Section / पेंशन अनुभाग</option>
+            <option value="Establishment Section / स्थापना अनुभाग">Establishment Section / स्थापना अनुभाग</option>
+            <option value="Caretaking & Store / परिचर्या एवं स्टोर">Caretaking &amp; Store / परिचर्या एवं स्टोर</option>
+            <option value="Legal & Recovery Section / विधि एवं वसूली अनुभाग">Legal &amp; Recovery Section / विधि एवं वसूली अनुभाग</option>
+            <option value="Computer / IT Cell (कंप्यूटर शाखा)">Computer / IT Cell (कंप्यूटर शाखा)</option>
+            <option value="Custom">Other / अन्य अनुभाग (टाइप करें)...</option>
+          </select>
+          <input type="text" id="customSectionInput" class="section-select-input" style="display:none; width: 180px;" placeholder="Enter Section Name">
+          <span>:</span>
+        </div>
+      </div>
+
+      <!-- Interactive Stationery Items Table -->
+      <div class="table-container">
+        <table class="stationery-table" id="stationeryTable">
+          <thead>
+            <tr>
+              <th class="col-sno">क्र.सं.<br>S. No.</th>
+              <th class="col-item-name">लेखन सामग्री का नाम एवं विवरण<br>Name &amp; Specification of Stationery Item</th>
+              <th class="col-qty">मांग मात्रा<br>Quantity Required (1-10 / Bulk)</th>
+              <th class="col-remarks">अभ्युक्ति / प्रयोजन<br>Remarks / Purpose</th>
+              <th class="col-action no-print">हटाएं<br>Action</th>
+            </tr>
+          </thead>
+          <tbody id="stationeryTableBody">
+            <!-- Rows dynamically injected via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table Actions (Add Item Button & Count Tag) -->
+      <div class="table-actions-bar no-print">
+        <button type="button" class="btn-add-item" id="btnAddRow">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+          + Add Stationery Item / + नई सामग्री जोड़ें
+        </button>
+        <span class="items-count-tag" id="itemsCountDisplay">Total Items: 18</span>
+      </div>
+
+      <!-- Closing Standard Official Justification Note -->
+      <div class="closing-note-box">
+        <p class="closing-note-hi">
+          उपर्युक्त लेखन सामग्री (स्टेशनरी) दैनिक शासकीय कार्यों के सुचारू एवं निर्बाध निष्पादन हेतु आवश्यक है। अतः अनुरोध है कि उपलब्धता के आधार पर उक्त सामग्री शीघ्र जारी/उपलब्ध कराने की कृपा की जाए।
+        </p>
+        <p class="closing-note-en">
+          The above stationery items are required for smooth and uninterrupted day-to-day official work. It is, therefore, requested that the same may kindly be issued/provided at the earliest, subject to availability.
+        </p>
+      </div>
+
+      <!-- Signatures: Indenting Official on Right Side -->
+      <div class="signatures-container">
+        <!-- Indenting Official / Officer (Right Aligned) -->
+        <div class="sign-block-right">
+          <div class="sign-space">Signature of Indenting Official / मांगकर्ता के हस्ताक्षर</div>
+          <div class="sign-line">
+            <label for="indenterName">नाम / Name:</label>
+            <input type="text" id="indenterName" class="sign-input" value="Niraj Kumar" placeholder="Officer / Staff Name">
+          </div>
+          <div class="sign-line">
+            <label for="indenterDesig">पदनाम / Desig.:</label>
+            <input type="text" id="indenterDesig" class="sign-input" value="Senior Social Security Assistant (SSSA)" placeholder="Designation">
+          </div>
+          <div class="sign-line">
+            <label for="indenterSection">अनुभाग / Section:</label>
+            <input type="text" id="indenterSection" class="sign-input" value="Administration Section" placeholder="Section">
+          </div>
+          <div class="sign-line">
+            <label for="indenterDate">दिनांक / Date:</label>
+            <input type="text" id="indenterDate" class="sign-input" placeholder="DD/MM/YYYY">
+          </div>
+        </div>
+      </div>
+
+      <!-- Addressed To Authority -->
+      <div class="addressing-box">
+        <div class="address-to-title">To / सेवा में:</div>
+        <div><strong>The Section Supervisor (Stationery) / Caretaker / Store In-charge</strong></div>
+        <div>Employees' Provident Fund Organisation (EPFO) / कर्मचारी भविष्य निधि संगठन</div>
+      </div>
+
+      <!-- Store Receipt & Issue Acknowledgement Voucher -->
+      <div class="store-issue-voucher">
+        <div class="voucher-title">
+          स्टोर द्वारा सामग्री निर्गमन एवं पावती / STORE ISSUE &amp; ACKNOWLEDGEMENT RECEIPT
+        </div>
+        <div class="voucher-grid">
+          <div class="voucher-col">
+            <div><strong>Issued By / जारीकर्ता:</strong></div>
+            <div class="voucher-space"></div>
+            <div>Signature of Store In-charge / Caretaker</div>
+            <div>Date: ________________________</div>
+          </div>
+          <div class="voucher-col">
+            <div><strong>Sanctioned By / स्वीकृतकर्ता:</strong></div>
+            <div class="voucher-space"></div>
+            <div>APFC / RPFC-II (Administration)</div>
+            <div>Date: ________________________</div>
+          </div>
+          <div class="voucher-col">
+            <div><strong>Received In Full / प्राप्तकर्ता पावती:</strong></div>
+            <div class="voucher-space"></div>
+            <div>Signature &amp; Date of Indenter</div>
+            <div>Date: ________________________</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="portal.js"></script>
+
+  <script>
+    // Initial 18 items requested by the user
+    const defaultStationeryItems = [
+      { name: "A-4 Size Paper (ए-4 साइज पेपर)", qty: "2", unit: "Reams", remarks: "For Official Typing & Printing" },
+      { name: "Ball Pen (Blue) (बॉल पेन - नीला)", qty: "10", unit: "Nos.", remarks: "Routine Office Work" },
+      { name: "Ball Pen (Black) (बॉल पेन - काला)", qty: "5", unit: "Nos.", remarks: "Daily Official Work" },
+      { name: "Pencil (पेंसिल)", qty: "5", unit: "Nos.", remarks: "Drafting & Marking" },
+      { name: "Eraser (रबर / इरेज़र)", qty: "5", unit: "Nos.", remarks: "Correction & Editing" },
+      { name: "Sharpener (शार्पनर)", qty: "5", unit: "Nos.", remarks: "Pencil Sharpening" },
+      { name: "File Cover (फाइल कवर)", qty: "50", unit: "Nos.", remarks: "Case Files & Docket Management" },
+      { name: "Office File (ऑफिस फाइल)", qty: "20", unit: "Nos.", remarks: "New Subject Folders" },
+      { name: "Note Sheet Pad (नोट शीट पैड)", qty: "10", unit: "Nos.", remarks: "Official Noting & Submissions" },
+      { name: "Stapler (स्टेपलर)", qty: "2", unit: "Nos.", remarks: "Section Desks" },
+      { name: "Stapler Pins (स्टेपलर पिन)", qty: "10", unit: "Boxes", remarks: "For Staplers" },
+      { name: "Paper Clips (पेपर क्लिप्स)", qty: "5", unit: "Boxes", remarks: "Temporary Filing" },
+      { name: "Binder Clips (बाइंडर क्लिप्स)", qty: "5", unit: "Boxes", remarks: "Heavy Records & Bundles" },
+      { name: "Gum/Adhesive (गोंद / फेविकोल)", qty: "5", unit: "Nos.", remarks: "Postal & File Binding" },
+      { name: "Marker Pen (मार्कर पेन)", qty: "5", unit: "Nos.", remarks: "Box & File Labeling" },
+      { name: "Correction Pen (करेक्शन पेन)", qty: "5", unit: "Nos.", remarks: "Immediate Correction" },
+      { name: "Register (रजिस्टर)", qty: "5", unit: "Nos.", remarks: "Movement / Diary Records" },
+      { name: "File Tags (फाइल टैग्स)", qty: "100", unit: "Nos.", remarks: "File Tying & Archival" }
+    ];
+
+    const standardUnits = ["Nos.", "Boxes", "Pkt", "Reams", "Pads", "Set", "Bottles", "Rolls"];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set today's date in requisitionDate and indenterDate
+      const today = new Date().toISOString().split('T')[0];
+      const dateEl = document.getElementById('requisitionDate');
+      if (dateEl) {
+        dateEl.value = today;
+      }
+      const indenterDate = document.getElementById('indenterDate');
+      if (indenterDate) {
+        const d = new Date();
+        const formatted = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
+        indenterDate.value = formatted;
+      }
+
+      // Render default items
+      renderStationeryTable(defaultStationeryItems);
+
+      // Section Select Custom Toggle
+      const sectionSelect = document.getElementById('sectionNameSelect');
+      const customSectionInput = document.getElementById('customSectionInput');
+      if (sectionSelect && customSectionInput) {
+        sectionSelect.addEventListener('change', (e) => {
+          if (e.target.value === 'Custom') {
+            customSectionInput.style.display = 'inline-block';
+            customSectionInput.focus();
+          } else {
+            customSectionInput.style.display = 'none';
+            document.getElementById('indenterSection').value = e.target.value.split('/')[0].trim();
+          }
+        });
+      }
+
+      // Add Row Button
+      document.getElementById('btnAddRow').addEventListener('click', () => {
+        addNewItemRow({ name: "", qty: "5", unit: "Nos.", remarks: "" });
+      });
+
+      // Quick Add Chips
+      document.querySelectorAll('.chip-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('data-name');
+          const qty = btn.getAttribute('data-qty');
+          const unit = btn.getAttribute('data-unit');
+          addNewItemRow({ name: name, qty: qty, unit: unit, remarks: "Immediate Requirement" });
+        });
+      });
+
+      // Fill Sample Data Button
+      document.getElementById('btnSampleData').addEventListener('click', () => {
+        renderStationeryTable(defaultStationeryItems);
+        document.getElementById('officeName').value = "क्षेत्रीय कार्यालय, सेक्टर-15, फरीदाबाद / Regional Office, Sector-15, Faridabad";
+        document.getElementById('noteFileNo').value = "EPFO/RO/FBD/STA/2026/894";
+        document.getElementById('indenterName').value = "Niraj Kumar";
+        document.getElementById('indenterDesig').value = "Senior Social Security Assistant (SSSA)";
+        document.getElementById('indenterSection').value = "Administration Section";
+      });
+
+      // Reset Blank Form Button
+      document.getElementById('btnClearForm').addEventListener('click', () => {
+        if (confirm('Are you sure you want to reset all items to a blank requisition table?')) {
+          const blankItems = [
+            { name: "", qty: "1", unit: "Nos.", remarks: "" },
+            { name: "", qty: "1", unit: "Nos.", remarks: "" },
+            { name: "", qty: "1", unit: "Nos.", remarks: "" },
+            { name: "", qty: "1", unit: "Nos.", remarks: "" },
+            { name: "", qty: "1", unit: "Nos.", remarks: "" }
+          ];
+          renderStationeryTable(blankItems);
+        }
+      });
+
+      // Print Button
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+      // PDF Save Button
+      document.getElementById('btnSavePdf').addEventListener('click', () => {
+        savePdf();
+      });
+
+      // Page size switcher (A4 / Legal)
+      const btnSizeA4 = document.getElementById('btnSizeA4');
+      const btnSizeLegal = document.getElementById('btnSizeLegal');
+      const dynamicPageStyle = document.getElementById('dynamicPageSizeStyle');
+
+      btnSizeA4.addEventListener('click', () => {
+        document.body.classList.remove('size-legal');
+        document.body.classList.add('size-a4');
+        btnSizeA4.classList.add('active');
+        btnSizeLegal.classList.remove('active');
+        if (dynamicPageStyle) {
+          dynamicPageStyle.innerHTML = '@page { size: A4 portrait; margin: 4mm 6mm 4mm 6mm; }';
+        }
+      });
+
+      btnSizeLegal.addEventListener('click', () => {
+        document.body.classList.remove('size-a4');
+        document.body.classList.add('size-legal');
+        btnSizeLegal.classList.add('active');
+        btnSizeA4.classList.remove('active');
+        if (dynamicPageStyle) {
+          dynamicPageStyle.innerHTML = '@page { size: legal portrait; margin: 4mm 6mm 4mm 6mm; }';
+        }
+      });
+    });
+
+    // Render Table Rows
+    function renderStationeryTable(items) {
+      const tbody = document.getElementById('stationeryTableBody');
+      tbody.innerHTML = '';
+      items.forEach((item, index) => {
+        const tr = createItemRow(item, index + 1);
+        tbody.appendChild(tr);
+      });
+      updateItemsCount();
+    }
+
+    // Add Single New Item Row
+    function addNewItemRow(item) {
+      const tbody = document.getElementById('stationeryTableBody');
+      const count = tbody.querySelectorAll('tr').length;
+      const tr = createItemRow(item, count + 1);
+      tbody.appendChild(tr);
+      updateItemsCount();
+      const input = tr.querySelector('.item-input');
+      if (input) input.focus();
+    }
+
+    // Create DOM element for a row
+    function createItemRow(item, sno) {
+      const tr = document.createElement('tr');
+      tr.className = 'stationery-row';
+
+      // Options for 1 to 10 + bulk + custom
+      const qtyOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 100];
+      let isPredefinedQty = false;
+      let qtyOptionsHtml = '';
+
+      qtyOptions.forEach(num => {
+        const strNum = String(num);
+        const selected = (strNum === String(item.qty)) ? 'selected' : '';
+        if (selected) isPredefinedQty = true;
+        qtyOptionsHtml += `<option value="${num}" ${selected}>${num}</option>`;
+      });
+
+      const isCustom = !isPredefinedQty && item.qty && item.qty !== '';
+      qtyOptionsHtml += `<option value="custom" ${isCustom ? 'selected' : ''}>Custom...</option>`;
+
+      // Units options
+      let unitOptionsHtml = '';
+      standardUnits.forEach(unit => {
+        const selected = (unit.toLowerCase() === (item.unit || '').toLowerCase()) ? 'selected' : '';
+        unitOptionsHtml += `<option value="${unit}" ${selected}>${unit}</option>`;
+      });
+
+      tr.innerHTML = `
+        <td class="col-sno">${sno}</td>
+        <td class="col-item-name">
+          <input type="text" class="item-input" value="${escapeHtml(item.name || '')}" placeholder="सामग्री का नाम दर्ज करें / Enter Item Name">
+        </td>
+        <td class="col-qty">
+          <div class="qty-control-wrapper">
+            <select class="qty-select" title="Choose quantity (1 to 10 or custom)">
+              ${qtyOptionsHtml}
+            </select>
+            <input type="text" class="custom-qty-box" value="${escapeHtml(item.qty || '')}" placeholder="Qty" style="display: ${isCustom ? 'inline-block' : 'none'};">
+            <select class="unit-select" title="Unit">
+              ${unitOptionsHtml}
+            </select>
+          </div>
+        </td>
+        <td class="col-remarks">
+          <input type="text" class="remarks-input" value="${escapeHtml(item.remarks || '')}" placeholder="प्रयोजन / Remarks">
+        </td>
+        <td class="col-action no-print">
+          <button type="button" class="btn-delete-row" title="Remove this item / इस सामग्री को हटाएं">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/></svg>
+          </button>
+        </td>
+      `;
+
+      // Event Listeners for Row
+      const qtySelect = tr.querySelector('.qty-select');
+      const customQtyBox = tr.querySelector('.custom-qty-box');
+      const deleteBtn = tr.querySelector('.btn-delete-row');
+
+      qtySelect.addEventListener('change', (e) => {
+        if (e.target.value === 'custom') {
+          customQtyBox.style.display = 'inline-block';
+          customQtyBox.focus();
+        } else {
+          customQtyBox.style.display = 'none';
+          customQtyBox.value = e.target.value;
+        }
+      });
+
+      deleteBtn.addEventListener('click', () => {
+        tr.remove();
+        renumberRows();
+        updateItemsCount();
+      });
+
+      return tr;
+    }
+
+    // Renumber all rows sequentially
+    function renumberRows() {
+      const rows = document.querySelectorAll('#stationeryTableBody tr');
+      rows.forEach((row, index) => {
+        const snoCol = row.querySelector('.col-sno');
+        if (snoCol) {
+          snoCol.textContent = index + 1;
+        }
+      });
+    }
+
+    // Update the counter
+    function updateItemsCount() {
+      const count = document.querySelectorAll('#stationeryTableBody tr').length;
+      const countEl = document.getElementById('itemsCountDisplay');
+      if (countEl) {
+        countEl.textContent = `Total Items: ${count}`;
+      }
+    }
+
+    // Save as PDF Function
+    function savePdf() {
+      const element = document.getElementById('printableFormArea');
+      const isLegal = document.body.classList.contains('size-legal');
+      const filename = `EPFO_Stationery_Requisition_Office_Note_${new Date().toISOString().split('T')[0]}.pdf`;
+
+      const opt = {
+        margin: [4, 5, 4, 5],
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: isLegal ? 'legal' : 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      const btnPdf = document.getElementById('btnSavePdf');
+      const origText = btnPdf.innerHTML;
+      btnPdf.disabled = true;
+      btnPdf.innerHTML = '<span>Exporting...</span>';
+      document.body.classList.add('exporting-pdf');
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        btnPdf.disabled = false;
+        btnPdf.innerHTML = origText;
+        document.body.classList.remove('exporting-pdf');
+      }).catch(err => {
+        console.error('PDF generation error:', err);
+        btnPdf.disabled = false;
+        btnPdf.innerHTML = origText;
+        document.body.classList.remove('exporting-pdf');
+        alert('Could not generate PDF directly. Please use the Print Form button to save as PDF.');
+      });
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
