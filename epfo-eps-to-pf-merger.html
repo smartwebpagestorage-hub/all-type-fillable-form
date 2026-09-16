@@ -1218,6 +1218,9 @@
         <button type="button" class="case-type-btn" id="btnEmployerCaseNonEps">
           <span>🚫 गैर-ईपीएस सदस्य गलत कटौती</span>
         </button>
+        <button type="button" class="case-type-btn" id="btnEmployerCaseReducedPension">
+          <span>🥉 50 वर्ष उपरांत न्यूनीकृत पेंशन (Reduced Pension)</span>
+        </button>
       </div>
 
       <div class="subbar-group">
@@ -1368,7 +1371,7 @@
       </table>
 
       <!-- Undertaking Strip (Hindi) -->
-      <div class="undertaking-strip">
+      <div class="undertaking-strip" id="lblEmployerUndertakingHi">
         <strong>घोषणा एवं वचन पत्र:</strong><br>
         1. संस्थान द्वारा प्रमाणित किया जाता है कि उक्त कर्मचारी द्वारा संबंधित अवधि हेतु कोई पेंशन/स्कीम प्रमाण पत्र नहीं लिया गया है।<br>
         2. यह अंशदान पूर्णतः लिपिकीय असावधानीवश जमा हुआ था। संस्थान को उक्त ईपीएस राशि को सदस्य के पीएफ खाता 01 में समायोजित करने में कोई आपत्ति नहीं है।
@@ -1536,7 +1539,7 @@
       </table>
 
       <!-- Undertaking Strip (English) -->
-      <div class="undertaking-strip">
+      <div class="undertaking-strip" id="lblEmployerUndertakingEn">
         <strong>Employer Declaration &amp; Undertaking:</strong><br>
         1. We hereby certify that the member has not availed of or been sanctioned any pension or Scheme Certificate for the period in question.<br>
         2. The remittance was purely a bonafide clerical oversight. The establishment has no objection whatsoever to the transfer of the said EPS amount into EPF Account 01.
@@ -1590,6 +1593,9 @@
         </button>
         <button type="button" class="case-type-btn" id="btnEpfoCaseNonEps">
           <span>🚫 गैर-ईपीएस सदस्य गलत कटौती</span>
+        </button>
+        <button type="button" class="case-type-btn" id="btnEpfoCaseReducedPension">
+          <span>🥉 50 वर्ष उपरांत न्यूनीकृत पेंशन (Reduced Pension)</span>
         </button>
       </div>
 
@@ -1703,7 +1709,7 @@
       </div>
 
       <div class="noting-para">
-        <span class="noting-para-num">4.</span> संस्थान द्वारा प्रस्तुत पत्र एवं घोषणा पत्र पत्रावली पर संलग्न है। सदस्य द्वारा कोई पेंशन लाभ नहीं लिया गया है। अतः Manual of Accounting Procedure (MAP) एवं केंद्रीय परिपत्रों के अनुसार उक्त गलत जमा राशि को ईपीएफ खाता 01 में ट्रांसफर वाउचर (Internal Transfer Voucher - ITV) के माध्यम से समायोजित करना न्यायोचित प्रतीत होता है।
+        <span id="lblEpfoParaHi4Span"><span class="noting-para-num">4.</span> संस्थान द्वारा प्रस्तुत पत्र एवं घोषणा पत्र पत्रावली पर संलग्न है।</span> सदस्य द्वारा कोई पेंशन लाभ नहीं लिया गया है। अतः Manual of Accounting Procedure (MAP) एवं केंद्रीय परिपत्रों के अनुसार उक्त गलत जमा राशि को ईपीएफ खाता 01 में ट्रांसफर वाउचर (Internal Transfer Voucher - ITV) के माध्यम से समायोजित करना न्यायोचित प्रतीत होता है।
       </div>
 
       <div class="noting-para" style="font-weight: 700; background: rgba(2, 132, 199, 0.05); padding: 5px 8px; border-left: 3px solid #0284c7;">
@@ -1846,7 +1852,7 @@
       </div>
 
       <div class="noting-para">
-        <span class="noting-para-num">4.</span> The employer has furnished the required clarification letter and undertaking certifying that no pension benefit has been settled. Therefore, in accordance with the Manual of Accounting Procedure (MAP Vol. II) and Head Office guidelines, the transfer of the irregular EPS amount into EPF Account 01 through ITV is appropriate and justified.
+        <span id="lblEpfoParaEn4Span"><span class="noting-para-num">4.</span> The employer has furnished the required clarification letter</span> and undertaking certifying that no pension benefit has been settled. Therefore, in accordance with the Manual of Accounting Procedure (MAP Vol. II) and Head Office guidelines, the transfer of the irregular EPS amount into EPF Account 01 through ITV is appropriate and justified.
       </div>
 
       <div class="noting-para" style="font-weight: 700; background: rgba(2, 132, 199, 0.05); padding: 5px 8px; border-left: 3px solid #0284c7;">
@@ -2034,6 +2040,9 @@
           <button type="button" class="btn-modal-action" id="mBtnSampleNonEps" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1;">
             🚫 गैर-ईपीएस नमूना डेटा
           </button>
+          <button type="button" class="btn-modal-action" id="mBtnSampleReducedPension" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1;">
+            🥉 न्यूनीकृत पेंशनभोगी नमूना डेटा
+          </button>
         </div>
         <div style="display: flex; gap: 8px;">
           <button type="button" class="btn-modal-action" id="mBtnCancel" style="background: #fff; color: #475569; border-color: #cbd5e1;">
@@ -2062,6 +2071,9 @@
 
       const btnEmployerCase58 = document.getElementById('btnEmployerCase58');
       const btnEmployerCaseNonEps = document.getElementById('btnEmployerCaseNonEps');
+      const btnEmployerCaseReducedPension = document.getElementById('btnEmployerCaseReducedPension');
+      const btnEpfoCaseReducedPension = document.getElementById('btnEpfoCaseReducedPension');
+      const mBtnSampleReducedPension = document.getElementById('mBtnSampleReducedPension');
       const btnEpfoCase58 = document.getElementById('btnEpfoCase58');
       const btnEpfoCaseNonEps = document.getElementById('btnEpfoCaseNonEps');
 
@@ -2173,18 +2185,19 @@
       function applyCaseContent(caseType) {
         currentCase = caseType;
         
+        body.classList.remove('case-58years', 'case-noneps', 'case-reducedpension');
+        body.classList.add('case-' + caseType);
+
         [btnEmployerCase58, btnEpfoCase58].forEach(btn => {
-          if (btn) {
-            if (caseType === '58years') btn.classList.add('active');
-            else btn.classList.remove('active');
-          }
+          if (btn) btn.classList.toggle('active', caseType === '58years');
         });
 
         [btnEmployerCaseNonEps, btnEpfoCaseNonEps].forEach(btn => {
-          if (btn) {
-            if (caseType === 'noneps') btn.classList.add('active');
-            else btn.classList.remove('active');
-          }
+          if (btn) btn.classList.toggle('active', caseType === 'noneps');
+        });
+
+        [btnEmployerCaseReducedPension, btnEpfoCaseReducedPension].forEach(btn => {
+          if (btn) btn.classList.toggle('active', caseType === 'reducedpension');
         });
 
         const memberName = getFirstVal('.sync-inp-name', 'RAMESH CHAND');
@@ -2193,7 +2206,55 @@
         const keyDate = getFirstVal('.sync-inp-keydate', '14.03.2024');
         const wrongPeriod = getFirstVal('.sync-inp-period', '03/2024 से 08/2025');
 
-        if (caseType === 'noneps') {
+        if (caseType === 'reducedpension') {
+          // =========================================================================
+          // CASE 3: 50 वर्ष उपरांत न्यूनीकृत पेंशनभोगी (Reduced Pensioner) पुनर्नियोजन
+          // =========================================================================
+          // 1. Employer Letter (Hindi)
+          document.getElementById('lblEmployerSubjectHi').innerHTML = 'विषय: 50 वर्ष उपरांत न्यूनीकृत पेंशन (Early/Reduced Pension) प्राप्त कर रहे पेंशनभोगी सदस्य की पुनर्नियोजन में अनजाने में लिपिकीय त्रुटिवश ईपीएस (खाता 10) में जमा अंशदान को ईपीएफ (खाता 01) में अंतरित/समायोजित करने हेतु अनुरोध - सदस्य: <span class="sync-member-name-text">' + memberName + '</span> (यूएएन: <span class="sync-uan-text">' + uan + '</span>, पीएफ सदस्य आईडी: <span class="sync-member-id-text">' + memberId + '</span>)।';
+          document.getElementById('lblEmployerBodyHi1').innerHTML = 'सविनय निवेदन है कि हमारे संस्थान में कार्यरत/भूतपूर्व कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> पूर्व नियोजन में 50 वर्ष की आयु उपरांत कर्मचारी पेंशन योजना (EPS), 1995 के पैरा 12(7) के अंतर्गत न्यूनीकृत मासिक पेंशन (Early/Reduced Pension) ले रहे हैं तथा वे नियमित रूप से पीपीओ के तहत पेंशन प्राप्त कर रहे हैं। कर्मचारी पेंशन योजना, 1995 के सुस्थापित नियमों के अनुसार पेंशन प्रारंभ होने के उपरांत अन्य संस्थान में पुनर्नियोजन (Re-employment) की स्थिति में सदस्य पुनः पेंशन फंड का पात्र नहीं होता है तथा नियोक्ता का संपूर्ण 12% अंशदान अनिवार्यतः कर्मचारी भविष्य निधि (खाता 01) में ही जमा होना चाहिए।';
+          document.getElementById('lblEmployerBodyHi2').innerHTML = 'किंतु हमारे संस्थान में कार्यग्रहण के समय सदस्य के पूर्व से पेंशनभोगी होने की जानकारी के अभाव तथा पेरोल अनुभाग में अनपेक्षित लिपिकीय त्रुटि (Inadvertent Clerical Error) के कारण मासिक चालान (ECR) में उक्त सदस्य का 8.33% अंशदान भूलवश पेंशन फंड (खाता 10) में जमा होता रहा। यह कटौती पूर्णतः लिपिकीय असावधानीवश हुई है। संबंधित कर्मचारी का विवरण निम्न तालिका अनुसार है:';
+          document.getElementById('lblEmployerKeyDateLabelHi').textContent = 'पीपीओ सं. / न्यूनीकृत पेंशन विवरण';
+
+          const undHi = document.getElementById('lblEmployerUndertakingHi');
+          if (undHi) {
+            undHi.innerHTML = '<strong>घोषणा एवं वचन पत्र:</strong><br>1. संस्थान द्वारा प्रमाणित किया जाता है कि कर्मचारी पूर्व सेवा के आधार पर पीपीओ के अंतर्गत पेंशन प्राप्त कर रहे हैं तथा हमारे संस्थान में पुनर्नियोजन अवधि हेतु कोई अन्य पेंशन लाभ अथवा स्कीम प्रमाण पत्र देय नहीं है।<br>2. यह अंशदान सदस्य के पूर्व पेंशनभोगी होने की जानकारी के अभाव में पूर्णतः लिपिकीय असावधानीवश जमा हुआ था। संस्थान को उक्त ईपीएस (खाता 10) राशि को सदस्य के पीएफ खाता 01 में समायोजित करने में कोई आपत्ति नहीं है।';
+          }
+
+          // 2. Employer Letter (English)
+          document.getElementById('lblEmployerSubjectEn').innerHTML = 'Subject: Request for rectification and transfer of erroneously deposited EPS (Account 10) contribution into EPF (Account 01) due to clerical mistake in respect of Early/Reduced Pensioner (Post 50 Yrs) upon re-employment - regarding Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span>, UAN: <span class="sync-uan-text">' + uan + '</span>, Member ID: <span class="sync-member-id-text">' + memberId + '</span>.';
+          document.getElementById('lblEmployerBodyEn1').innerHTML = 'With reference to the above cited subject, we respectfully submit that our employee <strong>Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span></strong> had opted for Early / Reduced Monthly Pension under Paragraph 12(7) of the Employees\' Pension Scheme, 1995 after attaining 50 years of age from previous employment and is drawing pension under PPO. As per the statutory provisions of EPS-1995, an employee drawing early/reduced pension ceases to be an EPS member upon re-employment, and the entire 12% employer share is statutorily payable directly into the Provident Fund (Account 01).';
+          document.getElementById('lblEmployerBodyEn2').innerHTML = 'However, due to inadvertent lack of awareness regarding prior pensioner status and bonafide payroll / clerical oversight at our establishment during re-employment, 8.33% pension contribution was mistakenly deducted and remitted into EPS (Account 10) through monthly ECR challans instead of Account 01. This mistake was purely unintentional. Complete particulars of the member are tabulated below:';
+          document.getElementById('lblEmployerKeyDateLabelEn').textContent = 'PPO No. / Reduced Pension Details';
+
+          const undEn = document.getElementById('lblEmployerUndertakingEn');
+          if (undEn) {
+            undEn.innerHTML = '<strong>Employer Declaration &amp; Undertaking:</strong><br>1. Certified that the member is an existing pensioner under PPO from previous employment and no additional pension or Scheme Certificate is admissible for the re-employment period.<br>2. The remittance occurred solely due to bonafide lack of awareness and clerical oversight. The establishment has no objection to the transfer and adjustment of the said EPS amount into EPF Account 01.';
+          }
+
+          // 3. EPFO Office Note (Hindi)
+          document.getElementById('lblEpfoNotingSubHi').innerHTML = 'विषय: 50 वर्ष उपरांत पूर्व से न्यूनीकृत पेंशन (Reduced Pension) प्राप्त कर रहे सदस्य की पुनर्नियोजन में लिपिकीय त्रुटिवश खाता 10 (EPS) में जमा अंशदान को खाता 01 (EPF) में अंतरण (ITV/Transfer Journal) एवं दावा निस्तारण हेतु आदेश बाबत - सदस्य: <span class="sync-member-name-text">' + memberName + '</span>, सदस्य आईडी: <span class="sync-member-id-text">' + memberId + '</span>।';
+          document.getElementById('lblEpfoParaHi1').innerHTML = '<span class="noting-para-num">1.</span> पत्रावली पर प्रस्तुत संस्थान मैसर्स <strong><span class="edit-inline sync-est-name-input" contenteditable="true" title="प्रतिष्ठान नाम संपादित करने हेतु क्लिक करें">' + getFirstText('.sync-est-name-input', 'TECHNO PACKAGING SOLUTIONS') + '</span></strong> (स्थापना कोड: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="स्थापना कोड संपादित करें">' + getFirstText('.sync-est-code-input', 'GNR4589210000') + '</span></strong>) के पत्र का अवलोकन हो। संस्थान द्वारा सूचित किया गया है कि उनके कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> (यूएएन: <strong><span class="sync-uan-text">' + uan + '</span></strong>) पूर्व नियोजन में 50 वर्ष की आयु उपरांत कर्मचारी पेंशन योजना, 1995 के पैरा 12(7) के अंतर्गत न्यूनीकृत मासिक पेंशन (Reduced Pension) प्राप्त कर रहे हैं तथा वे नियमित पेंशनभोगी हैं।';
+          document.getElementById('lblEpfoParaHi2').innerHTML = '<span class="noting-para-num">2.</span> <strong>वैधानिक स्थिति:</strong> कर्मचारी पेंशन योजना, 1995 के पैरा 6 एवं सुसंगत परिपत्रों के अनुसार 50 वर्ष के बाद न्यूनीकृत पेंशन (Early/Reduced Pension) प्राप्त कर रहा सदस्य पुनर्नियोजन की स्थिति में पुनः पेंशन फंड का सदस्य बनने का पात्र नहीं है। ऐसे सदस्य के मामले में संपूर्ण 12% नियोक्ता अंशदान भविष्य निधि (खाता 01) में ही देय होता है। वर्तमान नियोक्ता द्वारा लिपिकीय असावधानी तथा सदस्य के पूर्व पेंशनभोगी होने की जानकारी के अभाव में माह <strong><span class="sync-wrong-period-text">' + wrongPeriod + '</span></strong> तक पेंशन अंशदान (खाता 10) में गलती से जमा कर दिया गया, जो कि नियमविरुद्ध एवं शून्य (Irregular) है।';
+          document.getElementById('lblEpfoKeyTagHi').textContent = 'पीपीओ सं. / पेंशन स्थिति:';
+
+          const para4Hi = document.getElementById('lblEpfoParaHi4Span');
+          if (para4Hi) {
+            para4Hi.innerHTML = '<span class="noting-para-num">4.</span> संस्थान द्वारा लिपिकीय त्रुटि स्वीकार करते हुए स्पष्टीकरण पत्र एवं वचन-पत्र संलग्न किया गया है तथा प्रमाणित किया है कि सदस्य पूर्व सेवा से पीपीओ के अंतर्गत पेंशन प्राप्त कर रहे हैं एवं इस पुनर्नियोजन अवधि हेतु कोई अतिरिक्त पेंशन देय नहीं है। अतः Manual of Accounting Procedure (MAP) एवं परिपत्रों के अनुसार उक्त गलत जमा राशि को ईपीएफ खाता 01 में ट्रांसफर वाउचर (Internal Transfer Voucher - ITV) के माध्यम से समायोजित करना न्यायोचित प्रतीत होता है।';
+          }
+
+          // 4. EPFO Office Note (English)
+          document.getElementById('lblEpfoNotingSubEn').innerHTML = 'Subject: Proposal for approval to transfer erroneously deposited EPS (Account 10) contribution into EPF (Account 01) through ITV in respect of re-employed member drawing Early/Reduced Pension - Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span>, Member ID: <span class="sync-member-id-text">' + memberId + '</span>.';
+          document.getElementById('lblEpfoParaEn1').innerHTML = '<span class="noting-para-num">1.</span> Placed on file is an application received from the establishment <strong>M/s <span class="edit-inline sync-est-name-input" contenteditable="true" title="Click to edit Establishment Name">' + getFirstText('.sync-est-name-input', 'TECHNO PACKAGING SOLUTIONS') + '</span></strong> (Est. Code: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="Click to edit Est. Code">' + getFirstText('.sync-est-code-input', 'GNR4589210000') + '</span></strong>) submitting that employee <strong>Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span></strong> (UAN: <strong><span class="sync-uan-text">' + uan + '</span></strong>) is an existing pensioner drawing Early/Reduced Pension under Para 12(7) of EPS-1995 from prior employment after attaining 50 years of age.';
+          document.getElementById('lblEpfoParaEn2').innerHTML = '<span class="noting-para-num">2.</span> <strong>Statutory Rule:</strong> As per Para 6 of the Employees\' Pension Scheme, 1995, a member drawing Early/Reduced Pension ceases to be an EPS member, and upon re-employment is not eligible to contribute to EPS. The full 12% employer contribution is statutorily remittable directly into EPF Account 01. Due to employer\'s clerical mistake, pension contribution was erroneously remitted into Account 10 for the period <strong><span class="sync-wrong-period-text">' + wrongPeriod + '</span></strong>, which is irregular and null ab-initio.';
+          document.getElementById('lblEpfoKeyTagEn').textContent = 'PPO No. / Pension Status:';
+
+          const para4En = document.getElementById('lblEpfoParaEn4Span');
+          if (para4En) {
+            para4En.innerHTML = '<span class="noting-para-num">4.</span> The employer has admitted the bonafide clerical oversight and furnished declaration that the member is an existing pensioner and no additional pension benefit is payable. Therefore, in accordance with the Manual of Accounting Procedure (MAP Vol. II) and Head Office guidelines, the transfer of the irregular EPS amount into EPF Account 01 through ITV is appropriate and justified.';
+          }
+
+        } else if (caseType === 'noneps') {
           // Employer Letter (Hindi)
           document.getElementById('lblEmployerSubjectHi').innerHTML = 'विषय: ईपीएस का सदस्य न होने के बावजूद लिपिकीय त्रुटिवश ईपीएस (खाता 10) में जमा अंशदान को ईपीएफ (खाता 01) में अंतरित/समायोजित करने हेतु अनुरोध - सदस्य: <span class="sync-member-name-text">' + memberName + '</span> (यूएएन: <span class="sync-uan-text">' + uan + '</span>, पीएफ सदस्य पहचान संख्या: <span class="sync-member-id-text">' + memberId + '</span>)।';
           document.getElementById('lblEmployerBodyHi1').innerHTML = 'सविनय निवेदन है कि हमारे संस्थान में कार्यरत कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> नियुक्ति तिथि को निर्धारित वेतन सीमा (₹15,000/-) से अधिक वेतन होने / बहिष्कृत कर्मचारी (Excluded Employee) होने के कारण कर्मचारी पेंशन योजना (EPS-95) के पात्र सदस्य नहीं थे तथा उनका पूर्ण 12% नियोक्ता अंशदान भविष्य निधि (खाता 01) में जमा होना अनिवार्य था।';
@@ -2219,6 +2280,22 @@
           document.getElementById('lblEpfoKeyTagEn').textContent = 'Non-EPS Reason / Details:';
 
         } else {
+          const undHi58 = document.getElementById('lblEmployerUndertakingHi');
+          if (undHi58) {
+            undHi58.innerHTML = '<strong>घोषणा एवं वचन पत्र:</strong><br>1. संस्थान द्वारा प्रमाणित किया जाता है कि उक्त कर्मचारी द्वारा संबंधित अवधि हेतु कोई पेंशन/स्कीम प्रमाण पत्र नहीं लिया गया है।<br>2. यह अंशदान पूर्णतः लिपिकीय असावधानीवश जमा हुआ था। संस्थान को उक्त ईपीएस राशि को सदस्य के पीएफ खाता 01 में समायोजित करने में कोई आपत्ति नहीं है।';
+          }
+          const undEn58 = document.getElementById('lblEmployerUndertakingEn');
+          if (undEn58) {
+            undEn58.innerHTML = '<strong>Employer Declaration &amp; Undertaking:</strong><br>1. We hereby certify that the member has not availed of or been sanctioned any pension or Scheme Certificate for the period in question.<br>2. The remittance was purely a bonafide clerical oversight. The establishment has no objection whatsoever to the transfer of the said EPS amount into EPF Account 01.';
+          }
+          const p4Hi58 = document.getElementById('lblEpfoParaHi4Span');
+          if (p4Hi58) {
+            p4Hi58.innerHTML = '<span class="noting-para-num">4.</span> संस्थान द्वारा प्रस्तुत पत्र एवं घोषणा पत्र पत्रावली पर संलग्न है। सदस्य द्वारा कोई पेंशन लाभ नहीं लिया गया है। अतः Manual of Accounting Procedure (MAP) एवं केंद्रीय परिपत्रों के अनुसार उक्त गलत जमा राशि को ईपीएफ खाता 01 में ट्रांसफर वाउचर (Internal Transfer Voucher - ITV) के माध्यम से समायोजित करना न्यायोचित प्रतीत होता है।';
+          }
+          const p4En58 = document.getElementById('lblEpfoParaEn4Span');
+          if (p4En58) {
+            p4En58.innerHTML = '<span class="noting-para-num">4.</span> The employer has furnished the required clarification letter and undertaking certifying that no pension benefit has been settled. Therefore, in accordance with the Manual of Accounting Procedure (MAP Vol. II) and Head Office guidelines, the transfer of the irregular EPS amount into EPF Account 01 through ITV is appropriate and justified.';
+          }
           // Employer Letter (Hindi)
           document.getElementById('lblEmployerSubjectHi').innerHTML = 'विषय: लिपिकीय त्रुटिवश 58 वर्ष की आयु पूर्ण होने के उपरांत ईपीएस (खाता 10) में जमा अंशदान को ईपीएफ (खाता 01) में अंतरित/समायोजित करने हेतु अनुरोध - सदस्य: <span class="sync-member-name-text">' + memberName + '</span> (यूएएन: <span class="sync-uan-text">' + uan + '</span>, पीएफ सदस्य पहचान संख्या: <span class="sync-member-id-text">' + memberId + '</span>)।';
           document.getElementById('lblEmployerBodyHi1').innerHTML = 'सविनय निवेदन है कि हमारे संस्थान में कार्यरत/भूतपूर्व कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> ने दिनांक <strong><span class="sync-58th-date-text">' + keyDate + '</span></strong> को 58 वर्ष की अधिवर्षिता आयु पूर्ण कर ली थी। कर्मचारी पेंशन योजना (EPS), 1995 के पैरा 6(क) के प्रावधानों के अनुसार 58 वर्ष की आयु पूर्ण होने के उपरांत पेंशन फंड की सदस्यता स्वतः समाप्त हो जाती है तथा इसके पश्चात नियोक्ता द्वारा दिया जाने वाला पूर्ण 12% अंशदान भविष्य निधि (खाता 01) में जमा होना अनिवार्य था।';
@@ -2261,6 +2338,8 @@
       btnEmployerCaseNonEps.addEventListener('click', () => applyCaseContent('noneps'));
       btnEpfoCase58.addEventListener('click', () => applyCaseContent('58years'));
       btnEpfoCaseNonEps.addEventListener('click', () => applyCaseContent('noneps'));
+      if (btnEmployerCaseReducedPension) btnEmployerCaseReducedPension.addEventListener('click', () => applyCaseContent('reducedpension'));
+      if (btnEpfoCaseReducedPension) btnEpfoCaseReducedPension.addEventListener('click', () => applyCaseContent('reducedpension'));
 
       // 6. Two-way Real-Time Synchronization between Employer & EPFO
       function syncAllFields(e) {
@@ -2518,6 +2597,37 @@
         });
       }
 
+      if (mBtnSampleReducedPension) {
+        mBtnSampleReducedPension.addEventListener('click', () => {
+          mInpEstName.value = 'M/S. BHARAT FORGINGS & AUTOMOTIVE COMPONENTS LTD.';
+          mInpEstAddr.value = 'Plot No. 78, Industrial Area, Sector 58, Faridabad - 121004 (Haryana)';
+          mInpEstCode.value = 'FBD0098765000';
+          mInpEstPhone.value = '0129-4234567';
+          mInpEstEmail.value = 'hr@bharatforgings.com';
+          mInpSignName.value = 'DINESH SHARMA (SR. MANAGER - HR)';
+          mInpPlace.value = 'Faridabad';
+
+          mInpMemberName.value = 'SURESH KUMAR SHARMA';
+          mInpFatherName.value = 'SH. RAM BILAS SHARMA';
+          mInpUan.value = '100456789012';
+          mInpMid.value = 'FBD0098765000/2156';
+          mInpDob.value = '10.04.1970';
+          mInpDoj.value = '01.11.2021';
+          mInpKeyDate.value = 'PPO No.: 123456789012 (Reduced Pension from 10.05.2021)';
+          mInpPeriod.value = '11/2021 से 10/2023 (24 माह)';
+          mInpAmount.value = '₹ 30,000/- (तीस हजार रुपये मात्र)';
+
+          mInpRef.value = 'BFAC/HR/PF/2026/089';
+          mInpDate.value = '16.09.2026';
+          mInpRoCityHi.value = 'फरीदाबाद - 121007 (हरियाणा)';
+          mInpRoCityEn.value = 'Faridabad - 121007 (Haryana)';
+          mInpNotingFile.value = 'R.O./FBD/Accts-09/Rectification/Reduced-Pension/2026/512';
+
+          currentCase = 'reducedpension';
+          applyModalValuesToSheets();
+        });
+      }
+
       // 8. Autofill Sample Data Button in Top Toolbar
       btnAutofillSample.addEventListener('click', () => {
         if (currentCase === '58years') {
@@ -2552,6 +2662,22 @@
           document.querySelectorAll('.sync-inp-period').forEach(el => el.value = '10/2016 से 12/2020 (50 माह)');
           document.querySelectorAll('.sync-inp-amount').forEach(el => el.value = '₹ 62,500/- (बासठ हजार पांच सौ रुपये मात्र)');
           document.querySelectorAll('.sync-sign-name-input').forEach(el => el.textContent = 'ROHIT SHARMA (AVP - HUMAN RESOURCES)');
+        } else if (currentCase === 'reducedpension') {
+          document.querySelectorAll('.sync-est-name-input').forEach(el => el.textContent = 'M/S. BHARAT FORGINGS & AUTOMOTIVE COMPONENTS LTD.');
+          document.querySelectorAll('.sync-est-addr-input').forEach(el => el.textContent = 'Plot No. 78, Industrial Area, Sector 58, Faridabad - 121004 (Haryana)');
+          document.querySelectorAll('.sync-est-code-input').forEach(el => el.textContent = 'FBD0098765000');
+          document.querySelectorAll('.sync-ref-input').forEach(el => el.value = 'BFAC/HR/PF/2026/089');
+          document.querySelectorAll('.sync-date-input').forEach(el => el.value = '16.09.2026');
+          document.querySelectorAll('.sync-inp-name').forEach(el => el.value = 'SURESH KUMAR SHARMA');
+          document.querySelectorAll('.sync-inp-father').forEach(el => el.value = 'SH. RAM BILAS SHARMA');
+          document.querySelectorAll('.sync-inp-uan').forEach(el => el.value = '100456789012');
+          document.querySelectorAll('.sync-inp-mid').forEach(el => el.value = 'FBD0098765000/2156');
+          document.querySelectorAll('.sync-inp-dob').forEach(el => el.value = '10.04.1970');
+          document.querySelectorAll('.sync-inp-doj').forEach(el => el.value = '01.11.2021');
+          document.querySelectorAll('.sync-inp-keydate').forEach(el => el.value = 'PPO No.: 123456789012 (Reduced Pension from 10.05.2021)');
+          document.querySelectorAll('.sync-inp-period').forEach(el => el.value = '11/2021 से 10/2023 (24 माह)');
+          document.querySelectorAll('.sync-inp-amount').forEach(el => el.value = '₹ 30,000/- (तीस हजार रुपये मात्र)');
+          document.querySelectorAll('.sync-sign-name-input').forEach(el => el.textContent = 'DINESH SHARMA (SR. MANAGER - HR)');
         }
 
         applyCaseContent(currentCase);
