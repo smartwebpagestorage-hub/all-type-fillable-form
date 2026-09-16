@@ -28,7 +28,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding-top: 56px;
+      padding-top: 106px; /* Space for dual toolbars */
       padding-bottom: 40px;
     }
 
@@ -68,10 +68,12 @@
       padding: 6px 12px;
       border-radius: 4px;
       border: 1px solid #334155;
+      transition: background 0.15s;
     }
 
     .btn-nav-home:hover {
       background: #334155;
+      color: #38bdf8;
     }
 
     .toolbar-title {
@@ -131,6 +133,7 @@
       cursor: pointer;
       border: 1px solid transparent;
       text-decoration: none;
+      transition: all 0.15s;
     }
 
     .btn-print {
@@ -147,7 +150,165 @@
     }
     .btn-secondary:hover { background: #475569; }
 
-    /* The Printable Sheet */
+    /* ========================================================================= */
+    /* 1.2 SECONDARY FORMATTING TOOLBAR (SCREEN ONLY)                            */
+    /* ========================================================================= */
+    .formatting-toolbar {
+      position: fixed;
+      top: 52px;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid #cbd5e1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      z-index: 990;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      gap: 10px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+    .format-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f8fafc;
+      padding: 3px 6px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+
+    .format-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      margin-right: 2px;
+      user-select: none;
+    }
+
+    .format-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      color: #1e293b;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 7px;
+      cursor: pointer;
+      min-width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .format-btn:hover {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+      color: #0369a1;
+    }
+
+    .format-btn.active {
+      background: #0284c7;
+      border-color: #0369a1;
+      color: #ffffff;
+    }
+
+    .format-select {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 6px;
+      color: #1e293b;
+      outline: none;
+      cursor: pointer;
+      height: 28px;
+    }
+
+    .format-select:focus {
+      border-color: #0284c7;
+    }
+
+    .color-picker-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      overflow: hidden;
+      cursor: pointer;
+      background: #ffffff;
+    }
+
+    .color-picker-wrapper input[type="color"] {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      width: 44px;
+      height: 44px;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .quick-colors {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 2px;
+    }
+
+    .color-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1.5px solid #ffffff;
+      box-shadow: 0 0 0 1px #cbd5e1;
+      transition: transform 0.15s;
+    }
+
+    .color-dot:hover {
+      transform: scale(1.2);
+    }
+
+    .color-dot.active {
+      box-shadow: 0 0 0 2px #0284c7;
+      transform: scale(1.15);
+    }
+
+    .dot-black { background: #000000; }
+    .dot-blue { background: #003399; }
+    .dot-red { background: #b91c1c; }
+    .dot-green { background: #15803d; }
+    .dot-purple { background: #6b21a8; }
+
+    .btn-reset-style {
+      color: #64748b;
+      font-size: 11px;
+    }
+    .btn-reset-style:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #b91c1c;
+    }
+
+    /* ========================================================================= */
+    /* 2. PRINTABLE SHEET                                                        */
+    /* ========================================================================= */
     .sheet-wrapper {
       width: 100%;
       display: flex;
@@ -167,6 +328,7 @@
       color: #000000;
       font-size: 11.5px;
       line-height: 1.35;
+      transition: font-size 0.15s;
     }
 
     body.size-legal .form-sheet {
@@ -271,7 +433,7 @@
     .proforma-table td {
       padding: 2px 2px;
       vertical-align: top;
-      font-size: 11.5px;
+      font-size: inherit;
       line-height: 1.3;
     }
 
@@ -299,45 +461,37 @@
       padding-left: 2px;
     }
 
-    /* Input & Textarea with Clean Dotted Line Effect */
-    .blank-input {
-      width: 100%;
-      border: none;
-      border-bottom: 1px dotted #000000;
-      background: transparent;
-      font-family: inherit;
-      font-size: 11.5px;
-      color: #000000;
-      padding: 1px 3px;
-      outline: none;
-      min-height: 19px;
-    }
-
-    .blank-input:focus {
-      border-bottom: 1.5px solid #0284c7;
-      background: #f8fafc;
-    }
-
-    /* Multi-line Area for Establishments (Items 4, 6, 18) with Sufficient Space */
+    /* Input & Textarea with Multi-Line Auto-Wrap and Clean Dotted Line Effect */
+    .blank-input,
     .blank-textarea {
       width: 100%;
       border: none;
       border-bottom: 1px dotted #000000;
       background: transparent;
       font-family: inherit;
-      font-size: 11.5px;
-      color: #000000;
+      font-size: inherit;
+      color: inherit;
       padding: 1px 3px;
       outline: none;
-      resize: vertical;
-      line-height: 18px;
-      min-height: 38px;
+      resize: none;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      field-sizing: content;
+      line-height: 1.35;
+      min-height: 19px;
       display: block;
+      transition: background 0.15s, border-bottom 0.15s;
     }
 
+    .blank-textarea {
+      min-height: 36px;
+    }
+
+    .blank-input:focus,
     .blank-textarea:focus {
       border-bottom: 1.5px solid #0284c7;
-      background: #f8fafc;
+      background: #f0f9ff;
     }
 
     /* Signatory Section */
@@ -384,13 +538,16 @@
       padding-left: 24px;
       display: block;
       outline: none;
+      border-bottom: 1px dotted transparent;
+      transition: background 0.15s;
     }
 
     .dispatch-indent:focus {
-      background: #f8fafc;
+      background: #f0f9ff;
+      border-bottom: 1px dotted #0284c7;
     }
 
-    /* Print Optimizations - Guaranteed Exact 1-Page A4 Fit */
+    /* Print Optimizations - Guaranteed Exact Fit */
     @media print {
       @page {
         size: A4 portrait;
@@ -419,7 +576,7 @@
 
       .form-sheet {
         box-shadow: none !important;
-        padding: 0 !important; /* Page margins are handled cleanly by @page */
+        padding: 0 !important;
         margin: 0 !important;
         width: 100% !important;
         min-height: auto !important;
@@ -447,6 +604,8 @@
       .blank-textarea {
         border-bottom: 1px dotted #000000 !important;
         background: transparent !important;
+        overflow: visible !important;
+        resize: none !important;
       }
 
       .ref-date-row input {
@@ -494,6 +653,75 @@
     </div>
   </header>
 
+  <!-- ========================================================================= -->
+  <!-- 1.2 SECONDARY FORMATTING TOOLBAR (SCREEN ONLY)                            -->
+  <!-- ========================================================================= -->
+  <aside class="formatting-toolbar no-print">
+    <!-- Scope / Target Selector -->
+    <div class="format-group">
+      <span class="format-label">🎯 लागू करें:</span>
+      <select class="format-select" id="formatTargetScope" title="चुनें कि स्टाइल कहाँ लागू करनी है">
+        <option value="active" selected>सक्रिय फ़ील्ड (Current Field)</option>
+        <option value="all">सभी फ़ील्ड (All Fields)</option>
+        <option value="sheet">संपूर्ण शीट (Entire Sheet)</option>
+      </select>
+    </div>
+
+    <!-- Font Size Controls (Increase / Decrease / Dropdown) -->
+    <div class="format-group">
+      <span class="format-label">📏 आकार:</span>
+      <button type="button" class="format-btn" id="btnFontDec" title="फ़ॉन्ट छोटा करें (A−)">A−</button>
+      <select class="format-select" id="fontSizeSelect" title="फ़ॉन्ट आकार चुनें">
+        <option value="9.5px">9.5 px</option>
+        <option value="10.5px">10.5 px</option>
+        <option value="11.5px" selected>11.5 px (Normal)</option>
+        <option value="12.5px">12.5 px</option>
+        <option value="13.5px">13.5 px (Large)</option>
+        <option value="15px">15 px (XL)</option>
+        <option value="16.5px">16.5 px</option>
+      </select>
+      <button type="button" class="format-btn" id="btnFontInc" title="फ़ॉन्ट बड़ा करें (A+)">A+</button>
+    </div>
+
+    <!-- Bold, Italic, Underline -->
+    <div class="format-group">
+      <button type="button" class="format-btn" id="btnBold" title="बोल्ड / गहरा (Ctrl+B)"><b>B</b></button>
+      <button type="button" class="format-btn" id="btnItalic" title="इटैलिक / तिरछा (Ctrl+I)"><i>I</i></button>
+      <button type="button" class="format-btn" id="btnUnderline" title="अंडरलाइन (Ctrl+U)"><u>U</u></button>
+    </div>
+
+    <!-- Text Alignment -->
+    <div class="format-group">
+      <span class="format-label">अलाइन:</span>
+      <button type="button" class="format-btn active" id="btnAlignLeft" title="बायाँ अलाइन (Align Left)">⇤</button>
+      <button type="button" class="format-btn" id="btnAlignCenter" title="मध्य अलाइन (Align Center)">⇹</button>
+      <button type="button" class="format-btn" id="btnAlignRight" title="दायाँ अलाइन (Align Right)">⇥</button>
+      <button type="button" class="format-btn" id="btnAlignJustify" title="जस्टिफाई (Justify)">≡</button>
+    </div>
+
+    <!-- Font Color Picker & Quick Palette -->
+    <div class="format-group">
+      <span class="format-label">🎨 रंग:</span>
+      <div class="color-picker-wrapper" title="कस्टम रंग चुनें">
+        <input type="color" id="fontColorPicker" value="#000000">
+      </div>
+      <div class="quick-colors" title="त्वरित रंग चयन">
+        <span class="color-dot dot-black active" data-color="#000000" title="काला (Black)"></span>
+        <span class="color-dot dot-blue" data-color="#003399" title="रॉयल ब्लू (Royal Blue)"></span>
+        <span class="color-dot dot-red" data-color="#b91c1c" title="गहरा लाल (Dark Red)"></span>
+        <span class="color-dot dot-green" data-color="#15803d" title="गहरा हरा (Dark Green)"></span>
+        <span class="color-dot dot-purple" data-color="#6b21a8" title="जामुनी (Purple)"></span>
+      </div>
+    </div>
+
+    <!-- Reset Styles Button -->
+    <div class="format-group">
+      <button type="button" class="format-btn btn-reset-style" id="btnResetStyles" title="डिफ़ॉल्ट स्टाइल पर वापस लौटें">
+        ↺ रीसेट
+      </button>
+    </div>
+  </aside>
+
 
   <!-- ========================================================================= -->
   <!-- 2. MAIN DOCUMENT SHEET                                                    -->
@@ -533,15 +761,15 @@
       <div class="ref-date-row">
         <div>
           <strong>Ref. No. :</strong>
-          <input type="text" id="inpRefNo" style="width: 220px;" value="">
+          <input type="text" id="inpRefNo" style="width: 240px;" value="">
         </div>
         <div>
           <strong>Date :</strong>
-          <input type="text" id="inpDate" style="width: 100px; text-align: right;" value="">
+          <input type="text" id="inpDate" style="width: 110px; text-align: right;" value="">
         </div>
       </div>
 
-      <!-- 19 Particulars Proforma Table (All fields completely blank) -->
+      <!-- 19 Particulars Proforma Table (All fields completely blank by default) -->
       <table class="proforma-table">
         <tbody>
           <!-- 1. Name of the subscriber -->
@@ -550,7 +778,7 @@
             <td class="col-label">Name of the subscriber</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp1" value="">
+              <textarea class="blank-input auto-grow" id="inp1" rows="1"></textarea>
             </td>
           </tr>
 
@@ -560,7 +788,7 @@
             <td class="col-label">Name of father/husband</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp2" value="">
+              <textarea class="blank-input auto-grow" id="inp2" rows="1"></textarea>
             </td>
           </tr>
 
@@ -570,7 +798,7 @@
             <td class="col-label">Account No. from which transfer is made</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp3" value="">
+              <textarea class="blank-input auto-grow" id="inp3" rows="1"></textarea>
             </td>
           </tr>
 
@@ -580,7 +808,7 @@
             <td class="col-label">Name and address of establishment in which previously employed</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <textarea class="blank-textarea" id="inp4" rows="2"></textarea>
+              <textarea class="blank-textarea auto-grow" id="inp4" rows="2"></textarea>
             </td>
           </tr>
 
@@ -590,7 +818,7 @@
             <td class="col-label">New account no. to which transfer is to be made.</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp5" value="">
+              <textarea class="blank-input auto-grow" id="inp5" rows="1"></textarea>
             </td>
           </tr>
 
@@ -600,7 +828,7 @@
             <td class="col-label">Name and address of establishment in which Employed at present</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <textarea class="blank-textarea" id="inp6" rows="2"></textarea>
+              <textarea class="blank-textarea auto-grow" id="inp6" rows="2"></textarea>
             </td>
           </tr>
 
@@ -610,7 +838,7 @@
             <td class="col-label">Closing balance as on 1st Apr 199..</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp7" value="">
+              <textarea class="blank-input auto-grow" id="inp7" rows="1"></textarea>
             </td>
           </tr>
 
@@ -620,7 +848,7 @@
             <td class="col-label">Contribution during the year 199.</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp8" value="">
+              <textarea class="blank-input auto-grow" id="inp8" rows="1"></textarea>
             </td>
           </tr>
 
@@ -630,7 +858,7 @@
             <td class="col-label">Interest credited for the current year</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp9" value="">
+              <textarea class="blank-input auto-grow" id="inp9" rows="1"></textarea>
             </td>
           </tr>
 
@@ -640,7 +868,7 @@
             <td class="col-label">Total credited to the account</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp10" value="">
+              <textarea class="blank-input auto-grow" id="inp10" rows="1"></textarea>
             </td>
           </tr>
 
@@ -650,7 +878,7 @@
             <td class="col-label">Withdrawal during the year, if any</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp11" value="">
+              <textarea class="blank-input auto-grow" id="inp11" rows="1"></textarea>
             </td>
           </tr>
 
@@ -660,7 +888,7 @@
             <td class="col-label">Net amount transferred</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp12" value="">
+              <textarea class="blank-input auto-grow" id="inp12" rows="1"></textarea>
             </td>
           </tr>
 
@@ -670,7 +898,7 @@
             <td class="col-label">Date of commencement of the Scheme</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp13" value="">
+              <textarea class="blank-input auto-grow" id="inp13" rows="1"></textarea>
             </td>
           </tr>
 
@@ -680,7 +908,7 @@
             <td class="col-label">Total period of continuous service From the date of commencement of the scheme</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp14" value="">
+              <textarea class="blank-input auto-grow" id="inp14" rows="1"></textarea>
             </td>
           </tr>
 
@@ -690,7 +918,7 @@
             <td class="col-label">Date of leaving service</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp15" value="">
+              <textarea class="blank-input auto-grow" id="inp15" rows="1"></textarea>
             </td>
           </tr>
 
@@ -700,7 +928,7 @@
             <td class="col-label">Whether form No. 02 are enclosed</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp16" value="">
+              <textarea class="blank-input auto-grow" id="inp16" rows="1"></textarea>
             </td>
           </tr>
 
@@ -710,7 +938,7 @@
             <td class="col-label">Age as mentioned in form 09</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp17" value="">
+              <textarea class="blank-input auto-grow" id="inp17" rows="1"></textarea>
             </td>
           </tr>
 
@@ -720,7 +948,7 @@
             <td class="col-label">Details of P.F Contribution</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <textarea class="blank-textarea" id="inp18" rows="2"></textarea>
+              <textarea class="blank-textarea auto-grow" id="inp18" rows="2"></textarea>
             </td>
           </tr>
 
@@ -730,7 +958,7 @@
             <td class="col-label">Total break in reckonable service.</td>
             <td class="col-sep">:-</td>
             <td class="col-data">
-              <input type="text" class="blank-input" id="inp19" value="">
+              <textarea class="blank-input auto-grow" id="inp19" rows="1"></textarea>
             </td>
           </tr>
         </tbody>
@@ -780,8 +1008,311 @@
       const btnPrintDoc = document.getElementById('btnPrintDoc');
       const btnSampleData = document.getElementById('btnSampleData');
       const btnClearForm = document.getElementById('btnClearForm');
+      const annexureKSheet = document.getElementById('annexureKSheet');
 
-      // Paper Size Toggle (A4 / Legal)
+      // Formatting Toolbar Elements
+      const formatTargetScope = document.getElementById('formatTargetScope');
+      const btnFontDec = document.getElementById('btnFontDec');
+      const btnFontInc = document.getElementById('btnFontInc');
+      const fontSizeSelect = document.getElementById('fontSizeSelect');
+      const btnBold = document.getElementById('btnBold');
+      const btnItalic = document.getElementById('btnItalic');
+      const btnUnderline = document.getElementById('btnUnderline');
+      const btnAlignLeft = document.getElementById('btnAlignLeft');
+      const btnAlignCenter = document.getElementById('btnAlignCenter');
+      const btnAlignRight = document.getElementById('btnAlignRight');
+      const btnAlignJustify = document.getElementById('btnAlignJustify');
+      const fontColorPicker = document.getElementById('fontColorPicker');
+      const quickColors = document.querySelectorAll('.color-dot');
+      const btnResetStyles = document.getElementById('btnResetStyles');
+
+      // =========================================================================
+      // AUTO-GROW FOR TEXTAREAS (Auto Line-Change when typing)
+      // =========================================================================
+      function autoGrow(el) {
+        if (!el) return;
+        el.style.height = 'auto';
+        el.style.height = (el.scrollHeight) + 'px';
+      }
+
+      function initAutoGrow() {
+        document.querySelectorAll('textarea.auto-grow').forEach(el => {
+          autoGrow(el);
+          el.removeEventListener('input', el._growHandler);
+          el._growHandler = function() { autoGrow(this); };
+          el.addEventListener('input', el._growHandler);
+        });
+      }
+
+      // =========================================================================
+      // LAST FOCUSED ELEMENT TRACKER
+      // =========================================================================
+      let lastFocusedElement = null;
+
+      function attachFocusListeners() {
+        const focusable = document.querySelectorAll(
+          '.blank-input, .blank-textarea, #inpRefNo, #inpDate, .dispatch-indent, .col-label, .col-num, .form-title, .form-sub-commissioner'
+        );
+        focusable.forEach(el => {
+          el.addEventListener('focus', () => {
+            lastFocusedElement = el;
+            syncToolbarWithElement(el);
+          });
+          el.addEventListener('click', () => {
+            lastFocusedElement = el;
+            syncToolbarWithElement(el);
+          });
+        });
+      }
+
+      // Sync toolbar states to active element
+      function syncToolbarWithElement(el) {
+        if (!el) return;
+        const comp = window.getComputedStyle(el);
+
+        // Bold
+        const isBold = comp.fontWeight === 'bold' || parseInt(comp.fontWeight, 10) >= 700;
+        btnBold.classList.toggle('active', isBold);
+
+        // Italic
+        const isItalic = comp.fontStyle === 'italic';
+        btnItalic.classList.toggle('active', isItalic);
+
+        // Underline
+        const isUnderline = comp.textDecorationLine ? comp.textDecorationLine.includes('underline') : comp.textDecoration.includes('underline');
+        btnUnderline.classList.toggle('active', isUnderline);
+
+        // Align
+        const align = comp.textAlign || 'left';
+        btnAlignLeft.classList.toggle('active', align === 'left' || align === 'start');
+        btnAlignCenter.classList.toggle('active', align === 'center');
+        btnAlignRight.classList.toggle('active', align === 'right');
+        btnAlignJustify.classList.toggle('active', align === 'justify');
+
+        // Font size sync
+        const curPx = parseFloat(comp.fontSize);
+        let found = false;
+        for (let opt of fontSizeSelect.options) {
+          if (Math.abs(parseFloat(opt.value) - curPx) < 0.3) {
+            fontSizeSelect.value = opt.value;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          fontSizeSelect.value = '';
+        }
+
+        // Color sync
+        let col = comp.color;
+        if (col.startsWith('rgb')) {
+          col = rgbToHex(col);
+        }
+        if (col && col.startsWith('#')) {
+          fontColorPicker.value = col;
+          quickColors.forEach(dot => {
+            dot.classList.toggle('active', dot.getAttribute('data-color').toLowerCase() === col.toLowerCase());
+          });
+        }
+      }
+
+      function rgbToHex(rgb) {
+        const res = rgb.match(/\d+/g);
+        if (!res || res.length < 3) return '#000000';
+        return '#' + res.slice(0, 3).map(x => parseInt(x, 10).toString(16).padStart(2, '0')).join('');
+      }
+
+      // Determine which elements to modify based on Target Scope
+      function getTargetElements() {
+        const scope = formatTargetScope ? formatTargetScope.value : 'active';
+        if (scope === 'all') {
+          return Array.from(document.querySelectorAll('.blank-input, .blank-textarea, #inpRefNo, #inpDate, .dispatch-indent'));
+        } else if (scope === 'sheet') {
+          return [annexureKSheet];
+        } else {
+          // 'active'
+          if (lastFocusedElement && document.contains(lastFocusedElement)) {
+            return [lastFocusedElement];
+          }
+          // Default fallback to all fillable fields if none explicitly clicked
+          return Array.from(document.querySelectorAll('.blank-input, .blank-textarea, #inpRefNo, #inpDate, .dispatch-indent'));
+        }
+      }
+
+      // Prevent losing focus on toolbar button clicks
+      document.querySelectorAll('.formatting-toolbar button, .formatting-toolbar .color-dot').forEach(btn => {
+        btn.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+        });
+      });
+
+      // =========================================================================
+      // 1. FONT SIZE (INCREASE / DECREASE / SELECT)
+      // =========================================================================
+      function applyFontSize(sizePx) {
+        const targets = getTargetElements();
+        targets.forEach(el => {
+          el.style.fontSize = sizePx;
+        });
+        initAutoGrow();
+      }
+
+      if (fontSizeSelect) {
+        fontSizeSelect.addEventListener('change', (e) => {
+          if (e.target.value) {
+            applyFontSize(e.target.value);
+          }
+        });
+      }
+
+      function stepFontSize(delta) {
+        const targets = getTargetElements();
+        if (!targets.length) return;
+        const comp = window.getComputedStyle(targets[0]);
+        const cur = parseFloat(comp.fontSize) || 11.5;
+        const next = Math.max(8, Math.min(24, Math.round((cur + delta) * 2) / 2));
+        const valStr = next + 'px';
+        targets.forEach(el => {
+          el.style.fontSize = valStr;
+        });
+
+        // Sync dropdown
+        let found = false;
+        for (let opt of fontSizeSelect.options) {
+          if (parseFloat(opt.value) === next) {
+            fontSizeSelect.value = opt.value;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          fontSizeSelect.value = '';
+        }
+        initAutoGrow();
+      }
+
+      if (btnFontDec) btnFontDec.addEventListener('click', () => stepFontSize(-1));
+      if (btnFontInc) btnFontInc.addEventListener('click', () => stepFontSize(+1));
+
+      // =========================================================================
+      // 2. BOLD, ITALIC, UNDERLINE
+      // =========================================================================
+      if (btnBold) {
+        btnBold.addEventListener('click', () => {
+          const targets = getTargetElements();
+          if (!targets.length) return;
+          const comp = window.getComputedStyle(targets[0]);
+          const isBold = comp.fontWeight === 'bold' || parseInt(comp.fontWeight, 10) >= 700;
+          const nextWeight = isBold ? 'normal' : 'bold';
+          targets.forEach(el => {
+            el.style.fontWeight = nextWeight;
+          });
+          btnBold.classList.toggle('active', !isBold);
+        });
+      }
+
+      if (btnItalic) {
+        btnItalic.addEventListener('click', () => {
+          const targets = getTargetElements();
+          if (!targets.length) return;
+          const comp = window.getComputedStyle(targets[0]);
+          const isItalic = comp.fontStyle === 'italic';
+          const nextStyle = isItalic ? 'normal' : 'italic';
+          targets.forEach(el => {
+            el.style.fontStyle = nextStyle;
+          });
+          btnItalic.classList.toggle('active', !isItalic);
+        });
+      }
+
+      if (btnUnderline) {
+        btnUnderline.addEventListener('click', () => {
+          const targets = getTargetElements();
+          if (!targets.length) return;
+          const comp = window.getComputedStyle(targets[0]);
+          const isUnderline = comp.textDecorationLine ? comp.textDecorationLine.includes('underline') : comp.textDecoration.includes('underline');
+          const nextDec = isUnderline ? 'none' : 'underline';
+          targets.forEach(el => {
+            el.style.textDecoration = nextDec;
+          });
+          btnUnderline.classList.toggle('active', !isUnderline);
+        });
+      }
+
+      // =========================================================================
+      // 3. TEXT ALIGNMENT (LEFT / CENTER / RIGHT / JUSTIFY)
+      // =========================================================================
+      function setAlignment(alignVal) {
+        const targets = getTargetElements();
+        targets.forEach(el => {
+          el.style.textAlign = alignVal;
+        });
+        [btnAlignLeft, btnAlignCenter, btnAlignRight, btnAlignJustify].forEach(b => b.classList.remove('active'));
+        if (alignVal === 'left') btnAlignLeft.classList.add('active');
+        if (alignVal === 'center') btnAlignCenter.classList.add('active');
+        if (alignVal === 'right') btnAlignRight.classList.add('active');
+        if (alignVal === 'justify') btnAlignJustify.classList.add('active');
+      }
+
+      if (btnAlignLeft) btnAlignLeft.addEventListener('click', () => setAlignment('left'));
+      if (btnAlignCenter) btnAlignCenter.addEventListener('click', () => setAlignment('center'));
+      if (btnAlignRight) btnAlignRight.addEventListener('click', () => setAlignment('right'));
+      if (btnAlignJustify) btnAlignJustify.addEventListener('click', () => setAlignment('justify'));
+
+      // =========================================================================
+      // 4. FONT COLOR (COLOR PICKER + QUICK PALETTE)
+      // =========================================================================
+      function applyFontColor(colorHex) {
+        const targets = getTargetElements();
+        targets.forEach(el => {
+          el.style.color = colorHex;
+        });
+        fontColorPicker.value = colorHex;
+        quickColors.forEach(dot => {
+          dot.classList.toggle('active', dot.getAttribute('data-color').toLowerCase() === colorHex.toLowerCase());
+        });
+      }
+
+      if (fontColorPicker) {
+        fontColorPicker.addEventListener('input', (e) => {
+          applyFontColor(e.target.value);
+        });
+      }
+
+      quickColors.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const col = dot.getAttribute('data-color');
+          applyFontColor(col);
+        });
+      });
+
+      // =========================================================================
+      // 5. RESET STYLES
+      // =========================================================================
+      if (btnResetStyles) {
+        btnResetStyles.addEventListener('click', () => {
+          const targets = getTargetElements();
+          targets.forEach(el => {
+            el.style.fontSize = '';
+            el.style.fontWeight = '';
+            el.style.fontStyle = '';
+            el.style.textDecoration = '';
+            el.style.textAlign = '';
+            el.style.color = '';
+          });
+          btnBold.classList.remove('active');
+          btnItalic.classList.remove('active');
+          btnUnderline.classList.remove('active');
+          setAlignment('left');
+          fontSizeSelect.value = '11.5px';
+          applyFontColor('#000000');
+          initAutoGrow();
+        });
+      }
+
+      // =========================================================================
+      // 6. PAPER SIZE TOGGLE (A4 / LEGAL)
+      // =========================================================================
       if (btnSizeA4 && btnSizeLegal) {
         btnSizeA4.addEventListener('click', () => {
           body.classList.remove('size-legal');
@@ -800,25 +1331,30 @@
         });
       }
 
-      // Print
+      // =========================================================================
+      // 7. PRINT ACTION
+      // =========================================================================
       if (btnPrintDoc) {
         btnPrintDoc.addEventListener('click', () => {
           window.print();
         });
       }
 
-      // Clear Form (Make 100% blank)
+      // =========================================================================
+      // 8. CLEAR FORM (100% BLANK)
+      // =========================================================================
       if (btnClearForm) {
         btnClearForm.addEventListener('click', () => {
-          document.querySelectorAll('.blank-input, .blank-textarea').forEach(el => {
+          document.querySelectorAll('.blank-input, .blank-textarea, #inpRefNo, #inpDate').forEach(el => {
             el.value = '';
           });
-          document.getElementById('inpRefNo').value = '';
-          document.getElementById('inpDate').value = '';
+          initAutoGrow();
         });
       }
 
-      // Load Sample Data (Optional convenience button)
+      // =========================================================================
+      // 9. LOAD SAMPLE DATA
+      // =========================================================================
       if (btnSampleData) {
         btnSampleData.addEventListener('click', () => {
           document.getElementById('inpRefNo').value = 'RO/FBD/Accts/Annexure-K/2026/894';
@@ -843,8 +1379,15 @@
           document.getElementById('inp17').value = '42 Years (DOB: 15.03.1982)';
           document.getElementById('inp18').value = '12% EPF & 8.33% EPS deposited regularly up to wage ceiling as per ECR.';
           document.getElementById('inp19').value = 'NIL (0 Days)';
+
+          initAutoGrow();
+          alert('राकेश कुमार मित्तल का नमूना डेटा सफलतापूर्वक भर दिया गया है!');
         });
       }
+
+      // Initial Setup
+      attachFocusListeners();
+      initAutoGrow();
     });
   </script>
 </body>
