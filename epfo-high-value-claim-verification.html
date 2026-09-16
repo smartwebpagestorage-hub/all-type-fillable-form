@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO High Value Claim KYC Email Verification Form | उच्च मूल्य दावा केवाईसी सत्यापन पत्र</title>
+  <meta name="description" content="Official EPFO High Value Claim KYC Email Verification Requisition Letter & Employer Certification Proforma. Account Section 09, Regional Office, Faridabad.">
+  
+  <!-- Google Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 6mm 10mm 6mm 10mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #16a34a;
+      --navy: #0f172a;
+      --text: #000000;
+      --sheet-bg: #ffffff;
+      --desk-bg: #f1f5f9;
+      --border-dark: #000000;
+      --input-bg: rgba(2, 132, 199, 0.03);
+      --input-focus: #e0f2fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--desk-bg);
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 62px;
+      padding-bottom: 60px;
+    }
+
+    /* Fixed Application Toolbar */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 58px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    /* Dropdown for Forms */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-dropdown-toggle:hover {
+      background: #334155;
+    }
+
+    .dropdown-menu-box {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #ffffff;
+      color: #0f172a;
+      min-width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      border: 1px solid #cbd5e1;
+      overflow: hidden;
+      z-index: 1100;
+    }
+
+    .nav-dropdown.open .dropdown-menu-box {
+      display: block;
+    }
+
+    .dropdown-header-tag {
+      background: #f8fafc;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .dropdown-item-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      color: #1e293b;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s;
+    }
+
+    .dropdown-item-link:hover {
+      background: #f0f9ff;
+      color: #0284c7;
+    }
+
+    .dropdown-item-link.active {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    /* Sheet Tabs Switcher */
+    .sheet-view-tabs {
+      display: flex;
+      background: #1e293b;
+      border-radius: 6px;
+      padding: 2px;
+      border: 1px solid #334155;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Action Buttons in Toolbar */
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .paper-size-switcher {
+      display: flex;
+      align-items: center;
+      background: #1e293b;
+      border-radius: 6px;
+      padding: 2px 4px;
+      border: 1px solid #334155;
+    }
+
+    .switcher-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+      padding: 0 6px;
+    }
+
+    .size-btn-group {
+      display: flex;
+      gap: 2px;
+    }
+
+    .btn-size-toggle {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-size-toggle.active {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: #0369a1;
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .btn-warning {
+      background: #d97706;
+      color: #ffffff;
+    }
+    .btn-warning:hover {
+      background: #b45309;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: #ffffff;
+    }
+    .btn-success:hover {
+      background: #15803d;
+    }
+
+    .btn-email {
+      background: #7c3aed;
+      color: #ffffff;
+    }
+    .btn-email:hover {
+      background: #6d28d9;
+    }
+
+    /* Sub-bar: Office & Fast Action Bar (Screen Only) */
+    .controls-subbar {
+      width: 100%;
+      max-width: 210mm;
+      background: #ffffff;
+      margin: 12px 0 12px 0;
+      padding: 8px 14px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .subbar-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .subbar-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .preset-select {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      color: #0f172a;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .badge-info-pill {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Document Sheets Container */
+    .document-sheets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+    }
+
+    /* Form Sheet - Paper Styling */
+    .form-sheet {
+      background-color: var(--sheet-bg);
+      width: 210mm;
+      min-height: 297mm;
+      padding: 8mm 12mm 8mm 12mm;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: #000000;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    body.size-legal .form-sheet {
+      width: 215.9mm;
+      min-height: 355.6mm;
+      padding: 10mm 14mm 10mm 14mm;
+    }
+
+    /* Screen Badge */
+    .sheet-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    /* ========================================================================= */
+    /* OFFICIAL EPFO BILINGUAL HEADER                                            */
+    /* ========================================================================= */
+    .epfo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px double #000000;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+
+    .epfo-logo-box,
+    .emblem-logo-box {
+      flex: 0 0 68px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .epfo-logo-img {
+      width: 66px;
+      height: auto;
+      max-height: 68px;
+      object-fit: contain;
+    }
+
+    .emblem-logo-img {
+      width: 48px;
+      height: auto;
+      max-height: 70px;
+      object-fit: contain;
+    }
+
+    .header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .org-title-hi {
+      font-size: 15.5px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #000000;
+    }
+
+    .org-title-en {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      color: #000000;
+    }
+
+    .ministry-title {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #111111;
+      margin: 1px 0;
+    }
+
+    .office-title-line {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 2px;
+      color: #000000;
+    }
+
+    .office-addr-line {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #222222;
+    }
+
+    .office-contact-line {
+      font-size: 11px;
+      font-weight: 600;
+      color: #111111;
+      margin-top: 1px;
+    }
+
+    /* Editable inline elements */
+    .edit-inline {
+      border-bottom: 1px dashed transparent;
+      padding: 0 2px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .edit-inline:hover {
+      border-bottom-color: #0284c7;
+      background: #f0f9ff;
+    }
+    .edit-inline:focus {
+      border-bottom-color: #0284c7;
+      background: #e0f2fe;
+    }
+
+    /* Reference, Mode & Date Row */
+    .doc-ref-date-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 0 10px 0;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .ref-part {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .date-part {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fill-input {
+      border: none;
+      border-bottom: 1px dotted #333333;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 700;
+      background: var(--input-bg);
+      padding: 1px 4px;
+      color: #000000;
+    }
+
+    .fill-input:focus {
+      border-bottom: 1.5px solid var(--primary);
+      background: var(--input-focus);
+    }
+
+    /* Address / Recipient Box */
+    .recipient-box {
+      margin: 6px 0 10px 0;
+      line-height: 1.45;
+      font-size: 12.5px;
+    }
+
+    .recipient-line {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+
+    /* Subject Banner */
+    .subject-banner {
+      background: #f8fafc;
+      border-left: 4px solid #0f172a;
+      padding: 6px 10px;
+      margin: 8px 0 12px 0;
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* Letter Body Paragraphs */
+    .letter-body {
+      font-size: 12.5px;
+      line-height: 1.5;
+      text-align: justify;
+      color: #000000;
+    }
+
+    .salutation {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .para-text {
+      margin-bottom: 8px;
+    }
+
+    /* Verification Particulars Table */
+    .kyc-verification-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 12px 0;
+      font-size: 11.5px;
+    }
+
+    .kyc-verification-table th,
+    .kyc-verification-table td {
+      border: 1px solid #000000;
+      padding: 4px 6px;
+      vertical-align: middle;
+    }
+
+    .kyc-verification-table th {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      text-align: center;
+      font-size: 11.5px;
+    }
+
+    .kyc-verification-table td.col-sno {
+      text-align: center;
+      width: 32px;
+      font-weight: 600;
+    }
+
+    .kyc-verification-table td.col-label {
+      font-weight: 600;
+      width: 210px;
+    }
+
+    .kyc-verification-table td.col-value {
+      font-weight: 700;
+    }
+
+    .kyc-verification-table td.col-status {
+      text-align: center;
+      width: 140px;
+      font-weight: 600;
+    }
+
+    /* Table internal inputs */
+    .tbl-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .tbl-input:focus {
+      background: #e0f2fe;
+    }
+
+    /* Sign-off Block */
+    .signoff-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 14px;
+      padding-top: 8px;
+      font-size: 12.5px;
+    }
+
+    .signoff-left {
+      line-height: 1.4;
+      font-size: 11.5px;
+      color: #333333;
+    }
+
+    .signoff-right {
+      text-align: right;
+      line-height: 1.35;
+      min-width: 220px;
+    }
+
+    .sign-space {
+      height: 38px;
+    }
+
+    .officer-title {
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .officer-dept {
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .officer-office {
+      font-size: 11.5px;
+    }
+
+    /* Sheet 2: Employer Letterhead Proforma Styles */
+    .employer-sheet {
+      border: 1px solid #cbd5e1;
+    }
+
+    .employer-header-note {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      border-bottom: 1px dashed #94a3b8;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .employer-company-banner {
+      text-align: center;
+      padding: 10px;
+      border: 1.5px solid #0f172a;
+      background: #f8fafc;
+      margin-bottom: 12px;
+    }
+
+    .emp-company-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #0f172a;
+    }
+
+    .emp-company-addr {
+      font-size: 11.5px;
+      color: #334155;
+      margin-top: 2px;
+    }
+
+    .emp-company-meta {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 3px;
+    }
+
+    .cert-heading-box {
+      text-align: center;
+      margin: 14px 0 12px 0;
+    }
+
+    .cert-main-title {
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: underline;
+      letter-spacing: 0.5px;
+    }
+
+    .cert-sub-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #333333;
+      margin-top: 2px;
+    }
+
+    /* Sheet Footer */
+    .sheet-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10.5px;
+      font-weight: 600;
+      border-top: 0.5px solid #999999;
+      padding-top: 4px;
+      color: #555555;
+    }
+
+    /* Email Modal Drawer */
+    .email-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .email-modal-overlay.active {
+      display: flex;
+    }
+
+    .email-modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 680px;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      border: 1px solid #cbd5e1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+    }
+
+    .modal-hdr {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-hdr h3 {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-modal-close {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .btn-modal-close:hover {
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+
+    .email-field-row {
+      margin-bottom: 12px;
+    }
+
+    .email-field-label {
+      font-weight: 700;
+      color: #334155;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .email-field-input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .email-body-preview {
+      width: 100%;
+      min-height: 220px;
+      padding: 10px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      overflow-y: auto;
+    }
+
+    .modal-ftr {
+      background: #f1f5f9;
+      padding: 12px 20px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      z-index: 3000;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* PRINT SPECIFIC STYLING - PERFECT 1-SHEET PER PAGE */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 6mm 10mm 6mm 10mm !important;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      .no-print,
+      .app-toolbar,
+      .controls-subbar,
+      .sheet-badge,
+      .email-modal-overlay,
+      .toast-msg {
+        display: none !important;
+      }
+
+      .document-sheets-container {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 0 !important;
+        width: 100% !important;
+      }
+
+      .form-sheet {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .form-sheet:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      .epfo-header {
+        border-bottom: 2px double #000000 !important;
+        padding-bottom: 5px !important;
+        margin-bottom: 6px !important;
+      }
+
+      .doc-ref-date-bar {
+        margin: 5px 0 8px 0 !important;
+      }
+
+      .subject-banner {
+        background: transparent !important;
+        border-left: 3.5px solid #000000 !important;
+        padding: 4px 8px !important;
+        margin: 6px 0 8px 0 !important;
+      }
+
+      .kyc-verification-table {
+        margin: 8px 0 !important;
+        font-size: 11px !important;
+      }
+
+      .kyc-verification-table th,
+      .kyc-verification-table td {
+        padding: 3px 5px !important;
+        border: 1px solid #000000 !important;
+      }
+
+      .kyc-verification-table th {
+        background: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .fill-input,
+      .tbl-input {
+        background: transparent !important;
+        border-bottom: 0.5px dotted #000000 !important;
+      }
+
+      .tbl-input {
+        border-bottom: none !important;
+      }
+
+      .edit-inline {
+        border-bottom: none !important;
+        background: transparent !important;
+      }
+
+      .signoff-section {
+        margin-top: 10px !important;
+        padding-top: 6px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .sheet-footer {
+        margin-top: 8px !important;
+        padding-top: 4px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      /* When viewing only Sheet 1 or Sheet 2 */
+      body.view-sheet-1 #sheet-2 {
+        display: none !important;
+      }
+      body.view-sheet-2 #sheet-1 {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4 view-both">
+
+  <!-- ========================================================================= -->
+  <!-- TOP APPLICATION TOOLBAR (NO PRINT)                                        -->
+  <!-- ========================================================================= -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-left">
+      <!-- Back to Portal Home -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Dropdown Form List -->
+      <div class="nav-dropdown" id="navDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnNavToggle">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/></svg>
+          <span>Forms List</span>
+          <svg width="10" height="10" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box" id="navDropdownMenu">
+          <div class="dropdown-header-tag">
+            <span>Official Forms</span>
+            <span style="background: #0284c7; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 9px;">Active</span>
+          </div>
+          <a href="epfo-high-value-claim-verification.html" class="dropdown-item-link active">
+            <span>● High Value Claim KYC Verification</span>
+          </a>
+          <a href="epfo-eps-to-pf-merger.html" class="dropdown-item-link">
+            <span>● EPS to EPF Merger &amp; Office Note</span>
+          </a>
+          <a href="epfo-guest-house-booking.html" class="dropdown-item-link">
+            <span>● Holiday Home / Guest House Booking</span>
+          </a>
+          <a href="epfo-form-31-advance.html" class="dropdown-item-link">
+            <span>● EPFO Form 31 (PF Advance)</span>
+          </a>
+          <a href="epfo-leave-and-joining.html" class="dropdown-item-link">
+            <span>● Leave Application & Joining Report</span>
+          </a>
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <span>● Composite Claim Form (Death Cases)</span>
+          </a>
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <span>● Form 10-D Monthly Pension</span>
+          </a>
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <span>● Composite Claim (Aadhar: 19/10C/31)</span>
+          </a>
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <span>● On-Roll & Family Description</span>
+          </a>
+          <a href="epfo-letterhead-noting.html" class="dropdown-item-link">
+            <span>● Letterhead & Noting Sheet</span>
+          </a>
+          <a href="stationery-requirement-form.html" class="dropdown-item-link">
+            <span>● Stationery Requisition Form</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sheet View Tabs -->
+      <div class="sheet-view-tabs" title="Choose which sheets to view and print">
+        <button type="button" class="tab-btn active" id="tabViewBoth">Both Sheets</button>
+        <button type="button" class="tab-btn" id="tabViewSheet1">Sheet 1 (EPFO Letter)</button>
+        <button type="button" class="tab-btn" id="tabViewSheet2">Sheet 2 (Employer Reply)</button>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="toolbar-actions">
+      <!-- Paper Size Switcher -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF">
+        <span class="switcher-label">Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <!-- Sample Data Fill -->
+      <button type="button" class="btn btn-warning" id="btnFillSample" title="Fill realistic sample data for testing">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg>
+        Sample Data
+      </button>
+
+      <!-- Clear Form -->
+      <button type="button" class="btn btn-secondary" id="btnClearForm" title="Clear all fields to empty blanks">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/></svg>
+        Clear
+      </button>
+
+      <!-- Email Draft & Send -->
+      <button type="button" class="btn btn-email" id="btnOpenEmailModal" title="Copy email text or open email client directly">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></svg>
+        Email Draft
+      </button>
+
+      <!-- Print / PDF Button -->
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document or Save to PDF">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        Print / PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- OFFICE SELECTOR & CONTEXT SUB-BAR (SCREEN ONLY)                           -->
+  <!-- ========================================================================= -->
+  <aside class="controls-subbar no-print">
+    <div class="subbar-group">
+      <span class="subbar-label">क्षेत्रीय कार्यालय (Office):</span>
+      <select class="preset-select" id="officePresetSelect">
+        <option value="faridabad" selected>क्षेत्रीय कार्यालय, फरीदाबाद (RO Faridabad)</option>
+        <option value="gurugram">क्षेत्रीय कार्यालय, गुरुग्राम (RO Gurugram)</option>
+        <option value="delhinorth">क्षेत्रीय कार्यालय, दिल्ली (उत्तर) (RO Delhi North)</option>
+        <option value="delhisouth">क्षेत्रीय कार्यालय, दिल्ली (दक्षिण) (RO Delhi South)</option>
+        <option value="noida">क्षेत्रीय कार्यालय, नोएडा (RO Noida)</option>
+        <option value="custom">अन्य / कस्टमाइज़ करें (Custom Office)</option>
+      </select>
+    </div>
+
+    <div class="subbar-group">
+      <span class="subbar-label">अनुभाग / Section:</span>
+      <input type="text" class="preset-select" id="cfgAccountSection" value="Account Section 09" style="width: 140px; font-weight: 700;">
+    </div>
+
+    <div class="subbar-group">
+      <span class="badge-info-pill">✓ High Value Claim Scrutiny (उच्च मूल्य दावा सत्यापन प्रपत्र)</span>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN PRINTABLE SHEETS CONTAINER                                           -->
+  <!-- ========================================================================= -->
+  <main class="document-sheets-container" id="sheetsContainer">
+
+    <!-- ======================================================================= -->
+    <!-- SHEET 1: OFFICIAL REQUISITION LETTER (EPFO RO FARIDABAD TO EMPLOYER)   -->
+    <!-- ======================================================================= -->
+    <article class="form-sheet" id="sheet-1">
+      
+      <div class="sheet-badge no-print">
+        <span><strong>SHEET 1</strong> • EPFO Requisition Letter to Employer (उच्च मूल्य दावा सत्यापन पत्र)</span>
+        <span>A4 Single Page Official Notice</span>
+      </div>
+
+      <!-- Official Bilingual Header -->
+      <header class="epfo-header">
+        <div class="epfo-logo-box">
+          <img src="image/epfo_logo.png" alt="EPFO Logo" class="epfo-logo-img">
+        </div>
+
+        <div class="header-center">
+          <div class="org-title-hi edit-inline" contenteditable="true" id="hdr_org_hi">कर्मचारी भविष्यनिधि संगठन</div>
+          <div class="org-title-en edit-inline" contenteditable="true" id="hdr_org_en">EMPLOYEES’ PROVIDENT FUND ORGANISATION</div>
+          <div class="ministry-title edit-inline" contenteditable="true" id="hdr_ministry">श्रम एवं रोजगार मंत्रालय, भारत सरकार / (Ministry of Labour & Employment, Govt. of India)</div>
+          
+          <div class="office-title-line">
+            <span class="edit-inline" contenteditable="true" id="hdr_office_hi">क्षेत्रीय कार्यालय, फरीदाबाद</span>
+            <span> / </span>
+            <span class="edit-inline" contenteditable="true" id="hdr_office_en">Regional Office: Faridabad - 121007</span>
+          </div>
+
+          <div class="office-addr-line edit-inline" contenteditable="true" id="hdr_address">
+            Bhavishay Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)
+          </div>
+
+          <div class="office-contact-line edit-inline" contenteditable="true" id="hdr_contact">
+            Phone : 0129-2288068 &nbsp;&nbsp;|&nbsp;&nbsp; Email : ro.faridabad@epfindia.gov.in
+          </div>
+        </div>
+
+        <div class="emblem-logo-box">
+          <img src="image/emblem_of_india.svg" alt="Emblem of India" class="emblem-logo-img">
+        </div>
+      </header>
+
+      <!-- Reference No., Mode & Date -->
+      <div class="doc-ref-date-bar">
+        <div class="ref-part">
+          <span style="font-weight: 700;">No.</span>
+          <span id="lblRefPrefix" style="font-weight: 700;">HR/FBD/AS/9/534/</span>
+          <input type="text" class="fill-input uppercase" id="inRefSuffix" value="2026/HV-108" style="width: 130px;" title="Dispatch / Reference Number">
+          <span style="margin-left: 8px; font-weight: 600; color: #475569; font-size: 11px;">[ By Official Email / Speed Post ]</span>
+        </div>
+
+        <div class="date-part">
+          <span style="font-weight: 700;">Date:</span>
+          <input type="text" class="fill-input" id="inLetterDate" value="" style="width: 105px; text-align: center; font-weight: 700;" title="Date of Issue">
+        </div>
+      </div>
+
+      <!-- Addressee / Employer Block -->
+      <section class="recipient-box">
+        <div style="font-weight: 700; margin-bottom: 2px;">To,</div>
+        <div class="recipient-line">
+          <span style="font-weight: 700; min-width: 44px;">M/S -</span>
+          <input type="text" class="fill-input uppercase" id="inEstName" value="ESCORTS KUBOTA LIMITED" style="width: 520px; font-weight: 800; font-size: 13px;" placeholder="Establishment / Company Name">
+        </div>
+        <div class="recipient-line">
+          <span style="min-width: 44px;"></span>
+          <input type="text" class="fill-input" id="inEstAddress1" value="15/5, Mathura Road, Faridabad" style="width: 520px;" placeholder="Establishment Address Line 1">
+        </div>
+        <div class="recipient-line">
+          <span style="min-width: 44px;"></span>
+          <input type="text" class="fill-input" id="inEstAddress2" value="Faridabad, Haryana - 121003" style="width: 520px;" placeholder="City, State, PIN">
+        </div>
+        <div class="recipient-line" style="margin-top: 4px;">
+          <span style="font-weight: 700; min-width: 72px;">Email Id:</span>
+          <input type="email" class="fill-input" id="inEstEmail" value="hr.compliance@escorts.co.in" style="width: 492px; color: #0284c7; font-weight: 600;" placeholder="Employer official email id">
+        </div>
+      </section>
+
+      <!-- Subject Line -->
+      <section class="subject-banner">
+        <div>
+          <strong>Subject: - Verification of KYC details regarding High Value Claim form pertaining to HR/FBD/</strong><input type="text" class="fill-input uppercase" id="inSubEstCode" value="0002145" style="width: 75px; text-align: center; font-weight: 800;" placeholder="Est Code"><strong>/</strong><input type="text" class="fill-input uppercase" id="inSubMemberId" value="0045892" style="width: 85px; text-align: center; font-weight: 800;" placeholder="Member ID">
+        </div>
+      </section>
+
+      <!-- Letter Body Content -->
+      <section class="letter-body">
+        <div class="salutation">Dear Sir / Madam,</div>
+
+        <p class="para-text">
+          With reference to above subject, it is to inform you that a Claim form has been received in this office pertaining to P. F. member ID <strong>HR/FBD/</strong><input type="text" class="fill-input uppercase" id="inBodyMemberId" value="0002145/000/0045892" style="width: 175px; font-weight: 800;" placeholder="HR/FBD/XXXXXXX/000/XXXXXXX"> in name of <strong>Sh. / Smt.</strong> <input type="text" class="fill-input uppercase" id="inBodyMemberName" value="RAJESH SHARMA" style="width: 250px; font-weight: 800;" placeholder="Employee / Member Name"> working in your establishment. You are required to certify the KYC details like Member name, P.F. ID, Date of joining and leaving, Bank Account number and IFSC Code of the Bank on the basis of documents provided by the Employee while seeding and approving the aforementioned details by you earlier in order to ensure the withdrawal benefit amount reaches the member without any hassle.
+        </p>
+
+        <!-- Particulars Verification Proforma Table -->
+        <table class="kyc-verification-table" id="kycTable">
+          <thead>
+            <tr>
+              <th class="col-sno">क्र.</th>
+              <th class="col-label">केवाईसी एवं सेवा विवरण / Particulars</th>
+              <th class="col-value">कार्यालय रिकॉर्ड अनुसार / As per Office Records</th>
+              <th class="col-status">नियोक्ता प्रमाणीकरण / Employer Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-sno">1</td>
+              <td class="col-label">सदस्य का नाम / Member Name</td>
+              <td><input type="text" class="tbl-input uppercase" id="tblMemberName" value="RAJESH SHARMA"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatName" value="Verified &amp; Correct" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">2</td>
+              <td class="col-label">पिता / पति का नाम / Father's Name</td>
+              <td><input type="text" class="tbl-input uppercase" id="tblFatherName" value="RAMESH CHAND SHARMA"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatFather" value="Verified &amp; Correct" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">3</td>
+              <td class="col-label">पीएफ सदस्य आईडी / P.F. Member ID</td>
+              <td><input type="text" class="tbl-input uppercase" id="tblPfId" value="HR/FBD/0002145/000/0045892"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatPfId" value="Verified &amp; Correct" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">4</td>
+              <td class="col-label">यूएएन / Universal Account No. (UAN)</td>
+              <td><input type="text" class="tbl-input" id="tblUan" value="100945821034"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatUan" value="Seeded &amp; Matched" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">5</td>
+              <td class="col-label">कार्यग्रहण तिथि / Date of Joining (DOJ)</td>
+              <td><input type="text" class="tbl-input" id="tblDoj" value="12/08/2014"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatDoj" value="Verified as per Roll" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">6</td>
+              <td class="col-label">कार्यमुक्ति तिथि / Date of Leaving (DOL)</td>
+              <td><input type="text" class="tbl-input" id="tblDol" value="31/01/2026 (Resignation)"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatDol" value="Verified &amp; Relieved" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">7</td>
+              <td class="col-label">बैंक खाता संख्या / Bank Account Number</td>
+              <td><input type="text" class="tbl-input uppercase" id="tblBankAcc" value="310458920145"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatBankAcc" value="Active SB A/c" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">8</td>
+              <td class="col-label">बैंक नाम व आईएफएससी / Bank &amp; IFSC</td>
+              <td><input type="text" class="tbl-input uppercase" id="tblBankIfsc" value="STATE BANK OF INDIA - SBIN0001234 (SEC-15 FBD)"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatIfsc" value="Certified Correct" style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td class="col-sno">9</td>
+              <td class="col-label">दावा प्रपत्र / Claim Form &amp; Amount</td>
+              <td><input type="text" class="tbl-input" id="tblClaimDetails" value="Form 19 &amp; 10C (Full &amp; Final) / ₹ 8,45,200/-"></td>
+              <td class="col-status"><input type="text" class="tbl-input" id="tblStatClaim" value="High Value Claim" style="text-align: center;"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="para-text" style="margin-top: 8px;">
+          The above mentioned certification may be verified on Establishment Letter Head with due diligence by the authorized signatory of the Establishment whose specimen signature have been submitted to this office. The certificate of verification may be sent either on hard Copy or our official email id i.e, <u style="font-weight: 700;">ro.faridabad@epfindia.gov.in</u> after scanning the certificate of Verification. An early response in this regard will be highly appreciated.
+        </p>
+
+        <p style="margin-top: 8px; font-weight: 600;">
+          Thanking you.
+        </p>
+      </section>
+
+      <!-- Sign-off Block -->
+      <footer class="signoff-section">
+        <div class="signoff-left">
+          <div><strong>प्रतिलिपि / Copy to:</strong></div>
+          <div>1. P.F. Member concerned Sh./Smt. <span id="lblCopyMember" style="font-weight: 700;">RAJESH SHARMA</span> for information.</div>
+          <div>2. Office File / High Value Claim Scrutiny Docket.</div>
+        </div>
+
+        <div class="signoff-right">
+          <div>Yours faithfully,</div>
+          <div class="sign-space"></div>
+          <div class="officer-title">Account Officer</div>
+          <div class="officer-dept" id="lblSignSection">Account Section 09</div>
+          <div class="officer-office" id="lblSignOffice">क्षेत्रीय कार्यालय, फरीदाबाद / RO, Faridabad</div>
+          <div style="font-size: 11px; color: #333333; margin-top: 2px;">Employees' Provident Fund Organisation</div>
+        </div>
+      </footer>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>कर्मचारी भविष्य निधि संगठन (EPFO) — क्षेत्रीय कार्यालय, फरीदाबाद</span>
+        <span>High Value Claim Verification Letter • Sheet 1 of 2</span>
+      </div>
+
+    </article>
+
+
+    <!-- ======================================================================= -->
+    <!-- SHEET 2: EMPLOYER VERIFICATION PROFORMA (FOR ESTABLISHMENT LETTERHEAD)  -->
+    <!-- ======================================================================= -->
+    <article class="form-sheet employer-sheet" id="sheet-2">
+      
+      <div class="sheet-badge no-print">
+        <span><strong>SHEET 2</strong> • Employer Verification Certificate Format (नियोक्ता का प्रमाणीकरण पत्र)</span>
+        <span>Printable on Establishment Letterhead / Reply Format</span>
+      </div>
+
+      <!-- Header Guidance Note -->
+      <div class="employer-header-note">
+        (To be typed or printed on Establishment's Official Letter Head / यह प्रमाणपत्र नियोक्ता के आधिकारिक लेटरहेड पर जारी किया जाए)
+      </div>
+
+      <!-- Establishment Letterhead Banner -->
+      <div class="employer-company-banner">
+        <div class="emp-company-name edit-inline" contenteditable="true" id="sh2_est_name">ESCORTS KUBOTA LIMITED</div>
+        <div class="emp-company-addr edit-inline" contenteditable="true" id="sh2_est_addr">15/5, Mathura Road, Faridabad, Haryana - 121003</div>
+        <div class="emp-company-meta">
+          <span>Est. Code: <strong>HR/FBD/</strong><span id="sh2_est_code">0002145</span></span> &nbsp;|&nbsp; 
+          <span>Email: <span id="sh2_est_email">hr.compliance@escorts.co.in</span></span>
+        </div>
+      </div>
+
+      <!-- Employer Reference & Date -->
+      <div class="doc-ref-date-bar" style="border-bottom: 1px solid #cbd5e1; padding-bottom: 6px; margin-bottom: 10px;">
+        <div class="ref-part">
+          <span style="font-weight: 700;">Ref No.:</span>
+          <input type="text" class="fill-input uppercase" id="sh2_emp_ref" value="EKL/HR/EPF/HV-VERIF/2026/089" style="width: 250px;">
+        </div>
+        <div class="date-part">
+          <span style="font-weight: 700;">Date:</span>
+          <input type="text" class="fill-input" id="sh2_emp_date" value="" style="width: 105px; text-align: center; font-weight: 700;">
+        </div>
+      </div>
+
+      <!-- Recipient: EPFO Office -->
+      <section class="recipient-box" style="margin-bottom: 8px;">
+        <div style="font-weight: 700;">To,</div>
+        <div style="font-weight: 700;">The Account Officer,</div>
+        <div><span id="sh2_rec_section" style="font-weight: 700;">Account Section 09</span>,</div>
+        <div>Employees' Provident Fund Organisation (EPFO),</div>
+        <div><span id="sh2_rec_office">Regional Office: Faridabad - 121007</span>,</div>
+        <div>Bhavishay Nidhi Bhawan, Sector – 15A, Faridabad (Haryana).</div>
+        <div style="font-size: 11.5px; margin-top: 2px;">Email: <u style="font-weight: 600;">ro.faridabad@epfindia.gov.in</u></div>
+      </section>
+
+      <!-- Certificate Heading -->
+      <div class="cert-heading-box">
+        <div class="cert-main-title">EMPLOYER VERIFICATION CERTIFICATE FOR HIGH VALUE CLAIM</div>
+        <div class="cert-sub-title">उच्च मूल्य भविष्य निधि दावा निस्तारण हेतु नियोक्ता द्वारा केवाईसी एवं सेवा प्रमाणीकरण प्रमाणपत्र</div>
+      </div>
+
+      <!-- Reference subject -->
+      <div style="background: #f8fafc; border-left: 3.5px solid #0f172a; padding: 5px 8px; margin-bottom: 10px; font-size: 12px; font-weight: 600;">
+        Ref EPFO Letter No.: <span id="sh2_ref_epfo_letter" style="font-weight: 700;">HR/FBD/AS/9/534/2026/HV-108</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
+        Member: <span id="sh2_ref_member_name" style="font-weight: 800;">SH. RAJESH SHARMA</span> (ID: <span id="sh2_ref_member_id" style="font-weight: 700;">HR/FBD/0002145/000/0045892</span>)
+      </div>
+
+      <!-- Certificate Body -->
+      <section class="letter-body" style="font-size: 12px; line-height: 1.5;">
+        <p class="para-text">
+          With reference to your office communication cited above regarding the scrutiny and verification of KYC details for the High Value Claim form of our employee <strong>Sh./Smt.</strong> <span id="sh2_body_name" style="font-weight: 800;">RAJESH SHARMA</span>, we hereby certify and confirm the following particulars after diligent verification with our original company records:
+        </p>
+
+        <!-- Summary Certified Points -->
+        <table class="kyc-verification-table" style="margin: 8px 0;">
+          <thead>
+            <tr>
+              <th style="width: 30px;">क्र.</th>
+              <th style="width: 220px;">विवरण / Item</th>
+              <th>नियोक्ता द्वारा प्रमाणित विवरण / Certified Particulars</th>
+              <th style="width: 110px;">सत्यापन स्थिति</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center;">1</td>
+              <td style="font-weight: 600;">Member Full Name &amp; Father's Name</td>
+              <td><span id="sh2_tbl_name" style="font-weight: 700;">RAJESH SHARMA</span> S/o <span id="sh2_tbl_fname" style="font-weight: 700;">RAMESH CHAND SHARMA</span></td>
+              <td style="text-align: center; color: #16a34a; font-weight: 700;">✓ Verified True</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">2</td>
+              <td style="font-weight: 600;">P.F. Member ID &amp; UAN</td>
+              <td>PF ID: <span id="sh2_tbl_pfid" style="font-weight: 700;">HR/FBD/0002145/000/0045892</span> &nbsp;|&nbsp; UAN: <span id="sh2_tbl_uan" style="font-weight: 700;">100945821034</span></td>
+              <td style="text-align: center; color: #16a34a; font-weight: 700;">✓ Matched</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">3</td>
+              <td style="font-weight: 600;">Date of Joining &amp; Leaving (DOJ &amp; DOL)</td>
+              <td>DOJ: <span id="sh2_tbl_doj" style="font-weight: 700;">12/08/2014</span> &nbsp;|&nbsp; DOL: <span id="sh2_tbl_dol" style="font-weight: 700;">31/01/2026 (Resignation)</span></td>
+              <td style="text-align: center; color: #16a34a; font-weight: 700;">✓ On Roll Records</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">4</td>
+              <td style="font-weight: 600;">Bank Account Number &amp; IFSC Code</td>
+              <td>A/c No: <span id="sh2_tbl_bankacc" style="font-weight: 700;">310458920145</span> &nbsp;|&nbsp; IFSC: <span id="sh2_tbl_ifsc" style="font-weight: 700;">SBIN0001234</span></td>
+              <td style="text-align: center; color: #16a34a; font-weight: 700;">✓ Salary Account</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background: #fdf2e9; border: 1px solid #fed7aa; border-radius: 4px; padding: 6px 10px; margin: 8px 0; font-size: 11.5px; line-height: 1.45;">
+          <strong>Solemn Undertaking &amp; Certification:</strong><br>
+          1. It is certified that the above employee worked in our establishment during the period mentioned above and the KYC details including bank account were seeded/approved by our establishment using our authorized Digital Signature Certificate (DSC).<br>
+          2. The bank account belongs solely to the employee as verified against cancelled cheque / bank passbook and salary disbursement records.<br>
+          3. We have no objection to the settlement and payment of the aforementioned High Value Claim directly into the verified bank account.
+        </div>
+      </section>
+
+      <!-- Employer Authorized Signatory Block -->
+      <footer class="signoff-section" style="margin-top: 16px;">
+        <div class="signoff-left" style="font-size: 11px;">
+          <div><strong>Enclosures attached:</strong></div>
+          <div>1. Self-attested copy of Employee PAN &amp; Aadhaar card.</div>
+          <div>2. Cancelled cheque / attested copy of bank passbook.</div>
+          <div>3. Office order / relieving letter copy.</div>
+        </div>
+
+        <div class="signoff-right" style="border-top: 1px dashed #000; padding-top: 6px;">
+          <div style="font-size: 11px; color: #555;">For <strong id="sh2_sign_company">ESCORTS KUBOTA LIMITED</strong></div>
+          <div class="sign-space" style="height: 35px;"></div>
+          <div class="officer-title edit-inline" contenteditable="true">Authorized Signatory</div>
+          <div class="officer-dept edit-inline" contenteditable="true">Name: Sh. Vikramaditya Singh</div>
+          <div class="officer-office edit-inline" contenteditable="true">Designation: General Manager (HR &amp; Legal)</div>
+          <div style="font-size: 11px; margin-top: 2px;">Phone / Mob: <span class="edit-inline" contenteditable="true">+91-9811223344</span></div>
+          <div style="font-size: 11px;">[ Establishment Seal / Company Stamp ]</div>
+        </div>
+      </footer>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>प्रमाणपत्र — नियोक्ता आधिकारिक लेटरहेड पर प्रस्तुत किया जाए</span>
+        <span>High Value Claim Employer Response • Sheet 2 of 2</span>
+      </div>
+
+    </article>
+
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- EMAIL DRAFTING MODAL DRAWER                                               -->
+  <!-- ========================================================================= -->
+  <div class="email-modal-overlay" id="emailModalOverlay">
+    <div class="email-modal-card">
+      <div class="modal-hdr">
+        <h3>
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></svg>
+          Quick Email Dispatch — Account Section 09
+        </h3>
+        <button type="button" class="btn-modal-close" id="btnCloseEmailModal" title="Close Modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="email-field-row">
+          <label class="email-field-label">To (Employer Email Id):</label>
+          <input type="email" class="email-field-input" id="emModalTo" value="hr.compliance@escorts.co.in">
+        </div>
+
+        <div class="email-field-row">
+          <label class="email-field-label">CC (Official EPFO / Member):</label>
+          <input type="text" class="email-field-input" id="emModalCc" value="ro.faridabad@epfindia.gov.in">
+        </div>
+
+        <div class="email-field-row">
+          <label class="email-field-label">Subject:</label>
+          <input type="text" class="email-field-input" id="emModalSubject" value="Verification of KYC details regarding High Value Claim form pertaining to HR/FBD/0002145/0045892">
+        </div>
+
+        <div class="email-field-row">
+          <label class="email-field-label">Email Body (Official Requisition Text):</label>
+          <textarea class="email-body-preview" id="emModalBody" rows="12"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-ftr">
+        <button type="button" class="btn btn-secondary" id="btnCopyEmailText">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/></svg>
+          Copy Email Text
+        </button>
+        <button type="button" class="btn btn-email" id="btnLaunchMailClient">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M15.854.146a.5.5 0 0 1 .11.54l-5.8 14.5a.5.5 0 0 1-.928.028l-3.39-6.78-6.78-3.39a.5.5 0 0 1 .028-.928l14.5-5.8a.5.5 0 0 1 .54.11zM6.637 10.07l2.872 5.743L14.394 2.39z"/></svg>
+          Open in Email App (Mailto)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div class="toast-msg" id="toastBox">
+    <svg width="15" height="15" fill="#38bdf8" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+    <span id="toastText">Action completed successfully!</span>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT LOGIC                                                          -->
+  <!-- ========================================================================= -->
+  <script>
+    // Office Presets Database
+    const officePresets = {
+      faridabad: {
+        hi: 'क्षेत्रीय कार्यालय, फरीदाबाद',
+        en: 'Regional Office: Faridabad - 121007',
+        addr: 'Bhavishay Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)',
+        contact: 'Phone : 0129-2288068    |    Email : ro.faridabad@epfindia.gov.in',
+        refPrefix: 'HR/FBD/AS/9/534/',
+        email: 'ro.faridabad@epfindia.gov.in',
+        city: 'Faridabad',
+        stateCode: 'HR/FBD/'
+      },
+      gurugram: {
+        hi: 'क्षेत्रीय कार्यालय, गुरुग्राम (पूर्व)',
+        en: 'Regional Office: Gurugram (East) - 122001',
+        addr: 'Bhavishya Nidhi Bhawan, Sector 44, Gurugram (Haryana)',
+        contact: 'Phone : 0124-2321456    |    Email : ro.gurgaon@epfindia.gov.in',
+        refPrefix: 'HR/GGN/AS/9/534/',
+        email: 'ro.gurgaon@epfindia.gov.in',
+        city: 'Gurugram',
+        stateCode: 'HR/GGN/'
+      },
+      delhinorth: {
+        hi: 'क्षेत्रीय कार्यालय, दिल्ली (उत्तर)',
+        en: 'Regional Office: Delhi (North) - 110037',
+        addr: 'Bhavishya Nidhi Bhawan, 28, Community Centre, Wazirpur Industrial Area, Delhi',
+        contact: 'Phone : 011-27371190    |    Email : ro.delhi.north@epfindia.gov.in',
+        refPrefix: 'DL/DN/AS/9/534/',
+        email: 'ro.delhi.north@epfindia.gov.in',
+        city: 'Delhi',
+        stateCode: 'DL/CPM/'
+      },
+      delhisouth: {
+        hi: 'क्षेत्रीय कार्यालय, दिल्ली (दक्षिण)',
+        en: 'Regional Office: Delhi (South) - 110066',
+        addr: 'Bhavishya Nidhi Bhawan, 8th-9th Floor, NBCC Tower, Bhikaji Cama Place, New Delhi',
+        contact: 'Phone : 011-26168532    |    Email : ro.delhi.south@epfindia.gov.in',
+        refPrefix: 'DL/DS/AS/9/534/',
+        email: 'ro.delhi.south@epfindia.gov.in',
+        city: 'New Delhi',
+        stateCode: 'DL/DEL/'
+      },
+      noida: {
+        hi: 'क्षेत्रीय कार्यालय, नोएडा',
+        en: 'Regional Office: Noida - 201301',
+        addr: 'A-2C, Sector 24, Noida, District Gautam Buddha Nagar (U.P.)',
+        contact: 'Phone : 0120-2411651    |    Email : ro.noida@epfindia.gov.in',
+        refPrefix: 'UP/NOI/AS/9/534/',
+        email: 'ro.noida@epfindia.gov.in',
+        city: 'Noida',
+        stateCode: 'UP/NOI/'
+      },
+      custom: {
+        hi: 'क्षेत्रीय कार्यालय, [कार्यालय का नाम]',
+        en: 'Regional Office: [Office Name - PIN]',
+        addr: 'Bhavishya Nidhi Bhawan, [Address Line], [City, State]',
+        contact: 'Phone : [Phone No]    |    Email : [Official Email]',
+        refPrefix: 'EPFO/RO/AS/9/534/',
+        email: 'ro.office@epfindia.gov.in',
+        city: 'City',
+        stateCode: 'XX/XXX/'
+      }
+    };
+
+    // Helper: Toast Message
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      const text = document.getElementById('toastText');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Auto-Sync across inputs & Sheet 2
+    function syncAllData() {
+      const estName = document.getElementById('inEstName').value.trim();
+      const estAddr1 = document.getElementById('inEstAddress1').value.trim();
+      const estAddr2 = document.getElementById('inEstAddress2').value.trim();
+      const estEmail = document.getElementById('inEstEmail').value.trim();
+      const estCode = document.getElementById('inSubEstCode').value.trim();
+      const memberId = document.getElementById('inSubMemberId').value.trim();
+      const bodyMemberId = document.getElementById('inBodyMemberId').value.trim();
+      const memberName = document.getElementById('inBodyMemberName').value.trim();
+      const refSuffix = document.getElementById('inRefSuffix').value.trim();
+      const refPrefix = document.getElementById('lblRefPrefix').textContent.trim();
+      const fullRef = refPrefix + refSuffix;
+
+      const sectionName = document.getElementById('cfgAccountSection').value.trim();
+      const officeHi = document.getElementById('hdr_office_hi').textContent.trim();
+      const officeEn = document.getElementById('hdr_office_en').textContent.trim();
+
+      // Update Sheet 1 elements
+      document.getElementById('lblCopyMember').textContent = memberName || 'MEMBER';
+      document.getElementById('lblSignSection').textContent = sectionName;
+      document.getElementById('lblSignOffice').textContent = officeHi + ' / ' + officeEn;
+
+      // Update Table sync
+      const tblName = document.getElementById('tblMemberName');
+      if (tblName && memberName) tblName.value = memberName;
+
+      // Update Sheet 2 elements
+      document.getElementById('sh2_est_name').textContent = estName || 'M/S ESTABLISHMENT';
+      document.getElementById('sh2_est_addr').textContent = (estAddr1 + ', ' + estAddr2).replace(/^,\s*|,\s*$/g, '');
+      document.getElementById('sh2_est_code').textContent = estCode || 'XXXXXXX';
+      document.getElementById('sh2_est_email').textContent = estEmail || '';
+      document.getElementById('sh2_rec_section').textContent = sectionName;
+      document.getElementById('sh2_rec_office').textContent = officeEn;
+      document.getElementById('sh2_sign_company').textContent = estName || 'ESTABLISHMENT';
+
+      document.getElementById('sh2_ref_epfo_letter').textContent = fullRef;
+      document.getElementById('sh2_ref_member_name').textContent = memberName;
+      document.getElementById('sh2_ref_member_id').textContent = bodyMemberId;
+      document.getElementById('sh2_body_name').textContent = memberName;
+
+      // Sheet 2 table
+      document.getElementById('sh2_tbl_name').textContent = memberName;
+      document.getElementById('sh2_tbl_fname').textContent = document.getElementById('tblFatherName').value;
+      document.getElementById('sh2_tbl_pfid').textContent = bodyMemberId;
+      document.getElementById('sh2_tbl_uan').textContent = document.getElementById('tblUan').value;
+      document.getElementById('sh2_tbl_doj').textContent = document.getElementById('tblDoj').value;
+      document.getElementById('sh2_tbl_dol').textContent = document.getElementById('tblDol').value;
+      document.getElementById('sh2_tbl_bankacc').textContent = document.getElementById('tblBankAcc').value;
+      document.getElementById('sh2_tbl_ifsc').textContent = document.getElementById('tblBankIfsc').value;
+    }
+
+    // Apply Office Preset
+    function applyOffice(key) {
+      const o = officePresets[key];
+      if (!o) return;
+
+      document.getElementById('hdr_org_hi').textContent = 'कर्मचारी भविष्यनिधि संगठन';
+      document.getElementById('hdr_org_en').textContent = 'EMPLOYEES’ PROVIDENT FUND ORGANISATION';
+      document.getElementById('hdr_office_hi').textContent = o.hi;
+      document.getElementById('hdr_office_en').textContent = o.en;
+      document.getElementById('hdr_address').textContent = o.addr;
+      document.getElementById('hdr_contact').textContent = o.contact;
+      document.getElementById('lblRefPrefix').textContent = o.refPrefix;
+
+      syncAllData();
+      showToast('Office preset applied: ' + o.en);
+    }
+
+    // Generate Email Body Text
+    function generateEmailText() {
+      const refNo = document.getElementById('lblRefPrefix').textContent + document.getElementById('inRefSuffix').value;
+      const dateVal = document.getElementById('inLetterDate').value;
+      const estName = document.getElementById('inEstName').value;
+      const estEmail = document.getElementById('inEstEmail').value;
+      const estCode = document.getElementById('inSubEstCode').value;
+      const memberId = document.getElementById('inSubMemberId').value;
+      const fullPfId = document.getElementById('inBodyMemberId').value;
+      const memberName = document.getElementById('inBodyMemberName').value;
+      const fatherName = document.getElementById('tblFatherName').value;
+      const uan = document.getElementById('tblUan').value;
+      const doj = document.getElementById('tblDoj').value;
+      const dol = document.getElementById('tblDol').value;
+      const bankAcc = document.getElementById('tblBankAcc').value;
+      const bankIfsc = document.getElementById('tblBankIfsc').value;
+      const claimDetails = document.getElementById('tblClaimDetails').value;
+      const secName = document.getElementById('cfgAccountSection').value;
+      const officeEn = document.getElementById('hdr_office_en').textContent;
+
+      return `No. ${refNo}                                         Date: ${dateVal}
+
+To,
+M/S - ${estName}
+Email Id: ${estEmail}
+
+Subject: - Verification of KYC details regarding High Value Claim form pertaining to HR/FBD/${estCode}/${memberId}
+
+Dear Sir / Madam,
+
+With reference to above subject, it is to inform you that a Claim form has been received in this office pertaining to P. F. member ID ${fullPfId} in name of Sh./Smt. ${memberName} working in your establishment. You are required to certify the KYC details like Member name, P.F. ID, Date of joining and leaving, Bank Account number and IFSC Code of the Bank on the basis of documents provided by the Employee while seeding and approving the aforementioned details by you earlier in order to ensure the withdrawal benefit amount reaches the member without any hassle.
+
+PARTICULARS TO BE VERIFIED:
+--------------------------------------------------------------------------------
+1. Member Name             : ${memberName}
+2. Father's/Husband's Name : ${fatherName}
+3. P.F. Member ID          : ${fullPfId}
+4. Universal Account No    : ${uan}
+5. Date of Joining (DOJ)   : ${doj}
+6. Date of Leaving (DOL)   : ${dol}
+7. Bank Account Number     : ${bankAcc}
+8. Bank Name & IFSC Code   : ${bankIfsc}
+9. Claim Type & Amount     : ${claimDetails}
+--------------------------------------------------------------------------------
+
+The above mentioned certification may be verified on Establishment Letter Head with due diligence by the authorized signatory of the Establishment whose specimen signature have been submitted to this office. The certificate of verification may be sent either on hard Copy or our official email id i.e, ro.faridabad@epfindia.gov.in after scanning the certificate of Verification. An early response in this regard will be highly appreciated.
+
+Thanking you.
+
+Yours faithfully,
+
+Account Officer
+${secName}
+Employees' Provident Fund Organisation
+${officeEn}
+Email: ro.faridabad@epfindia.gov.in`;
+    }
+
+    // Populate Sample Data
+    function fillSampleData() {
+      document.getElementById('inRefSuffix').value = '2026/HV-108';
+      document.getElementById('inEstName').value = 'ESCORTS KUBOTA LIMITED';
+      document.getElementById('inEstAddress1').value = '15/5, Mathura Road, Faridabad';
+      document.getElementById('inEstAddress2').value = 'Faridabad, Haryana - 121003';
+      document.getElementById('inEstEmail').value = 'hr.compliance@escorts.co.in';
+      document.getElementById('inSubEstCode').value = '0002145';
+      document.getElementById('inSubMemberId').value = '0045892';
+      document.getElementById('inBodyMemberId').value = '0002145/000/0045892';
+      document.getElementById('inBodyMemberName').value = 'RAJESH SHARMA';
+
+      document.getElementById('tblMemberName').value = 'RAJESH SHARMA';
+      document.getElementById('tblFatherName').value = 'RAMESH CHAND SHARMA';
+      document.getElementById('tblPfId').value = 'HR/FBD/0002145/000/0045892';
+      document.getElementById('tblUan').value = '100945821034';
+      document.getElementById('tblDoj').value = '12/08/2014';
+      document.getElementById('tblDol').value = '31/01/2026 (Resignation)';
+      document.getElementById('tblBankAcc').value = '310458920145';
+      document.getElementById('tblBankIfsc').value = 'STATE BANK OF INDIA - SBIN0001234 (SEC-15 FBD)';
+      document.getElementById('tblClaimDetails').value = 'Form 19 & 10C (Full & Final) / ₹ 8,45,200/-';
+
+      syncAllData();
+      showToast('Sample High Value Claim verification data loaded!');
+    }
+
+    // Clear Form
+    function clearForm() {
+      if (!confirm('क्या आप सभी फ़ील्ड साफ़ करना चाहते हैं? (Clear all fields?)')) return;
+
+      document.getElementById('inRefSuffix').value = '';
+      document.getElementById('inEstName').value = '';
+      document.getElementById('inEstAddress1').value = '';
+      document.getElementById('inEstAddress2').value = '';
+      document.getElementById('inEstEmail').value = '';
+      document.getElementById('inSubEstCode').value = '';
+      document.getElementById('inSubMemberId').value = '';
+      document.getElementById('inBodyMemberId').value = '';
+      document.getElementById('inBodyMemberName').value = '';
+
+      document.getElementById('tblMemberName').value = '';
+      document.getElementById('tblFatherName').value = '';
+      document.getElementById('tblPfId').value = '';
+      document.getElementById('tblUan').value = '';
+      document.getElementById('tblDoj').value = '';
+      document.getElementById('tblDol').value = '';
+      document.getElementById('tblBankAcc').value = '';
+      document.getElementById('tblBankIfsc').value = '';
+      document.getElementById('tblClaimDetails').value = '';
+
+      syncAllData();
+      showToast('Form cleared to blank!');
+    }
+
+    // Initialize DOM Events
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set Default Today's Date
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const yyyy = today.getFullYear();
+      const formattedDate = `${dd}.${mm}.${yyyy}`;
+      document.getElementById('inLetterDate').value = formattedDate;
+      document.getElementById('sh2_emp_date').value = formattedDate;
+
+      // Initial Sync
+      syncAllData();
+
+      // Realtime input listeners for auto-sync
+      const syncInputs = [
+        'inEstName', 'inEstAddress1', 'inEstAddress2', 'inEstEmail',
+        'inSubEstCode', 'inSubMemberId', 'inBodyMemberId', 'inBodyMemberName',
+        'inRefSuffix', 'cfgAccountSection', 'tblFatherName', 'tblUan',
+        'tblDoj', 'tblDol', 'tblBankAcc', 'tblBankIfsc'
+      ];
+      syncInputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', syncAllData);
+        }
+      });
+
+      // Office Preset
+      document.getElementById('officePresetSelect').addEventListener('change', (e) => {
+        applyOffice(e.target.value);
+      });
+
+      // Sheet View Tabs
+      const tabBoth = document.getElementById('tabViewBoth');
+      const tabS1 = document.getElementById('tabViewSheet1');
+      const tabS2 = document.getElementById('tabViewSheet2');
+      const sheet1 = document.getElementById('sheet-1');
+      const sheet2 = document.getElementById('sheet-2');
+
+      function setViewTab(mode) {
+        tabBoth.classList.remove('active');
+        tabS1.classList.remove('active');
+        tabS2.classList.remove('active');
+        document.body.classList.remove('view-sheet-1', 'view-sheet-2', 'view-both');
+
+        if (mode === 'sheet1') {
+          tabS1.classList.add('active');
+          document.body.classList.add('view-sheet-1');
+          sheet1.style.display = 'flex';
+          sheet2.style.display = 'none';
+        } else if (mode === 'sheet2') {
+          tabS2.classList.add('active');
+          document.body.classList.add('view-sheet-2');
+          sheet1.style.display = 'none';
+          sheet2.style.display = 'flex';
+        } else {
+          tabBoth.classList.add('active');
+          document.body.classList.add('view-both');
+          sheet1.style.display = 'flex';
+          sheet2.style.display = 'flex';
+        }
+      }
+
+      tabBoth.addEventListener('click', () => setViewTab('both'));
+      tabS1.addEventListener('click', () => setViewTab('sheet1'));
+      tabS2.addEventListener('click', () => setViewTab('sheet2'));
+
+      // Paper Size Toggle
+      const btnA4 = document.getElementById('btnSizeA4');
+      const btnLegal = document.getElementById('btnSizeLegal');
+      const dynamicStyle = document.getElementById('dynamicPageSizeStyle');
+
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          document.body.classList.remove('size-a4');
+          document.body.classList.add('size-legal');
+          btnLegal.classList.add('active');
+          btnA4.classList.remove('active');
+          if (dynamicStyle) {
+            dynamicStyle.innerHTML = `
+              @page {
+                size: legal portrait;
+                margin: 6mm 10mm 6mm 10mm;
+              }
+            `;
+          }
+        } else {
+          document.body.classList.remove('size-legal');
+          document.body.classList.add('size-a4');
+          btnA4.classList.add('active');
+          btnLegal.classList.remove('active');
+          if (dynamicStyle) {
+            dynamicStyle.innerHTML = `
+              @page {
+                size: A4 portrait;
+                margin: 6mm 10mm 6mm 10mm;
+              }
+            `;
+          }
+        }
+      }
+
+      btnA4.addEventListener('click', () => setPaperSize('a4'));
+      btnLegal.addEventListener('click', () => setPaperSize('legal'));
+
+      // Sample Data Button
+      document.getElementById('btnFillSample').addEventListener('click', fillSampleData);
+
+      // Clear Form Button
+      document.getElementById('btnClearForm').addEventListener('click', clearForm);
+
+      // Print Button
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Navigation Dropdown Toggle
+      const navDropdown = document.getElementById('navDropdown');
+      const btnNavToggle = document.getElementById('btnNavToggle');
+      btnNavToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navDropdown.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#navDropdown')) {
+          navDropdown.classList.remove('open');
+        }
+      });
+
+      // Email Modal Controls
+      const modalOverlay = document.getElementById('emailModalOverlay');
+      const btnOpenEmail = document.getElementById('btnOpenEmailModal');
+      const btnCloseEmail = document.getElementById('btnCloseEmailModal');
+      const emModalTo = document.getElementById('emModalTo');
+      const emModalSubject = document.getElementById('emModalSubject');
+      const emModalBody = document.getElementById('emModalBody');
+
+      btnOpenEmail.addEventListener('click', () => {
+        syncAllData();
+        const toEmail = document.getElementById('inEstEmail').value.trim();
+        const estCode = document.getElementById('inSubEstCode').value.trim();
+        const memberId = document.getElementById('inSubMemberId').value.trim();
+        const memberName = document.getElementById('inBodyMemberName').value.trim();
+
+        emModalTo.value = toEmail || 'hr@establishment.com';
+        emModalSubject.value = `Verification of KYC details regarding High Value Claim form pertaining to HR/FBD/${estCode}/${memberId} (${memberName})`;
+        emModalBody.value = generateEmailText();
+        modalOverlay.classList.add('active');
+      });
+
+      btnCloseEmail.addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+      });
+
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('active');
+        }
+      });
+
+      // Copy Email Text
+      document.getElementById('btnCopyEmailText').addEventListener('click', () => {
+        emModalBody.select();
+        navigator.clipboard.writeText(emModalBody.value).then(() => {
+          showToast('Email content copied to clipboard!');
+        }).catch(() => {
+          document.execCommand('copy');
+          showToast('Email content copied!');
+        });
+      });
+
+      // Launch Mailto Link
+      document.getElementById('btnLaunchMailClient').addEventListener('click', () => {
+        const to = encodeURIComponent(emModalTo.value.trim());
+        const cc = encodeURIComponent(document.getElementById('emModalCc').value.trim());
+        const subject = encodeURIComponent(emModalSubject.value.trim());
+        const body = encodeURIComponent(emModalBody.value);
+        const mailtoUrl = `mailto:${to}?cc=${cc}&subject=${subject}&body=${body}`;
+        window.location.href = mailtoUrl;
+      });
+    });
+  </script>
+</body>
+</html>

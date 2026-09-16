@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO EPS to EPF Contribution Merger & Rectification | नियोक्ता प्रपत्र एवं ईपीएफओ नोटिंग</title>
+  <meta name="description" content="Dedicated UI Proforma for Employer Clarification Letter and EPFO Official Office Note Sheet for Rectification and Transfer of Erroneously Deposited EPS (A/c 10) Contribution to EPF (A/c 01). Separate tabs and interfaces for Employer and EPFO. By Niraj Kumar, Section Supervisor, RO Faridabad.">
+  
+  <!-- Google Fonts: Inter, Noto Sans Devanagari, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #16a34a;
+      --navy: #0f172a;
+      --text: #000000;
+      --sheet-bg: #ffffff;
+      --desk-bg: #f1f5f9;
+      --noting-bg: #fafdfb;
+      --border-color: #000000;
+      --input-bg: rgba(2, 132, 199, 0.025);
+      --input-focus: #e0f2fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--desk-bg);
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 64px;
+      padding-bottom: 60px;
+    }
+
+    /* Fixed Application Toolbar */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 58px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    /* Dropdown for Forms */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-dropdown-toggle:hover {
+      background: #334155;
+    }
+
+    .dropdown-menu-box {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #ffffff;
+      color: #0f172a;
+      min-width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      border: 1px solid #cbd5e1;
+      overflow: hidden;
+      z-index: 1100;
+    }
+
+    .nav-dropdown.active .dropdown-menu-box {
+      display: block;
+    }
+
+    .dropdown-header-tag {
+      background: #f8fafc;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .dropdown-item-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      color: #1e293b;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s;
+    }
+
+    .dropdown-item-link:hover,
+    .dropdown-item-link.active {
+      background: #f0f9ff;
+      color: #0284c7;
+    }
+
+    /* Primary Role Segmented Control (Employer vs EPFO) */
+    .primary-role-switch {
+      display: inline-flex;
+      background: #020617;
+      padding: 3px;
+      border-radius: 8px;
+      border: 1.5px solid #334155;
+      gap: 4px;
+    }
+
+    .btn-role-tab {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-role-tab:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-role-tab.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-role-tab.active.role-epfo-active {
+      background: #16a34a;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.35);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Paper Size Switcher */
+    .paper-size-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      padding: 3px 6px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+    }
+
+    .switcher-label {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .size-btn-group {
+      display: flex;
+      gap: 2px;
+    }
+
+    .btn-size-toggle {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-size-toggle.active {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .btn-primary {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: #0369a1;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: #ffffff;
+    }
+    .btn-success:hover {
+      background: #15803d;
+    }
+
+    /* ========================================================================= */
+    /* DEDICATED SUB-BAR PER MODULE                                              */
+    /* ========================================================================= */
+    .module-subbar {
+      width: 100%;
+      max-width: 210mm;
+      background: #ffffff;
+      margin: 12px 0 10px 0;
+      padding: 10px 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1.5px solid #cbd5e1;
+    }
+
+    .module-subbar.epfo-theme {
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+
+    .subbar-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subbar-badge-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Subbar Language Switcher */
+    .lang-btn-group {
+      display: inline-flex;
+      background: #f1f5f9;
+      padding: 2px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      gap: 2px;
+    }
+
+    .btn-lang-toggle {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-lang-toggle.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .module-subbar.epfo-theme .btn-lang-toggle.active {
+      background: #16a34a;
+    }
+
+    /* Subbar Case Selector */
+    .case-type-btn {
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .case-type-btn:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .case-type-btn.active {
+      background: #eff6ff;
+      border-color: #0284c7;
+      color: #0369a1;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15);
+    }
+
+    .module-subbar.epfo-theme .case-type-btn.active {
+      background: #ecfdf5;
+      border-color: #16a34a;
+      color: #166534;
+    }
+
+    /* Container for Sheets */
+    .module-sheet-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Printable Paper Sheet */
+    .form-sheet {
+      background-color: var(--sheet-bg);
+      width: 210mm;
+      min-height: 297mm;
+      padding: 10mm 15mm 10mm 15mm;
+      box-shadow: 0 4px 22px rgba(0, 0, 0, 0.12);
+      border-radius: 2px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: #000000;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    /* Noting Sheet: Official Paper with Green Border */
+    .sheet-noting-green {
+      background-color: var(--noting-bg);
+      border-left: 4px solid #10b981;
+    }
+
+    body.size-legal .form-sheet {
+      width: 215.9mm;
+      min-height: 355.6mm;
+      padding: 12mm 16mm 12mm 16mm;
+    }
+
+    /* Screen Badge on Top of Sheet */
+    .sheet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+
+    .sheet-badge.noting-badge {
+      background: #ecfdf5;
+      color: #065f46;
+      border-color: #a7f3d0;
+    }
+
+    /* In-line Editable Elements */
+    .edit-inline {
+      outline: none;
+      border-bottom: 1px dashed #cbd5e1;
+      transition: background 0.15s, border-color 0.15s;
+      padding: 1px 2px;
+    }
+
+    .edit-inline:hover {
+      background: rgba(2, 132, 199, 0.05);
+      border-color: #0284c7;
+    }
+
+    .edit-inline:focus {
+      background: #e0f2fe;
+      border-bottom: 1.5px solid #0284c7;
+    }
+
+    .fill-input {
+      border: none;
+      border-bottom: 1px dotted #444444;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 700;
+      background: var(--input-bg);
+      padding: 1px 4px;
+      color: #000000;
+    }
+
+    .fill-input:focus {
+      border-bottom: 1.5px solid var(--primary);
+      background: var(--input-focus);
+    }
+
+    /* Employer Letterhead */
+    .employer-letterhead {
+      border-bottom: 2px solid #000000;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .employer-name {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #000000;
+    }
+
+    .employer-address {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #222222;
+      margin-top: 2px;
+    }
+
+    .employer-meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 4px;
+      padding-top: 3px;
+      border-top: 0.5px solid #cccccc;
+    }
+
+    .letter-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .recipient-block {
+      margin-bottom: 10px;
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .letter-subject-box {
+      font-weight: 800;
+      font-size: 12.5px;
+      line-height: 1.45;
+      padding: 6px 10px;
+      background: #f8fafc;
+      border-left: 3.5px solid #0f172a;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    .letter-body-para {
+      text-align: justify;
+      margin-bottom: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* Clean Single-Language Details Table */
+    .proforma-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 10px 0;
+      font-size: 11.5px;
+    }
+
+    .proforma-table th,
+    .proforma-table td {
+      border: 1px solid #000000;
+      padding: 4.5px 8px;
+      vertical-align: middle;
+    }
+
+    .proforma-table th {
+      background: #f1f5f9;
+      font-weight: 800;
+      text-align: left;
+    }
+
+    .proforma-table td.col-srno {
+      text-align: center;
+      width: 40px;
+      font-weight: 700;
+    }
+
+    .proforma-table td.col-label {
+      width: 270px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .proforma-table td.col-val {
+      font-weight: 700;
+    }
+
+    .tbl-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .tbl-input:focus {
+      background: #e0f2fe;
+    }
+
+    /* Undertaking Strip */
+    .undertaking-strip {
+      border: 1px dashed #666666;
+      padding: 6px 10px;
+      background: #f8fafc;
+      font-size: 11px;
+      line-height: 1.4;
+      margin: 6px 0 10px 0;
+    }
+
+    .signatory-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 18px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .signatory-box {
+      text-align: center;
+      min-width: 220px;
+    }
+
+    /* EPFO Official Noting Header */
+    .epfo-noting-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px double #000000;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    .epfo-noting-seal {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .epfo-noting-titles {
+      text-align: center;
+      flex: 1;
+      padding: 0 8px;
+    }
+
+    .noting-org-hi {
+      font-size: 14px;
+      font-weight: 900;
+      color: #000000;
+    }
+    .noting-org-en {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .noting-office-sub {
+      font-size: 11px;
+      font-weight: 700;
+      color: #222222;
+      margin-top: 2px;
+    }
+
+    .noting-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .noting-title-banner {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .noting-para {
+      text-align: justify;
+      margin-bottom: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .noting-para-num {
+      display: inline-block;
+      width: 18px;
+      font-weight: 800;
+    }
+
+    .noting-summary-card {
+      background: #ffffff;
+      border: 1px solid #000000;
+      padding: 6px 10px;
+      margin: 8px 0 10px 0;
+      font-size: 11.5px;
+    }
+
+    .noting-card-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      border-bottom: 0.5px solid #000000;
+      padding-bottom: 3px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .noting-officials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1.2fr;
+      gap: 6px;
+      margin-top: 14px;
+      border-top: 1px dashed #666666;
+      padding-top: 8px;
+    }
+
+    .official-sign-col {
+      text-align: center;
+      font-size: 10.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      padding: 6px 4px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 0.5px solid #cbd5e1;
+      border-radius: 4px;
+      min-height: 85px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .official-title-tag {
+      color: #0284c7;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 10px;
+      margin-bottom: 2px;
+    }
+
+    /* Interactive Edit Indicators */
+    .edit-inline {
+      border-bottom: 1.5px dashed #94a3b8;
+      transition: all 0.15s ease;
+      cursor: text;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+
+    .edit-inline:hover {
+      background: #f0fdf4;
+      border-bottom: 1.5px dashed #16a34a;
+    }
+
+    .edit-inline:focus {
+      background: #fef9c3;
+      outline: 2px solid #eab308;
+      border-bottom-color: transparent;
+    }
+
+    .letterhead-edit-hint {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px dashed #94a3b8;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .letterhead-edit-hint.epfo-hint {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .btn-quick-edit {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #93c5fd;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-quick-edit:hover {
+      background: #dbeafe;
+      border-color: #60a5fa;
+    }
+
+    .btn-mini-edit {
+      padding: 3px 8px;
+      font-size: 10.5px;
+      font-weight: 700;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-mini-edit:hover {
+      background: #1d4ed8;
+    }
+
+    /* Details Modal Styles */
+    .details-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(3px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .details-modal-window {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 960px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .details-modal-header {
+      padding: 12px 18px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+    }
+
+    .btn-modal-close {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: #64748b;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 4px;
+    }
+    .btn-modal-close:hover { color: #0f172a; }
+
+    .details-modal-body {
+      padding: 16px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .details-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .form-section-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .section-card-header {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-field {
+      margin-bottom: 8px;
+    }
+
+    .modal-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 3px;
+    }
+
+    .modal-input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 11.5px;
+      font-family: inherit;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.15s;
+    }
+
+    .modal-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+
+    .modal-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .details-modal-footer {
+      padding: 10px 18px;
+      border-top: 1px solid #e2e8f0;
+      background: #f8fafc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-modal-action {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+    }
+
+    /* ========================================================================= */
+    /* DISPLAY & PRINT VISIBILITY CONTROLS                                       */
+    /* ========================================================================= */
+    
+    /* When in Employer Role */
+    body.role-employer #sectionEpfo {
+      display: none !important;
+    }
+    body.role-employer #sectionEmployer {
+      display: flex !important;
+    }
+
+    /* When in EPFO Role */
+    body.role-epfo #sectionEmployer {
+      display: none !important;
+    }
+    body.role-epfo #sectionEpfo {
+      display: flex !important;
+    }
+
+    /* Language display inside Employer section */
+    body.employer-lang-hi #sheetEmployerEn {
+      display: none !important;
+    }
+    body.employer-lang-hi #sheetEmployerHi {
+      display: flex !important;
+    }
+
+    body.employer-lang-en #sheetEmployerHi {
+      display: none !important;
+    }
+    body.employer-lang-en #sheetEmployerEn {
+      display: flex !important;
+    }
+
+    /* Language display inside EPFO section */
+    body.epfo-lang-hi #sheetEpfoEn {
+      display: none !important;
+    }
+    body.epfo-lang-hi #sheetEpfoHi {
+      display: flex !important;
+    }
+
+    body.epfo-lang-en #sheetEpfoHi {
+      display: none !important;
+    }
+    body.epfo-lang-en #sheetEpfoEn {
+      display: flex !important;
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 8mm 10mm 8mm 10mm !important;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      .no-print,
+      .app-toolbar,
+      .module-subbar,
+      .sheet-badge {
+        display: none !important;
+      }
+
+      .module-sheet-container {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+      }
+
+      .form-sheet {
+        width: 100% !important;
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 2mm 0 0 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .sheet-noting-green {
+        background-color: transparent !important;
+        border-left: none !important;
+      }
+
+      .edit-inline,
+      .fill-input,
+      .tbl-input {
+        background: transparent !important;
+        border-bottom: none !important;
+      }
+
+      .noting-title-banner {
+        background: transparent !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+      }
+
+      .proforma-table th {
+        background: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4 role-employer employer-lang-hi epfo-lang-hi case-58years">
+
+  <!-- ========================================================================= -->
+  <!-- TOP APPLICATION TOOLBAR: DEDICATED SEPARATE TABS FOR EMPLOYER & EPFO      -->
+  <!-- ========================================================================= -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-left">
+      <!-- Back to Home Portal -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Forms Dropdown -->
+      <div class="nav-dropdown" id="navDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnNavToggle">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/></svg>
+          <span>Forms List</span>
+          <svg width="10" height="10" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box" id="navDropdownMenu">
+          <div class="dropdown-header-tag">
+            <span>Official Forms</span>
+            <span style="background: #0284c7; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 9px;">Active</span>
+          </div>
+          <a href="epfo-eps-to-pf-merger.html" class="dropdown-item-link active">
+            <span>● EPS to EPF Merger &amp; Office Note</span>
+          </a>
+          <a href="epfo-high-value-claim-verification.html" class="dropdown-item-link">
+            <span>● High Value Claim KYC Verification</span>
+          </a>
+          <a href="epfo-guest-house-booking.html" class="dropdown-item-link">
+            <span>● Holiday Home / Guest House Booking</span>
+          </a>
+          <a href="epfo-form-31-advance.html" class="dropdown-item-link">
+            <span>● EPFO Form 31 (PF Advance)</span>
+          </a>
+          <a href="epfo-leave-and-joining.html" class="dropdown-item-link">
+            <span>● Leave Application &amp; Joining Report</span>
+          </a>
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <span>● Composite Claim Form (Death Cases)</span>
+          </a>
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <span>● Form 10-D Monthly Pension</span>
+          </a>
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <span>● Composite Claim (Aadhar: 19/10C/31)</span>
+          </a>
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <span>● On-Roll &amp; Family Description</span>
+          </a>
+          <a href="epfo-letterhead-noting.html" class="dropdown-item-link">
+            <span>● Letterhead &amp; Noting Sheet</span>
+          </a>
+          <a href="stationery-requirement-form.html" class="dropdown-item-link">
+            <span>● Stationery Requisition Form</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PRIMARY ROLE SWITCHER: ALAG ALAG VYAVASTHA (EMPLOYER VS EPFO) -->
+      <div class="primary-role-switch">
+        <button type="button" class="btn-role-tab active" id="btnRoleEmployer">
+          <span>🏢 1. नियोक्ता प्रपत्र (Employer Letter)</span>
+        </button>
+        <button type="button" class="btn-role-tab" id="btnRoleEpfo">
+          <span>🏛️ 2. ईपीएफओ कार्यालयीन नोटिंग (EPFO Note Sheet)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="toolbar-actions">
+      <!-- Paper Size Switcher -->
+      <div class="paper-size-switcher">
+        <span class="switcher-label">Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <button type="button" class="btn btn-secondary" id="btnAutofillSample">
+        <span>⚡ नमूना डेटा भरें</span>
+      </button>
+
+      <button type="button" class="btn btn-secondary" id="btnClearData">
+        <span>🧹 साफ करें</span>
+      </button>
+
+      <button type="button" class="btn btn-primary" id="btnPrint">
+        <span>🖨️ डायरेक्ट प्रिंट / PDF</span>
+      </button>
+    </div>
+  </header>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODULE 1: DEDICATED EMPLOYER UI SECTION                                   -->
+  <!-- ========================================================================= -->
+  <main class="module-sheet-container" id="sectionEmployer">
+
+    <!-- Employer Dedicated Subbar -->
+    <div class="module-subbar no-print">
+      <div class="subbar-group">
+        <span class="subbar-badge-title">🏢 नियोक्ता प्रपत्र (Employer Rectification Letter):</span>
+        <!-- Language Switcher for Employer -->
+        <div class="lang-btn-group">
+          <button type="button" class="btn-lang-toggle active" id="btnEmployerLangHi">🇮🇳 पत्र (हिंदी प्रारूप)</button>
+          <button type="button" class="btn-lang-toggle" id="btnEmployerLangEn">🇬🇧 Letter (English)</button>
+        </div>
+      </div>
+
+      <div class="subbar-group">
+        <span style="font-size: 11.5px; font-weight: 700; color: #475569;">प्रकरण चुनें:</span>
+        <button type="button" class="case-type-btn active" id="btnEmployerCase58">
+          <span>👴 58 वर्ष उपरांत गलत कटौती</span>
+        </button>
+        <button type="button" class="case-type-btn" id="btnEmployerCaseNonEps">
+          <span>🚫 गैर-ईपीएस सदस्य गलत कटौती</span>
+        </button>
+      </div>
+
+      <div class="subbar-group">
+        <button type="button" class="btn-quick-edit btnToggleDetailsModal">
+          ✏️ सदस्य व कंपनी विवरण संशोधित करें
+        </button>
+      </div>
+    </div>
+
+    <!-- EMPLOYER SHEET (HINDI) -->
+    <section class="form-sheet" id="sheetEmployerHi">
+      <div class="sheet-badge no-print">
+        🏢 नियोक्ता का स्पष्टीकरण एवं संशोधन अनुरोध पत्र (पूर्णतः हिंदी - 1 पृष्ठ)
+      </div>
+
+      <!-- Letterhead Edit Guidance Hint -->
+      <div class="letterhead-edit-hint no-print">
+        <span>✏️ <strong>संशोधन सुविधा:</strong> कंपनी नाम, पता, स्थापना कोड, पत्रांक, दिनांक तथा नीचे तालिका में सदस्य विवरण सीधे क्लिक करके बदल सकते हैं।</span>
+        <button type="button" class="btn-mini-edit btnToggleDetailsModal">📝 त्वरित फॉर्म खोलें</button>
+      </div>
+
+      <!-- Employer Letterhead -->
+      <div class="employer-letterhead">
+        <div class="employer-name edit-inline sync-est-name-input" contenteditable="true" title="कंपनी का नाम संपादित करने हेतु क्लिक करें (Click to edit Company Name)">
+          M/S. TECHNO PACKAGING SOLUTIONS PRIVATE LIMITED
+        </div>
+        <div class="employer-address edit-inline sync-est-addr-input" contenteditable="true" title="पता संपादित करने हेतु क्लिक करें (Click to edit Address)">
+          Plot No. 45, Sector 24, DLF Industrial Area, Faridabad - 121005 (Haryana)
+        </div>
+        <div class="employer-meta-row">
+          <div>पीएफ स्थापना कोड: <span class="edit-inline sync-est-code-input" contenteditable="true" title="स्थापना कोड बदलें">GNR4589210000</span></div>
+          <div>ईमेल: <span class="edit-inline sync-est-email-input" contenteditable="true" title="ईमेल बदलें">hr@technopack.com</span></div>
+          <div>दूरभाष: <span class="edit-inline sync-est-phone-input" contenteditable="true" title="फोन नंबर बदलें">0129-4123456</span></div>
+        </div>
+      </div>
+
+      <!-- Letter Meta Bar -->
+      <div class="letter-meta-bar">
+        <div>
+          पत्रांक संख्या: <input type="text" class="fill-input sync-ref-input" value="TPS/HR/EPF/2026/041" style="width: 210px;">
+        </div>
+        <div>
+          दिनांक: <input type="text" class="fill-input sync-date-input" value="16.09.2026" style="width: 100px; text-align: right;">
+        </div>
+      </div>
+
+      <!-- Recipient Block -->
+      <div class="recipient-block">
+        सेवा में,<br>
+        <strong>क्षेत्रीय भविष्य निधि आयुक्त / प्रभारी अधिकारी,</strong><br>
+        कर्मचारी भविष्य निधि संगठन (EPFO),<br>
+        क्षेत्रीय कार्यालय: <span class="edit-inline sync-ro-city-input" contenteditable="true">फरीदाबाद - 121007 (हरियाणा)</span>।
+      </div>
+
+      <!-- Subject Box (Hindi) -->
+      <div class="letter-subject-box" id="lblEmployerSubjectHi">
+        विषय: लिपिकीय त्रुटिवश 58 वर्ष की आयु पूर्ण होने के उपरांत ईपीएस (खाता 10) में जमा अंशदान को ईपीएफ (खाता 01) में अंतरित/समायोजित करने हेतु अनुरोध - सदस्य: <span class="sync-member-name-text">RAMESH CHAND</span> (यूएएन: <span class="sync-uan-text">100987654321</span>, पीएफ सदस्य पहचान संख्या: <span class="sync-member-id-text">GNR4589210000/1045</span>)।
+      </div>
+
+      <!-- Salutation -->
+      <div style="font-weight: 700; margin-bottom: 6px;">
+        महोदय,
+      </div>
+
+      <!-- Body Paragraphs (Hindi) -->
+      <div class="letter-body-para" id="lblEmployerBodyHi1">
+        सविनय निवेदन है कि हमारे संस्थान में कार्यरत/भूतपूर्व कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">RAMESH CHAND</span></strong> ने दिनांक <strong><span class="sync-58th-date-text">14.03.2024</span></strong> को 58 वर्ष की अधिवर्षिता आयु पूर्ण कर ली थी। कर्मचारी पेंशन योजना (EPS), 1995 के पैरा 6(क) के प्रावधानों के अनुसार 58 वर्ष की आयु पूर्ण होने के उपरांत पेंशन फंड की सदस्यता स्वतः समाप्त हो जाती है तथा इसके पश्चात नियोक्ता द्वारा दिया जाने वाला पूर्ण 12% अंशदान भविष्य निधि (खाता 01) में जमा होना अनिवार्य था।
+      </div>
+
+      <div class="letter-body-para" id="lblEmployerBodyHi2">
+        किंतु हमारे संस्थान के पेरोल अनुभाग में अनपेक्षित लिपिकीय त्रुटि के कारण उक्त कर्मचारी के मासिक चालान (ECR) में 58 वर्ष के बाद भी ईपीएस (खाता 10) में 8.33% राशि की कटौती कर जमा करा दी गई। कर्मचारी का पूर्ण विवरण निम्नानुसार है:
+      </div>
+
+      <!-- Particulars Table (Hindi) -->
+      <table class="proforma-table">
+        <thead>
+          <tr>
+            <th class="col-srno">क्र.सं.</th>
+            <th class="col-label">विवरण</th>
+            <th class="col-val">कर्मचारी का ब्यौरा</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-srno">1</td>
+            <td class="col-label">कर्मचारी का पूरा नाम</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-name" value="RAMESH CHAND">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">2</td>
+            <td class="col-label">पिता / पति का नाम</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-father" value="LATE SHRI SHIV DAYAL">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">3</td>
+            <td class="col-label">सार्वभौमिक खाता संख्या (UAN)</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-uan" value="100987654321" maxlength="12">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">4</td>
+            <td class="col-label">पीएफ सदस्य आईडी</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-mid" value="GNR4589210000/1045">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">5</td>
+            <td class="col-label">जन्म तिथि</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-dob" value="15.03.1966">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">6</td>
+            <td class="col-label">कार्यग्रहण तिथि</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-doj" value="01.07.2012">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">7</td>
+            <td class="col-label" id="lblEmployerKeyDateLabelHi">58 वर्ष पूर्ण होने की तिथि / कार्यमुक्ति</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-keydate" value="14.03.2024">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">8</td>
+            <td class="col-label">गलत ईपीएस अंशदान जमा की अवधि</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-period" value="03/2024 से 08/2025 (18 माह)">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">9</td>
+            <td class="col-label">ईपीएस (खाता 10) में जमा कुल गलत राशि</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-amount" value="₹ 22,500/- (बाईस हजार पांच सौ रुपये मात्र)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Undertaking Strip (Hindi) -->
+      <div class="undertaking-strip">
+        <strong>घोषणा एवं वचन पत्र:</strong><br>
+        1. संस्थान द्वारा प्रमाणित किया जाता है कि उक्त कर्मचारी द्वारा संबंधित अवधि हेतु कोई पेंशन/स्कीम प्रमाण पत्र नहीं लिया गया है।<br>
+        2. यह अंशदान पूर्णतः लिपिकीय असावधानीवश जमा हुआ था। संस्थान को उक्त ईपीएस राशि को सदस्य के पीएफ खाता 01 में समायोजित करने में कोई आपत्ति नहीं है।
+      </div>
+
+      <!-- Request / Prayer (Hindi) -->
+      <div class="letter-body-para" style="font-weight: 700; margin-top: 4px;">
+        अतः श्रीमान जी से विनम्र प्रार्थना है कि लिपिकीय त्रुटि को ध्यान में रखते हुए उक्त ईपीएस (खाता 10) की राशि को कर्मचारी के ईपीएफ (खाता 01) में अंतरित करने की कृपा करें ताकि कर्मचारी का अंतिम पीएफ दावा सुगमतापूर्वक निस्तारित किया जा सके।
+      </div>
+
+      <!-- Signatures Block -->
+      <div class="signatory-row">
+        <div>
+          स्थान: <span class="edit-inline sync-place-input" contenteditable="true">Faridabad</span><br>
+          दिनांक: <span class="sync-date-text">16.09.2026</span>
+        </div>
+        <div class="signatory-box">
+          भवदीय / संस्थान की ओर से,<br><br><br>
+          <strong>अधिकृत हस्ताक्षरकर्ता</strong><br>
+          नाम व पदनाम: <span class="edit-inline sync-sign-name-input" contenteditable="true">SANJAY MEHTA (MANAGER - HR)</span><br>
+          (संस्थान की सील / मुहर)
+        </div>
+      </div>
+
+    </section>
+
+    <!-- EMPLOYER SHEET (ENGLISH) -->
+    <section class="form-sheet" id="sheetEmployerEn">
+      <div class="sheet-badge no-print">
+        🏢 Employer Clarification &amp; Rectification Letter (English - 1 Page)
+      </div>
+
+      <!-- Letterhead Edit Guidance Hint -->
+      <div class="letterhead-edit-hint no-print">
+        <span>✏️ <strong>Quick Edit:</strong> Click directly on Company Name, Address, Code, Reference, Date, and Member particulars below to customize.</span>
+        <button type="button" class="btn-mini-edit btnToggleDetailsModal">📝 Open Quick Editor</button>
+      </div>
+
+      <!-- Employer Letterhead -->
+      <div class="employer-letterhead">
+        <div class="employer-name edit-inline sync-est-name-input" contenteditable="true" title="Click to edit Company Name">
+          M/S. TECHNO PACKAGING SOLUTIONS PRIVATE LIMITED
+        </div>
+        <div class="employer-address edit-inline sync-est-addr-input" contenteditable="true" title="Click to edit Address">
+          Plot No. 45, Sector 24, DLF Industrial Area, Faridabad - 121005 (Haryana)
+        </div>
+        <div class="employer-meta-row">
+          <div>PF Est. Code: <span class="edit-inline sync-est-code-input" contenteditable="true" title="Click to edit Est. Code">GNR4589210000</span></div>
+          <div>Email: <span class="edit-inline sync-est-email-input" contenteditable="true" title="Click to edit Email">hr@technopack.com</span></div>
+          <div>Phone: <span class="edit-inline sync-est-phone-input" contenteditable="true" title="Click to edit Phone">0129-4123456</span></div>
+        </div>
+      </div>
+
+      <!-- Letter Meta Bar -->
+      <div class="letter-meta-bar">
+        <div>
+          Ref. No.: <input type="text" class="fill-input sync-ref-input" value="TPS/HR/EPF/2026/041" style="width: 210px;">
+        </div>
+        <div>
+          Date: <input type="text" class="fill-input sync-date-input" value="16.09.2026" style="width: 100px; text-align: right;">
+        </div>
+      </div>
+
+      <!-- Recipient Block -->
+      <div class="recipient-block">
+        To,<br>
+        <strong>The Regional P. F. Commissioner / Officer-in-Charge,</strong><br>
+        Employees' Provident Fund Organisation (EPFO),<br>
+        Regional Office: <span class="edit-inline sync-ro-city-en-input" contenteditable="true">Faridabad - 121007 (Haryana)</span>.
+      </div>
+
+      <!-- Subject Box (English) -->
+      <div class="letter-subject-box" id="lblEmployerSubjectEn">
+        Subject: Request for rectification and transfer of erroneously deposited EPS (Account 10) contribution into EPF (Account 01) due to clerical mistake after completion of 58 years of age - regarding Sh./Smt. <span class="sync-member-name-text">RAMESH CHAND</span>, UAN: <span class="sync-uan-text">100987654321</span>, Member ID: <span class="sync-member-id-text">GNR4589210000/1045</span>.
+      </div>
+
+      <!-- Salutation -->
+      <div style="font-weight: 700; margin-bottom: 6px;">
+        Respected Sir / Madam,
+      </div>
+
+      <!-- Body Paragraphs (English) -->
+      <div class="letter-body-para" id="lblEmployerBodyEn1">
+        With reference to the above cited subject, we respectfully submit that our employee <strong>Sh./Smt. <span class="sync-member-name-text">RAMESH CHAND</span></strong> had attained 58 years of superannuation age on <strong><span class="sync-58th-date-text">14.03.2024</span></strong>. As per the statutory provisions of Para 6(a) of the Employees' Pension Scheme, 1995, an employee ceases to be a member of the pension fund upon attaining 58 years of age, and the full 12% employer share is required to be deposited into the Provident Fund (Account 01).
+      </div>
+
+      <div class="letter-body-para" id="lblEmployerBodyEn2">
+        However, purely due to an inadvertent clerical error and payroll software oversight at our establishment, 8.33% pension contribution continued to be remitted into EPS (Account 10) through monthly ECR returns even after attainment of 58 years. The complete particulars of the member are tabulated below:
+      </div>
+
+      <!-- Particulars Table (English) -->
+      <table class="proforma-table">
+        <thead>
+          <tr>
+            <th class="col-srno">S.No</th>
+            <th class="col-label">Particulars</th>
+            <th class="col-val">Details of the Member</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-srno">1</td>
+            <td class="col-label">Full Name of Employee/Member</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-name" value="RAMESH CHAND">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">2</td>
+            <td class="col-label">Father's / Husband's Name</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-father" value="LATE SHRI SHIV DAYAL">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">3</td>
+            <td class="col-label">Universal Account Number (UAN)</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-uan" value="100987654321" maxlength="12">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">4</td>
+            <td class="col-label">EPFO Member ID / Account No.</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-mid" value="GNR4589210000/1045">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">5</td>
+            <td class="col-label">Date of Birth (DOB)</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-dob" value="15.03.1966">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">6</td>
+            <td class="col-label">Date of Joining Service (DOJ)</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-doj" value="01.07.2012">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">7</td>
+            <td class="col-label" id="lblEmployerKeyDateLabelEn">Date of Attaining 58 Yrs / Date of Exit</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-keydate" value="14.03.2024">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">8</td>
+            <td class="col-label">Period of Erroneous EPS Remittance</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-period" value="03/2024 TO 08/2025 (18 Months)">
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">9</td>
+            <td class="col-label">Total Erroneous EPS Amount Deposited</td>
+            <td class="col-val">
+              <input type="text" class="tbl-input sync-inp-amount" value="Rs. 22,500/- (Rupees Twenty Two Thousand Five Hundred Only)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Undertaking Strip (English) -->
+      <div class="undertaking-strip">
+        <strong>Employer Declaration &amp; Undertaking:</strong><br>
+        1. We hereby certify that the member has not availed of or been sanctioned any pension or Scheme Certificate for the period in question.<br>
+        2. The remittance was purely a bonafide clerical oversight. The establishment has no objection whatsoever to the transfer of the said EPS amount into EPF Account 01.
+      </div>
+
+      <!-- Request / Prayer (English) -->
+      <div class="letter-body-para" style="font-weight: 700; margin-top: 4px;">
+        It is therefore requested that the erroneously deposited EPS (Account 10) amount may kindly be transferred and adjusted into the member's EPF (Account 01) to enable hassle-free settlement of the final PF claim.
+      </div>
+
+      <!-- Signatures Block -->
+      <div class="signatory-row">
+        <div>
+          Place: <span class="edit-inline sync-place-input" contenteditable="true">Faridabad</span><br>
+          Date: <span class="sync-date-text">16.09.2026</span>
+        </div>
+        <div class="signatory-box">
+          Yours faithfully,<br>
+          For &amp; on behalf of Establishment<br><br>
+          <strong>Authorized Signatory</strong><br>
+          Name &amp; Designation: <span class="edit-inline sync-sign-name-input" contenteditable="true">SANJAY MEHTA (MANAGER - HR)</span><br>
+          (Official Stamp / Seal)
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- MODULE 2: DEDICATED EPFO OFFICIAL NOTE SHEET SECTION                     -->
+  <!-- ========================================================================= -->
+  <main class="module-sheet-container" id="sectionEpfo">
+
+    <!-- EPFO Dedicated Subbar -->
+    <div class="module-subbar epfo-theme no-print">
+      <div class="subbar-group">
+        <span class="subbar-badge-title" style="color: #15803d;">🏛️ ईपीएफओ आधिकारिक नोटिंग (EPFO Official Office Note):</span>
+        <!-- Language Switcher for EPFO -->
+        <div class="lang-btn-group">
+          <button type="button" class="btn-lang-toggle active" id="btnEpfoLangHi">🇮🇳 नोटिंग (हिंदी - ग्रीन शीट)</button>
+          <button type="button" class="btn-lang-toggle" id="btnEpfoLangEn">🇬🇧 Note Sheet (English)</button>
+        </div>
+      </div>
+
+      <div class="subbar-group">
+        <span style="font-size: 11.5px; font-weight: 700; color: #166534;">प्रकरण चुनें:</span>
+        <button type="button" class="case-type-btn active" id="btnEpfoCase58">
+          <span>👴 58 वर्ष उपरांत गलत कटौती</span>
+        </button>
+        <button type="button" class="case-type-btn" id="btnEpfoCaseNonEps">
+          <span>🚫 गैर-ईपीएस सदस्य गलत कटौती</span>
+        </button>
+      </div>
+
+      <div class="subbar-group">
+        <button type="button" class="btn-quick-edit btnToggleDetailsModal" style="border-color: #16a34a; background: #ecfdf5; color: #15803d;">
+          ✏️ सदस्य व कंपनी विवरण संशोधित करें
+        </button>
+      </div>
+    </div>
+
+    <!-- EPFO SHEET (HINDI) -->
+    <section class="form-sheet sheet-noting-green" id="sheetEpfoHi">
+      <div class="sheet-badge noting-badge no-print">
+        📝 ईपीएफओ कार्यालयीन टिप्पणी (लेखा अनुभाग - पूर्णतः हिंदी - 1 पृष्ठ)
+      </div>
+
+      <!-- Noting Edit Guidance Hint -->
+      <div class="letterhead-edit-hint epfo-hint no-print">
+        <span>🏛️ <strong>नोटिंग विवरण संशोधन:</strong> नोटिंग फाइल संख्या, दिनांक, कार्यालय, पैरा 1 में प्रतिष्ठान विवरण तथा सत्यापन तालिका में सदस्य विवरण सीधे एडिट कर सकते हैं।</span>
+        <button type="button" class="btn-mini-edit btnToggleDetailsModal" style="background: #16a34a; color: #fff; border-color: #15803d;">📝 विवरण फॉर्म खोलें</button>
+      </div>
+
+      <!-- EPFO Noting Letterhead -->
+      <div class="epfo-noting-header">
+        <img src="image/epfo_logo.png" alt="EPFO Seal" class="epfo-noting-seal" onerror="this.style.display='none'">
+        <div class="epfo-noting-titles">
+          <div class="noting-org-hi">कर्मचारी भविष्य निधि संगठन</div>
+          <div class="noting-org-en">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="noting-office-sub">
+            (श्रम एवं रोजगार मंत्रालय, भारत सरकार)<br>
+            क्षेत्रीय कार्यालय: <span class="edit-inline sync-ro-city-input" contenteditable="true">फरीदाबाद - 121007 (हरियाणा)</span>
+          </div>
+        </div>
+        <img src="image/emblem_of_india.svg" alt="Ashok Stambh Emblem" class="epfo-noting-seal" onerror="this.style.display='none'">
+      </div>
+
+      <!-- Official Title Banner -->
+      <div class="noting-title-banner">
+        कार्यालयीन टिप्पणी (लेखा अनुभाग)
+      </div>
+
+      <!-- File Meta Bar -->
+      <div class="noting-meta-bar">
+        <div>
+          <strong>पत्रावली संख्या:</strong> <input type="text" class="fill-input sync-noting-file-input" value="R.O./FBD/Accts-09/Rectification/EPS-PF/2026/894" style="width: 320px;">
+        </div>
+        <div>
+          <strong>दिनांक:</strong> <input type="text" class="fill-input sync-date-input" value="16.09.2026" style="width: 100px; text-align: right;">
+        </div>
+      </div>
+
+      <!-- Subject Box (Hindi) -->
+      <div class="letter-subject-box" style="border-left-color: #10b981; background: #ffffff;" id="lblEpfoNotingSubHi">
+        विषय: लिपिकीय त्रुटिवश 58 वर्ष की आयु उपरांत खाता 10 (EPS) में जमा अंशदान को खाता 01 (EPF) में अंतरण (ITV/Transfer Journal) एवं अंतिम दावा निपटान हेतु आदेश बाबत - सदस्य: <span class="sync-member-name-text">RAMESH CHAND</span>, सदस्य आईडी: <span class="sync-member-id-text">GNR4589210000/1045</span>।
+      </div>
+
+      <!-- Sequential Office Noting Paragraphs (Hindi) -->
+      <div class="noting-para" id="lblEpfoParaHi1">
+        <span class="noting-para-num">1.</span> पत्रावली पर प्रस्तुत संस्थान मैसर्स <strong><span class="edit-inline sync-est-name-input" contenteditable="true" title="प्रतिष्ठान नाम संपादित करने हेतु क्लिक करें">M/S. TECHNO PACKAGING SOLUTIONS PRIVATE LIMITED</span></strong> (स्थापना कोड: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="स्थापना कोड संपादित करें">GNR4589210000</span></strong>) के पत्र दिनांक <strong><span class="sync-date-text">16.09.2026</span></strong> का अवलोकन हो। संस्थान द्वारा सूचित किया गया है कि उनके पूर्व कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">RAMESH CHAND</span></strong> (यूएएन: <strong><span class="sync-uan-text">100987654321</span></strong>) ने दिनांक <strong><span class="sync-58th-date-text">14.03.2024</span></strong> को 58 वर्ष की अधिवर्षिता आयु पूर्ण कर ली थी।
+      </div>
+
+      <div class="noting-para" id="lblEpfoParaHi2">
+        <span class="noting-para-num">2.</span> <strong>वैधानिक स्थिति:</strong> कर्मचारी पेंशन योजना (EPS), 1995 के पैरा 6(क) के अनुसार सदस्य की आयु 58 वर्ष पूर्ण होने पर पेंशन फंड की सदस्यता स्वतः समाप्त हो जाती है तथा इसके उपरांत नियोक्ता द्वारा दिया जाने वाला पूर्ण 12% अंशदान कर्मचारी भविष्य निधि (खाता 01) में जमा होना चाहिए। किंतु संस्थान द्वारा लिपिकीय असावधानीवश 58 वर्ष के बाद भी माह <strong><span class="sync-wrong-period-text">03/2024 से 08/2025 (18 माह)</span></strong> की अवधि का पेंशन अंशदान खाता 10 में जमा करा दिया गया है।
+      </div>
+
+      <div class="noting-para">
+        <span class="noting-para-num">3.</span> <strong>अभिलेखों का सत्यापन:</strong> एकीकृत पोर्टल (Unified Portal), सदस्य लेजर व मासिक ईसीआर के अनुसार सदस्य के खाता 10 में संबंधित अवधि का गलत अंशदान एवं अंतरण हेतु प्रस्तावित विवरण निम्न प्रकार है:
+      </div>
+
+      <!-- Quick Summary Table in Note -->
+      <div class="noting-summary-card">
+        <div class="noting-card-title">सत्यापन विवरण एवं अंतरण योग्य राशि</div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+          <tr>
+            <td style="padding: 3px 6px; width: 25%;"><strong>सदस्य का नाम:</strong></td>
+            <td style="padding: 3px 6px; width: 25%;">
+              <input type="text" class="tbl-input sync-inp-name" value="RAMESH CHAND">
+            </td>
+            <td style="padding: 3px 6px; width: 25%;"><strong>जन्म तिथि:</strong></td>
+            <td style="padding: 3px 6px; width: 25%;">
+              <input type="text" class="tbl-input sync-inp-dob" value="15.03.1966">
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 3px 6px;"><strong>यूएएन (UAN):</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-uan" value="100987654321">
+            </td>
+            <td style="padding: 3px 6px;"><strong id="lblEpfoKeyTagHi">58 वर्ष पूर्ण तिथि:</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-keydate" value="14.03.2024">
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 3px 6px;"><strong>गलत जमा अवधि:</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-period" value="03/2024 से 08/2025 (18 माह)">
+            </td>
+            <td style="padding: 3px 6px;"><strong>गलत EPS राशि (A/c 10):</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-amount" value="₹ 22,500/-" style="font-weight: 800; color: #dc2626;">
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 3px 6px;"><strong>प्रस्तावित अंतरण:</strong></td>
+            <td colspan="3" style="padding: 3px 6px; font-weight: 800; color: #15803d;">
+              खाता 10 (ईपीएस) से विकलन (Debit) कर खाता 01 (ईपीएफ) में समाकलन (Credit) [आईटीवी / जर्नल वाउचर द्वारा]
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="noting-para">
+        <span class="noting-para-num">4.</span> संस्थान द्वारा प्रस्तुत पत्र एवं घोषणा पत्र पत्रावली पर संलग्न है। सदस्य द्वारा कोई पेंशन लाभ नहीं लिया गया है। अतः Manual of Accounting Procedure (MAP) एवं केंद्रीय परिपत्रों के अनुसार उक्त गलत जमा राशि को ईपीएफ खाता 01 में ट्रांसफर वाउचर (Internal Transfer Voucher - ITV) के माध्यम से समायोजित करना न्यायोचित प्रतीत होता है।
+      </div>
+
+      <div class="noting-para" style="font-weight: 700; background: rgba(2, 132, 199, 0.05); padding: 5px 8px; border-left: 3px solid #0284c7;">
+        <span class="noting-para-num">5.</span> <strong>प्रस्ताव (अनुमोदनार्थ):</strong><br>
+        यदि अनुमोदन हो, तो सदस्य के ईपीएस (खाता 10) से गलत जमा राशि <span class="sync-wrong-amount-text">₹ 22,500/-</span> को ईपीएफ (खाता 01) में अंतरित (ITV) करने तथा तदुपरांत सदस्य के ऑनलाइन/ऑफलाइन पीएफ दावे (Form 19) का नियमानुसार अंतिम निपटान करने की अनुमति प्रदान करने हेतु टिप्पणी अनुमोदनार्थ प्रस्तुत है।
+      </div>
+
+      <!-- Hierarchical Signing Grid -->
+      <div class="noting-officials-grid">
+        <div class="official-sign-col">
+          <div class="official-title-tag">प्रस्तुतकर्ता (लिपिक / डी.ए.)</div>
+          <br><br>
+          <span class="edit-inline" contenteditable="true">वरिष्ठ सा.सु.स. / Sr. SSA</span><br>
+          लेखा अनुभाग (Account Sec 09)
+        </div>
+
+        <div class="official-sign-col">
+          <div class="official-title-tag">अनुभाग पर्यवेक्षक (SS)</div>
+          <br><br>
+          <strong>Niraj Kumar</strong><br>
+          <span class="edit-inline" contenteditable="true">Section Supervisor (SS)</span>
+        </div>
+
+        <div class="official-sign-col">
+          <div class="official-title-tag">लेखा अधिकारी (AO)</div>
+          <br><br>
+          <span class="edit-inline" contenteditable="true">Accounts Officer (AO)</span><br>
+          क्षेत्रीय कार्यालय, फरीदाबाद
+        </div>
+
+        <div class="official-sign-col" style="border-color: #0284c7; background: #f0f9ff;">
+          <div class="official-title-tag" style="color: #0369a1;">सक्षम प्राधिकारी</div>
+          <br><br>
+          <strong>सहायक/क्षेत्रीय पी.एफ. आयुक्त</strong><br>
+          APFC / RPFC-II
+        </div>
+      </div>
+    </section>
+
+    <!-- EPFO SHEET (ENGLISH) -->
+    <section class="form-sheet sheet-noting-green" id="sheetEpfoEn">
+      <div class="sheet-badge lang-badge-en no-print">
+        📝 EPFO Official Office Note Sheet (Accounts Branch - English - 1 Page)
+      </div>
+
+      <!-- Noting Edit Guidance Hint -->
+      <div class="letterhead-edit-hint epfo-hint no-print">
+        <span>🏛️ <strong>Note Sheet Edit:</strong> Directly edit File No., Date, Office City, Establishment particulars in Para 1, and Member details in the table below.</span>
+        <button type="button" class="btn-mini-edit btnToggleDetailsModal" style="background: #16a34a; color: #fff; border-color: #15803d;">📝 Open Details Form</button>
+      </div>
+
+      <!-- EPFO Noting Letterhead -->
+      <div class="epfo-noting-header">
+        <img src="image/epfo_logo.png" alt="EPFO Seal" class="epfo-noting-seal" onerror="this.style.display='none'">
+        <div class="epfo-noting-titles">
+          <div class="noting-org-hi">कर्मचारी भविष्य निधि संगठन</div>
+          <div class="noting-org-en">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="noting-office-sub">
+            (Ministry of Labour &amp; Employment, Govt. of India)<br>
+            Regional Office: <span class="edit-inline sync-ro-city-en-input" contenteditable="true">Faridabad - 121007 (Haryana)</span>
+          </div>
+        </div>
+        <img src="image/emblem_of_india.svg" alt="Ashok Stambh Emblem" class="epfo-noting-seal" onerror="this.style.display='none'">
+      </div>
+
+      <!-- Official Title Banner -->
+      <div class="noting-title-banner">
+        OFFICIAL NOTE SHEET (ACCOUNTS SECTION)
+      </div>
+
+      <!-- File Meta Bar -->
+      <div class="noting-meta-bar">
+        <div>
+          <strong>File No.:</strong> <input type="text" class="fill-input sync-noting-file-input" value="R.O./FBD/Accts-09/Rectification/EPS-PF/2026/894" style="width: 320px;">
+        </div>
+        <div>
+          <strong>Date:</strong> <input type="text" class="fill-input sync-date-input" value="16.09.2026" style="width: 100px; text-align: right;">
+        </div>
+      </div>
+
+      <!-- Subject Box (English) -->
+      <div class="letter-subject-box" style="border-left-color: #10b981; background: #ffffff;" id="lblEpfoNotingSubEn">
+        Subject: Proposal for approval to transfer erroneously deposited EPS (Account 10) contribution into EPF (Account 01) through Internal Transfer Voucher (ITV) and final claim settlement - regarding Sh./Smt. <span class="sync-member-name-text">RAMESH CHAND</span>, Member ID: <span class="sync-member-id-text">GNR4589210000/1045</span>.
+      </div>
+
+      <!-- Sequential Office Noting Paragraphs (English) -->
+      <div class="noting-para" id="lblEpfoParaEn1">
+        <span class="noting-para-num">1.</span> Placed on file is an application dated <strong><span class="sync-date-text">16.09.2026</span></strong> received from the establishment <strong>M/s <span class="edit-inline sync-est-name-input" contenteditable="true" title="Click to edit Establishment Name">TECHNO PACKAGING SOLUTIONS PRIVATE LIMITED</span></strong> (Est. Code: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="Click to edit Establishment Code">GNR4589210000</span></strong>). The establishment has submitted that their former employee <strong>Sh./Smt. <span class="sync-member-name-text">RAMESH CHAND</span></strong> (UAN: <strong><span class="sync-uan-text">100987654321</span></strong>) attained 58 years of superannuation age on <strong><span class="sync-58th-date-text">14.03.2024</span></strong>.
+      </div>
+
+      <div class="noting-para" id="lblEpfoParaEn2">
+        <span class="noting-para-num">2.</span> <strong>Statutory Rule:</strong> As per Para 6(a) of the Employees' Pension Scheme, 1995, an employee ceases to be a member of the Pension Fund upon attaining 58 years of age, and the full 12% employer contribution is statutorily payable into the Provident Fund (Account 01). However, due to payroll oversight by the establishment, contribution was erroneously remitted into EPS (Account 10) for the period <strong><span class="sync-wrong-period-text">03/2024 TO 08/2025 (18 Months)</span></strong>.
+      </div>
+
+      <div class="noting-para">
+        <span class="noting-para-num">3.</span> <strong>Ledger &amp; ECR Verification:</strong> As per records on the Unified Portal, Member Ledger and ECR returns, the details of irregular deposit in Account 10 and proposed transfer are as follows:
+      </div>
+
+      <!-- Quick Summary Table in Note -->
+      <div class="noting-summary-card">
+        <div class="noting-card-title">Verification &amp; Transfer Summary</div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+          <tr>
+            <td style="padding: 3px 6px; width: 25%;"><strong>Member Name:</strong></td>
+            <td style="padding: 3px 6px; width: 25%;">
+              <input type="text" class="tbl-input sync-inp-name" value="RAMESH CHAND">
+            </td>
+            <td style="padding: 3px 6px; width: 25%;"><strong>Date of Birth:</strong></td>
+            <td style="padding: 3px 6px; width: 25%;">
+              <input type="text" class="tbl-input sync-inp-dob" value="15.03.1966">
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 3px 6px;"><strong>UAN:</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-uan" value="100987654321">
+            </td>
+            <td style="padding: 3px 6px;"><strong id="lblEpfoKeyTagEn">Attainment of 58 Yrs:</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-keydate" value="14.03.2024">
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 3px 6px;"><strong>Erroneous Period:</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-period" value="03/2024 TO 08/2025 (18 Months)">
+            </td>
+            <td style="padding: 3px 6px;"><strong>Erroneous EPS Amount:</strong></td>
+            <td style="padding: 3px 6px;">
+              <input type="text" class="tbl-input sync-inp-amount" value="Rs. 22,500/-" style="font-weight: 800; color: #dc2626;">
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 3px 6px;"><strong>Proposed Transfer:</strong></td>
+            <td colspan="3" style="padding: 3px 6px; font-weight: 800; color: #15803d;">
+              Debit Account 10 (EPS) and Credit Account 01 (EPF) via Internal Transfer Voucher (ITV/JV)
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="noting-para">
+        <span class="noting-para-num">4.</span> The employer has furnished the required clarification letter and undertaking certifying that no pension benefit has been settled. Therefore, in accordance with the Manual of Accounting Procedure (MAP Vol. II) and Head Office guidelines, the transfer of the irregular EPS amount into EPF Account 01 through ITV is appropriate and justified.
+      </div>
+
+      <div class="noting-para" style="font-weight: 700; background: rgba(2, 132, 199, 0.05); padding: 5px 8px; border-left: 3px solid #0284c7;">
+        <span class="noting-para-num">5.</span> <strong>Proposal for Approval:</strong><br>
+        Submitted for kind approval to transfer the erroneously deposited amount of <span class="sync-wrong-amount-text">Rs. 22,500/-</span> from Account 10 to Account 01 through Internal Transfer Voucher (ITV) and to settle the pending final PF claim (Form 19) of the member.
+      </div>
+
+      <!-- Hierarchical Signing Grid -->
+      <div class="noting-officials-grid">
+        <div class="official-sign-col">
+          <div class="official-title-tag">Dealing Assistant</div>
+          <br><br>
+          <span class="edit-inline" contenteditable="true">Senior SSA / SSA</span><br>
+          Accounts Section 09
+        </div>
+
+        <div class="official-sign-col">
+          <div class="official-title-tag">Section Supervisor</div>
+          <br><br>
+          <strong>Niraj Kumar</strong><br>
+          <span class="edit-inline" contenteditable="true">Section Supervisor (SS)</span>
+        </div>
+
+        <div class="official-sign-col">
+          <div class="official-title-tag">Accounts Officer</div>
+          <br><br>
+          <span class="edit-inline" contenteditable="true">Accounts Officer (AO)</span><br>
+          RO, Faridabad
+        </div>
+
+        <div class="official-sign-col" style="border-color: #0284c7; background: #f0f9ff;">
+          <div class="official-title-tag" style="color: #0369a1;">Competent Authority</div>
+          <br><br>
+          <strong>APFC / RPFC-II</strong><br>
+          Regional Office
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: MEMBER & ESTABLISHMENT DETAILS MODIFICATION DIALOG                -->
+  <!-- ========================================================================= -->
+  <div class="details-modal-backdrop no-print" id="detailsModalBackdrop" style="display: none;">
+    <div class="details-modal-window" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="details-modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 20px;">✏️</span>
+          <div>
+            <h3 id="modalTitle" style="margin: 0; font-size: 15px; font-weight: 800; color: #0f172a;">सदस्य व कंपनी विवरण संशोधन (Edit Member &amp; Establishment Details)</h3>
+            <p style="margin: 2px 0 0 0; font-size: 11px; color: #64748b;">यहाँ विवरण बदलें — नियोक्ता पत्र एवं ईपीएफओ नोटिंग (हिंदी व अंग्रेजी) दोनों में स्वतः अपडेट हो जाएगा।</p>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" id="btnCloseDetailsModal" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="details-modal-body">
+        <!-- 3-Column Grid for Details -->
+        <div class="details-form-grid">
+
+          <!-- Section 1: Establishment Details -->
+          <div class="form-section-card">
+            <div class="section-card-header">
+              <span>🏢</span> प्रतिष्ठान / कंपनी का विवरण (Company Details)
+            </div>
+            <div class="modal-field">
+              <label>कंपनी / प्रतिष्ठान का नाम (Establishment Name):</label>
+              <input type="text" id="mInpEstName" class="modal-input" placeholder="M/S. TECHNO PACKAGING SOLUTIONS PRIVATE LIMITED">
+            </div>
+            <div class="modal-field">
+              <label>प्रतिष्ठान का पूर्ण पता (Address):</label>
+              <textarea id="mInpEstAddr" class="modal-input" rows="2" placeholder="Plot No. 45, Sector 24, DLF Industrial Area, Faridabad - 121005 (Haryana)"></textarea>
+            </div>
+            <div class="modal-row-2">
+              <div class="modal-field">
+                <label>स्थापना कोड (PF Est. Code):</label>
+                <input type="text" id="mInpEstCode" class="modal-input" placeholder="GNR4589210000">
+              </div>
+              <div class="modal-field">
+                <label>दूरभाष / फोन नं. (Phone):</label>
+                <input type="text" id="mInpEstPhone" class="modal-input" placeholder="0129-4123456">
+              </div>
+            </div>
+            <div class="modal-field">
+              <label>कंपनी ईमेल (Email):</label>
+              <input type="text" id="mInpEstEmail" class="modal-input" placeholder="hr@technopack.com">
+            </div>
+            <div class="modal-row-2">
+              <div class="modal-field">
+                <label>अधिकृत हस्ताक्षरकर्ता (Signatory):</label>
+                <input type="text" id="mInpSignName" class="modal-input" placeholder="SANJAY MEHTA (MANAGER - HR)">
+              </div>
+              <div class="modal-field">
+                <label>स्थान (Place):</label>
+                <input type="text" id="mInpPlace" class="modal-input" placeholder="Faridabad">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Member Details -->
+          <div class="form-section-card">
+            <div class="section-card-header" style="color: #0369a1; border-bottom-color: #bae6fd;">
+              <span>👤</span> कर्मचारी / सदस्य का विवरण (Member Details)
+            </div>
+            <div class="modal-field">
+              <label>कर्मचारी / सदस्य का नाम (Member Name):</label>
+              <input type="text" id="mInpMemberName" class="modal-input" placeholder="RAMESH CHAND">
+            </div>
+            <div class="modal-field">
+              <label>पिता / पति का नाम (Father / Husband Name):</label>
+              <input type="text" id="mInpFatherName" class="modal-input" placeholder="LATE SHRI SHIV DAYAL">
+            </div>
+            <div class="modal-row-2">
+              <div class="modal-field">
+                <label>सार्वभौमिक खाता सं. (UAN - 12 Digits):</label>
+                <input type="text" id="mInpUan" class="modal-input" placeholder="100987654321" maxlength="12">
+              </div>
+              <div class="modal-field">
+                <label>सदस्य आईडी (PF Member ID):</label>
+                <input type="text" id="mInpMid" class="modal-input" placeholder="GNR4589210000/1045">
+              </div>
+            </div>
+            <div class="modal-row-2">
+              <div class="modal-field">
+                <label>जन्म तिथि (Date of Birth):</label>
+                <input type="text" id="mInpDob" class="modal-input" placeholder="15.03.1966">
+              </div>
+              <div class="modal-field">
+                <label>कार्यग्रहण तिथि (Date of Joining):</label>
+                <input type="text" id="mInpDoj" class="modal-input" placeholder="01.07.2012">
+              </div>
+            </div>
+            <div class="modal-field">
+              <label>58 वर्ष पूर्ण होने की तिथि / अपात्रता कारण:</label>
+              <input type="text" id="mInpKeyDate" class="modal-input" placeholder="14.03.2024">
+            </div>
+            <div class="modal-row-2">
+              <div class="modal-field">
+                <label>गलत ईपीएस कटौती अवधि (Period):</label>
+                <input type="text" id="mInpPeriod" class="modal-input" placeholder="03/2024 से 08/2025 (18 माह)">
+              </div>
+              <div class="modal-field">
+                <label>गलत ईपीएस राशि (Erroneous EPS Amount):</label>
+                <input type="text" id="mInpAmount" class="modal-input" placeholder="₹ 22,500/- (बाईस हजार पांच सौ रुपये मात्र)">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Letter & Office Details -->
+          <div class="form-section-card">
+            <div class="section-card-header" style="color: #15803d; border-bottom-color: #bbf7d0;">
+              <span>🏛️</span> कार्यालय व पत्रांक विवरण (Office &amp; Letter Ref)
+            </div>
+            <div class="modal-field">
+              <label>नियोक्ता पत्रांक संख्या (Employer Ref. No.):</label>
+              <input type="text" id="mInpRef" class="modal-input" placeholder="TPS/HR/EPF/2026/041">
+            </div>
+            <div class="modal-field">
+              <label>पत्र / नोटिंग दिनांक (Date):</label>
+              <input type="text" id="mInpDate" class="modal-input" placeholder="16.09.2026">
+            </div>
+            <div class="modal-field">
+              <label>ईपीएफओ क्षेत्रीय कार्यालय (EPFO RO City Hindi):</label>
+              <input type="text" id="mInpRoCityHi" class="modal-input" placeholder="फरीदाबाद - 121007 (हरियाणा)">
+            </div>
+            <div class="modal-field">
+              <label>EPFO Regional Office (English):</label>
+              <input type="text" id="mInpRoCityEn" class="modal-input" placeholder="Faridabad - 121007 (Haryana)">
+            </div>
+            <div class="modal-field">
+              <label>ईपीएफओ नोटिंग पत्रावली संख्या (Noting File No.):</label>
+              <input type="text" id="mInpNotingFile" class="modal-input" placeholder="R.O./FBD/Accts-09/Rectification/EPS-PF/2026/894">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="details-modal-footer">
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <button type="button" class="btn-modal-action" id="mBtnSample58" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1;">
+            👴 58 वर्ष नमूना डेटा
+          </button>
+          <button type="button" class="btn-modal-action" id="mBtnSampleNonEps" style="background: #f1f5f9; color: #0f172a; border-color: #cbd5e1;">
+            🚫 गैर-ईपीएस नमूना डेटा
+          </button>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn-modal-action" id="mBtnCancel" style="background: #fff; color: #475569; border-color: #cbd5e1;">
+            बंद करें (Cancel)
+          </button>
+          <button type="button" class="btn-modal-action" id="mBtnApply" style="background: #2563eb; color: #fff; border-color: #1d4ed8; font-weight: 800;">
+            ✓ लागू करें एवं अपडेट करें (Apply Changes)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Elements
+      const body = document.body;
+      const btnRoleEmployer = document.getElementById('btnRoleEmployer');
+      const btnRoleEpfo = document.getElementById('btnRoleEpfo');
+
+      const btnEmployerLangHi = document.getElementById('btnEmployerLangHi');
+      const btnEmployerLangEn = document.getElementById('btnEmployerLangEn');
+      const btnEpfoLangHi = document.getElementById('btnEpfoLangHi');
+      const btnEpfoLangEn = document.getElementById('btnEpfoLangEn');
+
+      const btnEmployerCase58 = document.getElementById('btnEmployerCase58');
+      const btnEmployerCaseNonEps = document.getElementById('btnEmployerCaseNonEps');
+      const btnEpfoCase58 = document.getElementById('btnEpfoCase58');
+      const btnEpfoCaseNonEps = document.getElementById('btnEpfoCaseNonEps');
+
+      const btnSizeA4 = document.getElementById('btnSizeA4');
+      const btnSizeLegal = document.getElementById('btnSizeLegal');
+      const dynamicPageSizeStyle = document.getElementById('dynamicPageSizeStyle');
+      const btnPrint = document.getElementById('btnPrint');
+      const btnAutofillSample = document.getElementById('btnAutofillSample');
+      const btnClearData = document.getElementById('btnClearData');
+
+      // Dropdown Navigation
+      const navDropdown = document.getElementById('navDropdown');
+      const btnNavToggle = document.getElementById('btnNavToggle');
+
+      if (btnNavToggle && navDropdown) {
+        btnNavToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navDropdown.classList.toggle('active');
+        });
+        document.addEventListener('click', () => {
+          navDropdown.classList.remove('active');
+        });
+      }
+
+      // 2. Primary Role Switching (Employer vs EPFO) - Alag Alag Vyavastha
+      function setRole(role) {
+        if (role === 'epfo') {
+          body.classList.remove('role-employer');
+          body.classList.add('role-epfo');
+          btnRoleEpfo.classList.add('active', 'role-epfo-active');
+          btnRoleEmployer.classList.remove('active');
+          window.location.hash = 'epfo';
+        } else {
+          body.classList.remove('role-epfo');
+          body.classList.add('role-employer');
+          btnRoleEmployer.classList.add('active');
+          btnRoleEpfo.classList.remove('active', 'role-epfo-active');
+          window.location.hash = 'employer';
+        }
+      }
+
+      btnRoleEmployer.addEventListener('click', () => setRole('employer'));
+      btnRoleEpfo.addEventListener('click', () => setRole('epfo'));
+
+      // Check URL Hash on Load
+      if (window.location.hash === '#epfo') {
+        setRole('epfo');
+      } else {
+        setRole('employer');
+      }
+
+      // 3. Language Switching per Module (Hindi vs English)
+      function setEmployerLang(lang) {
+        if (lang === 'en') {
+          body.classList.remove('employer-lang-hi');
+          body.classList.add('employer-lang-en');
+          btnEmployerLangEn.classList.add('active');
+          btnEmployerLangHi.classList.remove('active');
+        } else {
+          body.classList.remove('employer-lang-en');
+          body.classList.add('employer-lang-hi');
+          btnEmployerLangHi.classList.add('active');
+          btnEmployerLangEn.classList.remove('active');
+        }
+      }
+
+      function setEpfoLang(lang) {
+        if (lang === 'en') {
+          body.classList.remove('epfo-lang-hi');
+          body.classList.add('epfo-lang-en');
+          btnEpfoLangEn.classList.add('active');
+          btnEpfoLangHi.classList.remove('active');
+        } else {
+          body.classList.remove('epfo-lang-en');
+          body.classList.add('epfo-lang-hi');
+          btnEpfoLangHi.classList.add('active');
+          btnEpfoLangEn.classList.remove('active');
+        }
+      }
+
+      btnEmployerLangHi.addEventListener('click', () => setEmployerLang('hi'));
+      btnEmployerLangEn.addEventListener('click', () => setEmployerLang('en'));
+      btnEpfoLangHi.addEventListener('click', () => setEpfoLang('hi'));
+      btnEpfoLangEn.addEventListener('click', () => setEpfoLang('en'));
+
+      // 4. Paper Size Switching (A4 vs Legal)
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          body.classList.remove('size-a4');
+          body.classList.add('size-legal');
+          btnSizeLegal.classList.add('active');
+          btnSizeA4.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = '@page { size: legal portrait; margin: 10mm 12mm 10mm 12mm; }';
+        } else {
+          body.classList.remove('size-legal');
+          body.classList.add('size-a4');
+          btnSizeA4.classList.add('active');
+          btnSizeLegal.classList.remove('active');
+          dynamicPageSizeStyle.innerHTML = '@page { size: A4 portrait; margin: 8mm 10mm 8mm 10mm; }';
+        }
+      }
+
+      btnSizeA4.addEventListener('click', () => setPaperSize('a4'));
+      btnSizeLegal.addEventListener('click', () => setPaperSize('legal'));
+
+      // 5. Case Type Switching (Case 1: Post 58 Years vs Case 2: Non-EPS Member)
+      let currentCase = '58years'; // '58years' or 'noneps'
+
+      function applyCaseContent(caseType) {
+        currentCase = caseType;
+        
+        [btnEmployerCase58, btnEpfoCase58].forEach(btn => {
+          if (btn) {
+            if (caseType === '58years') btn.classList.add('active');
+            else btn.classList.remove('active');
+          }
+        });
+
+        [btnEmployerCaseNonEps, btnEpfoCaseNonEps].forEach(btn => {
+          if (btn) {
+            if (caseType === 'noneps') btn.classList.add('active');
+            else btn.classList.remove('active');
+          }
+        });
+
+        const memberName = getFirstVal('.sync-inp-name', 'RAMESH CHAND');
+        const uan = getFirstVal('.sync-inp-uan', '100987654321');
+        const memberId = getFirstVal('.sync-inp-mid', 'GNR4589210000/1045');
+        const keyDate = getFirstVal('.sync-inp-keydate', '14.03.2024');
+        const wrongPeriod = getFirstVal('.sync-inp-period', '03/2024 से 08/2025');
+
+        if (caseType === 'noneps') {
+          // Employer Letter (Hindi)
+          document.getElementById('lblEmployerSubjectHi').innerHTML = 'विषय: ईपीएस का सदस्य न होने के बावजूद लिपिकीय त्रुटिवश ईपीएस (खाता 10) में जमा अंशदान को ईपीएफ (खाता 01) में अंतरित/समायोजित करने हेतु अनुरोध - सदस्य: <span class="sync-member-name-text">' + memberName + '</span> (यूएएन: <span class="sync-uan-text">' + uan + '</span>, पीएफ सदस्य पहचान संख्या: <span class="sync-member-id-text">' + memberId + '</span>)।';
+          document.getElementById('lblEmployerBodyHi1').innerHTML = 'सविनय निवेदन है कि हमारे संस्थान में कार्यरत कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> नियुक्ति तिथि को निर्धारित वेतन सीमा (₹15,000/-) से अधिक वेतन होने / बहिष्कृत कर्मचारी (Excluded Employee) होने के कारण कर्मचारी पेंशन योजना (EPS-95) के पात्र सदस्य नहीं थे तथा उनका पूर्ण 12% नियोक्ता अंशदान भविष्य निधि (खाता 01) में जमा होना अनिवार्य था।';
+          document.getElementById('lblEmployerBodyHi2').innerHTML = 'किंतु संस्थान के पेरोल अनुभाग में अनपेक्षित लिपिकीय त्रुटि के कारण उक्त कर्मचारी का 8.33% अंशदान गलती से ईपीएस (खाता 10) में चालान द्वारा जमा होता रहा। कर्मचारी का विस्तृत ब्यौरा निम्न तालिका अनुसार है:';
+          document.getElementById('lblEmployerKeyDateLabelHi').textContent = 'ईपीएस अपात्रता कारण / कार्यमुक्ति तिथि';
+
+          // Employer Letter (English)
+          document.getElementById('lblEmployerSubjectEn').innerHTML = 'Subject: Request for rectification and transfer of erroneously deposited EPS (Account 10) contribution into EPF (Account 01) due to clerical mistake in respect of Non-EPS Member - regarding Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span>, UAN: <span class="sync-uan-text">' + uan + '</span>, Member ID: <span class="sync-member-id-text">' + memberId + '</span>.';
+          document.getElementById('lblEmployerBodyEn1').innerHTML = 'With reference to the above cited subject, we respectfully submit that our employee <strong>Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span></strong> was an Excluded / Non-EPS member as the wage exceeded statutory limit of ₹15,000/- at the time of entry and was not eligible for EPS-95. The full 12% employer contribution ought to have been deposited into EPF Account 01.';
+          document.getElementById('lblEmployerBodyEn2').innerHTML = 'However, due to inadvertent payroll and clerical oversight at our establishment, 8.33% contribution was erroneously remitted into EPS (Account 10) instead of Account 01. Complete particulars of the member are tabulated below:';
+          document.getElementById('lblEmployerKeyDateLabelEn').textContent = 'Reason for Non-EPS / Exit Date';
+
+          // EPFO Office Note (Hindi)
+          document.getElementById('lblEpfoNotingSubHi').innerHTML = 'विषय: ईपीएस सदस्य न होने के बावजूद लिपिकीय त्रुटिवश खाता 10 (EPS) में जमा अंशदान को खाता 01 (EPF) में अंतरण (ITV/JV) एवं अंतिम दावा निपटान हेतु आदेश बाबत - सदस्य: <span class="sync-member-name-text">' + memberName + '</span>, सदस्य आईडी: <span class="sync-member-id-text">' + memberId + '</span>।';
+          document.getElementById('lblEpfoParaHi1').innerHTML = '<span class="noting-para-num">1.</span> पत्रावली पर प्रस्तुत संस्थान मैसर्स <strong><span class="edit-inline sync-est-name-input" contenteditable="true" title="प्रतिष्ठान नाम संपादित करने हेतु क्लिक करें">' + getFirstText('.sync-est-name-input', 'TECHNO PACKAGING SOLUTIONS') + '</span></strong> (स्थापना कोड: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="स्थापना कोड संपादित करें">' + getFirstText('.sync-est-code-input', 'GNR4589210000') + '</span></strong>) के पत्र का अवलोकन हो। संस्थान द्वारा सूचित किया गया है कि कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> (यूएएन: <strong><span class="sync-uan-text">' + uan + '</span></strong>) प्रारंभ से ही ईपीएस-95 के पात्र सदस्य नहीं थे (Excluded Employee under Para 6(b))।';
+          document.getElementById('lblEpfoParaHi2').innerHTML = '<span class="noting-para-num">2.</span> <strong>वैधानिक स्थिति:</strong> कर्मचारी पेंशन योजना, 1995 के प्रावधानों तथा 01.09.2014 के संशोधन अनुसार गैर-ईपीएस सदस्य के मामले में संपूर्ण 12% नियोक्ता अंशदान भविष्य निधि (खाता 01) में जमा होना अपेक्षित था। संस्थान द्वारा लिपिकीय असावधानीवश पेंशन फंड (खाता 10) में राशि जमा की गई जो कि शून्य व अमान्य (Irregular) है।';
+          document.getElementById('lblEpfoKeyTagHi').textContent = 'अपात्रता कारण / विवरण:';
+
+          // EPFO Office Note (English)
+          document.getElementById('lblEpfoNotingSubEn').innerHTML = 'Subject: Proposal for approval to transfer erroneously deposited EPS (Account 10) contribution into EPF (Account 01) through ITV in respect of Non-EPS Member - Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span>, Member ID: <span class="sync-member-id-text">' + memberId + '</span>.';
+          document.getElementById('lblEpfoParaEn1').innerHTML = '<span class="noting-para-num">1.</span> Placed on file is an application received from the establishment <strong>M/s <span class="edit-inline sync-est-name-input" contenteditable="true" title="Click to edit Establishment Name">' + getFirstText('.sync-est-name-input', 'TECHNO PACKAGING SOLUTIONS') + '</span></strong> (Est. Code: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="Click to edit Est. Code">' + getFirstText('.sync-est-code-input', 'GNR4589210000') + '</span></strong>) submitting that employee <strong>Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span></strong> (UAN: <strong><span class="sync-uan-text">' + uan + '</span></strong>) was not an eligible member of EPS-95 (Excluded Employee).';
+          document.getElementById('lblEpfoParaEn2').innerHTML = '<span class="noting-para-num">2.</span> <strong>Statutory Rule:</strong> As per EPF/EPS provisions, full 12% contribution in respect of non-eligible EPS employees was required to be remitted directly into Account 01. Remittance into Account 10 was erroneous and irregular ab-initio due to employer\'s clerical mistake.';
+          document.getElementById('lblEpfoKeyTagEn').textContent = 'Non-EPS Reason / Details:';
+
+        } else {
+          // Employer Letter (Hindi)
+          document.getElementById('lblEmployerSubjectHi').innerHTML = 'विषय: लिपिकीय त्रुटिवश 58 वर्ष की आयु पूर्ण होने के उपरांत ईपीएस (खाता 10) में जमा अंशदान को ईपीएफ (खाता 01) में अंतरित/समायोजित करने हेतु अनुरोध - सदस्य: <span class="sync-member-name-text">' + memberName + '</span> (यूएएन: <span class="sync-uan-text">' + uan + '</span>, पीएफ सदस्य पहचान संख्या: <span class="sync-member-id-text">' + memberId + '</span>)।';
+          document.getElementById('lblEmployerBodyHi1').innerHTML = 'सविनय निवेदन है कि हमारे संस्थान में कार्यरत/भूतपूर्व कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> ने दिनांक <strong><span class="sync-58th-date-text">' + keyDate + '</span></strong> को 58 वर्ष की अधिवर्षिता आयु पूर्ण कर ली थी। कर्मचारी पेंशन योजना (EPS), 1995 के पैरा 6(क) के प्रावधानों के अनुसार 58 वर्ष की आयु पूर्ण होने के उपरांत पेंशन फंड की सदस्यता स्वतः समाप्त हो जाती है तथा इसके पश्चात नियोक्ता द्वारा दिया जाने वाला पूर्ण 12% अंशदान भविष्य निधि (खाता 01) में जमा होना अनिवार्य था।';
+          document.getElementById('lblEmployerBodyHi2').innerHTML = 'किंतु हमारे संस्थान के पेरोल अनुभाग में अनपेक्षित लिपिकीय त्रुटि के कारण उक्त कर्मचारी के मासिक चालान (ECR) में 58 वर्ष के बाद भी ईपीएस (खाता 10) में 8.33% राशि की कटौती कर जमा करा दी गई। कर्मचारी का पूर्ण विवरण निम्नानुसार है:';
+          document.getElementById('lblEmployerKeyDateLabelHi').textContent = '58 वर्ष पूर्ण होने की तिथि / कार्यमुक्ति';
+
+          // Employer Letter (English)
+          document.getElementById('lblEmployerSubjectEn').innerHTML = 'Subject: Request for rectification and transfer of erroneously deposited EPS (Account 10) contribution into EPF (Account 01) due to clerical mistake after completion of 58 years of age - regarding Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span>, UAN: <span class="sync-uan-text">' + uan + '</span>, Member ID: <span class="sync-member-id-text">' + memberId + '</span>.';
+          document.getElementById('lblEmployerBodyEn1').innerHTML = 'With reference to the above cited subject, we respectfully submit that our employee <strong>Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span></strong> had attained 58 years of superannuation age on <strong><span class="sync-58th-date-text">' + keyDate + '</span></strong>. As per the statutory provisions of Para 6(a) of the Employees\' Pension Scheme, 1995, an employee ceases to be a member of the pension fund upon attaining 58 years of age, and the full 12% employer share is required to be deposited into the Provident Fund (Account 01).';
+          document.getElementById('lblEmployerBodyEn2').innerHTML = 'However, purely due to an inadvertent clerical error and payroll software oversight at our establishment, 8.33% pension contribution continued to be remitted into EPS (Account 10) through monthly ECR returns even after attainment of 58 years. The complete particulars of the member are tabulated below:';
+          document.getElementById('lblEmployerKeyDateLabelEn').textContent = 'Date of Attaining 58 Yrs / Date of Exit';
+
+          // EPFO Office Note (Hindi)
+          document.getElementById('lblEpfoNotingSubHi').innerHTML = 'विषय: लिपिकीय त्रुटिवश 58 वर्ष की आयु उपरांत खाता 10 (EPS) में जमा अंशदान को खाता 01 (EPF) में अंतरण (ITV/Transfer Journal) एवं अंतिम दावा निपटान हेतु आदेश बाबत - सदस्य: <span class="sync-member-name-text">' + memberName + '</span>, सदस्य आईडी: <span class="sync-member-id-text">' + memberId + '</span>।';
+          document.getElementById('lblEpfoParaHi1').innerHTML = '<span class="noting-para-num">1.</span> पत्रावली पर प्रस्तुत संस्थान मैसर्स <strong><span class="edit-inline sync-est-name-input" contenteditable="true" title="प्रतिष्ठान नाम संपादित करने हेतु क्लिक करें">' + getFirstText('.sync-est-name-input', 'TECHNO PACKAGING SOLUTIONS') + '</span></strong> (स्थापना कोड: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="स्थापना कोड संपादित करें">' + getFirstText('.sync-est-code-input', 'GNR4589210000') + '</span></strong>) के पत्र दिनांक <strong><span class="sync-date-text">' + getFirstVal('.sync-date-input', '16.09.2026') + '</span></strong> का अवलोकन हो। संस्थान द्वारा सूचित किया गया है कि उनके पूर्व कर्मचारी <strong>श्री/श्रीमती <span class="sync-member-name-text">' + memberName + '</span></strong> (यूएएन: <strong><span class="sync-uan-text">' + uan + '</span></strong>) ने दिनांक <strong><span class="sync-58th-date-text">' + keyDate + '</span></strong> को 58 वर्ष की अधिवर्षिता आयु पूर्ण कर ली थी।';
+          document.getElementById('lblEpfoParaHi2').innerHTML = '<span class="noting-para-num">2.</span> <strong>वैधानिक स्थिति:</strong> कर्मचारी पेंशन योजना (EPS), 1995 के पैरा 6(क) के अनुसार सदस्य की आयु 58 वर्ष पूर्ण होने पर पेंशन फंड की सदस्यता स्वतः समाप्त हो जाती है तथा इसके उपरांत नियोक्ता द्वारा दिया जाने वाला पूर्ण 12% अंशदान कर्मचारी भविष्य निधि (खाता 01) में जमा होना चाहिए। किंतु संस्थान द्वारा लिपिकीय असावधानीवश 58 वर्ष के बाद भी माह <strong><span class="sync-wrong-period-text">' + wrongPeriod + '</span></strong> की अवधि का पेंशन अंशदान खाता 10 में जमा करा दिया गया है।';
+          document.getElementById('lblEpfoKeyTagHi').textContent = '58 वर्ष पूर्ण तिथि:';
+
+          // EPFO Office Note (English)
+          document.getElementById('lblEpfoNotingSubEn').innerHTML = 'Subject: Proposal for approval to transfer erroneously deposited EPS (Account 10) contribution into EPF (Account 01) through Internal Transfer Voucher (ITV) and final claim settlement - regarding Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span>, Member ID: <span class="sync-member-id-text">' + memberId + '</span>.';
+          document.getElementById('lblEpfoParaEn1').innerHTML = '<span class="noting-para-num">1.</span> Placed on file is an application dated <strong><span class="sync-date-text">' + getFirstVal('.sync-date-input', '16.09.2026') + '</span></strong> received from the establishment <strong>M/s <span class="edit-inline sync-est-name-input" contenteditable="true" title="Click to edit Establishment Name">' + getFirstText('.sync-est-name-input', 'TECHNO PACKAGING SOLUTIONS') + '</span></strong> (Est. Code: <strong><span class="edit-inline sync-est-code-input" contenteditable="true" title="Click to edit Est. Code">' + getFirstText('.sync-est-code-input', 'GNR4589210000') + '</span></strong>). The establishment has submitted that their former employee <strong>Sh./Smt. <span class="sync-member-name-text">' + memberName + '</span></strong> (UAN: <strong><span class="sync-uan-text">' + uan + '</span></strong>) attained 58 years of superannuation age on <strong><span class="sync-58th-date-text">' + keyDate + '</span></strong>.';
+          document.getElementById('lblEpfoParaEn2').innerHTML = '<span class="noting-para-num">2.</span> <strong>Statutory Rule:</strong> As per Para 6(a) of the Employees\' Pension Scheme, 1995, an employee ceases to be a member of the Pension Fund upon attaining 58 years of age, and the full 12% employer contribution is statutorily payable into the Provident Fund (Account 01). However, due to payroll oversight by the establishment, contribution was erroneously remitted into EPS (Account 10) for the period <strong><span class="sync-wrong-period-text">' + wrongPeriod + '</span></strong>.';
+          document.getElementById('lblEpfoKeyTagEn').textContent = 'Attainment of 58 Yrs:';
+        }
+
+        syncAllFields();
+      }
+
+      function getFirstVal(selector, fallback = '') {
+        const el = document.querySelector(selector);
+        return el ? (el.value || fallback) : fallback;
+      }
+
+      function getFirstText(selector, fallback = '') {
+        const el = document.querySelector(selector);
+        return el ? (el.textContent.trim() || fallback) : fallback;
+      }
+
+      btnEmployerCase58.addEventListener('click', () => applyCaseContent('58years'));
+      btnEmployerCaseNonEps.addEventListener('click', () => applyCaseContent('noneps'));
+      btnEpfoCase58.addEventListener('click', () => applyCaseContent('58years'));
+      btnEpfoCaseNonEps.addEventListener('click', () => applyCaseContent('noneps'));
+
+      // 6. Two-way Real-Time Synchronization between Employer & EPFO
+      function syncAllFields(e) {
+        const changedEl = e ? e.target : null;
+
+        if (changedEl) {
+          const syncClasses = [
+            'sync-inp-name', 'sync-inp-father', 'sync-inp-uan', 'sync-inp-mid',
+            'sync-inp-dob', 'sync-inp-doj', 'sync-inp-keydate', 'sync-inp-period',
+            'sync-inp-amount', 'sync-ref-input', 'sync-date-input', 'sync-noting-file-input'
+          ];
+
+          syncClasses.forEach(cls => {
+            if (changedEl.classList.contains(cls)) {
+              const val = changedEl.value;
+              document.querySelectorAll('.' + cls).forEach(target => {
+                if (target !== changedEl) target.value = val;
+              });
+            }
+          });
+
+          const contentClasses = [
+            'sync-est-name-input', 'sync-est-addr-input', 'sync-est-code-input',
+            'sync-est-email-input', 'sync-est-phone-input', 'sync-ro-city-input',
+            'sync-ro-city-en-input', 'sync-place-input', 'sync-sign-name-input'
+          ];
+
+          contentClasses.forEach(cls => {
+            if (changedEl.classList.contains(cls)) {
+              const text = changedEl.textContent.trim();
+              document.querySelectorAll('.' + cls).forEach(target => {
+                if (target !== changedEl) target.textContent = text;
+              });
+            }
+          });
+        }
+
+        const name = getFirstVal('.sync-inp-name', 'RAMESH CHAND');
+        const father = getFirstVal('.sync-inp-father', '');
+        const uan = getFirstVal('.sync-inp-uan', '');
+        const mid = getFirstVal('.sync-inp-mid', '');
+        const dob = getFirstVal('.sync-inp-dob', '');
+        const doj = getFirstVal('.sync-inp-doj', '');
+        const keydate = getFirstVal('.sync-inp-keydate', '');
+        const period = getFirstVal('.sync-inp-period', '');
+        const amount = getFirstVal('.sync-inp-amount', '');
+        const date = getFirstVal('.sync-date-input', '16.09.2026');
+        const estName = getFirstText('.sync-est-name-input', 'M/S. TECHNO PACKAGING SOLUTIONS');
+        const estCode = getFirstText('.sync-est-code-input', 'GNR4589210000');
+
+        document.querySelectorAll('.sync-member-name-text').forEach(el => el.textContent = name);
+        document.querySelectorAll('.sync-father-name-text').forEach(el => el.textContent = father);
+        document.querySelectorAll('.sync-uan-text').forEach(el => el.textContent = uan);
+        document.querySelectorAll('.sync-member-id-text').forEach(el => el.textContent = mid);
+        document.querySelectorAll('.sync-dob-text').forEach(el => el.textContent = dob);
+        document.querySelectorAll('.sync-doj-text').forEach(el => el.textContent = doj);
+        document.querySelectorAll('.sync-58th-date-text').forEach(el => el.textContent = keydate);
+        document.querySelectorAll('.sync-wrong-period-text').forEach(el => el.textContent = period);
+        document.querySelectorAll('.sync-wrong-amount-text').forEach(el => el.textContent = amount);
+        document.querySelectorAll('.sync-date-text').forEach(el => el.textContent = date);
+        document.querySelectorAll('.sync-est-name-text').forEach(el => el.textContent = estName);
+        document.querySelectorAll('.sync-est-code-text').forEach(el => el.textContent = estCode);
+      }
+
+      document.querySelectorAll('.tbl-input, .fill-input').forEach(inp => {
+        inp.addEventListener('input', syncAllFields);
+        inp.addEventListener('keyup', syncAllFields);
+      });
+
+      document.querySelectorAll('.edit-inline').forEach(el => {
+        el.addEventListener('input', syncAllFields);
+        el.addEventListener('blur', syncAllFields);
+      });
+
+      // 7. Modal Controls & Logic
+      const modalBackdrop = document.getElementById('detailsModalBackdrop');
+      const btnCloseDetailsModal = document.getElementById('btnCloseDetailsModal');
+      const mBtnCancel = document.getElementById('mBtnCancel');
+      const mBtnApply = document.getElementById('mBtnApply');
+      const mBtnSample58 = document.getElementById('mBtnSample58');
+      const mBtnSampleNonEps = document.getElementById('mBtnSampleNonEps');
+
+      // Modal Inputs
+      const mInpEstName = document.getElementById('mInpEstName');
+      const mInpEstAddr = document.getElementById('mInpEstAddr');
+      const mInpEstCode = document.getElementById('mInpEstCode');
+      const mInpEstPhone = document.getElementById('mInpEstPhone');
+      const mInpEstEmail = document.getElementById('mInpEstEmail');
+      const mInpSignName = document.getElementById('mInpSignName');
+      const mInpPlace = document.getElementById('mInpPlace');
+
+      const mInpMemberName = document.getElementById('mInpMemberName');
+      const mInpFatherName = document.getElementById('mInpFatherName');
+      const mInpUan = document.getElementById('mInpUan');
+      const mInpMid = document.getElementById('mInpMid');
+      const mInpDob = document.getElementById('mInpDob');
+      const mInpDoj = document.getElementById('mInpDoj');
+      const mInpKeyDate = document.getElementById('mInpKeyDate');
+      const mInpPeriod = document.getElementById('mInpPeriod');
+      const mInpAmount = document.getElementById('mInpAmount');
+
+      const mInpRef = document.getElementById('mInpRef');
+      const mInpDate = document.getElementById('mInpDate');
+      const mInpRoCityHi = document.getElementById('mInpRoCityHi');
+      const mInpRoCityEn = document.getElementById('mInpRoCityEn');
+      const mInpNotingFile = document.getElementById('mInpNotingFile');
+
+      function populateModalFromSheets() {
+        mInpEstName.value = getFirstText('.sync-est-name-input', '');
+        mInpEstAddr.value = getFirstText('.sync-est-addr-input', '');
+        mInpEstCode.value = getFirstText('.sync-est-code-input', '');
+        mInpEstPhone.value = getFirstText('.sync-est-phone-input', '');
+        mInpEstEmail.value = getFirstText('.sync-est-email-input', '');
+        mInpSignName.value = getFirstText('.sync-sign-name-input', '');
+        mInpPlace.value = getFirstText('.sync-place-input', '');
+
+        mInpMemberName.value = getFirstVal('.sync-inp-name', '');
+        mInpFatherName.value = getFirstVal('.sync-inp-father', '');
+        mInpUan.value = getFirstVal('.sync-inp-uan', '');
+        mInpMid.value = getFirstVal('.sync-inp-mid', '');
+        mInpDob.value = getFirstVal('.sync-inp-dob', '');
+        mInpDoj.value = getFirstVal('.sync-inp-doj', '');
+        mInpKeyDate.value = getFirstVal('.sync-inp-keydate', '');
+        mInpPeriod.value = getFirstVal('.sync-inp-period', '');
+        mInpAmount.value = getFirstVal('.sync-inp-amount', '');
+
+        mInpRef.value = getFirstVal('.sync-ref-input', '');
+        mInpDate.value = getFirstVal('.sync-date-input', '');
+        mInpRoCityHi.value = getFirstText('.sync-ro-city-input', '');
+        mInpRoCityEn.value = getFirstText('.sync-ro-city-en-input', '');
+        mInpNotingFile.value = getFirstVal('.sync-noting-file-input', '');
+      }
+
+      function applyModalValuesToSheets() {
+        document.querySelectorAll('.sync-est-name-input').forEach(el => el.textContent = mInpEstName.value);
+        document.querySelectorAll('.sync-est-addr-input').forEach(el => el.textContent = mInpEstAddr.value);
+        document.querySelectorAll('.sync-est-code-input').forEach(el => el.textContent = mInpEstCode.value);
+        document.querySelectorAll('.sync-est-phone-input').forEach(el => el.textContent = mInpEstPhone.value);
+        document.querySelectorAll('.sync-est-email-input').forEach(el => el.textContent = mInpEstEmail.value);
+        document.querySelectorAll('.sync-sign-name-input').forEach(el => el.textContent = mInpSignName.value);
+        document.querySelectorAll('.sync-place-input').forEach(el => el.textContent = mInpPlace.value);
+
+        document.querySelectorAll('.sync-inp-name').forEach(el => el.value = mInpMemberName.value);
+        document.querySelectorAll('.sync-inp-father').forEach(el => el.value = mInpFatherName.value);
+        document.querySelectorAll('.sync-inp-uan').forEach(el => el.value = mInpUan.value);
+        document.querySelectorAll('.sync-inp-mid').forEach(el => el.value = mInpMid.value);
+        document.querySelectorAll('.sync-inp-dob').forEach(el => el.value = mInpDob.value);
+        document.querySelectorAll('.sync-inp-doj').forEach(el => el.value = mInpDoj.value);
+        document.querySelectorAll('.sync-inp-keydate').forEach(el => el.value = mInpKeyDate.value);
+        document.querySelectorAll('.sync-inp-period').forEach(el => el.value = mInpPeriod.value);
+        document.querySelectorAll('.sync-inp-amount').forEach(el => el.value = mInpAmount.value);
+
+        document.querySelectorAll('.sync-ref-input').forEach(el => el.value = mInpRef.value);
+        document.querySelectorAll('.sync-date-input').forEach(el => el.value = mInpDate.value);
+        document.querySelectorAll('.sync-ro-city-input').forEach(el => el.textContent = mInpRoCityHi.value);
+        document.querySelectorAll('.sync-ro-city-en-input').forEach(el => el.textContent = mInpRoCityEn.value);
+        document.querySelectorAll('.sync-noting-file-input').forEach(el => el.value = mInpNotingFile.value);
+
+        applyCaseContent(currentCase);
+      }
+
+      function openModal() {
+        populateModalFromSheets();
+        modalBackdrop.style.display = 'flex';
+      }
+
+      function closeModal() {
+        modalBackdrop.style.display = 'none';
+      }
+
+      document.querySelectorAll('.btnToggleDetailsModal').forEach(btn => {
+        btn.addEventListener('click', openModal);
+      });
+
+      if (btnCloseDetailsModal) btnCloseDetailsModal.addEventListener('click', closeModal);
+      if (mBtnCancel) mBtnCancel.addEventListener('click', closeModal);
+
+      if (mBtnApply) {
+        mBtnApply.addEventListener('click', () => {
+          applyModalValuesToSheets();
+          closeModal();
+        });
+      }
+
+      // Close modal on backdrop click
+      modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) closeModal();
+      });
+
+      // Close modal on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalBackdrop.style.display === 'flex') {
+          closeModal();
+        }
+      });
+
+      // Sample Data in Modal
+      if (mBtnSample58) {
+        mBtnSample58.addEventListener('click', () => {
+          mInpEstName.value = 'M/S. TECHNO PACKAGING SOLUTIONS PRIVATE LIMITED';
+          mInpEstAddr.value = 'Plot No. 45, Sector 24, DLF Industrial Area, Faridabad - 121005 (Haryana)';
+          mInpEstCode.value = 'GNR4589210000';
+          mInpEstPhone.value = '0129-4123456';
+          mInpEstEmail.value = 'hr@technopack.com';
+          mInpSignName.value = 'SANJAY MEHTA (MANAGER - HR)';
+          mInpPlace.value = 'Faridabad';
+
+          mInpMemberName.value = 'RAMESH CHAND';
+          mInpFatherName.value = 'LATE SHRI SHIV DAYAL';
+          mInpUan.value = '100987654321';
+          mInpMid.value = 'GNR4589210000/1045';
+          mInpDob.value = '15.03.1966';
+          mInpDoj.value = '01.07.2012';
+          mInpKeyDate.value = '14.03.2024';
+          mInpPeriod.value = '03/2024 से 08/2025 (18 माह)';
+          mInpAmount.value = '₹ 22,500/- (बाईस हजार पांच सौ रुपये मात्र)';
+
+          mInpRef.value = 'TPS/HR/EPF/2026/041';
+          mInpDate.value = '16.09.2026';
+          mInpRoCityHi.value = 'फरीदाबाद - 121007 (हरियाणा)';
+          mInpRoCityEn.value = 'Faridabad - 121007 (Haryana)';
+          mInpNotingFile.value = 'R.O./FBD/Accts-09/Rectification/EPS-PF/2026/894';
+
+          applyModalValuesToSheets();
+        });
+      }
+
+      if (mBtnSampleNonEps) {
+        mBtnSampleNonEps.addEventListener('click', () => {
+          mInpEstName.value = 'M/S. GLOBAL IT SOLUTIONS INDIA PRIVATE LIMITED';
+          mInpEstAddr.value = 'Building 12B, Cyber City, Phase-II, Gurugram - 122002 (Haryana)';
+          mInpEstCode.value = 'GGN0012345000';
+          mInpEstPhone.value = '0124-4987654';
+          mInpEstEmail.value = 'compliance@globalsolutions.in';
+          mInpSignName.value = 'ROHIT SHARMA (AVP - HUMAN RESOURCES)';
+          mInpPlace.value = 'Gurugram';
+
+          mInpMemberName.value = 'ANURAG VERMA';
+          mInpFatherName.value = 'SHRI M. L. VERMA';
+          mInpUan.value = '101234567890';
+          mInpMid.value = 'GGN0012345000/4098';
+          mInpDob.value = '22.08.1988';
+          mInpDoj.value = '15.10.2016';
+          mInpKeyDate.value = 'Non-EPS Member (Salary > 15,000 at entry)';
+          mInpPeriod.value = '10/2016 से 12/2020 (50 माह)';
+          mInpAmount.value = '₹ 62,500/- (बासठ हजार पांच सौ रुपये मात्र)';
+
+          mInpRef.value = 'GITS/COMP/2026/112';
+          mInpDate.value = '16.09.2026';
+          mInpRoCityHi.value = 'गुरुग्राम - 122002 (हरियाणा)';
+          mInpRoCityEn.value = 'Gurugram - 122002 (Haryana)';
+          mInpNotingFile.value = 'R.O./GGN/Accts-12/Rectification/EPS-PF/2026/402';
+
+          applyModalValuesToSheets();
+        });
+      }
+
+      // 8. Autofill Sample Data Button in Top Toolbar
+      btnAutofillSample.addEventListener('click', () => {
+        if (currentCase === '58years') {
+          document.querySelectorAll('.sync-est-name-input').forEach(el => el.textContent = 'M/S. TECHNO PACKAGING SOLUTIONS PRIVATE LIMITED');
+          document.querySelectorAll('.sync-est-addr-input').forEach(el => el.textContent = 'Plot No. 45, Sector 24, DLF Industrial Area, Faridabad - 121005 (Haryana)');
+          document.querySelectorAll('.sync-est-code-input').forEach(el => el.textContent = 'GNR4589210000');
+          document.querySelectorAll('.sync-ref-input').forEach(el => el.value = 'TPS/HR/EPF/2026/041');
+          document.querySelectorAll('.sync-date-input').forEach(el => el.value = '16.09.2026');
+          document.querySelectorAll('.sync-inp-name').forEach(el => el.value = 'RAMESH CHAND');
+          document.querySelectorAll('.sync-inp-father').forEach(el => el.value = 'LATE SHRI SHIV DAYAL');
+          document.querySelectorAll('.sync-inp-uan').forEach(el => el.value = '100987654321');
+          document.querySelectorAll('.sync-inp-mid').forEach(el => el.value = 'GNR4589210000/1045');
+          document.querySelectorAll('.sync-inp-dob').forEach(el => el.value = '15.03.1966');
+          document.querySelectorAll('.sync-inp-doj').forEach(el => el.value = '01.07.2012');
+          document.querySelectorAll('.sync-inp-keydate').forEach(el => el.value = '14.03.2024');
+          document.querySelectorAll('.sync-inp-period').forEach(el => el.value = '03/2024 से 08/2025 (18 माह)');
+          document.querySelectorAll('.sync-inp-amount').forEach(el => el.value = '₹ 22,500/- (बाईस हजार पांच सौ रुपये मात्र)');
+          document.querySelectorAll('.sync-sign-name-input').forEach(el => el.textContent = 'SANJAY MEHTA (MANAGER - HR)');
+        } else {
+          document.querySelectorAll('.sync-est-name-input').forEach(el => el.textContent = 'M/S. GLOBAL IT SOLUTIONS INDIA PRIVATE LIMITED');
+          document.querySelectorAll('.sync-est-addr-input').forEach(el => el.textContent = 'Building 12B, Cyber City, Phase-II, Gurugram - 122002 (Haryana)');
+          document.querySelectorAll('.sync-est-code-input').forEach(el => el.textContent = 'GGN0012345000');
+          document.querySelectorAll('.sync-ref-input').forEach(el => el.value = 'GITS/COMP/2026/112');
+          document.querySelectorAll('.sync-date-input').forEach(el => el.value = '16.09.2026');
+          document.querySelectorAll('.sync-inp-name').forEach(el => el.value = 'ANURAG VERMA');
+          document.querySelectorAll('.sync-inp-father').forEach(el => el.value = 'SHRI M. L. VERMA');
+          document.querySelectorAll('.sync-inp-uan').forEach(el => el.value = '101234567890');
+          document.querySelectorAll('.sync-inp-mid').forEach(el => el.value = 'GGN0012345000/4098');
+          document.querySelectorAll('.sync-inp-dob').forEach(el => el.value = '22.08.1988');
+          document.querySelectorAll('.sync-inp-doj').forEach(el => el.value = '15.10.2016');
+          document.querySelectorAll('.sync-inp-keydate').forEach(el => el.value = 'Non-EPS Member (Salary > 15,000 at joining)');
+          document.querySelectorAll('.sync-inp-period').forEach(el => el.value = '10/2016 से 12/2020 (50 माह)');
+          document.querySelectorAll('.sync-inp-amount').forEach(el => el.value = '₹ 62,500/- (बासठ हजार पांच सौ रुपये मात्र)');
+          document.querySelectorAll('.sync-sign-name-input').forEach(el => el.textContent = 'ROHIT SHARMA (AVP - HUMAN RESOURCES)');
+        }
+
+        applyCaseContent(currentCase);
+        alert('नमूना डेटा सफलतापूर्वक भर दिया गया है! नियोक्ता एवं ईपीएफओ दोनों प्रपत्र स्वतः अपडेट हो गए हैं।');
+      });
+
+      // 9. Clear Form
+      btnClearData.addEventListener('click', () => {
+        if (confirm('क्या आप सभी डेटा साफ करना चाहते हैं? (Clear all fields?)')) {
+          document.querySelectorAll('.tbl-input').forEach(i => i.value = '');
+          document.querySelectorAll('.fill-input').forEach(i => i.value = '');
+          syncAllFields();
+        }
+      });
+
+      // 10. Direct Print
+      btnPrint.addEventListener('click', () => {
+        window.print();
+      });
+
+      // Initial Sync
+      syncAllFields();
+    });
+  </script>
+</body>
+</html>

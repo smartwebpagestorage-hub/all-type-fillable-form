@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Holiday Home & Guest House Booking Application | अवकाश गृह / अतिथि गृह आरक्षण आवेदन</title>
+  <meta name="description" content="Official EPFO Application Form for Reservation of Accommodation in Holiday Home / Guest House with dynamic city selector, letterhead, undertaking, and office forwarding. By Niraj Kumar, Section Supervisor, RO, Faridabad.">
+  
+  <!-- Google Fonts: Inter, Noto Sans Devanagari, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 6mm 10mm 6mm 10mm;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #16a34a;
+      --navy: #0f172a;
+      --text: #000000;
+      --sheet-bg: #ffffff;
+      --desk-bg: #f1f5f9;
+      --border-color: #000000;
+      --input-bg: rgba(2, 132, 199, 0.02);
+      --input-focus: #e0f2fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--desk-bg);
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 62px;
+      padding-bottom: 60px;
+    }
+
+    /* Fixed Application Toolbar */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 58px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    /* Dropdown for Forms */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-dropdown-toggle:hover {
+      background: #334155;
+    }
+
+    .dropdown-menu-box {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #ffffff;
+      color: #0f172a;
+      min-width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      border: 1px solid #cbd5e1;
+      overflow: hidden;
+      z-index: 1100;
+    }
+
+    .nav-dropdown.active .dropdown-menu-box {
+      display: block;
+    }
+
+    .dropdown-header-tag {
+      background: #f8fafc;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .dropdown-item-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      color: #1e293b;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s;
+    }
+
+    .dropdown-item-link:hover {
+      background: #f0f9ff;
+      color: #0284c7;
+    }
+
+    .dropdown-item-link.active {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    /* Tabs Switcher for Destinations */
+    .destination-tabs {
+      display: flex;
+      background: #1e293b;
+      border-radius: 6px;
+      padding: 2px;
+      border: 1px solid #334155;
+    }
+
+    .dest-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .dest-tab-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Action Buttons in Toolbar */
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .paper-size-switcher {
+      display: flex;
+      align-items: center;
+      background: #1e293b;
+      border-radius: 6px;
+      padding: 2px 4px;
+      border: 1px solid #334155;
+    }
+
+    .switcher-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+      padding: 0 6px;
+    }
+
+    .size-btn-group {
+      display: flex;
+      gap: 2px;
+    }
+
+    .btn-size-toggle {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-size-toggle.active {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-warning {
+      background: #d97706;
+      color: #ffffff;
+    }
+    .btn-warning:hover {
+      background: #b45309;
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: #f8fafc;
+      border: 1px solid #475569;
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: #ffffff;
+    }
+    .btn-success:hover {
+      background: #15803d;
+    }
+
+    /* Subbar Controls for City & Office */
+    .controls-subbar {
+      width: 100%;
+      max-width: 210mm;
+      background: #ffffff;
+      margin: 12px 0 10px 0;
+      padding: 8px 14px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .subbar-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .subbar-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .preset-select {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
+      color: #0f172a;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .preset-select:focus {
+      border-color: var(--primary);
+    }
+
+    .badge-info-pill {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* Document Sheets Container */
+    .document-sheets-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+    }
+
+    /* Form Sheet - Paper Styling */
+    .form-sheet {
+      background-color: var(--sheet-bg);
+      width: 210mm;
+      min-height: 297mm;
+      padding: 7mm 12mm 7mm 12mm;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: #000000;
+      font-size: 12.5px;
+      line-height: 1.42;
+    }
+
+    body.size-legal .form-sheet {
+      width: 215.9mm;
+      min-height: 355.6mm;
+      padding: 9mm 14mm 9mm 14mm;
+    }
+
+    /* Screen Badge */
+    .sheet-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    /* ========================================================================= */
+    /* OFFICIAL EPFO BILINGUAL HEADER                                            */
+    /* ========================================================================= */
+    .epfo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px double #000000;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      gap: 10px;
+    }
+
+    .epfo-logo-box,
+    .emblem-logo-box {
+      flex: 0 0 66px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .epfo-logo-img {
+      width: 64px;
+      height: auto;
+      max-height: 66px;
+      object-fit: contain;
+    }
+
+    .emblem-logo-img {
+      width: 46px;
+      height: auto;
+      max-height: 68px;
+      object-fit: contain;
+    }
+
+    .header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .org-title-hi {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #000000;
+    }
+
+    .org-title-en {
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      color: #000000;
+    }
+
+    .ministry-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #111111;
+      margin: 1px 0;
+    }
+
+    .office-title-line {
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-top: 1px;
+      color: #000000;
+    }
+
+    .office-addr-line {
+      font-size: 11px;
+      font-weight: 500;
+      color: #222222;
+    }
+
+    .office-contact-line {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #111111;
+      margin-top: 1px;
+    }
+
+    /* Editable inline elements */
+    .edit-inline {
+      border-bottom: 1px dashed transparent;
+      padding: 0 2px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .edit-inline:hover {
+      border-bottom-color: #0284c7;
+      background: #f0f9ff;
+    }
+    .edit-inline:focus {
+      border-bottom-color: #0284c7;
+      background: #e0f2fe;
+    }
+
+    /* Application Title Banner */
+    .app-title-banner {
+      text-align: center;
+      margin: 6px 0 8px 0;
+      padding: 4px 6px;
+      background: #f8fafc;
+      border-top: 1px solid #000000;
+      border-bottom: 1px solid #000000;
+    }
+
+    .app-title-main {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .app-city-target {
+      font-size: 15px;
+      font-weight: 900;
+      color: #0369a1;
+      letter-spacing: 1px;
+      margin-top: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .city-editable-text {
+      border-bottom: 1.5px dashed #0284c7;
+      padding: 0 4px;
+      outline: none;
+      color: #0f172a;
+    }
+
+    .city-editable-text:focus {
+      background: #e0f2fe;
+      border-bottom-color: #0369a1;
+    }
+
+    /* Meta Bar: App No & Date */
+    .app-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .fill-input {
+      border: none;
+      border-bottom: 1px dotted #333333;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 700;
+      background: var(--input-bg);
+      padding: 1px 4px;
+      color: #000000;
+    }
+
+    .fill-input:focus {
+      border-bottom: 1.5px solid var(--primary);
+      background: var(--input-focus);
+    }
+
+    /* Main Particulars Table */
+    .guest-house-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .guest-house-table th,
+    .guest-house-table td {
+      border: 1px solid #000000;
+      padding: 4px 7px;
+      vertical-align: middle;
+    }
+
+    .guest-house-table th {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .guest-house-table td.col-srno {
+      text-align: center;
+      width: 38px;
+      font-weight: 700;
+    }
+
+    .guest-house-table td.col-particular {
+      width: 250px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .guest-house-table td.col-details {
+      font-weight: 700;
+    }
+
+    .tbl-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .tbl-input:focus {
+      background: #e0f2fe;
+    }
+
+    .tbl-textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: #000000;
+      resize: vertical;
+      min-height: 38px;
+      line-height: 1.35;
+    }
+
+    .tbl-textarea:focus {
+      background: #e0f2fe;
+    }
+
+    /* Undertaking Clause Section */
+    .undertaking-box {
+      margin: 6px 0 8px 0;
+      padding: 6px 8px;
+      border: 1px solid #000000;
+      background: #fafafa;
+      font-size: 11px;
+      line-height: 1.38;
+      text-align: justify;
+    }
+
+    .undertaking-box p {
+      margin-bottom: 4px;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .undertaking-box p::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      font-weight: 900;
+      color: #0f172a;
+    }
+
+    .undertaking-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Sign-off & Forwarding Section */
+    .sign-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .sign-date-block {
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .sign-applicant-block {
+      text-align: right;
+      min-width: 200px;
+      line-height: 1.35;
+    }
+
+    .signature-space {
+      height: 32px;
+    }
+
+    /* Forwarding / Office Recommendation Box */
+    .office-forward-box {
+      border: 1px dashed #000000;
+      padding: 5px 8px;
+      margin-top: 8px;
+      background: #f8fafc;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .office-forward-title {
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin-bottom: 3px;
+      text-align: center;
+      border-bottom: 0.5px solid #cbd5e1;
+      padding-bottom: 2px;
+    }
+
+    .forward-cols {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 4px;
+    }
+
+    /* Sheet Footer */
+    .sheet-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 600;
+      border-top: 0.5px solid #888888;
+      padding-top: 3px;
+      color: #444444;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      z-index: 3000;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ========================================================================= */
+    /* PRINT SPECIFIC RULES - PERFECT 1-SHEET PER DESTINATION                    */
+    /* ========================================================================= */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 6mm 10mm 6mm 10mm !important;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      .no-print,
+      .app-toolbar,
+      .controls-subbar,
+      .sheet-badge,
+      .toast-msg {
+        display: none !important;
+      }
+
+      .document-sheets-container {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 0 !important;
+        width: 100% !important;
+      }
+
+      .form-sheet {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .form-sheet:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      .epfo-header {
+        border-bottom: 2px double #000000 !important;
+        padding-bottom: 4px !important;
+        margin-bottom: 5px !important;
+      }
+
+      .app-title-banner {
+        background: transparent !important;
+        border-top: 1px solid #000000 !important;
+        border-bottom: 1px solid #000000 !important;
+        margin: 5px 0 6px 0 !important;
+        padding: 3px 4px !important;
+      }
+
+      .app-city-target {
+        color: #000000 !important;
+      }
+
+      .city-editable-text {
+        border-bottom: none !important;
+      }
+
+      .guest-house-table {
+        margin-bottom: 6px !important;
+        font-size: 11.5px !important;
+      }
+
+      .guest-house-table th,
+      .guest-house-table td {
+        padding: 3px 6px !important;
+        border: 1px solid #000000 !important;
+      }
+
+      .guest-house-table th {
+        background: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .undertaking-box {
+        background: transparent !important;
+        border: 1px solid #000000 !important;
+        padding: 4px 6px !important;
+        margin: 5px 0 6px 0 !important;
+        font-size: 10.5px !important;
+        line-height: 1.32 !important;
+      }
+
+      .fill-input,
+      .tbl-input,
+      .tbl-textarea {
+        background: transparent !important;
+        border-bottom: none !important;
+      }
+
+      .edit-inline {
+        border-bottom: none !important;
+        background: transparent !important;
+      }
+
+      .office-forward-box {
+        background: transparent !important;
+        border: 1px dashed #000000 !important;
+        padding: 4px 6px !important;
+        margin-top: 6px !important;
+      }
+
+      .sheet-footer {
+        margin-top: 6px !important;
+        padding-top: 3px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      /* When viewing single sheet */
+      body.view-dest-1 #sheet-2 {
+        display: none !important;
+      }
+      body.view-dest-2 #sheet-1 {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="size-a4 view-both">
+
+  <!-- ========================================================================= -->
+  <!-- TOP APPLICATION TOOLBAR (NO PRINT)                                        -->
+  <!-- ========================================================================= -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-left">
+      <!-- Back to Portal Home -->
+      <a href="index.html" class="btn-nav-home" title="Go to Home Portal">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        Home
+      </a>
+
+      <!-- Dropdown Form List -->
+      <div class="nav-dropdown" id="navDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnNavToggle">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/></svg>
+          <span>Forms List</span>
+          <svg width="10" height="10" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box" id="navDropdownMenu">
+          <div class="dropdown-header-tag">
+            <span>Official Forms</span>
+            <span style="background: #0284c7; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 9px;">Active</span>
+          </div>
+          <a href="epfo-guest-house-booking.html" class="dropdown-item-link active">
+            <span>● Holiday Home / Guest House Booking</span>
+          </a>
+          <a href="epfo-eps-to-pf-merger.html" class="dropdown-item-link">
+            <span>● EPS to EPF Merger &amp; Office Note</span>
+          </a>
+          <a href="epfo-high-value-claim-verification.html" class="dropdown-item-link">
+            <span>● High Value Claim KYC Verification</span>
+          </a>
+          <a href="epfo-form-31-advance.html" class="dropdown-item-link">
+            <span>● EPFO Form 31 (PF Advance)</span>
+          </a>
+          <a href="epfo-leave-and-joining.html" class="dropdown-item-link">
+            <span>● Leave Application &amp; Joining Report</span>
+          </a>
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <span>● Composite Claim Form (Death Cases)</span>
+          </a>
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <span>● Form 10-D Monthly Pension</span>
+          </a>
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <span>● Composite Claim (Aadhar: 19/10C/31)</span>
+          </a>
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <span>● On-Roll &amp; Family Description</span>
+          </a>
+          <a href="epfo-letterhead-noting.html" class="dropdown-item-link">
+            <span>● Letterhead &amp; Noting Sheet</span>
+          </a>
+          <a href="stationery-requirement-form.html" class="dropdown-item-link">
+            <span>● Stationery Requisition Form</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Destination View Tabs -->
+      <div class="destination-tabs" title="View Single Destination or Both Destinations">
+        <button type="button" class="dest-tab-btn active" id="tabViewBoth">Both Cities (2 Sheets)</button>
+        <button type="button" class="dest-tab-btn" id="tabViewDest1">City 1 (<span id="tabLabelCity1">Gangtok</span>)</button>
+        <button type="button" class="dest-tab-btn" id="tabViewDest2">City 2 (<span id="tabLabelCity2">Darjeeling</span>)</button>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="toolbar-actions">
+      <!-- Paper Size Switcher -->
+      <div class="paper-size-switcher" title="Select paper size for print & PDF">
+        <span class="switcher-label">Size:</span>
+        <div class="size-btn-group">
+          <button type="button" class="btn-size-toggle active" id="btnSizeA4">A4</button>
+          <button type="button" class="btn-size-toggle" id="btnSizeLegal">Legal</button>
+        </div>
+      </div>
+
+      <!-- Sample Data Fill -->
+      <button type="button" class="btn btn-warning" id="btnFillSample" title="Fill sample data from Niraj Kumar's application">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg>
+        Sample Data
+      </button>
+
+      <!-- Clear Form -->
+      <button type="button" class="btn btn-secondary" id="btnClearForm" title="Clear all fields to blank">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/></svg>
+        Clear
+      </button>
+
+      <!-- Print / PDF Button -->
+      <button type="button" class="btn btn-success" id="btnPrint" title="Print document or Save to PDF">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        Print / PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CITY SELECTOR & OFFICE SUBBAR (SCREEN ONLY)                               -->
+  <!-- ========================================================================= -->
+  <aside class="controls-subbar no-print">
+    <!-- City 1 Selector -->
+    <div class="subbar-group">
+      <span class="subbar-label">🏠 City 1 (गंतव्य 1):</span>
+      <select class="preset-select" id="selCity1">
+        <option value="GANGTOK (SIKKIM)" selected>गंगटोक (Gangtok, Sikkim)</option>
+        <option value="DARJEELING (W.B.)">दार्जिलिंग (Darjeeling, W.B.)</option>
+        <option value="SHIMLA (H.P.)">शिमला (Shimla, H.P.)</option>
+        <option value="MANALI (H.P.)">मनाली (Manali, H.P.)</option>
+        <option value="NAINITAL (UTTARAKHAND)">नैनीताल (Nainital, Uttarakhand)</option>
+        <option value="MUSSOORIE (UTTARAKHAND)">मसूरी (Mussoorie, Uttarakhand)</option>
+        <option value="GOA">गोवा (Goa Holiday Home)</option>
+        <option value="PURI (ODISHA)">पुरी (Puri, Odisha)</option>
+        <option value="JAIPUR (RAJASTHAN)">जयपुर (Jaipur, Rajasthan)</option>
+        <option value="UDAIPUR (RAJASTHAN)">उदयपुर (Udaipur, Rajasthan)</option>
+        <option value="HARIDWAR (UTTARAKHAND)">हरिद्वार (Haridwar, Uttarakhand)</option>
+        <option value="OOTY (TAMIL NADU)">ऊटी (Ooty, Tamil Nadu)</option>
+        <option value="KODAIKANAL (TAMIL NADU)">कोडाइकनाल (Kodaikanal, T.N.)</option>
+        <option value="MUNNAR (KERALA)">मुन्नार (Munnar, Kerala)</option>
+        <option value="SRINAGAR (J&K)">श्रीनगर (Srinagar, J&K)</option>
+        <option value="NEW DELHI (PDUNASS / HQ)">नई दिल्ली (New Delhi / Dwarka)</option>
+        <option value="MUMBAI (MAHARASHTRA)">मुंबई (Mumbai, Maharashtra)</option>
+        <option value="KOLKATA (W.B.)">कोलकाता (Kolkata, W.B.)</option>
+        <option value="CUSTOM">अन्य शहर (Custom City)</option>
+      </select>
+    </div>
+
+    <!-- City 2 Selector -->
+    <div class="subbar-group">
+      <span class="subbar-label">🏠 City 2 (गंतव्य 2):</span>
+      <select class="preset-select" id="selCity2">
+        <option value="DARJEELING (W.B.)" selected>दार्जिलिंग (Darjeeling, W.B.)</option>
+        <option value="GANGTOK (SIKKIM)">गंगटोक (Gangtok, Sikkim)</option>
+        <option value="SHIMLA (H.P.)">शिमला (Shimla, H.P.)</option>
+        <option value="MANALI (H.P.)">मनाली (Manali, H.P.)</option>
+        <option value="NAINITAL (UTTARAKHAND)">नैनीताल (Nainital, Uttarakhand)</option>
+        <option value="MUSSOORIE (UTTARAKHAND)">मसूरी (Mussoorie, Uttarakhand)</option>
+        <option value="GOA">गोवा (Goa Holiday Home)</option>
+        <option value="PURI (ODISHA)">पुरी (Puri, Odisha)</option>
+        <option value="JAIPUR (RAJASTHAN)">जयपुर (Jaipur, Rajasthan)</option>
+        <option value="UDAIPUR (RAJASTHAN)">उदयपुर (Udaipur, Rajasthan)</option>
+        <option value="HARIDWAR (UTTARAKHAND)">हरिद्वार (Haridwar, Uttarakhand)</option>
+        <option value="OOTY (TAMIL NADU)">ऊटी (Ooty, Tamil Nadu)</option>
+        <option value="SRINAGAR (J&K)">श्रीनगर (Srinagar, J&K)</option>
+        <option value="CUSTOM">अन्य शहर (Custom City)</option>
+      </select>
+    </div>
+
+    <!-- Office Preset -->
+    <div class="subbar-group">
+      <span class="subbar-label">कार्यालय (Applicant Office):</span>
+      <select class="preset-select" id="selApplicantOffice">
+        <option value="faridabad" selected>क्षेत्रीय कार्यालय, फरीदाबाद (RO Faridabad)</option>
+        <option value="gurugram">क्षेत्रीय कार्यालय, गुरुग्राम (RO Gurugram)</option>
+        <option value="delhinorth">क्षेत्रीय कार्यालय, दिल्ली उत्तर (RO Delhi North)</option>
+        <option value="delhisouth">क्षेत्रीय कार्यालय, दिल्ली दक्षिण (RO Delhi South)</option>
+        <option value="noida">क्षेत्रीय कार्यालय, नोएडा (RO Noida)</option>
+        <option value="headoffice">मुख्य कार्यालय, नई दिल्ली (Head Office)</option>
+      </select>
+    </div>
+
+    <div class="subbar-group">
+      <span class="badge-info-pill">✓ Real-time Sync: दोनों शीट्स में कार्मिक का विवरण स्वतः सिंक होता है</span>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN PRINTABLE SHEETS CONTAINER                                           -->
+  <!-- ========================================================================= -->
+  <main class="document-sheets-container" id="sheetsContainer">
+
+    <!-- ======================================================================= -->
+    <!-- SHEET 1: APPLICATION FOR GUEST HOUSE (DESTINATION 1)                    -->
+    <!-- ======================================================================= -->
+    <article class="form-sheet" id="sheet-1">
+      
+      <div class="sheet-badge no-print">
+        <span><strong>SHEET 1</strong> • Application for Reservation in Holiday Home / Guest House</span>
+        <span id="badgeCity1">GANGTOK (SIKKIM)</span>
+      </div>
+
+      <!-- Official Bilingual Header -->
+      <header class="epfo-header">
+        <div class="epfo-logo-box">
+          <img src="image/epfo_logo.png" alt="EPFO Logo" class="epfo-logo-img">
+        </div>
+
+        <div class="header-center">
+          <div class="org-title-hi edit-inline" contenteditable="true" id="sh1_org_hi">कर्मचारी भविष्य निधि संगठन</div>
+          <div class="org-title-en edit-inline" contenteditable="true" id="sh1_org_en">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="ministry-title edit-inline" contenteditable="true" id="sh1_ministry">श्रम एवं रोजगार मंत्रालय, भारत सरकार / (Ministry of Labour &amp; Employment, Govt. of India)</div>
+          
+          <div class="office-title-line">
+            <span class="edit-inline" contenteditable="true" id="sh1_office_hi">क्षेत्रीय कार्यालय, फरीदाबाद</span>
+            <span> / </span>
+            <span class="edit-inline" contenteditable="true" id="sh1_office_en">Regional Office: Faridabad - 121007</span>
+          </div>
+
+          <div class="office-addr-line edit-inline" contenteditable="true" id="sh1_address">
+            Bhavishya Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)
+          </div>
+
+          <div class="office-contact-line edit-inline" contenteditable="true" id="sh1_contact">
+            Phone : 0129-2288068 &nbsp;|&nbsp; Email : ro.faridabad@epfindia.gov.in &nbsp;|&nbsp; Web: www.epfindia.gov.in
+          </div>
+        </div>
+
+        <div class="emblem-logo-box">
+          <img src="image/emblem_of_india.svg" alt="Emblem of India" class="emblem-logo-img">
+        </div>
+      </header>
+
+      <!-- Application Title Banner with Dynamic City -->
+      <div class="app-title-banner">
+        <div class="app-title-main">
+          APPLICATION FOR RESERVATION OF ACCOMMODATION IN HOLIDAY HOME / GUEST HOUSE AT:-
+        </div>
+        <div class="app-city-target">
+          <span class="city-editable-text uppercase" contenteditable="true" id="displayCity1" title="Click to edit City Name">GANGTOK (SIKKIM)</span>
+        </div>
+      </div>
+
+      <!-- Application Meta Bar -->
+      <div class="app-meta-bar">
+        <div>
+          <span>पत्रांक / Ref No:</span>
+          <input type="text" class="fill-input uppercase" id="sh1_app_no" value="EPFO/RO/FBD/HOLIDAY-HOME/2025/1108" style="width: 270px; font-size: 11.5px;">
+        </div>
+        <div>
+          <span>दिनांक / Date:</span>
+          <input type="text" class="fill-input" id="sh1_app_date" value="19.11.2025" style="width: 100px; text-align: center; font-weight: 700;">
+        </div>
+      </div>
+
+      <!-- Particulars Table -->
+      <table class="guest-house-table">
+        <thead>
+          <tr>
+            <th class="col-srno">Sr.No</th>
+            <th class="col-particular">Particular</th>
+            <th class="col-details">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-srno">1</td>
+            <td class="col-particular">Name of official / Officer</td>
+            <td><input type="text" class="tbl-input uppercase sync-officer-name" id="sh1_name" value="NIRAJ KUMAR"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">2</td>
+            <td class="col-particular">Designation</td>
+            <td><input type="text" class="tbl-input uppercase sync-designation" id="sh1_designation" value="SECTION SUPERVISOR"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">3</td>
+            <td class="col-particular">Basic Pay</td>
+            <td><input type="text" class="tbl-input sync-basicpay" id="sh1_basic_pay" value="Rs.56,900/- (Pay Level-7)"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">4</td>
+            <td class="col-particular">Place of Duty</td>
+            <td><input type="text" class="tbl-input uppercase sync-duty-place" id="sh1_duty_place" value="R.O. FARIDABAD"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">5</td>
+            <td class="col-particular">Division / Branch</td>
+            <td><input type="text" class="tbl-input uppercase sync-branch" id="sh1_branch" value="CASH SECTION"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">6</td>
+            <td class="col-particular">
+              To be accompanied by (given names and relationship of Family Members)
+            </td>
+            <td>
+              <textarea class="tbl-textarea sync-family" id="sh1_family" rows="2">1. Shanta Kumar (Brother)
+2. Pooja Rani and two child</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">7</td>
+            <td class="col-particular">Reservation Required (No. of Rooms)</td>
+            <td><input type="text" class="tbl-input uppercase" id="sh1_rooms" value="TWO ROOMS"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">8</td>
+            <td class="col-particular">
+              Date of reservation (No of Days)<br>
+              <span style="font-size: 10px; font-weight: 500; color: #444;">(State alternative dates if accommodation is not available for the dates applied for)</span>
+            </td>
+            <td>
+              <input type="text" class="tbl-input uppercase" id="sh1_dates" value="30-11-2025 TO 03-12-2025 (4 DAYS)" style="margin-bottom: 3px;">
+              <div style="font-size: 11px; font-weight: 600; color: #333;">
+                Alternative Dates: <input type="text" class="tbl-input uppercase" id="sh1_alt_dates" value="05-12-2025 TO 08-12-2025" style="width: 250px; display: inline-block;">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">9</td>
+            <td class="col-particular">Mobile No. &amp; Official Email</td>
+            <td><input type="text" class="tbl-input sync-contact" id="sh1_contact_info" value="Mob: 8700383426 | Email: niraj.kumar@epfindia.gov.in"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Formal Undertakings / Declarations -->
+      <section class="undertaking-box">
+        <p>I hereby certify that none of my family members who intend to accompany me is suffering from any communicable disease and in case any of them contracts such a disease later, he or she shall not be permitted to use the accommodation of the Holiday Home.</p>
+        <p>I agree to abide by the guidelines / rules that may be applicable from time to time for the use of Holiday Home / Guest House at the above destination and other pledges.</p>
+        <p>I undertake that I will not overstay beyond the period for which the accommodation is allotted to me unless specifically permitted away by the Competent Authority, EPFO.</p>
+        <p>I undertake to pay the charges for breakage / loss / damages etc. that may be caused during the period of my stay in the Holiday Home / Guest House.</p>
+      </section>
+
+      <!-- Signature Section -->
+      <footer class="sign-section">
+        <div class="sign-date-block">
+          <div><strong>Date:</strong> <span id="sh1_disp_date">19.11.2025</span></div>
+          <div><strong>Place:</strong> <span class="edit-inline" contenteditable="true" id="sh1_disp_place">Faridabad</span></div>
+        </div>
+
+        <div class="sign-applicant-block">
+          <div class="signature-space"></div>
+          <div><strong>Signature of Official / Officer</strong></div>
+          <div>Name: <span class="sync-disp-name" style="font-weight: 800;">NIRAJ KUMAR</span></div>
+          <div>Designation: <span class="sync-disp-desig" style="font-weight: 700;">SECTION SUPERVISOR</span></div>
+          <div>Place of Duty: <span class="sync-disp-office">R.O. FARIDABAD</span></div>
+        </div>
+      </footer>
+
+      <!-- Official Recommendation / Forwarding Block -->
+      <div class="office-forward-box">
+        <div class="office-forward-title">FOR USE OF CONTROLLING OFFICE / RECOMMENDING AUTHORITY</div>
+        <div style="text-align: justify;">
+          The particulars furnished above by the official have been verified from service records and found correct. Recommended for reservation of accommodation in Holiday Home / Guest House at <strong><span id="fwdCity1">GANGTOK (SIKKIM)</span></strong> as requested.
+        </div>
+        <div class="forward-cols">
+          <div>
+            <div>Date: _______________</div>
+            <div>Official Seal:</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="height: 25px;"></div>
+            <div><strong>Signature of Controlling Officer / Section Incharge</strong></div>
+            <div>Name &amp; Designation with Seal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>कर्मचारी भविष्य निधि संगठन (EPFO) — Holiday Home Reservation Proforma</span>
+        <span>Sheet 1 of 2 • Destination: <span id="ftrCity1">GANGTOK (SIKKIM)</span></span>
+      </div>
+
+    </article>
+
+
+    <!-- ======================================================================= -->
+    <!-- SHEET 2: APPLICATION FOR GUEST HOUSE (DESTINATION 2)                    -->
+    <!-- ======================================================================= -->
+    <article class="form-sheet" id="sheet-2">
+      
+      <div class="sheet-badge no-print">
+        <span><strong>SHEET 2</strong> • Application for Reservation in Holiday Home / Guest House</span>
+        <span id="badgeCity2">DARJEELING (W.B.)</span>
+      </div>
+
+      <!-- Official Bilingual Header -->
+      <header class="epfo-header">
+        <div class="epfo-logo-box">
+          <img src="image/epfo_logo.png" alt="EPFO Logo" class="epfo-logo-img">
+        </div>
+
+        <div class="header-center">
+          <div class="org-title-hi edit-inline" contenteditable="true" id="sh2_org_hi">कर्मचारी भविष्य निधि संगठन</div>
+          <div class="org-title-en edit-inline" contenteditable="true" id="sh2_org_en">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="ministry-title edit-inline" contenteditable="true" id="sh2_ministry">श्रम एवं रोजगार मंत्रालय, भारत सरकार / (Ministry of Labour &amp; Employment, Govt. of India)</div>
+          
+          <div class="office-title-line">
+            <span class="edit-inline" contenteditable="true" id="sh2_office_hi">क्षेत्रीय कार्यालय, फरीदाबाद</span>
+            <span> / </span>
+            <span class="edit-inline" contenteditable="true" id="sh2_office_en">Regional Office: Faridabad - 121007</span>
+          </div>
+
+          <div class="office-addr-line edit-inline" contenteditable="true" id="sh2_address">
+            Bhavishya Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)
+          </div>
+
+          <div class="office-contact-line edit-inline" contenteditable="true" id="sh2_contact">
+            Phone : 0129-2288068 &nbsp;|&nbsp; Email : ro.faridabad@epfindia.gov.in &nbsp;|&nbsp; Web: www.epfindia.gov.in
+          </div>
+        </div>
+
+        <div class="emblem-logo-box">
+          <img src="image/emblem_of_india.svg" alt="Emblem of India" class="emblem-logo-img">
+        </div>
+      </header>
+
+      <!-- Application Title Banner with Dynamic City 2 -->
+      <div class="app-title-banner">
+        <div class="app-title-main">
+          APPLICATION FOR RESERVATION OF ACCOMMODATION IN HOLIDAY HOME / GUEST HOUSE AT:-
+        </div>
+        <div class="app-city-target">
+          <span class="city-editable-text uppercase" contenteditable="true" id="displayCity2" title="Click to edit City Name">DARJEELING (W.B.)</span>
+        </div>
+      </div>
+
+      <!-- Application Meta Bar -->
+      <div class="app-meta-bar">
+        <div>
+          <span>पत्रांक / Ref No:</span>
+          <input type="text" class="fill-input uppercase" id="sh2_app_no" value="EPFO/RO/FBD/HOLIDAY-HOME/2025/1109" style="width: 270px; font-size: 11.5px;">
+        </div>
+        <div>
+          <span>दिनांक / Date:</span>
+          <input type="text" class="fill-input" id="sh2_app_date" value="19.11.2025" style="width: 100px; text-align: center; font-weight: 700;">
+        </div>
+      </div>
+
+      <!-- Particulars Table -->
+      <table class="guest-house-table">
+        <thead>
+          <tr>
+            <th class="col-srno">Sr.No</th>
+            <th class="col-particular">Particular</th>
+            <th class="col-details">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-srno">1</td>
+            <td class="col-particular">Name of official / Officer</td>
+            <td><input type="text" class="tbl-input uppercase sync-officer-name" id="sh2_name" value="NIRAJ KUMAR"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">2</td>
+            <td class="col-particular">Designation</td>
+            <td><input type="text" class="tbl-input uppercase sync-designation" id="sh2_designation" value="SECTION SUPERVISOR"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">3</td>
+            <td class="col-particular">Basic Pay</td>
+            <td><input type="text" class="tbl-input sync-basicpay" id="sh2_basic_pay" value="Rs.56,900/- (Pay Level-7)"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">4</td>
+            <td class="col-particular">Place of Duty</td>
+            <td><input type="text" class="tbl-input uppercase sync-duty-place" id="sh2_duty_place" value="R.O. FARIDABAD"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">5</td>
+            <td class="col-particular">Division / Branch</td>
+            <td><input type="text" class="tbl-input uppercase sync-branch" id="sh2_branch" value="CASH SECTION"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">6</td>
+            <td class="col-particular">
+              To be accompanied by (given names and relationship of Family Members)
+            </td>
+            <td>
+              <textarea class="tbl-textarea sync-family" id="sh2_family" rows="2">1. Shanta Kumar (Brother)
+2. Pooja Rani and two child</textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">7</td>
+            <td class="col-particular">Reservation Required (No. of Rooms)</td>
+            <td><input type="text" class="tbl-input uppercase" id="sh2_rooms" value="TWO ROOMS"></td>
+          </tr>
+          <tr>
+            <td class="col-srno">8</td>
+            <td class="col-particular">
+              Date of reservation (No of Days)<br>
+              <span style="font-size: 10px; font-weight: 500; color: #444;">(State alternative dates if accommodation is not available for the dates applied for)</span>
+            </td>
+            <td>
+              <input type="text" class="tbl-input uppercase" id="sh2_dates" value="03-12-2025 TO 06-12-2025 (4 DAYS)" style="margin-bottom: 3px;">
+              <div style="font-size: 11px; font-weight: 600; color: #333;">
+                Alternative Dates: <input type="text" class="tbl-input uppercase" id="sh2_alt_dates" value="08-12-2025 TO 11-12-2025" style="width: 250px; display: inline-block;">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-srno">9</td>
+            <td class="col-particular">Mobile No. &amp; Official Email</td>
+            <td><input type="text" class="tbl-input sync-contact" id="sh2_contact_info" value="Mob: 8700383426 | Email: niraj.kumar@epfindia.gov.in"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Formal Undertakings / Declarations -->
+      <section class="undertaking-box">
+        <p>I hereby certify that none of my family members who intend to accompany me is suffering from any communicable disease and in case any of them contracts such a disease later, he or she shall not be permitted to use the accommodation of the Holiday Home.</p>
+        <p>I agree to abide by the guidelines / rules that may be applicable from time to time for the use of Holiday Home / Guest House at the above destination and other pledges.</p>
+        <p>I undertake that I will not overstay beyond the period for which the accommodation is allotted to me unless specifically permitted away by the Competent Authority, EPFO.</p>
+        <p>I undertake to pay the charges for breakage / loss / damages etc. that may be caused during the period of my stay in the Holiday Home / Guest House.</p>
+      </section>
+
+      <!-- Signature Section -->
+      <footer class="sign-section">
+        <div class="sign-date-block">
+          <div><strong>Date:</strong> <span id="sh2_disp_date">19.11.2025</span></div>
+          <div><strong>Place:</strong> <span class="edit-inline" contenteditable="true" id="sh2_disp_place">Faridabad</span></div>
+        </div>
+
+        <div class="sign-applicant-block">
+          <div class="signature-space"></div>
+          <div><strong>Signature of Official / Officer</strong></div>
+          <div>Name: <span class="sync-disp-name" style="font-weight: 800;">NIRAJ KUMAR</span></div>
+          <div>Designation: <span class="sync-disp-desig" style="font-weight: 700;">SECTION SUPERVISOR</span></div>
+          <div>Place of Duty: <span class="sync-disp-office">R.O. FARIDABAD</span></div>
+        </div>
+      </footer>
+
+      <!-- Official Recommendation / Forwarding Block -->
+      <div class="office-forward-box">
+        <div class="office-forward-title">FOR USE OF CONTROLLING OFFICE / RECOMMENDING AUTHORITY</div>
+        <div style="text-align: justify;">
+          The particulars furnished above by the official have been verified from service records and found correct. Recommended for reservation of accommodation in Holiday Home / Guest House at <strong><span id="fwdCity2">DARJEELING (W.B.)</span></strong> as requested.
+        </div>
+        <div class="forward-cols">
+          <div>
+            <div>Date: _______________</div>
+            <div>Official Seal:</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="height: 25px;"></div>
+            <div><strong>Signature of Controlling Officer / Section Incharge</strong></div>
+            <div>Name &amp; Designation with Seal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sheet Footer -->
+      <div class="sheet-footer">
+        <span>कर्मचारी भविष्य निधि संगठन (EPFO) — Holiday Home Reservation Proforma</span>
+        <span>Sheet 2 of 2 • Destination: <span id="ftrCity2">DARJEELING (W.B.)</span></span>
+      </div>
+
+    </article>
+
+  </main>
+
+  <!-- Toast Notification Box -->
+  <div class="toast-msg" id="toastBox">
+    <svg width="15" height="15" fill="#38bdf8" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+    <span id="toastText">Action completed successfully!</span>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT LOGIC                                                          -->
+  <!-- ========================================================================= -->
+  <script>
+    // Office Presets Database
+    const officePresets = {
+      faridabad: {
+        hi: 'क्षेत्रीय कार्यालय, फरीदाबाद',
+        en: 'Regional Office: Faridabad - 121007',
+        addr: 'Bhavishya Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)',
+        contact: 'Phone : 0129-2288068    |    Email : ro.faridabad@epfindia.gov.in',
+        refPrefix: 'EPFO/RO/FBD/HOLIDAY-HOME/2025/',
+        place: 'Faridabad'
+      },
+      gurugram: {
+        hi: 'क्षेत्रीय कार्यालय, गुरुग्राम (पूर्व)',
+        en: 'Regional Office: Gurugram (East) - 122001',
+        addr: 'Bhavishya Nidhi Bhawan, Sector 44, Gurugram (Haryana)',
+        contact: 'Phone : 0124-2321456    |    Email : ro.gurgaon@epfindia.gov.in',
+        refPrefix: 'EPFO/RO/GGN/HOLIDAY-HOME/2025/',
+        place: 'Gurugram'
+      },
+      delhinorth: {
+        hi: 'क्षेत्रीय कार्यालय, दिल्ली (उत्तर)',
+        en: 'Regional Office: Delhi (North) - 110037',
+        addr: 'Bhavishya Nidhi Bhawan, 28, Community Centre, Wazirpur Industrial Area, Delhi',
+        contact: 'Phone : 011-27371190    |    Email : ro.delhi.north@epfindia.gov.in',
+        refPrefix: 'EPFO/RO/DLN/HOLIDAY-HOME/2025/',
+        place: 'Delhi'
+      },
+      delhisouth: {
+        hi: 'क्षेत्रीय कार्यालय, दिल्ली (दक्षिण)',
+        en: 'Regional Office: Delhi (South) - 110066',
+        addr: 'Bhavishya Nidhi Bhawan, 8th-9th Floor, NBCC Tower, Bhikaji Cama Place, New Delhi',
+        contact: 'Phone : 011-26168532    |    Email : ro.delhi.south@epfindia.gov.in',
+        refPrefix: 'EPFO/RO/DLS/HOLIDAY-HOME/2025/',
+        place: 'New Delhi'
+      },
+      noida: {
+        hi: 'क्षेत्रीय कार्यालय, नोएडा',
+        en: 'Regional Office: Noida - 201301',
+        addr: 'A-2C, Sector 24, Noida, District Gautam Buddha Nagar (U.P.)',
+        contact: 'Phone : 0120-2411651    |    Email : ro.noida@epfindia.gov.in',
+        refPrefix: 'EPFO/RO/NOI/HOLIDAY-HOME/2025/',
+        place: 'Noida'
+      },
+      headoffice: {
+        hi: 'मुख्य कार्यालय, नई दिल्ली',
+        en: 'Head Office: New Delhi - 110066',
+        addr: 'Bhavishya Nidhi Bhawan, 14, Bhikaiji Cama Place, New Delhi',
+        contact: 'Phone : 011-26172671    |    Email : webadmin-epfo@nic.in',
+        refPrefix: 'EPFO/HQ/HOLIDAY-HOME/2025/',
+        place: 'New Delhi'
+      }
+    };
+
+    // Toast helper
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      const text = document.getElementById('toastText');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Update City 1 display
+    function updateCity1(cityName) {
+      const city = (cityName || '').trim().toUpperCase();
+      document.getElementById('displayCity1').textContent = city;
+      document.getElementById('badgeCity1').textContent = city;
+      document.getElementById('fwdCity1').textContent = city;
+      document.getElementById('ftrCity1').textContent = city;
+      document.getElementById('tabLabelCity1').textContent = city.split(' ')[0] || city;
+    }
+
+    // Update City 2 display
+    function updateCity2(cityName) {
+      const city = (cityName || '').trim().toUpperCase();
+      document.getElementById('displayCity2').textContent = city;
+      document.getElementById('badgeCity2').textContent = city;
+      document.getElementById('fwdCity2').textContent = city;
+      document.getElementById('ftrCity2').textContent = city;
+      document.getElementById('tabLabelCity2').textContent = city.split(' ')[0] || city;
+    }
+
+    // Two-Way Sync for Officer particulars across Sheet 1 & Sheet 2
+    function syncOfficerDetails(sourceSheet) {
+      const srcPrefix = sourceSheet === 1 ? 'sh1_' : 'sh2_';
+      const tgtPrefix = sourceSheet === 1 ? 'sh2_' : 'sh1_';
+
+      const nameVal = document.getElementById(srcPrefix + 'name').value;
+      const desigVal = document.getElementById(srcPrefix + 'designation').value;
+      const payVal = document.getElementById(srcPrefix + 'basic_pay').value;
+      const dutyVal = document.getElementById(srcPrefix + 'duty_place').value;
+      const branchVal = document.getElementById(srcPrefix + 'branch').value;
+      const familyVal = document.getElementById(srcPrefix + 'family').value;
+      const contactVal = document.getElementById(srcPrefix + 'contact_info').value;
+
+      // Update target inputs
+      document.getElementById(tgtPrefix + 'name').value = nameVal;
+      document.getElementById(tgtPrefix + 'designation').value = desigVal;
+      document.getElementById(tgtPrefix + 'basic_pay').value = payVal;
+      document.getElementById(tgtPrefix + 'duty_place').value = dutyVal;
+      document.getElementById(tgtPrefix + 'branch').value = branchVal;
+      document.getElementById(tgtPrefix + 'family').value = familyVal;
+      document.getElementById(tgtPrefix + 'contact_info').value = contactVal;
+
+      // Update signature label displays
+      document.querySelectorAll('.sync-disp-name').forEach(el => el.textContent = nameVal);
+      document.querySelectorAll('.sync-disp-desig').forEach(el => el.textContent = desigVal);
+      document.querySelectorAll('.sync-disp-office').forEach(el => el.textContent = dutyVal);
+    }
+
+    // Apply Office Preset
+    function applyOffice(key) {
+      const o = officePresets[key];
+      if (!o) return;
+
+      // Sheet 1
+      document.getElementById('sh1_office_hi').textContent = o.hi;
+      document.getElementById('sh1_office_en').textContent = o.en;
+      document.getElementById('sh1_address').textContent = o.addr;
+      document.getElementById('sh1_contact').textContent = o.contact;
+      document.getElementById('sh1_disp_place').textContent = o.place;
+      document.getElementById('sh1_duty_place').value = 'R.O. ' + o.place.toUpperCase();
+
+      // Sheet 2
+      document.getElementById('sh2_office_hi').textContent = o.hi;
+      document.getElementById('sh2_office_en').textContent = o.en;
+      document.getElementById('sh2_address').textContent = o.addr;
+      document.getElementById('sh2_contact').textContent = o.contact;
+      document.getElementById('sh2_disp_place').textContent = o.place;
+      document.getElementById('sh2_duty_place').value = 'R.O. ' + o.place.toUpperCase();
+
+      syncOfficerDetails(1);
+      showToast('Office preset applied: ' + o.en);
+    }
+
+    // Populate Sample Data from User's Prompt (Niraj Kumar, Section Supervisor)
+    function fillSampleData() {
+      // Sheet 1 (Gangtok)
+      document.getElementById('selCity1').value = 'GANGTOK (SIKKIM)';
+      updateCity1('GANGTOK (SIKKIM)');
+      document.getElementById('sh1_app_no').value = 'EPFO/RO/FBD/HOLIDAY-HOME/2025/1108';
+      document.getElementById('sh1_app_date').value = '19.11.2025';
+      document.getElementById('sh1_disp_date').textContent = '19.11.2025';
+      document.getElementById('sh1_name').value = 'NIRAJ KUMAR';
+      document.getElementById('sh1_designation').value = 'SECTION SUPERVISOR';
+      document.getElementById('sh1_basic_pay').value = 'Rs.56,900/- (Pay Level-7)';
+      document.getElementById('sh1_duty_place').value = 'R.O. FARIDABAD';
+      document.getElementById('sh1_branch').value = 'CASH SECTION';
+      document.getElementById('sh1_family').value = '1. Shanta Kumar (Brother)\n2. Pooja Rani and two child';
+      document.getElementById('sh1_rooms').value = 'TWO ROOMS';
+      document.getElementById('sh1_dates').value = '30-11-2025 TO 03-12-2025 (4 DAYS)';
+      document.getElementById('sh1_alt_dates').value = '05-12-2025 TO 08-12-2025';
+      document.getElementById('sh1_contact_info').value = 'Mob: 8700383426 | Email: niraj.kumar@epfindia.gov.in';
+
+      // Sheet 2 (Darjeeling)
+      document.getElementById('selCity2').value = 'DARJEELING (W.B.)';
+      updateCity2('DARJEELING (W.B.)');
+      document.getElementById('sh2_app_no').value = 'EPFO/RO/FBD/HOLIDAY-HOME/2025/1109';
+      document.getElementById('sh2_app_date').value = '19.11.2025';
+      document.getElementById('sh2_disp_date').textContent = '19.11.2025';
+      document.getElementById('sh2_rooms').value = 'TWO ROOMS';
+      document.getElementById('sh2_dates').value = '03-12-2025 TO 06-12-2025 (4 DAYS)';
+      document.getElementById('sh2_alt_dates').value = '08-12-2025 TO 11-12-2025';
+
+      syncOfficerDetails(1);
+      showToast('Sample data for Gangtok & Darjeeling loaded!');
+    }
+
+    // Clear Form
+    function clearForm() {
+      if (!confirm('क्या आप फॉर्म साफ़ करना चाहते हैं? (Clear all fields to blank?)')) return;
+
+      const fields = [
+        'sh1_name', 'sh1_designation', 'sh1_basic_pay', 'sh1_duty_place',
+        'sh1_branch', 'sh1_family', 'sh1_rooms', 'sh1_dates', 'sh1_alt_dates', 'sh1_contact_info',
+        'sh2_name', 'sh2_designation', 'sh2_basic_pay', 'sh2_duty_place',
+        'sh2_branch', 'sh2_family', 'sh2_rooms', 'sh2_dates', 'sh2_alt_dates', 'sh2_contact_info'
+      ];
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+
+      document.querySelectorAll('.sync-disp-name').forEach(el => el.textContent = '_______________');
+      document.querySelectorAll('.sync-disp-desig').forEach(el => el.textContent = '_______________');
+      showToast('Form cleared to blank!');
+    }
+
+    // Initialize Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sync Date displays
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const yyyy = today.getFullYear();
+      const curDate = `${dd}.${mm}.${yyyy}`;
+
+      document.getElementById('sh1_app_date').addEventListener('input', (e) => {
+        document.getElementById('sh1_disp_date').textContent = e.target.value;
+      });
+      document.getElementById('sh2_app_date').addEventListener('input', (e) => {
+        document.getElementById('sh2_disp_date').textContent = e.target.value;
+      });
+
+      // City 1 Select & Inline edit
+      const selCity1 = document.getElementById('selCity1');
+      selCity1.addEventListener('change', (e) => {
+        if (e.target.value === 'CUSTOM') {
+          const customVal = prompt('कृपया गंतव्य शहर व राज्य का नाम दर्ज करें (Enter Custom City & State):', 'SHIMLA (H.P.)');
+          if (customVal) {
+            updateCity1(customVal);
+          }
+        } else {
+          updateCity1(e.target.value);
+        }
+      });
+
+      document.getElementById('displayCity1').addEventListener('input', (e) => {
+        updateCity1(e.target.textContent);
+      });
+
+      // City 2 Select & Inline edit
+      const selCity2 = document.getElementById('selCity2');
+      selCity2.addEventListener('change', (e) => {
+        if (e.target.value === 'CUSTOM') {
+          const customVal = prompt('कृपया दूसरा गंतव्य शहर व राज्य दर्ज करें (Enter Custom City & State):', 'MANALI (H.P.)');
+          if (customVal) {
+            updateCity2(customVal);
+          }
+        } else {
+          updateCity2(e.target.value);
+        }
+      });
+
+      document.getElementById('displayCity2').addEventListener('input', (e) => {
+        updateCity2(e.target.textContent);
+      });
+
+      // Two-Way Sync Event Listeners
+      const sh1SyncIds = ['sh1_name', 'sh1_designation', 'sh1_basic_pay', 'sh1_duty_place', 'sh1_branch', 'sh1_family', 'sh1_contact_info'];
+      sh1SyncIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => syncOfficerDetails(1));
+      });
+
+      const sh2SyncIds = ['sh2_name', 'sh2_designation', 'sh2_basic_pay', 'sh2_duty_place', 'sh2_branch', 'sh2_family', 'sh2_contact_info'];
+      sh2SyncIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => syncOfficerDetails(2));
+      });
+
+      // Office Preset
+      document.getElementById('selApplicantOffice').addEventListener('change', (e) => {
+        applyOffice(e.target.value);
+      });
+
+      // Destination View Tabs
+      const tabBoth = document.getElementById('tabViewBoth');
+      const tabDest1 = document.getElementById('tabViewDest1');
+      const tabDest2 = document.getElementById('tabViewDest2');
+      const sheet1 = document.getElementById('sheet-1');
+      const sheet2 = document.getElementById('sheet-2');
+
+      function setViewTab(mode) {
+        tabBoth.classList.remove('active');
+        tabDest1.classList.remove('active');
+        tabDest2.classList.remove('active');
+        document.body.classList.remove('view-dest-1', 'view-dest-2', 'view-both');
+
+        if (mode === 'dest1') {
+          tabDest1.classList.add('active');
+          document.body.classList.add('view-dest-1');
+          sheet1.style.display = 'flex';
+          sheet2.style.display = 'none';
+        } else if (mode === 'dest2') {
+          tabDest2.classList.add('active');
+          document.body.classList.add('view-dest-2');
+          sheet1.style.display = 'none';
+          sheet2.style.display = 'flex';
+        } else {
+          tabBoth.classList.add('active');
+          document.body.classList.add('view-both');
+          sheet1.style.display = 'flex';
+          sheet2.style.display = 'flex';
+        }
+      }
+
+      tabBoth.addEventListener('click', () => setViewTab('both'));
+      tabDest1.addEventListener('click', () => setViewTab('dest1'));
+      tabDest2.addEventListener('click', () => setViewTab('dest2'));
+
+      // Paper Size Toggle
+      const btnA4 = document.getElementById('btnSizeA4');
+      const btnLegal = document.getElementById('btnSizeLegal');
+      const dynamicStyle = document.getElementById('dynamicPageSizeStyle');
+
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          document.body.classList.remove('size-a4');
+          document.body.classList.add('size-legal');
+          btnLegal.classList.add('active');
+          btnA4.classList.remove('active');
+          if (dynamicStyle) {
+            dynamicStyle.innerHTML = `
+              @page {
+                size: legal portrait;
+                margin: 6mm 10mm 6mm 10mm;
+              }
+            `;
+          }
+        } else {
+          document.body.classList.remove('size-legal');
+          document.body.classList.add('size-a4');
+          btnA4.classList.add('active');
+          btnLegal.classList.remove('active');
+          if (dynamicStyle) {
+            dynamicStyle.innerHTML = `
+              @page {
+                size: A4 portrait;
+                margin: 6mm 10mm 6mm 10mm;
+              }
+            `;
+          }
+        }
+      }
+
+      btnA4.addEventListener('click', () => setPaperSize('a4'));
+      btnLegal.addEventListener('click', () => setPaperSize('legal'));
+
+      // Buttons
+      document.getElementById('btnFillSample').addEventListener('click', fillSampleData);
+      document.getElementById('btnClearForm').addEventListener('click', clearForm);
+      document.getElementById('btnPrint').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Form List Dropdown Toggle
+      const navDropdown = document.getElementById('navDropdown');
+      const btnNavToggle = document.getElementById('btnNavToggle');
+      if (btnNavToggle && navDropdown) {
+        btnNavToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navDropdown.classList.toggle('active');
+        });
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('#navDropdown')) {
+            navDropdown.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

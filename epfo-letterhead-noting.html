@@ -6,7 +6,14 @@
   <title>EPFO Blank Letterhead & Official Noting Sheet | कर्मचारी भविष्य निधि संगठन लेटरहेड एवं नोटिंग प्रपत्र</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Dynamic Print Page Size Style (A4 / Legal) -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 0mm 8mm 6mm 8mm;
+    }
+  </style>
 
   <style>
     :root {
@@ -512,6 +519,42 @@
       border-left: 3.5px solid #000;
     }
 
+    /* Noting Sheet Mode & Headers */
+    .form-sheet.mode-noting {
+      border-left: 4px solid var(--noting-green-border);
+    }
+    .form-sheet.mode-noting .sheet-badge {
+      background: var(--noting-green-bg);
+      color: var(--noting-green-border);
+      border-color: #86efac;
+    }
+    .noting-header-bar {
+      text-align: center;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #15803d;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      background: #f0fdf4;
+      border: 1.5px solid #15803d;
+      border-radius: 4px;
+      margin: 6px 0 10px 0;
+      text-transform: uppercase;
+    }
+    .order-header-bar {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      background: #f8fafc;
+      border: 1.5px solid #0f172a;
+      border-radius: 4px;
+      margin: 6px 0 12px 0;
+      text-transform: uppercase;
+    }
+
     /* Main Content Editable Area */
     .document-body-editor {
       flex: 1;
@@ -561,9 +604,20 @@
 
     /* Print Specific Rules */
     @media print {
-      body {
-        padding-top: 0 !important;
+      @page {
+        size: A4 portrait;
+        margin: 0mm 8mm 6mm 8mm !important;
+      }
+
+      html, body {
+        padding: 0 !important;
+        margin: 0 !important;
         background: #ffffff !important;
+        display: block !important;
+        min-height: 0 !important;
+        height: auto !important;
+        width: 100% !important;
+        overflow: visible !important;
       }
 
       .no-print,
@@ -575,8 +629,11 @@
       }
 
       .document-sheets-container {
+        display: block !important;
         padding: 0 !important;
+        margin: 0 !important;
         gap: 0 !important;
+        width: 100% !important;
       }
 
       .form-sheet {
@@ -585,7 +642,7 @@
         min-height: 0 !important;
         box-shadow: none !important;
         border: none !important;
-        padding: 0 !important;
+        padding: 2mm 0 0 0 !important;
         margin: 0 !important;
         page-break-after: always !important;
         break-after: page !important;
@@ -596,9 +653,40 @@
         justify-content: flex-start !important;
       }
 
+      .form-sheet:only-child,
       .form-sheet:last-child {
-        page-break-after: auto !important;
-        break-after: auto !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      .letterhead-header {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        margin-bottom: 8px !important;
+        padding-bottom: 6px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .doc-meta-row {
+        margin: 6px 0 10px 0 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .document-body-editor {
+        min-height: 0 !important;
+        flex: 1 1 auto !important;
+        padding: 4px 0 !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+
+      .sheet-footer {
+        margin-top: 10px !important;
+        padding-top: 4px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
       }
 
       .edit-inline {
@@ -615,15 +703,6 @@
         color: transparent !important;
       }
     }
-
-    @page {
-      size: A4 portrait;
-      margin: 8mm 10mm 8mm 10mm;
-    }
-
-    body.size-legal {
-      --legal-dummy: 1;
-    }
   </style>
 </head>
 <body class="size-a4">
@@ -638,6 +717,55 @@
         <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
         Home
       </a>
+
+      <!-- Dropdown Form List -->
+      <div class="nav-dropdown" id="navDropdown">
+        <button type="button" class="nav-dropdown-toggle" id="btnNavToggle">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/></svg>
+          <span>Forms List</span>
+          <svg width="10" height="10" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg>
+        </button>
+
+        <div class="dropdown-menu-box" id="navDropdownMenu">
+          <div class="dropdown-header-tag">
+            <span>Official Forms</span>
+            <span style="background: #0284c7; color: #fff; padding: 1px 6px; border-radius: 10px; font-size: 9px;">Active</span>
+          </div>
+          <a href="epfo-letterhead-noting.html" class="dropdown-item-link active">
+            <span>● Blank Letterhead &amp; Official Noting</span>
+          </a>
+          <a href="epfo-eps-to-pf-merger.html" class="dropdown-item-link">
+            <span>● EPS to EPF Merger &amp; Office Note</span>
+          </a>
+          <a href="epfo-guest-house-booking.html" class="dropdown-item-link">
+            <span>● Holiday Home / Guest House Booking</span>
+          </a>
+          <a href="epfo-high-value-claim-verification.html" class="dropdown-item-link">
+            <span>● High Value Claim KYC Verification</span>
+          </a>
+          <a href="epfo-form-31-advance.html" class="dropdown-item-link">
+            <span>● EPFO Form 31 (PF Advance)</span>
+          </a>
+          <a href="epfo-leave-and-joining.html" class="dropdown-item-link">
+            <span>● Leave Application &amp; Joining Report</span>
+          </a>
+          <a href="epfo-death-claim.html" class="dropdown-item-link">
+            <span>● Composite Claim Form (Death Cases)</span>
+          </a>
+          <a href="epfo-form-10d.html" class="dropdown-item-link">
+            <span>● Form 10-D Monthly Pension</span>
+          </a>
+          <a href="epfo-composite-claim-aadhar.html" class="dropdown-item-link">
+            <span>● Composite Claim (Aadhar: 19/10C/31)</span>
+          </a>
+          <a href="onroll-family-form.html" class="dropdown-item-link">
+            <span>● On-Roll &amp; Family Description</span>
+          </a>
+          <a href="stationery-requirement-form.html" class="dropdown-item-link">
+            <span>● Stationery Requisition Form</span>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="toolbar-actions">
@@ -679,6 +807,17 @@
       </select>
     </div>
 
+    <!-- Document Template Preset Selector -->
+    <div class="format-group">
+      <span style="font-size: 11px; font-weight: 700; color: #0369a1;">प्रारूप (Preset):</span>
+      <select class="format-select" id="docPresetSelect" style="font-weight: 700; color: #0369a1; border-color: #7dd3fc;">
+        <option value="blank" selected>📄 कोरा लेटरहेड (Blank Letterhead)</option>
+        <option value="noting">📝 कार्यालय टिप्पणी (Office Note / Noting)</option>
+        <option value="letter">✉️ शासकीय पत्र (Official Letter)</option>
+        <option value="order">📜 कार्यालय आदेश (Office Order)</option>
+      </select>
+    </div>
+
     <!-- Rich Text Tools -->
     <div class="format-group">
       <button type="button" class="format-btn" onclick="formatDoc('bold')" title="Bold (Ctrl+B)"><b>B</b></button>
@@ -692,10 +831,12 @@
       <button type="button" class="format-btn" onclick="formatDoc('insertUnorderedList')" title="Bullet List">•</button>
     </div>
 
-    <!-- Optional Insert Tools -->
+    <!-- Optional Quick Insert Tools -->
     <div class="format-group">
-      <button type="button" class="format-btn" onclick="insertSubject()" title="Insert Subject line" style="font-size: 11px; padding: 4px 8px;">+ Subject</button>
-      <button type="button" class="format-btn" onclick="insertSignature()" title="Insert Signature block" style="font-size: 11px; padding: 4px 8px;">+ Signature</button>
+      <button type="button" class="format-btn" onclick="insertSubject()" title="Insert Subject line" style="font-size: 11px; padding: 4px 7px;">+ Subject</button>
+      <button type="button" class="format-btn" onclick="insertSignature()" title="Insert Signature block" style="font-size: 11px; padding: 4px 7px;">+ Signature</button>
+      <button type="button" class="format-btn" onclick="insertNotePoint()" title="Insert Numbered Note Paragraph" style="font-size: 11px; padding: 4px 7px; color: #16a34a;">+ Note Para</button>
+      <button type="button" class="format-btn" onclick="insertCopyTo()" title="Insert Copy To block" style="font-size: 11px; padding: 4px 7px;">+ Copy To</button>
     </div>
 
     <div class="format-group">
@@ -779,17 +920,196 @@
   </main>
 
   <script>
-    // Helper Insert Functions for Quick Drafting
+    // =========================================================================
+    // 1. Office Presets Database
+    // =========================================================================
+    const officePresets = {
+      faridabad: {
+        hi: 'क्षेत्रीय कार्यालय, फरीदाबाद',
+        en: 'Regional Office: Faridabad - 121007',
+        addr: 'Bhavishya Nidhi Bhawan, Sector – 15A, Faridabad (Haryana)',
+        contact: 'Phone: 0129-2288068  |  Email: ro.faridabad@epfindia.gov.in  |  Web: www.epfindia.gov.in',
+        refPrefix: 'EPFO/RO/FBD/'
+      },
+      delhinorth: {
+        hi: 'क्षेत्रीय कार्यालय, दिल्ली (उत्तर)',
+        en: 'Regional Office: Delhi (North) - 110037',
+        addr: 'Bhavishya Nidhi Bhawan, 28, Community Centre, Wazirpur Industrial Area, Delhi',
+        contact: 'Phone: 011-27371190  |  Email: ro.delhi.north@epfindia.gov.in  |  Web: www.epfindia.gov.in',
+        refPrefix: 'EPFO/RO/DLN/'
+      },
+      gurugram: {
+        hi: 'क्षेत्रीय कार्यालय, गुरुग्राम',
+        en: 'Regional Office: Gurugram (East) - 122001',
+        addr: 'Bhavishya Nidhi Bhawan, Sector 44, Gurugram (Haryana)',
+        contact: 'Phone: 0124-2321456  |  Email: ro.gurgaon@epfindia.gov.in  |  Web: www.epfindia.gov.in',
+        refPrefix: 'EPFO/RO/GGN/'
+      },
+      headoffice: {
+        hi: 'मुख्य कार्यालय, नई दिल्ली',
+        en: 'Head Office: New Delhi - 110066',
+        addr: 'Bhavishya Nidhi Bhawan, 14, Bhikaiji Cama Place, New Delhi',
+        contact: 'Phone: 011-26172671  |  Email: webadmin-epfo@nic.in  |  Web: www.epfindia.gov.in',
+        refPrefix: 'EPFO/HQ/ND/'
+      }
+    };
+
+    // =========================================================================
+    // 2. Document Template Presets
+    // =========================================================================
+    const docTemplates = {
+      blank: {
+        badge: 'Sheet 1 • कोरा लेटरहेड (Blank Letterhead)',
+        refPrefix: 'EPFO/RO/FBD/2026/___',
+        isNoting: false,
+        content: '<p><br></p>'
+      },
+      noting: {
+        badge: 'Sheet 1 • कार्यालय टिप्पणी (Official Noting Sheet)',
+        refPrefix: 'EPFO/RO/FBD/2026/नोटिंग/104',
+        isNoting: true,
+        content: `
+          <div class="noting-header-bar">कार्यालय टिप्पणी / OFFICIAL NOTING SHEET</div>
+          <p style="margin-bottom: 8px;"><strong>विषय / Subject :</strong> [यहाँ टिप्पणी का विषय अंकित करें / Enter Subject of Note]</p>
+          <p style="margin-bottom: 10px;">1. उपरोक्त विषयक प्रकरण के संबंध में प्रस्तुत है कि...</p>
+          <p style="margin-bottom: 10px;">2. कार्यालय अभिलेखों एवं संगत नियमों (ईपीएफ योजना, 1952 / ईपीएस, 1995) के आलोक में परीक्षणोपरांत यह पाया गया कि...</p>
+          <p style="margin-bottom: 14px;">3. अतः सक्षम प्राधिकारी के सादर अवलोकनार्थ एवं यथोचित अनुमोदन/आदेशार्थ प्रस्तुत है।</p>
+          <br>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 35px; border-top: 1px dashed #cbd5e1; padding-top: 12px; font-size: 11.5px;">
+            <div style="text-align: center;">
+              <div style="height: 35px;"></div>
+              <div><strong>(लिपिक / डी.ए.)</strong></div>
+              <div>Dealing Assistant</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="height: 35px;"></div>
+              <div><strong>(अनुभाग पर्यवेक्षक)</strong></div>
+              <div>Section Supervisor</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="height: 35px;"></div>
+              <div><strong>(लेखा अधिकारी)</strong></div>
+              <div>Account Officer</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="height: 35px;"></div>
+              <div><strong>(सहा./क्षेत्रीय आयुक्त)</strong></div>
+              <div>APFC / RPFC</div>
+            </div>
+          </div>
+        `
+      },
+      letter: {
+        badge: 'Sheet 1 • शासकीय पत्र (Official Letter)',
+        refPrefix: 'EPFO/RO/FBD/2026/पत्र/534',
+        isNoting: false,
+        content: `
+          <div style="margin-bottom: 12px; line-height: 1.5;">
+            <div><strong>सेवा में / To,</strong></div>
+            <div>[श्री / सुश्री / मैसर्स - नाम / Name]</div>
+            <div>[पदनाम / प्रतिष्ठान / पता]</div>
+            <div>[शहर, राज्य - पिन कोड]</div>
+          </div>
+          <p style="margin: 10px 0; font-weight: 700;"><strong>विषय / Subject :</strong> [यहाँ शासकीय पत्र का विषय लिखें]</p>
+          <p style="margin-bottom: 8px;"><strong>महोदय / महोदया (Sir / Madam),</strong></p>
+          <p style="margin-bottom: 10px;">उपर्युक्त विषय के संदर्भ में सूचित किया जाता है कि...</p>
+          <p style="margin-bottom: 12px;">अतः आपसे अनुरोध है कि आवश्यक विवरण/दस्तावेज इस कार्यालय को यथाशीघ्र प्रेषित करने का कष्ट करें।</p>
+          <p style="margin-bottom: 16px;">सधन्यवाद।</p>
+          <div style="display: flex; justify-content: flex-end; text-align: right; margin-top: 30px;">
+            <div>
+              <div style="height: 40px;"></div>
+              <div>भवदीय / Yours faithfully,</div>
+              <div><strong>[अधिकारी का नाम]</strong></div>
+              <div>सहायक भविष्य निधि आयुक्त / लेखा अधिकारी</div>
+              <div>क्षेत्रीय कार्यालय, फरीदाबाद</div>
+            </div>
+          </div>
+          <div style="margin-top: 25px; border-top: 1px solid #cbd5e1; padding-top: 8px; font-size: 11.5px;">
+            <strong>प्रतिलिपि सूचनार्थ एवं आवश्यक कार्रवाई हेतु / Copy to:</strong>
+            <ol style="margin-left: 20px; margin-top: 4px;">
+              <li>संबंधित सदस्य / प्रतिष्ठान।</li>
+              <li>गार्ड फ़ाइल / कार्यालय अभिलेख।</li>
+            </ol>
+          </div>
+        `
+      },
+      order: {
+        badge: 'Sheet 1 • कार्यालय आदेश (Office Order)',
+        refPrefix: 'EPFO/RO/FBD/प्रशासन/2026/आदेश/089',
+        isNoting: false,
+        content: `
+          <div class="order-header-bar">कार्यालय आदेश / OFFICE ORDER</div>
+          <p style="margin-bottom: 12px; text-align: justify; line-height: 1.6;">
+            सक्षम प्राधिकारी के अनुमोदनोपरांत यह आदेश दिया जाता है कि [यहाँ आदेश का मुख्य विवरण, दायित्व आवंटन अथवा स्वीकृति का विवरण अंकित करें]...
+          </p>
+          <p style="margin-bottom: 12px; text-align: justify; line-height: 1.6;">
+            2. यह आदेश तत्काल प्रभाव से प्रभावी माना जाएगा।
+          </p>
+          <p style="margin-top: 20px; font-weight: 600;">(सक्षम प्राधिकारी के अनुमोदन से जारी)</p>
+          <div style="display: flex; justify-content: flex-end; text-align: right; margin-top: 25px;">
+            <div>
+              <div style="height: 40px;"></div>
+              <div><strong>[अधिकृत अधिकारी का नाम]</strong></div>
+              <div>क्षेत्रीय भविष्य निधि आयुक्त-II / प्रशासन</div>
+              <div>कर्मचारी भविष्य निधि संगठन</div>
+            </div>
+          </div>
+          <div style="margin-top: 25px; border-top: 1px solid #cbd5e1; padding-top: 8px; font-size: 11.5px;">
+            <strong>प्रतिलिपि सूचनार्थ एवं आवश्यक कार्रवाई हेतु प्रेषित:</strong>
+            <ol style="margin-left: 20px; margin-top: 4px;">
+              <li>सभी संबंधित अधिकारी / कार्मिक।</li>
+              <li>रोकड़ / वेतन शाखा / स्थापना अनुभाग।</li>
+              <li>नोटिस बोर्ड / वेबसाइट।</li>
+              <li>गार्ड फ़ाइल।</li>
+            </ol>
+          </div>
+        `
+      }
+    };
+
+    // Apply Document Preset
+    function applyDocPreset(presetKey) {
+      const tmpl = docTemplates[presetKey];
+      if (!tmpl) return;
+
+      const sheet1 = document.getElementById('sheet-1');
+      const badge = sheet1.querySelector('.sheet-badge span:first-child');
+      if (badge) badge.textContent = tmpl.badge;
+
+      if (tmpl.isNoting) {
+        sheet1.classList.add('mode-noting');
+      } else {
+        sheet1.classList.remove('mode-noting');
+      }
+
+      document.getElementById('metaRefNo').value = tmpl.refPrefix;
+      document.getElementById('docEditor').innerHTML = tmpl.content;
+      document.getElementById('docEditor').focus();
+    }
+
+    // Quick Insert Helpers
     function insertSubject() {
       const editor = document.getElementById('docEditor');
       editor.focus();
-      document.execCommand('insertHTML', false, '<p style="margin: 8px 0; font-weight: 700; font-size: 14px;"><strong>विषय / Subject : __________________________________________________</strong></p><p><br></p>');
+      document.execCommand('insertHTML', false, '<p style="margin: 8px 0; font-weight: 700; font-size: 13.5px;"><strong>विषय / Subject : __________________________________________________</strong></p><p><br></p>');
     }
 
     function insertSignature() {
       const editor = document.getElementById('docEditor');
       editor.focus();
-      document.execCommand('insertHTML', false, '<br><div style="display: flex; justify-content: flex-end; text-align: right; margin-top: 25px;"><div><div style="margin-bottom: 28px;">हस्ताक्षर / Signature: __________________________</div><div><strong>नाम व पदनाम / Name & Designation</strong></div><div>कार्यालय / Office</div></div></div><p><br></p>');
+      document.execCommand('insertHTML', false, '<br><div style="display: flex; justify-content: flex-end; text-align: right; margin-top: 25px;"><div><div style="margin-bottom: 30px;">हस्ताक्षर / Signature: __________________________</div><div><strong>[नाम व पदनाम / Name & Designation]</strong></div><div>कर्मचारी भविष्य निधि संगठन</div></div></div><p><br></p>');
+    }
+
+    function insertNotePoint() {
+      const editor = document.getElementById('docEditor');
+      editor.focus();
+      document.execCommand('insertHTML', false, '<p style="margin-bottom: 10px;">[ . ] यहाँ टिप्पणी बिंदु अंकित करें...</p>');
+    }
+
+    function insertCopyTo() {
+      const editor = document.getElementById('docEditor');
+      editor.focus();
+      document.execCommand('insertHTML', false, '<div style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 6px; font-size: 11.5px;"><strong>प्रतिलिपि सूचनार्थ एवं आवश्यक कार्रवाई हेतु / Copy to:</strong><ol style="margin-left: 20px; margin-top: 4px;"><li>संबंधित अनुभाग / अधिकारी।</li><li>गार्ड फ़ाइल।</li></ol></div><p><br></p>');
     }
 
     // Apply Office Preset
@@ -808,7 +1128,7 @@
       }
     }
 
-    // Rich Text Document Commands
+    // Rich Text Commands
     function formatDoc(cmd, value = null) {
       document.getElementById('docEditor').focus();
       document.execCommand(cmd, false, value);
@@ -836,15 +1156,18 @@
       newSheet.className = 'form-sheet';
       newSheet.id = `sheet-${sheetCount}`;
 
+      const isNoting = document.getElementById('sheet-1').classList.contains('mode-noting');
+      if (isNoting) newSheet.classList.add('mode-noting');
+
       newSheet.innerHTML = `
         <div class="sheet-badge no-print" style="display: flex; justify-content: space-between; width: 100%;">
-          <span>Sheet ${sheetCount} (Continuation Sheet)</span>
-          <button type="button" onclick="removeSheet(${sheetCount})" style="background: #fee2e2; border: 1px solid #fecaca; color: #dc2626; border-radius: 3px; padding: 1px 6px; font-size: 11px; cursor: pointer;">- Delete Page</button>
+          <span>Sheet ${sheetCount} (अनुवर्ती पृष्ठ / Continuation Sheet)</span>
+          <button type="button" onclick="removeSheet(${sheetCount})" style="background: #fee2e2; border: 1px solid #fecaca; color: #dc2626; border-radius: 3px; padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer;">- Delete Page</button>
         </div>
 
         <div style="border-bottom: 1.5px solid #000; padding-bottom: 4px; margin-bottom: 12px; display: flex; justify-content: space-between; font-size: 12px; font-weight: 700;">
           <span>कर्मचारी भविष्य निधि संगठन (EPFO) — पृष्ठ संख्या / Page ${sheetCount}</span>
-          <span>फ़ाइल सं. / File No: <input type="text" class="fill-input" style="width: 140px; font-size: 11.5px;" value="${document.getElementById('metaRefNo').value}"></span>
+          <span>फ़ाइल सं. / File No: <input type="text" class="fill-input" style="width: 170px; font-size: 11.5px;" value="${document.getElementById('metaRefNo').value}"></span>
         </div>
 
         <div class="document-body-editor" contenteditable="true" style="min-height: 230mm;" spellcheck="false">
@@ -870,27 +1193,53 @@
 
     // Initialize Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
-      // Office Preset change
+      // Office Preset
       document.getElementById('officePresetSelect').addEventListener('change', (e) => {
         applyOffice(e.target.value);
+      });
+
+      // Document Preset
+      document.getElementById('docPresetSelect').addEventListener('change', (e) => {
+        applyDocPreset(e.target.value);
       });
 
       // Paper Size Toggle
       const btnA4 = document.getElementById('btnSizeA4');
       const btnLegal = document.getElementById('btnSizeLegal');
-      btnA4.addEventListener('click', () => {
-        document.body.classList.remove('size-legal');
-        document.body.classList.add('size-a4');
-        btnA4.classList.add('active');
-        btnLegal.classList.remove('active');
-      });
+      const dynamicStyle = document.getElementById('dynamicPageSizeStyle');
 
-      btnLegal.addEventListener('click', () => {
-        document.body.classList.remove('size-a4');
-        document.body.classList.add('size-legal');
-        btnLegal.classList.add('active');
-        btnA4.classList.remove('active');
-      });
+      function setPaperSize(size) {
+        if (size === 'legal') {
+          document.body.classList.remove('size-a4');
+          document.body.classList.add('size-legal');
+          btnLegal.classList.add('active');
+          btnA4.classList.remove('active');
+          if (dynamicStyle) {
+            dynamicStyle.innerHTML = `
+              @page {
+                size: legal portrait;
+                margin: 0mm 8mm 6mm 8mm;
+              }
+            `;
+          }
+        } else {
+          document.body.classList.remove('size-legal');
+          document.body.classList.add('size-a4');
+          btnA4.classList.add('active');
+          btnLegal.classList.remove('active');
+          if (dynamicStyle) {
+            dynamicStyle.innerHTML = `
+              @page {
+                size: A4 portrait;
+                margin: 0mm 8mm 6mm 8mm;
+              }
+            `;
+          }
+        }
+      }
+
+      btnA4.addEventListener('click', () => setPaperSize('a4'));
+      btnLegal.addEventListener('click', () => setPaperSize('legal'));
 
       // Add Page button
       document.getElementById('btnAddPage').addEventListener('click', addNewPage);
@@ -899,6 +1248,21 @@
       document.getElementById('btnPrint').addEventListener('click', () => {
         window.print();
       });
+
+      // Form List Dropdown Toggle
+      const navDropdown = document.getElementById('navDropdown');
+      const btnNavToggle = document.getElementById('btnNavToggle');
+      if (btnNavToggle && navDropdown) {
+        btnNavToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navDropdown.classList.toggle('active');
+        });
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('#navDropdown')) {
+            navDropdown.classList.remove('active');
+          }
+        });
+      }
 
       // Default Date setup
       const today = new Date();

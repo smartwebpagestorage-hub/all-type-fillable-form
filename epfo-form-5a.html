@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>प्रपत्र सं. 5ए Form No. 5-A | स्वामित्व का विवरण RETURN OF OWNERSHIP | EPFO</title>
+  
+  <!-- Print Page Setup: Strict A4 2-Page Layout -->
+  <style id="dynamicPageSizeStyle">
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+  </style>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #e2e8f0;
+      font-family: Arial, 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 54px;
+      padding-bottom: 40px;
+    }
+
+    /* Fixed Application Toolbar (No-Print) */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+    }
+
+    .toolbar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: 0.3px;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-nav-pill {
+      display: flex;
+      align-items: center;
+      background: #1e293b;
+      padding: 2px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      gap: 2px;
+    }
+
+    .pill-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      padding: 0 6px;
+    }
+
+    .btn-page-jump {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-page-jump:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-print {
+      background: #15803d;
+      color: #ffffff;
+      border-color: #166534;
+    }
+    .btn-print:hover { background: #166534; }
+
+    .btn-secondary {
+      background: #334155;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+    .btn-secondary:hover { background: #475569; }
+
+    /* The Printable Sheets Wrapper */
+    .sheet-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    .form-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      padding: 10mm 14mm 10mm 14mm;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      color: #000000;
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+
+    /* Top Reference Line (from Original Form) */
+    .top-item-press {
+      text-align: right;
+      font-size: 9.5px;
+      color: #333333;
+      margin-bottom: 4px;
+    }
+
+    /* EPFO Official Letterhead */
+    .epfo-letterhead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid #000000;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+    }
+
+    .epfo-logo-img,
+    .epfo-emblem-img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .epfo-header-center {
+      text-align: center;
+      flex: 1;
+      padding: 0 8px;
+    }
+
+    .org-title-hi {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.2;
+    }
+
+    .org-title-en {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #000000;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+
+    .org-sub-dept {
+      font-size: 9.5px;
+      font-weight: 500;
+      color: #111111;
+      margin-top: 1px;
+    }
+
+    /* Form 5-A Header & Legal Paragraphs */
+    .form-header-box {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .main-form-no {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .sub-unexempted {
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    .scheme-title-block {
+      font-size: 10.5px;
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+
+    .scheme-title-block strong {
+      font-weight: 700;
+    }
+
+    .return-banner {
+      margin-top: 5px;
+      font-size: 11.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    /* Particulars Table / Rows */
+    .particulars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .part-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    .part-num {
+      width: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .part-text-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .part-title-line {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .part-label {
+      font-weight: 600;
+      white-space: normal;
+      color: #000000;
+    }
+
+    .part-sublabel {
+      font-size: 10px;
+      color: #222222;
+    }
+
+    /* Blank Dotted Line Inputs */
+    .blank-dotted-input {
+      flex: 1;
+      border: none;
+      border-bottom: 1px dotted #000000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11px;
+      color: #000000;
+      padding: 1px 3px;
+      outline: none;
+      min-height: 18px;
+    }
+
+    .blank-dotted-input:focus {
+      border-bottom: 1.5px solid #0284c7;
+      background: #f8fafc;
+    }
+
+    .blank-dotted-textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px dotted #000000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11px;
+      color: #000000;
+      padding: 1px 3px;
+      outline: none;
+      resize: vertical;
+      line-height: 17px;
+      min-height: 34px;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .blank-dotted-textarea:focus {
+      border-bottom: 1.5px solid #0284c7;
+      background: #f8fafc;
+    }
+
+    /* Structured Data Tables (Items 8, 9, 10, 11) */
+    .grid-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      border-top: 1px solid #000000;
+      border-bottom: 1px solid #000000;
+    }
+
+    .grid-table th,
+    .grid-table td {
+      border-left: none;
+      border-right: none;
+      border-top: 1px solid #000000;
+      border-bottom: 1px solid #000000;
+      padding: 2px 3px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 10px;
+      line-height: 1.25;
+    }
+
+    .grid-table th {
+      font-weight: 700;
+      background: #fafafa;
+    }
+
+    .grid-table .sub-col-id {
+      text-align: center;
+      font-weight: 600;
+      border-top: 1px solid #000000;
+      border-bottom: 1px solid #000000;
+      background: #f4f4f5;
+    }
+
+    .grid-cell-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10.5px;
+      color: #000000;
+      outline: none;
+      padding: 1px 2px;
+      min-height: 18px;
+      line-height: 1.35;
+      resize: none;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      field-sizing: content;
+      display: block;
+    }
+
+    .grid-cell-input:focus {
+      background: #f0f9ff;
+    }
+
+    .blank-dotted-textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px dotted #000000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11px;
+      color: #000000;
+      padding: 1px 3px;
+      outline: none;
+      resize: none;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      field-sizing: content;
+      line-height: 18px;
+      min-height: 20px;
+      display: block;
+    }
+
+    .row-index-cell {
+      width: 22px;
+      text-align: center;
+      font-weight: 600;
+      padding-top: 2px;
+    }
+
+    .foot-note-small {
+      font-size: 9.5px;
+      line-height: 1.25;
+      margin-top: 3px;
+      color: #111111;
+    }
+
+    /* Page 2 Signatures & Seal */
+    .page2-signatory-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 14px;
+      margin-bottom: 10px;
+      padding-top: 8px;
+    }
+
+    .date-left-block {
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .date-left-block input {
+      border: none;
+      border-bottom: 1px dotted #000000;
+      background: transparent;
+      width: 120px;
+      font-family: inherit;
+      font-size: 11px;
+      padding: 1px 2px;
+      outline: none;
+    }
+
+    .sign-right-block {
+      text-align: right;
+      font-size: 11px;
+      line-height: 1.35;
+      min-width: 200px;
+    }
+
+    .sign-right-block .space {
+      height: 30px;
+    }
+
+    .sign-right-block strong {
+      font-weight: 700;
+    }
+
+    /* Final Note Box */
+    .final-statutory-note {
+      border: 1px solid #000000;
+      padding: 5px 8px;
+      font-size: 9.5px;
+      line-height: 1.3;
+      margin-top: 8px;
+      background: #fafafa;
+    }
+
+    /* Print Setup: Guarantees Exact 2 Pages (1 Page per Sheet) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 7mm 9mm 7mm 9mm;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .sheet-wrapper {
+        gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+      }
+
+      .form-sheet {
+        box-shadow: none !important;
+        padding: 0 !important; /* Managed by @page margin */
+        margin: 0 !important;
+        width: 100% !important;
+        min-height: auto !important;
+      }
+
+      .form-sheet.page-1 {
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+
+      .form-sheet.page-2 {
+        page-break-before: always !important;
+        break-before: page !important;
+        page-break-after: avoid !important;
+      }
+
+      .grid-table {
+        page-break-inside: avoid !important;
+      }
+
+      .blank-dotted-input,
+      .blank-dotted-textarea {
+        border-bottom: 1px dotted #000000 !important;
+        background: transparent !important;
+      }
+
+      textarea.grid-cell-input,
+      textarea.blank-dotted-textarea {
+        overflow: visible !important;
+        resize: none !important;
+        background: transparent !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================= -->
+  <!-- 1. TOP APPLICATION TOOLBAR (NO-PRINT)                                     -->
+  <!-- ========================================================================= -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-left">
+      <a href="index.html" class="btn-nav-home" title="मुख्य पोर्टल">
+        🏠 होम
+      </a>
+      <span class="toolbar-title">
+        प्रपत्र सं. 5ए FORM NO. 5-A (RETURN OF OWNERSHIP)
+      </span>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- Page Navigation Pill -->
+      <div class="page-nav-pill">
+        <span class="pill-label">पृष्ठ:</span>
+        <a href="#sheetPage1" class="btn-page-jump">पेज 1 (स्वामी विवरण)</a>
+        <a href="#sheetPage2" class="btn-page-jump">पेज 2 (पट्टेदार/प्रबंधक)</a>
+      </div>
+
+      <!-- Sample Data & Clear Buttons -->
+      <button type="button" class="btn btn-secondary" id="btnSampleData" title="परीक्षण हेतु नमूना डेटा भरें">
+        ⚡ नमूना डेटा भरें
+      </button>
+
+      <button type="button" class="btn btn-secondary" id="btnClearForm" title="सभी फ़ील्ड खाली करें">
+        🧹 पूरी तरह खाली करें
+      </button>
+
+      <!-- Print Button -->
+      <button type="button" class="btn btn-print" id="btnPrintDoc">
+        🖨️ डायरेक्ट प्रिंट / PDF (2 पृष्ठ)
+      </button>
+    </div>
+  </header>
+
+
+  <!-- ========================================================================= -->
+  <!-- 2. MAIN DOCUMENT SHEETS WRAPPER                                           -->
+  <!-- ========================================================================= -->
+  <main class="sheet-wrapper">
+
+    <!-- ======================================================================= -->
+    <!-- SHEET 1 (PAGE 1): Items 1 to 8 (Particulars of Owners)                  -->
+    <!-- ======================================================================= -->
+    <section class="form-sheet page-1" id="sheetPage1">
+
+      <!-- Top Right Reference (as in original form) -->
+      <div class="top-item-press">
+        9670/EPFC (Karnal) – Item 6 – Govt. Press, U.T., Chd.
+      </div>
+
+      <!-- EPFO Letterhead with Dual Logos -->
+      <div class="epfo-letterhead">
+        <img src="image/epfo_logo.png" alt="EPFO Logo" class="epfo-logo-img" onerror="this.src='image/EPFO logo.png'">
+        <div class="epfo-header-center">
+          <div class="org-title-hi">कर्मचारी भविष्य निधि संगठन</div>
+          <div class="org-title-en">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+          <div class="org-sub-dept">
+            (श्रम एवं रोजगार मंत्रालय, भारत सरकार / Ministry of Labour &amp; Employment, Govt. of India)
+          </div>
+        </div>
+        <img src="image/emblem_of_india.svg" alt="Ashok Stambh Emblem" class="epfo-emblem-img" onerror="this.src='image/ashok_stambh.svg'">
+      </div>
+
+      <!-- Form Title & Acts -->
+      <div class="form-header-box">
+        <div class="main-form-no">
+          "प्रपत्र सं. 5ए Form No. 5-A"
+        </div>
+        <div class="sub-unexempted">
+          (केवल छूट रहित स्थापनाओं के लिए) / (FOR UNEXEMPTED ESTABLISHMENT ONLY)
+        </div>
+
+        <div class="scheme-title-block">
+          कर्मचारी भविष्य निधि स्कीम, 1952 / <strong>THE EMPLOYEES' PROVIDENT FUND SCHEME, 1952</strong><br>
+          (पैरा 36-क देखिए) / (See Paragraph 36-A)<br>
+          कर्मचारी कुटुम्ब पेंशन स्कीम, 1971 / <strong>THE EMPLOYEES' FAMILY PENSION SCHEME, 1971</strong><br>
+          (पैरा 10 देखिए) / (See Paragraph 10)<br>
+          और / AND<br>
+          कर्मचारी निक्षेप-सहबद्ध बीमा स्कीम, 1976 / <strong>THE EMPLOYEES' DEPOSIT LINKED INSURANCE SCHEME, 1976</strong><br>
+          पैरा 10 देखिए / (See Paragraph 10)
+        </div>
+
+        <div class="return-banner">
+          क्षेत्रीय आयुक्त को भेजी जाने वाली स्वामित्व का विवरण<br>
+          (RETURN OF OWNERSHIP TO BE SENT TO THE REGIONAL P.F. COMMISSIONER)
+        </div>
+      </div>
+
+      <!-- Items 1 to 7 -->
+      <div class="particulars-list">
+        
+        <!-- 1. Name of establishment -->
+        <div class="part-row">
+          <span class="part-num">1.</span>
+          <div class="part-text-wrap">
+            <div class="part-title-line">
+              <span class="part-label">स्थापना का नाम / Name of establishment</span>
+              <textarea class="blank-dotted-textarea auto-grow" id="inpEstName" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Code Number -->
+        <div class="part-row">
+          <span class="part-num">2.</span>
+          <div class="part-text-wrap">
+            <div class="part-label">कर्मचारी भविष्य निधि और प्रकीर्ण उपबन्ध अधिनियम, 1952 के अधीन स्थापना की कोड सं.</div>
+            <div class="part-title-line">
+              <span class="part-sublabel">Code Number of the establishment under the Employees' Provident Fund and Miscellaneous Provisions Act, 1952</span>
+              <textarea class="blank-dotted-textarea auto-grow" id="inpEstCode" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Postal addresses -->
+        <div class="part-row">
+          <span class="part-num">3.</span>
+          <div class="part-text-wrap">
+            <div class="part-label">स्थापना और उसकी शाखाओं/विभागों यदि कोई हों, का डाक पता</div>
+            <div class="part-sublabel">Postal addresses of the establishment and its branches/departments, if any</div>
+            <textarea class="blank-dotted-textarea auto-grow" id="inpPostalAddress" rows="2"></textarea>
+          </div>
+        </div>
+
+        <!-- 4. Industry or business -->
+        <div class="part-row">
+          <span class="part-num">4.</span>
+          <div class="part-text-wrap">
+            <div class="part-title-line">
+              <span class="part-label">किस उद्योग या कारोबार में लगा है / Industry or business in which engaged</span>
+              <textarea class="blank-dotted-textarea auto-grow" id="inpIndustryType" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Date of first commencement -->
+        <div class="part-row">
+          <span class="part-num">5.</span>
+          <div class="part-text-wrap">
+            <div class="part-label">उत्पादन/कारोबार (परीक्षण / नियमित) के प्रथम आरम्भ की तारीख</div>
+            <div class="part-title-line">
+              <span class="part-sublabel">Date of first commencement of production/business (Trial/regular)</span>
+              <textarea class="blank-dotted-textarea auto-grow" id="inpCommencementDate" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Date of closure -->
+        <div class="part-row">
+          <span class="part-num">6.</span>
+          <div class="part-text-wrap">
+            <div class="part-title-line">
+              <span class="part-label">पूर्वतन प्रबन्धकगण द्वारा बन्दी की तारीख / Date of closure by the previous management</span>
+              <textarea class="blank-dotted-textarea auto-grow" id="inpClosureDate" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Whether run by owners or leasees -->
+        <div class="part-row">
+          <span class="part-num">7.</span>
+          <div class="part-text-wrap">
+            <div class="part-label">स्वामियों द्वारा चलाया जाता है या पट्टेदारों द्वारा (यदि पट्टेदारों द्वारा तो पट्टे की अवधि उपदर्शित की जानी चाहिए)</div>
+            <div class="part-title-line">
+              <span class="part-sublabel">Whether run by the owners or leasees (if by leasees, period of the lease should be indicated)</span>
+              <textarea class="blank-dotted-textarea auto-grow" id="inpRunBy" rows="1"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Item 8: स्वामियों का विवरण / Particulars of Owners -->
+      <div style="margin-top: 6px;">
+        <div style="font-size: 11px; font-weight: 700;">
+          8. स्वामियों का विवरण / Particulars of Owners :
+        </div>
+
+        <table class="grid-table">
+          <thead>
+            <tr>
+              <th style="width: 24px; text-align: center;">क्र.</th>
+              <th style="width: 19%;">नाम<br>Name</th>
+              <th style="width: 7%;">आयु<br>Age</th>
+              <th style="width: 14%;">हैसियत*<br>Status*</th>
+              <th style="width: 17%;">पिता का नाम<br>Father's Name</th>
+              <th style="width: 26%;">निवास स्थान का पता<br>Residential Address</th>
+              <th style="width: 17%;">तारीख जिससे वह उस स्थिति में बना हुआ है<br>Date from which in position</th>
+            </tr>
+            <tr>
+              <th class="sub-col-id"></th>
+              <th class="sub-col-id">(क) / (a)</th>
+              <th class="sub-col-id">(ख) / (b)</th>
+              <th class="sub-col-id">(ग) / (c)</th>
+              <th class="sub-col-id">(घ) / (d)</th>
+              <th class="sub-col-id">(ड़) / (e)</th>
+              <th class="sub-col-id">(च) / (f)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row (i) -->
+            <tr>
+              <td class="row-index-cell">(i)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_name_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_age_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_status_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_father_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_address_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_date_1" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (ii) -->
+            <tr>
+              <td class="row-index-cell">(ii)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_name_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_age_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_status_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_father_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_address_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_date_2" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (iii) -->
+            <tr>
+              <td class="row-index-cell">(iii)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_name_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_age_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_status_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_father_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_address_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_date_3" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (iv) -->
+            <tr>
+              <td class="row-index-cell">(iv)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_name_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_age_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_status_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_father_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_address_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_date_4" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (v) -->
+            <tr>
+              <td class="row-index-cell">(v)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_name_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_age_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_status_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_father_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_address_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_date_5" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (vi) -->
+            <tr>
+              <td class="row-index-cell">(vi)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_name_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_age_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_status_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_father_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_address_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t8_date_6" rows="1"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Footnote for Item 8 -->
+        <div class="foot-note-small">
+          * क्या वह स्वामी, भागीदार, साधारण भागीदार, साधारण निदेशक, आदि-आदि है।<br>
+          * Whether Proprietor, Partner, Mg. Partner, Mg. Director, Director etc.
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================================= -->
+    <!-- SHEET 2 (PAGE 2): Items 9, 10, 11, Signatures & Statutory Note          -->
+    <!-- ======================================================================= -->
+    <section class="form-sheet page-2" id="sheetPage2">
+
+      <!-- Item 9: यदि पट्टे पर है तो पट्टेदारों का विवरण -->
+      <div>
+        <div style="font-size: 11px; font-weight: 700;">
+          9. यदि पट्टे पर है तो पट्टेदारों का विवरण / If on lease, particulars of leasees.
+        </div>
+
+        <table class="grid-table">
+          <thead>
+            <tr>
+              <th style="width: 24px; text-align: center;">क्र.</th>
+              <th style="width: 22%;">नाम<br>Name</th>
+              <th style="width: 8%;">आयु<br>Age</th>
+              <th style="width: 22%;">पिता का नाम<br>Father's Name</th>
+              <th style="width: 30%;">निवास स्थान का पता<br>Residential Address</th>
+              <th style="width: 18%;">तारीख जिससे वह उस स्थिति में बना हुआ है<br>Date from which in position</th>
+            </tr>
+            <tr>
+              <th class="sub-col-id"></th>
+              <th class="sub-col-id">(क) / (a)</th>
+              <th class="sub-col-id">(ख) / (b)</th>
+              <th class="sub-col-id">(ग) / (c)</th>
+              <th class="sub-col-id">(घ) / (d)</th>
+              <th class="sub-col-id">(ड़) / (e)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row (i) -->
+            <tr>
+              <td class="row-index-cell">(i)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_name_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_age_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_father_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_address_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_date_1" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (ii) -->
+            <tr>
+              <td class="row-index-cell">(ii)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_name_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_age_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_father_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_address_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_date_2" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (iii) -->
+            <tr>
+              <td class="row-index-cell">(iii)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_name_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_age_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_father_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_address_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_date_3" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (iv) -->
+            <tr>
+              <td class="row-index-cell">(iv)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_name_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_age_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_father_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_address_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_date_4" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (v) -->
+            <tr>
+              <td class="row-index-cell">(v)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_name_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_age_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_father_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_address_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_date_5" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (vi) -->
+            <tr>
+              <td class="row-index-cell">(vi)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_name_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_age_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_father_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_address_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t9_date_6" rows="1"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Item 10: यदि कारखाना अधिनियम के अधीन रजिस्ट्रीकृत है तो प्रबन्धक/अधिभागी का विवरण -->
+      <div style="margin-top: 8px;">
+        <div style="font-size: 11px; font-weight: 700;">
+          10. यदि कारखाना अधिनियम के अधीन रजिस्ट्रीकृत है तो प्रबन्धक/अधिभागी का विवरण<br>
+          <span style="font-size: 10px; font-weight: 600;">If registered under the Factories Act, particulars of the manager/occupier.</span>
+        </div>
+
+        <table class="grid-table">
+          <thead>
+            <tr>
+              <th style="width: 24px; text-align: center;">क्र.</th>
+              <th style="width: 22%;">नाम<br>Name</th>
+              <th style="width: 8%;">आयु<br>Age</th>
+              <th style="width: 22%;">पिता का नाम<br>Father's Name</th>
+              <th style="width: 30%;">निवास स्थान का पता<br>Residential Address</th>
+              <th style="width: 18%;">तारीख जिससे वह उस स्थिति में बना हुआ है<br>Date from which in position</th>
+            </tr>
+            <tr>
+              <th class="sub-col-id"></th>
+              <th class="sub-col-id">(क) / (a)</th>
+              <th class="sub-col-id">(ख) / (b)</th>
+              <th class="sub-col-id">(ग) / (c)</th>
+              <th class="sub-col-id">(घ) / (d)</th>
+              <th class="sub-col-id">(ड़) / (e)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row क. अधिभागी / Occupier -->
+            <tr>
+              <td style="font-weight: 700; text-align: center;">क.</td>
+              <td>
+                <div style="font-size: 9px; font-weight: 700; color: #555;">अधिभागी / Occupier:</div>
+                <textarea class="grid-cell-input auto-grow" id="t10_name_occ" rows="1"></textarea>
+              </td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_age_occ" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_father_occ" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_address_occ" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_date_occ" rows="1"></textarea></td>
+            </tr>
+            <!-- Row ख. प्रबन्धक / Manager -->
+            <tr>
+              <td style="font-weight: 700; text-align: center;">ख.</td>
+              <td>
+                <div style="font-size: 9px; font-weight: 700; color: #555;">प्रबन्धक / Manager:</div>
+                <textarea class="grid-cell-input auto-grow" id="t10_name_mgr" rows="1"></textarea>
+              </td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_age_mgr" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_father_mgr" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_address_mgr" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t10_date_mgr" rows="1"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Item 11: ऊपर वर्णित व्यक्तियों का विवरण जो स्थापना के कारबार के प्रभारी और उसके संचालन के लिए उत्तरदायी हैं -->
+      <div style="margin-top: 8px;">
+        <div style="font-size: 11px; font-weight: 700;">
+          11. ऊपर वर्णित व्यक्तियों का विवरण जो स्थापना के कारबार के प्रभारी और उसके संचालन के लिए उत्तरदायी हैं।<br>
+          <span style="font-size: 10px; font-weight: 600;">Particulars of the persons mentioned above, who are incharge and responsible for the conduct of the business of the establishment.</span>
+        </div>
+
+        <table class="grid-table">
+          <thead>
+            <tr>
+              <th style="width: 24px; text-align: center;">क्र.</th>
+              <th style="width: 22%;">नाम<br>Name</th>
+              <th style="width: 8%;">आयु<br>Age</th>
+              <th style="width: 22%;">पिता का नाम<br>Father's Name</th>
+              <th style="width: 30%;">निवास स्थान का पता<br>Residential Address</th>
+              <th style="width: 18%;">तारीख जिससे वह उस स्थिति में बना हुआ है<br>Date from which in position</th>
+            </tr>
+            <tr>
+              <th class="sub-col-id"></th>
+              <th class="sub-col-id">(क) / (a)</th>
+              <th class="sub-col-id">(ख) / (b)</th>
+              <th class="sub-col-id">(ग) / (c)</th>
+              <th class="sub-col-id">(घ) / (d)</th>
+              <th class="sub-col-id">(ड़) / (e)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row (i) -->
+            <tr>
+              <td class="row-index-cell">(i)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_name_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_age_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_father_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_address_1" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_date_1" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (ii) -->
+            <tr>
+              <td class="row-index-cell">(ii)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_name_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_age_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_father_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_address_2" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_date_2" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (iii) -->
+            <tr>
+              <td class="row-index-cell">(iii)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_name_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_age_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_father_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_address_3" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_date_3" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (iv) -->
+            <tr>
+              <td class="row-index-cell">(iv)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_name_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_age_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_father_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_address_4" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_date_4" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (v) -->
+            <tr>
+              <td class="row-index-cell">(v)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_name_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_age_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_father_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_address_5" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_date_5" rows="1"></textarea></td>
+            </tr>
+            <!-- Row (vi) -->
+            <tr>
+              <td class="row-index-cell">(vi)</td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_name_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_age_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_father_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_address_6" rows="1"></textarea></td>
+              <td><textarea class="grid-cell-input auto-grow" id="t11_date_6" rows="1"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Signatures & Seal Section -->
+      <div class="page2-signatory-wrap">
+        <div class="date-left-block">
+          Date : <input type="text" id="inpFinalDate" value=""><br>
+          तारीख
+        </div>
+
+        <div class="sign-right-block">
+          <div class="space"></div>
+          <strong>नियोजक के हस्ताक्षर</strong><br>
+          Signature of the employer<br><br>
+          <strong>पदनाम / Designation:</strong> <input type="text" id="inpDesignation" style="border:none; border-bottom:1px dotted #000; outline:none; font-family:inherit; font-size:11px; width:130px;" value=""><br><br>
+          <strong>स्थापना की मोहर</strong><br>
+          Seal of the Establishment
+        </div>
+      </div>
+
+      <!-- Statutory Footnote -->
+      <div class="final-statutory-note">
+        <strong>टिप्पणी :</strong> ऊपर दी गई सूचना में कोई परिवर्तन हो तो ऐसे परिवर्तन के पन्द्रह दिन के भीतर रजिस्ट्रीकृत डाक द्वारा विहित रीति से क्षेत्रीय आयुक्त को लिखित रूप में दिया जाना चाहिए।<br>
+        <strong>Note :</strong> Any change in the information given above should be intimated, in writing to the Regional Commissioner within fifteen days of such change by registered post and in prescribed manner.
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 3. JAVASCRIPT LOGIC                                                       -->
+  <!-- ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnPrintDoc = document.getElementById('btnPrintDoc');
+      const btnSampleData = document.getElementById('btnSampleData');
+      const btnClearForm = document.getElementById('btnClearForm');
+
+      // Auto-grow function for textareas (Auto Line Change / Multi-line Wrap)
+      function autoGrow(el) {
+        if (!el) return;
+        el.style.height = 'auto';
+        el.style.height = (el.scrollHeight) + 'px';
+      }
+
+      function initAutoGrow() {
+        document.querySelectorAll('textarea.auto-grow').forEach(el => {
+          autoGrow(el);
+          el.removeEventListener('input', el._growHandler);
+          el._growHandler = function() { autoGrow(this); };
+          el.addEventListener('input', el._growHandler);
+        });
+      }
+
+      // Print
+      if (btnPrintDoc) {
+        btnPrintDoc.addEventListener('click', () => {
+          window.print();
+        });
+      }
+
+      // Clear Form (Make 100% blank)
+      if (btnClearForm) {
+        btnClearForm.addEventListener('click', () => {
+          document.querySelectorAll('input[type="text"], textarea').forEach(el => {
+            el.value = '';
+          });
+          initAutoGrow();
+        });
+      }
+
+      // Load Sample Data (Optional convenience button)
+      if (btnSampleData) {
+        btnSampleData.addEventListener('click', () => {
+          document.getElementById('inpEstName').value = 'M/s. Haryana Precision Auto Components Pvt. Ltd.';
+          document.getElementById('inpEstCode').value = 'HR/FBD/0034892/000';
+          document.getElementById('inpPostalAddress').value = 'Plot No. 128, Sector-24, DLF Industrial Area, Faridabad - 121005 (Haryana)';
+          document.getElementById('inpIndustryType').value = 'Manufacturing of Precision Automobile Parts & Sheet Metal Components';
+          document.getElementById('inpCommencementDate').value = '15.04.2014 (Trial) / 01.07.2014 (Regular)';
+          document.getElementById('inpClosureDate').value = 'N.A. (Not Applicable)';
+          document.getElementById('inpRunBy').value = 'Run by Owners (Private Limited Company)';
+
+          // Owners
+          document.getElementById('t8_name_1').value = 'Suresh Chand Sharma';
+          document.getElementById('t8_age_1').value = '52 Yrs';
+          document.getElementById('t8_status_1').value = 'Managing Director';
+          document.getElementById('t8_father_1').value = 'Late Sh. R. K. Sharma';
+          document.getElementById('t8_address_1').value = 'H.No. 452, Sector-15, Faridabad';
+          document.getElementById('t8_date_1').value = '01.07.2014';
+
+          document.getElementById('t8_name_2').value = 'Anil Kumar Sharma';
+          document.getElementById('t8_age_2').value = '48 Yrs';
+          document.getElementById('t8_status_2').value = 'Whole-time Director';
+          document.getElementById('t8_father_2').value = 'Late Sh. R. K. Sharma';
+          document.getElementById('t8_address_2').value = 'H.No. 453, Sector-15, Faridabad';
+          document.getElementById('t8_date_2').value = '01.07.2014';
+
+          // Manager / Occupier
+          document.getElementById('t10_name_occ').value = 'Suresh Chand Sharma';
+          document.getElementById('t10_age_occ').value = '52 Yrs';
+          document.getElementById('t10_father_occ').value = 'Late Sh. R. K. Sharma';
+          document.getElementById('t10_address_occ').value = 'H.No. 452, Sector-15, Faridabad';
+          document.getElementById('t10_date_occ').value = '01.07.2014';
+
+          document.getElementById('t10_name_mgr').value = 'Vikramjeet Singh';
+          document.getElementById('t10_age_mgr').value = '44 Yrs';
+          document.getElementById('t10_father_mgr').value = 'Sh. Gurmukh Singh';
+          document.getElementById('t10_address_mgr').value = 'Flat No. 302, Green Valley Apts, Sector-21C, Faridabad';
+          document.getElementById('t10_date_mgr').value = '10.08.2018';
+
+          // Persons in charge (Item 11)
+          document.getElementById('t11_name_1').value = 'Suresh Chand Sharma';
+          document.getElementById('t11_age_1').value = '52 Yrs';
+          document.getElementById('t11_father_1').value = 'Late Sh. R. K. Sharma';
+          document.getElementById('t11_address_1').value = 'H.No. 452, Sector-15, Faridabad';
+          document.getElementById('t11_date_1').value = '01.07.2014';
+
+          document.getElementById('inpFinalDate').value = '16.09.2026';
+          document.getElementById('inpDesignation').value = 'Managing Director';
+
+          // Auto-resize all multi-line fields to fit loaded sample text
+          initAutoGrow();
+          alert('प्रपत्र सं. 5ए (Form No. 5-A) में नमूना डेटा सफलतापूर्वक भर दिया गया है!');
+        });
+      }
+
+      // Initial auto-grow setup
+      initAutoGrow();
+    });
+  </script>
+</body>
+</html>

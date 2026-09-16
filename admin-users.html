@@ -531,6 +531,9 @@
         <button type="button" class="btn-export btn-json" id="btnExportJSON">
           📄 Export JSON
         </button>
+        <button type="button" class="btn-export" id="btnCopyCodeSnippet" style="background: #0284c7; color: #ffffff; font-weight: 700;">
+          💾 कोड फाइल स्निपेट (Copy Code)
+        </button>
         <button type="button" class="btn-export btn-danger" id="btnClearData">
           🗑️ डेटा साफ करें (Clear)
         </button>
@@ -770,6 +773,20 @@
       if (btnJson) {
         btnJson.addEventListener('click', () => {
           if (typeof UserDetailsHub !== 'undefined') UserDetailsHub.exportUsersToJSON();
+        });
+      }
+
+      // Copy JS Code Snippet for user-details.js
+      const btnCopyCode = document.getElementById('btnCopyCodeSnippet');
+      if (btnCopyCode) {
+        btnCopyCode.addEventListener('click', () => {
+          if (typeof UserDetailsHub === 'undefined') return;
+          const snippet = UserDetailsHub.getUsersCodeSnippet();
+          navigator.clipboard.writeText(snippet).then(() => {
+            alert('पंजीकृत यूज़र्स का कोड स्निपेट सफलतापूर्वक कॉपी हो गया है!\n\nआप इसे user-details.js की IN_CODE_REGISTERED_USERS सरणी में सीधे पेस्ट कर सकते हैं।');
+          }).catch(err => {
+            prompt('कृपया नीचे दिए गए कोड को कॉपी करें:', snippet);
+          });
         });
       }
 

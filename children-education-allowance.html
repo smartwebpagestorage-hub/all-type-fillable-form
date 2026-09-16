@@ -202,50 +202,50 @@
 
     #sheet1 .cea-table th,
     #sheet1 .cea-table td {
-      padding: 8px 8px;
-      font-size: 13px;
+      padding: 7px 8px;
+      font-size: 14px;
       vertical-align: middle;
     }
 
     #sheet1 .fill-input {
-      font-size: 13px;
+      font-size: 14px;
       padding: 3px 4px;
     }
 
     #sheet1 .child-subtable th {
-      padding: 7px 6px;
-      font-size: 12px;
+      padding: 8px 6px;
+      font-size: 13.5px;
       background: #fafafa;
     }
 
     #sheet1 .child-subtable td {
-      padding: 7px 6px;
-      font-size: 12.5px;
+      padding: 6px 6px;
+      font-size: 14px;
     }
 
     #sheet1 .child-subtable .fill-input {
-      font-size: 12.5px;
+      font-size: 14px;
       padding: 3px 4px;
     }
 
     #sheet1 .sec8-title {
       font-weight: 700;
       margin-bottom: 8px;
-      font-size: 13.5px;
+      font-size: 14.5px;
     }
 
     #sheet1 .exp-table th {
       padding: 8px 6px;
-      font-size: 12.5px;
+      font-size: 13.5px;
     }
 
     #sheet1 .exp-table td {
-      padding: 8px 6px;
-      font-size: 13px;
+      padding: 7px 6px;
+      font-size: 14px;
     }
 
     #sheet1 .exp-table .fill-input {
-      font-size: 13px;
+      font-size: 14px;
       padding: 3px 4px;
     }
 
@@ -261,12 +261,12 @@
       border: 1px solid #000000;
       padding: 7px 8px;
       vertical-align: middle;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.4;
     }
 
     #sheet1 .main-particulars-table .fill-input {
-      font-size: 13px;
+      font-size: 14px;
       padding: 3px 4px;
     }
 
@@ -342,6 +342,21 @@
     .fill-input:focus {
       border-bottom: 1.5px solid var(--primary-color);
       background: #f0f9ff;
+    }
+
+    /* Auto-expanding multi-line textarea that wraps text automatically */
+    textarea.fill-input {
+      resize: none;
+      overflow: hidden;
+      display: block;
+      width: 100%;
+      line-height: 1.4;
+      min-height: 24px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      field-sizing: content;
+      padding: 3px 4px;
+      vertical-align: middle;
     }
 
     .fill-input.inline-blank {
@@ -582,7 +597,7 @@
               <td class="text-center font-bold">4.</td>
               <td>Name of the Unit, Name of Department/Organization</td>
               <td class="text-center font-bold">:</td>
-              <td><input type="text" class="fill-input font-bold" id="cea_unit" placeholder="Office / Unit / Department / Organization Name"></td>
+              <td><textarea class="fill-input auto-grow font-bold" id="cea_unit" rows="1" placeholder="Office / Unit / Department / Organization Name"></textarea></td>
             </tr>
             <tr>
               <td class="text-center font-bold">5.</td>
@@ -590,13 +605,13 @@
                 If Spouse is employed, state whether in Central Govt., PSU, State Govt. (give details with name of the Spouse)
               </td>
               <td class="text-center font-bold">:</td>
-              <td><input type="text" class="fill-input" id="cea_spouseDetails" placeholder="Name of Spouse & Employment details (or 'Not Employed')"></td>
+              <td><textarea class="fill-input auto-grow" id="cea_spouseDetails" rows="1" placeholder="Name of Spouse & Employment details (or 'Not Employed')"></textarea></td>
             </tr>
             <tr>
               <td class="text-center font-bold">6.</td>
               <td>Designation, Office &amp; B.U. No.of spouse, if spouse is employed in Railway</td>
               <td class="text-center font-bold">:</td>
-              <td><input type="text" class="fill-input" id="cea_railwaySpouse" placeholder="Designation, Office & B.U. No. (or 'N/A')"></td>
+              <td><textarea class="fill-input auto-grow" id="cea_railwaySpouse" rows="1" placeholder="Designation, Office & B.U. No. (or 'N/A')"></textarea></td>
             </tr>
           </tbody>
         </table>
@@ -633,18 +648,18 @@
             <tbody id="childTableBody">
               <tr id="childRow_1">
                 <td class="text-center font-bold">1<sup>st</sup> Child</td>
-                <td><input type="text" class="fill-input font-bold" id="cea_c1_name" placeholder="Child 1 Full Name"></td>
+                <td><textarea class="fill-input auto-grow font-bold" id="cea_c1_name" rows="1" placeholder="Child 1 Full Name"></textarea></td>
                 <td><input type="text" class="fill-input text-center" id="cea_c1_dob" placeholder="DD/MM/YYYY"></td>
                 <td><input type="text" class="fill-input text-center" id="cea_c1_std" placeholder="Class / Standard"></td>
-                <td><input type="text" class="fill-input" id="cea_c1_school" placeholder="School Name & City"></td>
+                <td><textarea class="fill-input auto-grow" id="cea_c1_school" rows="1" placeholder="School Name & City"></textarea></td>
                 <td class="text-center no-print" style="color: #94a3b8; font-size: 11px;">-</td>
               </tr>
               <tr id="childRow_2">
                 <td class="text-center font-bold">2<sup>nd</sup> Child</td>
-                <td><input type="text" class="fill-input font-bold" id="cea_c2_name" placeholder="Child 2 Full Name (if any)"></td>
+                <td><textarea class="fill-input auto-grow font-bold" id="cea_c2_name" rows="1" placeholder="Child 2 Full Name (if any)"></textarea></td>
                 <td><input type="text" class="fill-input text-center" id="cea_c2_dob" placeholder="DD/MM/YYYY"></td>
                 <td><input type="text" class="fill-input text-center" id="cea_c2_std" placeholder="Class / Standard"></td>
-                <td><input type="text" class="fill-input" id="cea_c2_school" placeholder="School Name & City"></td>
+                <td><textarea class="fill-input auto-grow" id="cea_c2_school" rows="1" placeholder="School Name & City"></textarea></td>
                 <td class="text-center no-print">
                   <button type="button" class="btn-del-row no-print" onclick="removeChildRow(2)" title="Remove 2nd Child">✕</button>
                 </td>
@@ -680,7 +695,7 @@
               <td><input type="text" class="fill-input text-center" id="exp_c1_period" value="01.04.2025 to 31.03.2026" placeholder="Period (from - to)"></td>
               <td><input type="text" class="fill-input text-right font-bold" id="exp_c1_rate" value="2250/- p.m." placeholder="e.g. 2250/- p.m."></td>
               <td><input type="text" class="fill-input text-right font-bold exp-amount-calc" id="exp_c1_amt" value="27000" placeholder="27000"></td>
-              <td><input type="text" class="fill-input" id="exp_c1_remarks" placeholder="Annual Ceiling Claim"></td>
+              <td><textarea class="fill-input auto-grow" id="exp_c1_remarks" rows="1" placeholder="Annual Ceiling Claim"></textarea></td>
               <td class="text-center no-print" style="color: #94a3b8; font-size: 11px;">-</td>
             </tr>
             <tr id="expRow_2">
@@ -688,7 +703,7 @@
               <td><input type="text" class="fill-input text-center" id="exp_c2_period" placeholder="01.04.2025 to 31.03.2026"></td>
               <td><input type="text" class="fill-input text-right font-bold" id="exp_c2_rate" placeholder="2250/- p.m."></td>
               <td><input type="text" class="fill-input text-right font-bold exp-amount-calc" id="exp_c2_amt" placeholder="Amount (Rs.)"></td>
-              <td><input type="text" class="fill-input" id="exp_c2_remarks" placeholder="Optional remarks"></td>
+              <td><textarea class="fill-input auto-grow" id="exp_c2_remarks" rows="1" placeholder="Optional remarks"></textarea></td>
               <td class="text-center no-print">
                 <button type="button" class="btn-del-row no-print" onclick="removeChildRow(2)" title="Remove 2nd Child">✕</button>
               </td>
@@ -1092,6 +1107,24 @@
         return n + (s[(v - 20) % 10] || s[v] || s[0]);
       }
 
+      // -------------------------------------------------------------
+      // Auto-Grow Textarea Resizing (Auto-Line Change on Overflow)
+      // -------------------------------------------------------------
+      function autoGrowTextarea(el) {
+        if (!el) return;
+        el.style.height = 'auto';
+        el.style.height = (el.scrollHeight) + 'px';
+      }
+
+      function initAllAutoGrow() {
+        document.querySelectorAll('textarea.auto-grow').forEach(ta => {
+          autoGrowTextarea(ta);
+          ta.removeEventListener('input', ta._autoGrowHandler);
+          ta._autoGrowHandler = function() { autoGrowTextarea(this); };
+          ta.addEventListener('input', ta._autoGrowHandler);
+        });
+      }
+
       const btnAddChild = document.getElementById('btnAddChild');
       if (btnAddChild) {
         btnAddChild.addEventListener('click', () => {
@@ -1105,10 +1138,10 @@
           newCRow.id = 'childRow_' + idx;
           newCRow.innerHTML = `
             <td class="text-center font-bold">${ord} Child</td>
-            <td><input type="text" class="fill-input font-bold" id="cea_c${idx}_name" placeholder="Child ${idx} Full Name"></td>
+            <td><textarea class="fill-input auto-grow font-bold" id="cea_c${idx}_name" rows="1" placeholder="Child ${idx} Full Name"></textarea></td>
             <td><input type="text" class="fill-input text-center" id="cea_c${idx}_dob" placeholder="DD/MM/YYYY"></td>
             <td><input type="text" class="fill-input text-center" id="cea_c${idx}_std" placeholder="Class / Standard"></td>
-            <td><input type="text" class="fill-input" id="cea_c${idx}_school" placeholder="School Name & City"></td>
+            <td><textarea class="fill-input auto-grow" id="cea_c${idx}_school" rows="1" placeholder="School Name & City"></textarea></td>
             <td class="text-center no-print">
               <button type="button" class="btn-del-row no-print" onclick="removeChildRow(${idx})" title="Remove Child ${idx}">✕</button>
             </td>
@@ -1125,12 +1158,15 @@
             <td><input type="text" class="fill-input text-center" id="exp_c${idx}_period" placeholder="01.04.2025 to 31.03.2026"></td>
             <td><input type="text" class="fill-input text-right font-bold" id="exp_c${idx}_rate" value="2250/- p.m." placeholder="2250/- p.m."></td>
             <td><input type="text" class="fill-input text-right font-bold exp-amount-calc" id="exp_c${idx}_amt" placeholder="Amount (Rs.)"></td>
-            <td><input type="text" class="fill-input" id="exp_c${idx}_remarks" placeholder="Optional remarks"></td>
+            <td><textarea class="fill-input auto-grow" id="exp_c${idx}_remarks" rows="1" placeholder="Optional remarks"></textarea></td>
             <td class="text-center no-print">
               <button type="button" class="btn-del-row no-print" onclick="removeChildRow(${idx})" title="Remove Child ${idx}">✕</button>
             </td>
           `;
           expTableBody.insertBefore(newERow, expTotalRow);
+
+          // Re-initialize auto-grow for new fields
+          initAllAutoGrow();
         });
       }
 
@@ -1260,6 +1296,9 @@
         document.getElementById('decl_empSignDesig').value = 'SECTION SUPERVISOR';
         document.getElementById('decl_place').value = 'Faridabad';
         document.getElementById('decl_date').value = '15/04/2026';
+
+        // Auto-resize all textareas to fit loaded sample text
+        initAllAutoGrow();
       });
 
       // -------------------------------------------------------------
@@ -1325,6 +1364,8 @@
         window.print();
       });
 
+      // Initial auto-grow calculation on load
+      initAllAutoGrow();
     })();
   </script>
 </body>

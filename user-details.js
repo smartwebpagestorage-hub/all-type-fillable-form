@@ -1,7 +1,8 @@
 /**
  * User Details & Authentication Data Hub
  * Manages user registration, local persistence, session management,
- * Google Sheets real-time synchronization, and export functions for admin view.
+ * permanent code-file database, Google Sheets real-time synchronization,
+ * and export functions for admin view.
  * 
  * Curated by Niraj Kumar, Section Supervisor, RO, Faridabad
  * Contact: smart.webpage.storage@gmail.com | 8700383426
@@ -11,6 +12,27 @@ const UserDetailsHub = (function() {
   const STORAGE_KEY_USERS = 'portalRegisteredUsers';
   const STORAGE_KEY_SESSION = 'portalActiveUserSession';
   const STORAGE_KEY_WEBHOOK = 'portalGoogleSheetWebhookUrl';
+  const STORAGE_KEY_LAST_EMAIL = 'portalLastRegisteredEmail';
+
+  // =========================================================================
+  // 1. Permanent In-Code Registered Users (Bake directly in code file)
+  //    ये यूज़र्स कोड फाइल में स्थायी रूप से सेव रहते हैं।
+  //    ब्राउज़र कैश या लोकल स्टोरेज डिलीट होने पर भी ये यूज़र्स बने रहते हैं।
+  // =========================================================================
+  const IN_CODE_REGISTERED_USERS = [
+    {
+      id: 'USR_ADMIN_01',
+      name: 'Niraj Kumar',
+      email: 'smart.webpage.storage@gmail.com',
+      mobile: '8700383426',
+      password: 'EPFO#Admin123',
+      registeredAt: '16/09/2026, 10:00:00 am',
+      registeredTimestamp: 1789533600000,
+      lastLoginAt: '16/09/2026, 10:00:00 am',
+      totalLogins: 5,
+      formsAccessed: []
+    }
+  ];
 
   // Fallback Google Sheets Webhook URL (can also be saved via Admin Dashboard)
   let GOOGLE_SHEET_WEBHOOK_URL = ''; 
@@ -84,8 +106,8 @@ const UserDetailsHub = (function() {
     });
   }
 
-  // Initialize storage if empty
-  function getAllUsers() {
+  // Retrieve stored users from localStorage only
+  function getStoredUsersOnly() {
     try {
       const data = localStorage.getItem(STORAGE_KEY_USERS);
       return data ? JSON.parse(data) : [];
@@ -101,6 +123,34 @@ const UserDetailsHub = (function() {
     } catch (e) {
       console.error('Error saving users to storage', e);
     }
+  }
+
+  // Get combined users (In-Code Users + LocalStorage Users)
+  function getAllUsers() {
+    const storedUsers = getStoredUsersOnly();
+    const userMap = new Map();
+
+    // 1. First add permanent in-code registered users
+    IN_CODE_REGISTERED_USERS.forEach(u => {
+      const key = (u.email || '').toLowerCase().trim();
+      if (key) {
+        userMap.set(key, { ...u });
+      }
+    });
+
+    // 2. Then merge stored users (stored users will preserve updated login counts & latest registrations)
+    storedUsers.forEach(u => {
+      const key = (u.email || '').toLowerCase().trim();
+      if (key) {
+        if (userMap.has(key)) {
+          userMap.set(key, { ...userMap.get(key), ...u });
+        } else {
+          userMap.set(key, { ...u });
+        }
+      }
+    });
+
+    return Array.from(userMap.values());
   }
 
   // Active Session Helper
@@ -143,12 +193,15 @@ const UserDetailsHub = (function() {
       return { success: false, message: 'कृपया 10-अंकीय मान्य मोबाइल नंबर दर्ज करें (Enter valid 10-digit mobile)' };
     }
 
-    const users = getAllUsers();
-    const existing = users.find(u => u.email === email || u.mobile === mobile);
+    const allUsers = getAllUsers();
+    const existing = allUsers.find(u => (u.email || '').toLowerCase() === email || u.mobile === mobile);
     if (existing) {
       return { 
         success: false, 
-        message: 'यह ईमेल या मोबाइल पहले से पंजीकृत है। कृपया साइन इन करें। (Already registered, please sign in)' 
+        alreadyRegistered: true,
+        email: existing.email,
+        mobile: existing.mobile,
+        message: 'यह ईमेल या मोबाइल पहले से पंजीकृत है। कृपया अपना पासवर्ड डालकर साइन इन करें।' 
       };
     }
 
@@ -165,9 +218,14 @@ const UserDetailsHub = (function() {
       formsAccessed: []
     };
 
-    users.unshift(newUser);
-    saveAllUsers(users);
+    const stored = getStoredUsersOnly();
+    stored.unshift(newUser);
+    saveAllUsers(stored);
+
     setActiveUser(newUser);
+    try {
+      localStorage.setItem(STORAGE_KEY_LAST_EMAIL, email);
+    } catch (e) {}
 
     // Forward automatically to Google Sheet in real-time
     forwardToGoogleSheet(newUser);
@@ -175,29 +233,53 @@ const UserDetailsHub = (function() {
     return { success: true, user: newUser, message: 'पंजीकरण सफल रहा! (Registration successful)' };
   }
 
-  // Authenticate Returning User
+  // Authenticate Returning User (by Email OR 10-digit Mobile)
   function loginUser({ email, password }) {
-    email = (email || '').trim().toLowerCase();
+    const inputIdentifier = (email || '').trim().toLowerCase();
     password = (password || '').trim();
 
-    if (!email || !password) {
-      return { success: false, message: 'कृपया ईमेल और पासवर्ड दर्ज करें (Enter email and password)' };
+    if (!inputIdentifier || !password) {
+      return { success: false, message: 'कृपया ईमेल/मोबाइल और पासवर्ड दर्ज करें (Enter email/mobile and password)' };
     }
 
-    const users = getAllUsers();
-    const userIndex = users.findIndex(u => (u.email === email || u.mobile === email) && u.password === password);
+    const allUsers = getAllUsers();
+    const user = allUsers.find(u => 
+      ((u.email || '').toLowerCase() === inputIdentifier || (u.mobile || '') === inputIdentifier)
+    );
 
-    if (userIndex === -1) {
-      return { success: false, message: 'अमान्य ईमेल या पासवर्ड। कृपया पुनः प्रयास करें। (Invalid credentials)' };
+    if (!user) {
+      return { 
+        success: false, 
+        notRegistered: true, 
+        message: 'यह ईमेल/मोबाइल पंजीकृत नहीं है। कृपया पहले साइन अप करें।' 
+      };
     }
 
-    const user = users[userIndex];
+    if (user.password !== password) {
+      return { 
+        success: false, 
+        message: 'पासवर्ड गलत है! कृपया सही पासवर्ड दर्ज करें।' 
+      };
+    }
+
+    // Success! Update stats
     user.lastLoginAt = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
     user.totalLogins = (user.totalLogins || 0) + 1;
-    users[userIndex] = user;
-    saveAllUsers(users);
+
+    const stored = getStoredUsersOnly();
+    const storedIdx = stored.findIndex(u => (u.email || '').toLowerCase() === (user.email || '').toLowerCase());
+    if (storedIdx >= 0) {
+      stored[storedIdx] = user;
+    } else {
+      stored.unshift(user);
+    }
+    saveAllUsers(stored);
 
     setActiveUser(user);
+    try {
+      localStorage.setItem(STORAGE_KEY_LAST_EMAIL, user.email);
+    } catch (e) {}
+
     return { success: true, user: user, message: 'लॉगिन सफल रहा! (Login successful)' };
   }
 
@@ -254,6 +336,12 @@ const UserDetailsHub = (function() {
     URL.revokeObjectURL(url);
   }
 
+  // Generate updated code snippet of IN_CODE_REGISTERED_USERS
+  function getUsersCodeSnippet() {
+    const users = getAllUsers();
+    return JSON.stringify(users, null, 2);
+  }
+
   return {
     getAllUsers,
     registerUser,
@@ -262,6 +350,7 @@ const UserDetailsHub = (function() {
     getActiveUser,
     exportUsersToCSV,
     exportUsersToJSON,
+    getUsersCodeSnippet,
     getWebhookUrl,
     setWebhookUrl,
     testWebhook

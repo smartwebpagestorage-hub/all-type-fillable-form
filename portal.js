@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. YouTube Video Guides Dictionary (Niraj Kumar can customize links here)
   // =========================================================================
   const formVideoTutorials = {
+    'epfo-high-value-claim-verification': {
+      title: 'EPFO High Value Claim KYC Email Verification Letter & Employer Reply Guide',
+      url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
+    },
     'epfo-leave-and-joining': {
       title: 'Govt & EPFO All Types of Leave Application & Joining Report Guide',
       url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
@@ -51,6 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'epfo-letterhead-noting': {
       title: 'EPFO Letterhead & Official Noting Sheet Drafting Tutorial',
+      url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
+    },
+    'epfo-guest-house-booking': {
+      title: 'EPFO Holiday Home & Guest House Booking Form Video Tutorial',
+      url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
+    },
+    'epfo-eps-to-pf-merger': {
+      title: 'EPFO EPS to EPF Contribution Merger Employer Letter & Office Note Tutorial',
+      url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
+    },
+    'epfo-revised-annexure-k': {
+      title: 'EPFO Revised Annexure "K" (EPS Service Details & PF Transfer Certificate) Complete Guide',
+      url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
+    },
+    'epfo-form-5a': {
+      title: 'EPFO Form 5-A Return of Ownership (स्वामित्व का विवरण) Kaise Bharein? Complete Guide',
       url: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ'
     }
   };
@@ -125,16 +145,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let pendingFormDestination = null;
 
-  function openAuthModal(targetUrl = null, defaultTab = 'signup') {
+  function openAuthModal(targetUrl = null, defaultTab = null, prefillEmail = null) {
     if (!authModal) return;
     pendingFormDestination = targetUrl;
     
     // Reset errors
-    if (signUpError) { signUpError.style.display = 'none'; signUpError.textContent = ''; }
-    if (signInError) { signInError.style.display = 'none'; signInError.textContent = ''; }
+    if (signUpError) { 
+      signUpError.style.display = 'none'; 
+      signUpError.textContent = ''; 
+      signUpError.style.background = '#fee2e2';
+      signUpError.style.color = '#dc2626';
+    }
+    if (signInError) { 
+      signInError.style.display = 'none'; 
+      signInError.textContent = ''; 
+      signInError.style.background = '#fee2e2';
+      signInError.style.color = '#dc2626';
+    }
 
-    // Switch to requested tab
-    if (defaultTab === 'signin') {
+    const lastEmail = localStorage.getItem('portalLastRegisteredEmail') || '';
+    const emailToUse = prefillEmail || lastEmail;
+    if (emailToUse) {
+      const signInEmailInput = document.getElementById('signInEmail');
+      if (signInEmailInput && !signInEmailInput.value) {
+        signInEmailInput.value = emailToUse;
+      }
+    }
+
+    // Default to signin if user previously registered or if users already exist
+    if (defaultTab) {
+      activateAuthTab(defaultTab);
+    } else if (emailToUse || (typeof UserDetailsHub !== 'undefined' && UserDetailsHub.getAllUsers().length > 0)) {
       activateAuthTab('signin');
     } else {
       activateAuthTab('signup');
@@ -156,6 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (tabBtnSignUp) tabBtnSignUp.classList.remove('active');
       if (formSignInPane) formSignInPane.style.display = 'block';
       if (formSignUpPane) formSignUpPane.style.display = 'none';
+      const signInEmail = document.getElementById('signInEmail');
+      if (signInEmail && !signInEmail.value) {
+        const lastEmail = localStorage.getItem('portalLastRegisteredEmail');
+        if (lastEmail) signInEmail.value = lastEmail;
+      }
     } else {
       if (tabBtnSignUp) tabBtnSignUp.classList.add('active');
       if (tabBtnSignIn) tabBtnSignIn.classList.remove('active');
@@ -209,7 +255,15 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       const btnTrigger = document.getElementById('btnNavbarLoginTrigger');
       if (btnTrigger) {
-        btnTrigger.addEventListener('click', () => openAuthModal(null, 'signin'));
+        btnTrigger.addEventListener('click', () => {
+          const lastEmail = localStorage.getItem('portalLastRegisteredEmail');
+          const allUsers = (typeof UserDetailsHub !== 'undefined') ? UserDetailsHub.getAllUsers() : [];
+          if (lastEmail || allUsers.length > 0) {
+            openAuthModal(null, 'signin', lastEmail);
+          } else {
+            openAuthModal(null, 'signup');
+          }
+        });
       }
     }
   }
@@ -230,9 +284,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const res = UserDetailsHub.registerUser({ name, email, mobile, password });
       if (!res.success) {
+        // If already registered, seamlessly transition to Sign In tab!
+        if (res.alreadyRegistered) {
+          activateAuthTab('signin');
+          const signInEmail = document.getElementById('signInEmail');
+          if (signInEmail) signInEmail.value = email;
+          const signInPassword = document.getElementById('signInPassword');
+          if (signInPassword) {
+            signInPassword.value = '';
+            signInPassword.focus();
+          }
+          if (signInError) {
+            signInError.textContent = 'ℹ️ यह ईमेल/मोबाइल पहले से पंजीकृत है! कृपया अपना पासवर्ड दर्ज करके साइन इन करें।';
+            signInError.style.display = 'block';
+            signInError.style.background = '#e0f2fe';
+            signInError.style.color = '#0369a1';
+          }
+          return;
+        }
+
         if (signUpError) {
           signUpError.textContent = res.message;
           signUpError.style.display = 'block';
+          signUpError.style.background = '#fee2e2';
+          signUpError.style.color = '#dc2626';
         } else {
           alert(res.message);
         }
@@ -270,6 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (signInError) {
           signInError.textContent = res.message;
           signInError.style.display = 'block';
+          signInError.style.background = '#fee2e2';
+          signInError.style.color = '#dc2626';
         } else {
           alert(res.message);
         }
@@ -300,13 +377,23 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', (e) => {
         const activeUser = (typeof UserDetailsHub !== 'undefined') ? UserDetailsHub.getActiveUser() : null;
         
+        // If user is already logged in, do NOT intercept at all! Proceed straight to form!
+        if (activeUser) {
+          return;
+        }
+
         // If user is not logged in, intercept and require auth pop-up
-        if (!activeUser) {
-          e.preventDefault();
-          const targetHref = link.getAttribute('href');
+        e.preventDefault();
+        const targetHref = link.getAttribute('href');
+        const lastEmail = localStorage.getItem('portalLastRegisteredEmail');
+        const allUsers = (typeof UserDetailsHub !== 'undefined') ? UserDetailsHub.getAllUsers() : [];
+
+        // If user previously registered on this device or users exist, prefer SIGN IN tab!
+        if (lastEmail || allUsers.length > 0) {
+          openAuthModal(targetHref, 'signin', lastEmail);
+        } else {
           openAuthModal(targetHref, 'signup');
         }
-        // If user is already logged in, let the browser proceed naturally to the form
       });
     });
   }
