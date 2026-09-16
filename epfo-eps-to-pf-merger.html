@@ -2646,7 +2646,7 @@
           document.querySelectorAll('.sync-inp-period').forEach(el => el.value = '03/2024 से 08/2025 (18 माह)');
           document.querySelectorAll('.sync-inp-amount').forEach(el => el.value = '₹ 22,500/- (बाईस हजार पांच सौ रुपये मात्र)');
           document.querySelectorAll('.sync-sign-name-input').forEach(el => el.textContent = 'SANJAY MEHTA (MANAGER - HR)');
-        } else {
+        } else if (currentCase === 'noneps') {
           document.querySelectorAll('.sync-est-name-input').forEach(el => el.textContent = 'M/S. GLOBAL IT SOLUTIONS INDIA PRIVATE LIMITED');
           document.querySelectorAll('.sync-est-addr-input').forEach(el => el.textContent = 'Building 12B, Cyber City, Phase-II, Gurugram - 122002 (Haryana)');
           document.querySelectorAll('.sync-est-code-input').forEach(el => el.textContent = 'GGN0012345000');
