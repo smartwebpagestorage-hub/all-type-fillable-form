@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Letter & Noting Builder | स्मार्ट पत्र निर्माणक</title>
+<meta name="description" content="Admin tool to create, save and reuse official letters, noting sheets with smart blanks and named fields.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0f1e;--panel:#0f172a;--card:#1e293b;--card2:#162032;
+  --border:#334155;--blight:#475569;
+  --pri:#6366f1;--prid:#4f46e5;--acc:#06b6d4;
+  --grn:#10b981;--org:#f59e0b;--red:#ef4444;
+  --tp:#f8fafc;--ts:#94a3b8;--tm:#64748b;
+  --blank:#fbbf24;--field:#34d399;
+  --tbh:52px;--sbw:268px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Inter','Noto Sans Devanagari',sans-serif;color:var(--tp);min-height:100vh;display:flex;flex-direction:column;overflow:hidden}
+/* TOOLBAR */
+.apptb{position:fixed;top:0;left:0;right:0;height:var(--tbh);background:linear-gradient(90deg,#0f172a,#1e1b4b);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:7px;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.4);overflow-x:auto}
+.bico{width:32px;height:32px;border-radius:7px;background:linear-gradient(135deg,var(--pri),var(--acc));display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.btit{font-size:13px;font-weight:800;background:linear-gradient(135deg,#818cf8,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.tsep{width:1px;height:24px;background:var(--border);flex-shrink:0}
+.tbb{display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:6px;font-size:11.5px;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:all .15s;white-space:nowrap;font-family:inherit}
+.tbb.pri{background:linear-gradient(135deg,var(--pri),var(--prid));color:#fff;box-shadow:0 2px 8px rgba(99,102,241,.4)}
+.tbb.pri:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(99,102,241,.5)}
+.tbb.sec{background:var(--card);color:var(--ts);border-color:var(--border)}
+.tbb.sec:hover{background:var(--border);color:var(--tp)}
+.tbb.suc{background:linear-gradient(135deg,#059669,#047857);color:#fff}
+.tbb.suc:hover{transform:translateY(-1px)}
+.tbb.war{background:linear-gradient(135deg,#d97706,#b45309);color:#fff}
+.tbb.dan{background:var(--card);color:#f87171;border-color:#7f1d1d}
+.tsp{flex:1}
+.pggrp{display:flex;align-items:center;gap:2px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2px}
+.pgb{padding:3px 9px;font-size:11px;font-weight:600;border-radius:4px;cursor:pointer;border:none;background:transparent;color:var(--ts);font-family:inherit;transition:all .15s}
+.pgb.act{background:var(--pri);color:#fff}
+.mdsw{display:flex;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2px;gap:2px}
+.mdb{padding:3px 9px;font-size:11px;font-weight:700;border-radius:4px;cursor:pointer;border:none;background:transparent;color:var(--ts);font-family:inherit;transition:all .15s}
+.mdb.act{background:var(--acc);color:#0c1a2e}
+.rtsel{height:26px;background:var(--card);border:1.5px solid var(--border);border-radius:5px;color:var(--tp);font-size:11.5px;padding:0 5px;cursor:pointer;font-family:inherit}
+/* LAYOUT */
+.abody{display:flex;margin-top:var(--tbh);height:calc(100vh - var(--tbh) - 26px)}
+/* SIDEBAR */
+.sb{width:var(--sbw);flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:width .25s ease}
+.sb.col{width:0}
+.sbh{padding:10px 13px;border-bottom:1px solid var(--border);font-size:11px;font-weight:800;color:var(--ts);text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.sbsec{padding:8px 11px 3px;font-size:9.5px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.7px;flex-shrink:0}
+.ingrid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px 9px;flex-shrink:0}
+.inb{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:7px;cursor:pointer;border:1.5px solid var(--border);background:var(--card);transition:all .15s;font-family:inherit;color:var(--tp)}
+.inb:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.ibibc{font-size:17px}.iblbl{font-size:9px;font-weight:700;text-align:center;line-height:1.2}
+.inb.blank{border-color:#92400e;background:#451a0310;color:var(--blank)}.inb.blank:hover{background:#451a0328;border-color:var(--blank)}
+.inb.fld{border-color:#065f46;background:#022c2210;color:var(--field)}.inb.fld:hover{background:#022c2228;border-color:var(--field)}
+.inb.br{border-color:#1e3a5f;background:#0c1e3010;color:var(--acc)}.inb.br:hover{background:#0c1e3028;border-color:var(--acc)}
+.inb.sig{border-color:#1e3a2f;background:#0a1a0f10;color:#86efac}.inb.sig:hover{background:#0a1a0f28;border-color:#86efac}
+.inb.tbl{border-color:#3b0764;background:#1a053010;color:#c084fc}.inb.tbl:hover{background:#1a053028;border-color:#c084fc}
+.inb.dt{border-color:#7c2d12;background:#1a0a0010;color:#fb923c}.inb.dt:hover{background:#1a0a0028;border-color:#fb923c}
+.bsr{padding:5px 9px;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.bsl{font-size:10px;color:var(--ts);white-space:nowrap}
+#bwSlider{flex:1;accent-color:var(--blank);cursor:pointer}
+.bsv{font-size:10px;font-weight:700;color:var(--blank);width:20px;text-align:center}
+.sbdiv{height:1px;background:var(--border);margin:5px 9px;flex-shrink:0}
+.tlist{flex:1;overflow-y:auto;padding:4px 8px 10px}
+.titem{display:flex;align-items:flex-start;gap:6px;padding:6px 8px;border-radius:7px;border:1px solid var(--border);background:var(--card2);margin-bottom:4px;cursor:pointer;transition:all .15s}
+.titem:hover,.titem.act{border-color:var(--pri);background:#1e1b4b28}
+.tico{font-size:16px;flex-shrink:0;margin-top:1px}
+.tibod{flex:1;min-width:0}
+.titl{font-size:11px;font-weight:700;color:var(--tp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.timt{font-size:9px;color:var(--tm);margin-top:1px}
+.tiacts{display:flex;gap:3px;flex-shrink:0}
+.tiact{width:21px;height:21px;border-radius:3px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .15s;font-family:inherit}
+.tiact.ed{background:#fef3c718;color:#fbbf24}.tiact.ed:hover{background:#fef3c730}
+.tiact.dl{background:#fee2e218;color:#f87171}.tiact.dl:hover{background:#fee2e230}
+.tempty{text-align:center;padding:18px 8px;color:var(--tm);font-size:11px}
+/* EDITOR */
+.edarea{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#1a2332}
+/* Rich toolbar */
+.rtb{background:var(--panel);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:4px 9px;gap:2px;flex-wrap:wrap;overflow-x:auto;flex-shrink:0}
+.rb{width:26px;height:24px;border-radius:4px;border:1.5px solid transparent;background:transparent;color:var(--ts);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:inherit;transition:all .1s}
+.rb:hover{background:var(--card);color:var(--tp);border-color:var(--border)}
+.rb.act{background:var(--pri);color:#fff;border-color:transparent}
+.rb.w{width:auto;padding:0 6px;font-size:10.5px;font-weight:700}
+.rb.aplus{width:32px;font-size:11.5px;font-weight:800;color:var(--grn);border-color:#065f46;background:#022c2210}
+.rb.aplus:hover{background:#022c2230;border-color:var(--grn)}
+.rb.aminus{width:32px;font-size:11.5px;font-weight:800;color:#f87171;border-color:#7f1d1d;background:#7f1d1d10}
+.rb.aminus:hover{background:#7f1d1d28;border-color:#f87171}
+.rsep{width:1px;height:16px;background:var(--border);margin:0 2px;flex-shrink:0}
+/* Canvas */
+.ecanvas{flex:1;overflow-y:auto;display:flex;justify-content:center;align-items:flex-start;padding:18px 14px;background:repeating-linear-gradient(0deg,transparent,transparent 26px,rgba(99,102,241,.04) 26px,rgba(99,102,241,.04) 27px)}
+/* Paper */
+.psheet{background:#fff;color:#000;box-shadow:0 8px 40px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3);border-radius:2px;transition:width .2s,padding .2s}
+.psheet.a4{width:794px;min-height:1123px;padding:24px 32px 32px}
+.psheet.legal{width:794px;min-height:1348px;padding:24px 32px 32px}
+/* Letterhead */
+.lhwrap{margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #1a3c6e}
+.lhrow{display:flex;align-items:center;justify-content:center;gap:10px}
+/* Logo zones */
+.logo-zone{display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;cursor:pointer}
+.logo-zone .logo-placeholder{border:2px dashed #94a3b8;border-radius:6px;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#94a3b8;font-size:10px;font-weight:700;text-align:center;gap:3px;transition:all .2s;cursor:pointer}
+.logo-zone:hover .logo-placeholder{border-color:#6366f1;background:#ede9fe;color:#6366f1}
+.logo-zone img.logo-img{object-fit:contain;border-radius:4px;display:block}
+.logo-size-ctrl{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:4px;background:#0f172a;border:1px solid var(--border);border-radius:20px;padding:2px 8px;white-space:nowrap;z-index:10}
+.logo-zone:hover .logo-size-ctrl,.logo-zone:focus-within .logo-size-ctrl{display:flex}
+.logo-size-ctrl input{width:60px;accent-color:var(--pri);cursor:pointer}
+.logo-size-ctrl span{font-size:9px;color:var(--ts)}
+.logo-remove{position:absolute;top:-6px;right:-6px;width:18px;height:18px;background:#ef4444;border-radius:50%;border:none;color:#fff;font-size:10px;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+.logo-zone:hover .logo-remove{display:flex}
+/* Letterhead center */
+.lhcenter{flex:1;text-align:center}
+.lh-ohi{font-size:15px;font-weight:800;color:#1a3c6e;font-family:'Noto Sans Devanagari',sans-serif}
+.lh-oen{font-size:12.5px;font-weight:700;color:#1a3c6e;letter-spacing:.3px}
+.lh-addr{font-size:10.5px;color:#475569;margin-top:2px}
+.lh-meta{display:flex;justify-content:space-between;font-size:11.5px;margin:7px 0;color:#334155}
+.lh-sub{font-size:12.5px;font-weight:700;margin:5px 0;display:flex;align-items:baseline;gap:5px}
+/* Noting */
+.notingb{border:2px solid #15803d;border-radius:3px;padding:8px 11px;background:#f0fdf4;margin-top:4px}
+.nothdr{text-align:center;font-size:12.5px;font-weight:800;color:#15803d;border-bottom:1.5px solid #15803d;padding-bottom:4px;margin-bottom:7px;font-family:'Noto Sans Devanagari',sans-serif}
+/* Doc editor */
+#docEditor{outline:none;min-height:260px;font-size:13.5px;line-height:1.9;color:#000;font-family:'Noto Sans Devanagari','Times New Roman',serif;word-break:break-word}
+#docEditor p{margin:0 0 3px 0}
+/* Blank / field spans */
+.blank-span{display:inline-block;border-bottom:2px solid #d97706;background:#fff7ed;border-radius:2px 2px 0 0;padding:0 1px;cursor:pointer;transition:background .15s;min-width:18px;color:transparent}
+.blank-span:hover{background:#fde68a}
+body.fill-mode .blank-span{color:#000;cursor:text;background:#fef3c7;border-bottom-color:#f59e0b;min-width:28px}
+body.fill-mode .blank-span:focus{outline:2px solid #f59e0b;background:#fde68a}
+.field-span{display:inline-block;background:#d1fae5;border:1.5px dashed #059669;border-radius:4px;padding:1px 6px;color:#065f46;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;user-select:none}
+.field-span:hover{background:#a7f3d0;border-style:solid}
+.field-span.filled{background:#ecfdf5;border:1.5px solid #10b981;color:#000;font-family:'Noto Sans Devanagari',serif;font-weight:400}
+.sig-block{display:block;margin-top:32px;font-size:12.5px;line-height:1.9;color:#1a2c4e}
+/* Fill panel */
+.fpanel{width:250px;flex-shrink:0;background:var(--panel);border-left:1px solid var(--border);display:none;flex-direction:column;overflow:hidden}
+.fpanel.vis{display:flex}
+.fph{padding:11px 13px;border-bottom:1px solid var(--border);font-size:13px;font-weight:800;color:var(--tp);display:flex;align-items:center;gap:6px}
+.fpb{flex:1;overflow-y:auto;padding:9px}
+.ffrow{margin-bottom:8px}
+.fflbl{font-size:10px;font-weight:700;color:var(--ts);margin-bottom:3px}
+.ffinp{width:100%;padding:6px 9px;background:var(--card);border:1.5px solid var(--border);border-radius:6px;color:var(--tp);font-size:11.5px;font-family:'Noto Sans Devanagari','Inter',sans-serif;transition:border-color .15s}
+.ffinp:focus{outline:none;border-color:var(--acc)}
+.ffinp.filled{border-color:var(--grn)}
+.fpprog{padding:8px 11px;border-top:1px solid var(--border)}
+.fpplbl{font-size:10px;color:var(--ts);margin-bottom:3px;display:flex;justify-content:space-between}
+.fppbar{height:5px;background:var(--card);border-radius:10px;overflow:hidden}
+.fppfill{height:100%;background:linear-gradient(90deg,var(--grn),#34d399);border-radius:10px;transition:width .3s}
+/* Status bar */
+.sbar{position:fixed;bottom:0;left:0;right:0;height:26px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 13px;gap:13px;font-size:10px;color:var(--tm);z-index:999}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* Modals */
+.mbd{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:2000;opacity:0;pointer-events:none;transition:opacity .2s}
+.mbd.open{opacity:1;pointer-events:all}
+.mbox{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:20px;width:min(440px,90vw);box-shadow:0 20px 60px rgba(0,0,0,.6);transform:translateY(14px);transition:transform .2s}
+.mbd.open .mbox{transform:translateY(0)}
+.mbox.wide{width:min(530px,92vw)}
+.mtit{font-size:15px;font-weight:800;margin-bottom:13px;display:flex;align-items:center;gap:6px}
+.mlbl{font-size:10.5px;font-weight:600;color:var(--ts);margin-bottom:3px;display:block}
+.minp{width:100%;padding:8px 10px;background:var(--panel);border:1.5px solid var(--border);border-radius:7px;color:var(--tp);font-size:13px;font-family:inherit;margin-bottom:9px;transition:border-color .15s}
+.minp:focus{outline:none;border-color:var(--pri)}
+.msel{width:100%;padding:7px 10px;background:var(--panel);border:1.5px solid var(--border);border-radius:7px;color:var(--tp);font-size:13px;font-family:inherit;margin-bottom:9px}
+.macts{display:flex;gap:6px;justify-content:flex-end;margin-top:13px}
+.mbtn{padding:7px 16px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .15s}
+.mbtn.can{background:var(--panel);color:var(--ts);border:1.5px solid var(--border)}
+.mbtn.ok{background:linear-gradient(135deg,var(--pri),var(--prid));color:#fff}
+.mbtn.ok:hover{transform:translateY(-1px)}
+.litem{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:7px;margin-bottom:4px;background:var(--card2);cursor:pointer;transition:background .15s}
+.litem:hover{background:#1e293b55}
+/* Toast */
+.twrap{position:fixed;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:3000;pointer-events:none}
+.toast{background:#1e293b;color:var(--tp);border:1px solid var(--border);border-radius:7px;padding:6px 14px;font-size:12px;font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,.4);animation:tIn .25s ease,tOut .3s ease 1.8s forwards}
+.toast.ok{border-color:var(--grn);color:#6ee7b7}
+.toast.err{border-color:var(--red);color:#fca5a5}
+@keyframes tIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes tOut{from{opacity:1}to{opacity:0}}
+.pin{animation:pIn .22s ease}
+@keyframes pIn{0%{transform:scale(.85);opacity:.5}100%{transform:scale(1);opacity:1}}
+/* Logo modal */
+.logo-modal-preview{max-width:200px;max-height:120px;object-fit:contain;margin:8px auto;display:block;border:1px solid var(--border);border-radius:6px;background:#f8fafc}
+/* Print */
+@media print{
+  .apptb,.sb,.rtb,.sbar,.fpanel{display:none!important}
+  .abody{margin-top:0;height:auto}
+  .ecanvas{padding:0;background:#fff}
+  .psheet{box-shadow:none}
+  body{background:#fff;overflow:auto}
+  .blank-span{border-bottom:1px solid #888;background:transparent!important;color:#000!important}
+  .field-span{border:none;background:transparent;color:#000;font-family:'Noto Sans Devanagari',serif;font-weight:400}
+  .field-span:not(.filled){color:transparent!important;-webkit-text-fill-color:transparent!important;border-bottom:1px dotted #555!important;min-width:60px!important}
+  input::placeholder,textarea::placeholder,[contenteditable]::placeholder{color:transparent!important;-webkit-text-fill-color:transparent!important;opacity:0!important}
+  .notingb{background:#fff}
+  .logo-size-ctrl,.logo-remove{display:none!important}
+}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+</style>
+</head>
+<body>
+
+<!-- TOP TOOLBAR -->
+<header class="apptb">
+  <div class="bico">📋</div>
+  <div><div class="btit">Smart Letter &amp; Noting Builder</div></div>
+  <div class="tsep"></div>
+  <button class="tbb sec" id="btnSB">☰ Sidebar</button>
+  <div class="mdsw">
+    <button class="mdb act" id="modeEdit">✏️ Edit</button>
+    <button class="mdb" id="modeFill">📝 Fill</button>
+  </div>
+  <div class="tsep"></div>
+  <div class="pggrp">
+    <button class="pgb act" id="btnA4">A4</button>
+    <button class="pgb" id="btnLegal">Legal</button>
+  </div>
+  <select id="docType" class="rtsel" style="height:28px;">
+    <option value="noting" selected>📗 Noting</option>
+    <option value="letter">📄 Letter</option>
+    <option value="order">📋 Office Order</option>
+    <option value="blank">🗒️ Blank</option>
+  </select>
+  <div class="tsep"></div>
+  <button class="tbb sec" id="btnNew">➕ New</button>
+  <button class="tbb sec" id="btnLoad">📂 Templates</button>
+  <button class="tbb pri" id="btnSave">💾 Save</button>
+  <div class="tsp"></div>
+  <button class="tbb war" id="btnSample">⚡ Sample</button>
+  <button class="tbb suc" id="btnPrint">🖨️ Print</button>
+  <a href="admin-users.html" class="tbb sec" style="text-decoration:none;">🏠 Admin</a>
+</header>
+
+<!-- MAIN BODY -->
+<div class="abody">
+
+<!-- SIDEBAR -->
+<aside class="sb" id="mainSB">
+  <div class="sbh"><span>✨ Insert Tools</span><span style="font-size:8.5px;color:var(--tm);font-weight:400;text-transform:none">click to insert</span></div>
+  <div class="sbsec">📌 Insert Elements</div>
+  <div class="ingrid">
+    <button class="inb blank" id="iBlank"><span class="ibibc">＿＿</span><span class="iblbl">Blank Space<br><span style="color:#fff8;font-weight:400;font-size:8px">(रिक्त स्थान)</span></span></button>
+    <button class="inb fld" id="iField"><span class="ibibc">🏷️</span><span class="iblbl">Named Field<br><span style="color:#fff8;font-weight:400;font-size:8px">(नामित)</span></span></button>
+    <button class="inb br" id="iBR"><span class="ibibc">↵</span><span class="iblbl">Line Break<br><span style="color:#fff8;font-weight:400;font-size:8px">(पंक्ति)</span></span></button>
+    <button class="inb br" id="iLine"><span class="ibibc">⇩⇩</span><span class="iblbl">Extra Line<br><span style="color:#fff8;font-weight:400;font-size:8px">(खाली)</span></span></button>
+    <button class="inb dt" id="iDate"><span class="ibibc">📅</span><span class="iblbl">Today Date<br><span style="color:#fff8;font-weight:400;font-size:8px">(आज)</span></span></button>
+    <button class="inb dt" id="iDateF"><span class="ibibc">📆</span><span class="iblbl">Date Field<br><span style="color:#fff8;font-weight:400;font-size:8px">(तिथि)</span></span></button>
+    <button class="inb sig" id="iSig"><span class="ibibc">✍️</span><span class="iblbl">Signature<br><span style="color:#fff8;font-weight:400;font-size:8px">(हस्ताक्षर)</span></span></button>
+    <button class="inb tbl" id="iTable"><span class="ibibc">⊞</span><span class="iblbl">Table<br><span style="color:#fff8;font-weight:400;font-size:8px">(तालिका)</span></span></button>
+  </div>
+  <div class="sbsec">📏 Blank Width</div>
+  <div class="bsr">
+    <span class="bsl">Short</span>
+    <input type="range" id="bwSlider" min="2" max="22" value="8" step="1">
+    <span class="bsv" id="bwVal">8</span>
+    <span class="bsl">Long</span>
+  </div>
+  <div class="sbdiv"></div>
+  <div class="sbsec" style="display:flex;justify-content:space-between;align-items:center;padding-right:9px;">
+    <span>💾 Templates</span>
+    <span id="tplCnt" style="font-size:9px;background:var(--pri);color:#fff;padding:1px 6px;border-radius:10px;">0</span>
+  </div>
+  <div class="tlist" id="tplList">
+    <div class="tempty" id="tplEmpty">📭 No templates yet.<br><span style="font-size:9px">Save your first template!</span></div>
+  </div>
+</aside>
+
+<!-- EDITOR AREA -->
+<main class="edarea">
+  <!-- Rich toolbar -->
+  <div class="rtb" id="richTB">
+    <!-- Font family -->
+    <select class="rtsel" id="fontFam" style="width:115px;" title="Font Family">
+      <option value="'Noto Sans Devanagari',serif">Devanagari</option>
+      <option value="'Times New Roman',serif">Times New Roman</option>
+      <option value="Arial,sans-serif">Arial</option>
+      <option value="'Courier New',monospace">Courier</option>
+    </select>
+    <!-- Font size dropdown -->
+    <select class="rtsel" id="fontSzSel" style="width:50px;" title="Font Size">
+      <option>10</option><option>11</option><option>12</option>
+      <option selected>13</option><option>14</option><option>15</option>
+      <option>16</option><option>18</option><option>20</option><option>24</option>
+    </select>
+    <!-- A+ A- buttons -->
+    <button class="rb aplus" id="rtAP" title="Increase Font Size (A+)">A+</button>
+    <button class="rb aminus" id="rtAM" title="Decrease Font Size (A-)">A-</button>
+    <div class="rsep"></div>
+    <!-- Bold Italic Underline -->
+    <button class="rb" id="rtB" title="Bold (Ctrl+B)"><b>B</b></button>
+    <button class="rb" id="rtI" title="Italic (Ctrl+I)"><i>I</i></button>
+    <button class="rb" id="rtU" title="Underline (Ctrl+U)"><u>U</u></button>
+    <button class="rb" id="rtS" title="Strikethrough"><s>S</s></button>
+    <div class="rsep"></div>
+    <!-- Alignment -->
+    <button class="rb" id="rtAL" title="Align Left">⬅</button>
+    <button class="rb" id="rtAC" title="Align Center">⬛</button>
+    <button class="rb" id="rtAR" title="Align Right">➡</button>
+    <button class="rb" id="rtAJ" title="Justify">≡</button>
+    <div class="rsep"></div>
+    <!-- Indent / List -->
+    <button class="rb w" id="rtIM" title="Indent">→</button>
+    <button class="rb w" id="rtIL" title="Outdent">←</button>
+    <button class="rb" id="rtUL" title="Bullet List">•≡</button>
+    <button class="rb" id="rtOL" title="Numbered List">1≡</button>
+    <div class="rsep"></div>
+    <!-- Undo/Redo -->
+    <button class="rb" id="rtUndo" title="Undo">↩</button>
+    <button class="rb" id="rtRedo" title="Redo">↪</button>
+    <div class="rsep"></div>
+    <button class="rb w" id="rtClr" title="Clear Formatting">🚫 Clear</button>
+    <div class="rsep"></div>
+    <!-- Line spacing -->
+    <select class="rtsel" id="lineSp" style="width:75px;" title="Line Spacing">
+      <option value="1.4">1.4× Line</option>
+      <option value="1.6">1.6×</option>
+      <option value="1.9" selected>1.9×</option>
+      <option value="2.4">2.4×</option>
+      <option value="2.9">2.9×</option>
+    </select>
+    <!-- Text color -->
+    <input type="color" id="txtColor" value="#000000" style="width:26px;height:24px;padding:1px;border:1.5px solid var(--border);border-radius:4px;cursor:pointer;background:var(--card);" title="Text Color">
+    <!-- Highlight color -->
+    <input type="color" id="hlColor" value="#ffff00" style="width:26px;height:24px;padding:1px;border:1.5px solid var(--border);border-radius:4px;cursor:pointer;background:var(--card);" title="Highlight Color">
+  </div>
+
+  <!-- Canvas -->
+  <div class="ecanvas" id="eCanvas">
+    <div class="psheet a4" id="pSheet">
+      <!-- Letterhead -->
+      <div id="docLH">
+        <div class="lhwrap" id="lhWrap">
+          <div class="lhrow">
+            <!-- LEFT LOGO -->
+            <div class="logo-zone" id="leftLogoZone" style="min-width:60px;">
+              <div class="logo-placeholder" id="leftLogoPH" style="width:56px;height:56px;font-size:9px;" title="Click to upload left logo">
+                <span style="font-size:18px">🖼️</span>
+                <span>Left Logo</span>
+              </div>
+              <img id="leftLogoImg" class="logo-img" src="" alt="Left Logo" style="display:none;width:56px;height:56px;">
+              <button class="logo-remove" id="leftLogoRem" title="Remove logo">✕</button>
+              <div class="logo-size-ctrl">
+                <span>Size:</span>
+                <input type="range" id="leftLogoSz" min="30" max="120" value="56" step="2">
+                <span id="leftLogoSzV">56px</span>
+              </div>
+            </div>
+            <input type="file" id="leftLogoInp" accept="image/*" style="display:none">
+
+            <!-- CENTER -->
+            <div class="lhcenter">
+              <div class="lh-ohi" id="lhHi" contenteditable="true">कर्मचारी भविष्य निधि संगठन</div>
+              <div class="lh-oen" id="lhEn" contenteditable="true">EMPLOYEES' PROVIDENT FUND ORGANISATION</div>
+              <div class="lh-addr" id="lhAddr" contenteditable="true">क्षेत्रीय कार्यालय, फरीदाबाद (हरियाणा) | दूरभाष: 0129-2422000</div>
+            </div>
+
+            <!-- RIGHT LOGO -->
+            <div class="logo-zone" id="rightLogoZone" style="min-width:60px;">
+              <div class="logo-placeholder" id="rightLogoPH" style="width:56px;height:56px;font-size:9px;" title="Click to upload right logo">
+                <span style="font-size:18px">🖼️</span>
+                <span>Right Logo</span>
+              </div>
+              <img id="rightLogoImg" class="logo-img" src="" alt="Right Logo" style="display:none;width:56px;height:56px;">
+              <button class="logo-remove" id="rightLogoRem" title="Remove logo">✕</button>
+              <div class="logo-size-ctrl">
+                <span>Size:</span>
+                <input type="range" id="rightLogoSz" min="30" max="120" value="56" step="2">
+                <span id="rightLogoSzV">56px</span>
+              </div>
+            </div>
+            <input type="file" id="rightLogoInp" accept="image/*" style="display:none">
+          </div>
+        </div>
+
+        <div class="lh-meta" id="lhMeta">
+          <span>सं./<span id="lhRef" contenteditable="true" style="display:inline-block;min-width:110px;border-bottom:1px solid #aaa;">EPFO/RO/FBD/____/2026</span></span>
+          <span>दिनांक: <span id="lhDate" contenteditable="true" style="display:inline-block;min-width:70px;border-bottom:1px solid #aaa;"></span></span>
+        </div>
+        <div class="lh-sub" id="lhSub" style="display:none;">
+          <strong>विषय:</strong>
+          <span contenteditable="true" id="lhSubTxt" style="flex:1;border-bottom:1px solid #aaa;min-width:160px;">___</span>
+        </div>
+      </div>
+
+      <!-- Noting wrapper -->
+      <div id="notingWrap" class="notingb">
+        <div class="nothdr" id="notingHdr">नोटिंग शीट / NOTING SHEET</div>
+        <div id="docEditor" contenteditable="true" spellcheck="false"
+          style="outline:none;min-height:260px;font-size:13.5px;line-height:1.9;color:#000;font-family:'Noto Sans Devanagari','Times New Roman',serif;word-break:break-word;"
+          aria-label="Document Content"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FILL PANEL -->
+<aside class="fpanel" id="fillPanel">
+  <div class="fph">📝 <span>Fill Fields</span><span id="fpCnt" style="margin-left:auto;font-size:9.5px;color:var(--ts)">0</span></div>
+  <div class="fpb" id="fpBody"><div style="text-align:center;padding:16px;color:var(--tm);font-size:11px;">Switch to Fill Mode.</div></div>
+  <div class="fpprog">
+    <div class="fpplbl"><span>Completion</span><span id="fpPct">0%</span></div>
+    <div class="fppbar"><div class="fppfill" id="fpFill" style="width:0%"></div></div>
+  </div>
+</aside>
+</div>
+
+<!-- STATUS BAR -->
+<div class="sbar">
+  <span class="sdot"></span>
+  <span id="sbMode">✏️ Edit Mode</span>
+  <span style="margin-left:auto;" id="sbW">Words:0</span>
+  <span id="sbC">Chars:0</span>
+  <span id="sbBl">🟡Blanks:0</span>
+  <span id="sbFl">🟢Fields:0</span>
+  <span id="sbFs" style="color:var(--grn);font-weight:700;">Font:13px</span>
+  <span id="sbTpl" style="color:var(--pri);font-weight:700;"></span>
+</div>
+
+<div class="twrap" id="toastWrap"></div>
+
+<!-- MODALS -->
+<!-- Named Field -->
+<div class="mbd" id="mField">
+  <div class="mbox">
+    <div class="mtit">🏷️ Insert Named Field</div>
+    <label class="mlbl" for="mFldNm">Field Name:</label>
+    <input class="minp" type="text" id="mFldNm" placeholder="e.g. Employee Name, Date, Address...">
+    <div style="font-size:10.5px;color:var(--tm);margin-top:-5px;margin-bottom:9px;">💡 Green placeholder — fillable in Fill Mode.</div>
+    <div class="macts"><button class="mbtn can" id="mFldCan">Cancel</button><button class="mbtn ok" id="mFldOk">✓ Insert</button></div>
+  </div>
+</div>
+<!-- Save -->
+<div class="mbd" id="mSave">
+  <div class="mbox">
+    <div class="mtit">💾 Save Template</div>
+    <label class="mlbl" for="mSvNm">Template Name *</label>
+    <input class="minp" type="text" id="mSvNm" placeholder="e.g. Rejoining Letter, Leave Noting...">
+    <label class="mlbl" for="mSvCat">Category</label>
+    <select class="msel" id="mSvCat"><option value="noting" selected>📗 Noting</option><option value="letter">📄 Letter</option><option value="order">📋 Office Order</option><option value="other">📁 Other</option></select>
+    <label class="mlbl" for="mSvDesc">Description</label>
+    <input class="minp" type="text" id="mSvDesc" placeholder="Short description...">
+    <div class="macts"><button class="mbtn can" id="mSvCan">Cancel</button><button class="mbtn ok" id="mSvOk">💾 Save</button></div>
+  </div>
+</div>
+<!-- Table -->
+<div class="mbd" id="mTable">
+  <div class="mbox">
+    <div class="mtit">⊞ Insert Table</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+      <div><label class="mlbl" for="tRows">Rows</label><input class="minp" type="number" id="tRows" value="3" min="1" max="20"></div>
+      <div><label class="mlbl" for="tCols">Columns</label><input class="minp" type="number" id="tCols" value="3" min="1" max="10"></div>
+    </div>
+    <div class="macts"><button class="mbtn can" id="mTblCan">Cancel</button><button class="mbtn ok" id="mTblOk">⊞ Insert</button></div>
+  </div>
+</div>
+<!-- Load -->
+<div class="mbd" id="mLoad">
+  <div class="mbox wide">
+    <div class="mtit">📂 Load Template</div>
+    <div id="mLoadList" style="max-height:290px;overflow-y:auto;margin-bottom:9px;"></div>
+    <div class="macts"><button class="mbtn can" id="mLdClo">Close</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+const SK='slb_v4';
+let mode='edit', pgSz='a4', savedSel=null, curId=null, curFontSz=13;
+const $=id=>document.getElementById(id);
+const editor=$('docEditor'), pSheet=$('pSheet'), sb=$('mainSB');
+const fpanel=$('fillPanel'), notingWrap=$('notingWrap');
+const docLH=$('docLH'), lhMeta=$('lhMeta'), lhSub=$('lhSub'), notingHdr=$('notingHdr');
+const toastWrap=$('toastWrap');
+// Logo state
+const logos={left:{file:null,dataUrl:null,sz:56},right:{file:null,dataUrl:null,sz:56}};
+
+/* ── TOAST ── */
+function toast(msg,tp=''){
+  const t=document.createElement('div');
+  t.className='toast'+(tp?' '+tp:'');
+  t.textContent=msg; toastWrap.appendChild(t);
+  setTimeout(()=>t.remove(),2300);
+}
+
+/* ── SELECTION ── */
+function saveSel(){
+  const s=window.getSelection();
+  if(s.rangeCount>0&&editor.contains(s.anchorNode)) savedSel=s.getRangeAt(0).cloneRange();
+}
+function restSel(){
+  if(savedSel){
+    const s=window.getSelection(); s.removeAllRanges(); s.addRange(savedSel); editor.focus();
+  } else {
+    editor.focus();
+    const r=document.createRange(); r.selectNodeContents(editor); r.collapse(false);
+    const s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+}
+function insNode(node){
+  restSel();
+  const s=window.getSelection(); if(!s.rangeCount) return;
+  const r=s.getRangeAt(0); r.deleteContents(); r.insertNode(node);
+  r.setStartAfter(node); r.collapse(true); s.removeAllRanges(); s.addRange(r);
+  node.classList&&node.classList.add('pin');
+  savedSel=r.cloneRange(); updateStatus();
+}
+function insHTML(html){ restSel(); document.execCommand('insertHTML',false,html); updateStatus(); }
+
+/* ── FONT SIZE A+ / A- ── */
+function changeFontSize(delta){
+  const min=8, max=32;
+  curFontSz=Math.max(min,Math.min(max,curFontSz+delta));
+  // Apply to selection
+  restSel();
+  const s=window.getSelection();
+  if(s&&!s.isCollapsed){
+    document.execCommand('fontSize','false','7');
+    editor.querySelectorAll('font[size="7"]').forEach(f=>{
+      f.removeAttribute('size'); f.style.fontSize=curFontSz+'px';
+    });
+  } else {
+    // Apply to whole editor default
+    editor.style.fontSize=curFontSz+'px';
+  }
+  $('fontSzSel').value=curFontSz;
+  $('sbFs').textContent='Font:'+curFontSz+'px';
+  updateStatus();
+}
+
+/* ── LOGO MANAGEMENT ── */
+function setupLogo(side){
+  const zone=$(side+'LogoZone'), ph=$(side+'LogoPH'), img=$(side+'LogoImg');
+  const inp=$(side+'LogoInp'), rem=$(side+'LogoRem');
+  const szSlider=$(side+'LogoSz'), szVal=$(side+'LogoSzV');
+  // Click zone to upload
+  ph.addEventListener('click',()=>inp.click());
+  inp.addEventListener('change',e=>{
+    const f=e.target.files[0]; if(!f) return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      logos[side].dataUrl=ev.target.result; logos[side].sz=parseInt(szSlider.value)||56;
+      img.src=ev.target.result;
+      img.style.width=logos[side].sz+'px'; img.style.height=logos[side].sz+'px';
+      img.style.display='block'; ph.style.display='none';
+      rem.style.display='flex';
+      toast('✅ '+side.charAt(0).toUpperCase()+side.slice(1)+' logo uploaded','ok');
+    };
+    reader.readAsDataURL(f);
+  });
+  // Remove
+  rem.addEventListener('click',e=>{
+    e.stopPropagation();
+    logos[side].dataUrl=null; img.src=''; img.style.display='none';
+    ph.style.display='flex'; rem.style.display='none';
+    inp.value=''; toast('🗑️ Logo removed');
+  });
+  // Size slider
+  szSlider.addEventListener('input',()=>{
+    const v=parseInt(szSlider.value); logos[side].sz=v;
+    szVal.textContent=v+'px';
+    img.style.width=v+'px'; img.style.height=v+'px';
+  });
+}
+
+/* ── DOC LAYOUT ── */
+function updateDocLayout(){
+  const t=$('docType').value;
+  notingWrap.style.background=''; notingWrap.style.borderColor='';
+  notingHdr.style.color='#15803d'; notingHdr.style.borderBottomColor='#15803d';
+  if(t==='noting'){
+    notingWrap.className='notingb'; notingHdr.style.display='block';
+    docLH.style.display=''; lhMeta.style.display='flex'; lhSub.style.display='none';
+    notingHdr.textContent='नोटिंग शीट / NOTING SHEET';
+  } else if(t==='letter'){
+    notingWrap.className=''; notingHdr.style.display='none';
+    docLH.style.display=''; lhMeta.style.display='flex'; lhSub.style.display='flex';
+  } else if(t==='order'){
+    notingWrap.className='notingb'; notingHdr.style.display='block';
+    notingWrap.style.borderColor='#1a3c6e'; notingWrap.style.background='#eff6ff';
+    notingHdr.style.color='#1a3c6e'; notingHdr.style.borderBottomColor='#1a3c6e';
+    docLH.style.display=''; lhMeta.style.display='flex'; lhSub.style.display='flex';
+    notingHdr.textContent='कार्यालय आदेश / OFFICE ORDER';
+  } else {
+    notingWrap.className=''; notingHdr.style.display='none';
+    docLH.style.display='none'; lhMeta.style.display='none'; lhSub.style.display='none';
+  }
+}
+
+/* ── PAGE SIZE ── */
+function setPage(sz){
+  pgSz=sz; pSheet.className='psheet '+sz;
+  $('btnA4').classList.toggle('act',sz==='a4');
+  $('btnLegal').classList.toggle('act',sz==='legal');
+}
+
+/* ── MODE ── */
+function setMode(m){
+  mode=m; const isE=m==='edit';
+  $('modeEdit').classList.toggle('act',isE);
+  $('modeFill').classList.toggle('act',!isE);
+  document.body.classList.toggle('fill-mode',!isE);
+  editor.contentEditable=isE?'true':'false';
+  fpanel.classList.toggle('vis',!isE);
+  $('sbMode').textContent=isE?'✏️ Edit Mode':'📝 Fill Mode';
+  if(!isE){
+    syncFillPanel();
+    editor.querySelectorAll('.blank-span').forEach(s=>{s.contentEditable='true';s.style.color='#000';});
+  } else {
+    editor.querySelectorAll('.blank-span').forEach(s=>{s.contentEditable='false';s.style.color='transparent';});
+    updateFillProg();
+  }
+}
+
+/* ── FILL PANEL ── */
+function syncFillPanel(){
+  const body=$('fpBody');
+  const flds=[...new Set([...editor.querySelectorAll('.field-span')].map(s=>s.getAttribute('data-field')))].filter(Boolean);
+  $('fpCnt').textContent=flds.length+' fields';
+  if(!flds.length){
+    body.innerHTML='<div style="text-align:center;padding:14px;color:var(--tm);font-size:11px;">📭 No named fields.<br><span style="font-size:9px">In Edit mode, insert Named Fields.</span></div>';
+    updateFillProg(); return;
+  }
+  body.innerHTML='';
+  flds.forEach(name=>{
+    const row=document.createElement('div'); row.className='ffrow';
+    const esc2=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    row.innerHTML=`<div class="fflbl">🏷️ ${esc2(name)}</div><input class="ffinp" type="text" placeholder="Enter ${esc2(name)}..." data-for="${esc2(name)}" autocomplete="off">`;
+    const inp=row.querySelector('input');
+    inp.addEventListener('input',()=>{
+      editor.querySelectorAll(`.field-span[data-field="${CSS.escape(name)}"]`).forEach(s=>{
+        if(inp.value.trim()){s.textContent=inp.value.trim();s.classList.add('filled');inp.classList.add('filled');}
+        else{s.textContent='🏷️ '+name;s.classList.remove('filled');inp.classList.remove('filled');}
+      });
+      updateFillProg();
+    });
+    body.appendChild(row);
+  });
+  updateFillProg();
+}
+function updateFillProg(){
+  const inps=[...$('fpBody').querySelectorAll('.ffinp')];
+  if(!inps.length){$('fpFill').style.width='0%';$('fpPct').textContent='0%';return;}
+  const f=inps.filter(i=>i.value.trim()).length;
+  const p=Math.round(f/inps.length*100);
+  $('fpFill').style.width=p+'%';$('fpPct').textContent=p+'%';
+}
+
+/* ── STATUS BAR ── */
+function updateStatus(){
+  const txt=editor.innerText||'';
+  const w=txt.trim()?txt.trim().split(/\s+/).length:0;
+  $('sbW').textContent='Words:'+w;
+  $('sbC').textContent='Chars:'+txt.length;
+  $('sbBl').textContent='🟡Blanks:'+editor.querySelectorAll('.blank-span').length;
+  $('sbFl').textContent='🟢Fields:'+editor.querySelectorAll('.field-span').length;
+  $('sbFs').textContent='Font:'+curFontSz+'px';
+  $('tplCnt').textContent=getTpls().length;
+  const tpl=curId?getTpls().find(t=>t.id===curId):null;
+  $('sbTpl').textContent=tpl?'💾 '+tpl.name:'';
+}
+
+/* ── TEMPLATES ── */
+function getTpls(){try{return JSON.parse(localStorage.getItem(SK))||[];}catch(e){return[];}}
+function saveTpls(a){localStorage.setItem(SK,JSON.stringify(a));}
+function saveCurTpl(name,cat,desc){
+  const arr=getTpls(); const id=curId||('tpl_'+Date.now());
+  const idx=arr.findIndex(t=>t.id===id);
+  const tpl={id,name,cat,desc,
+    dt:$('docType').value, pgSz,
+    offHi:$('lhHi').textContent, offEn:$('lhEn').textContent,
+    addr:$('lhAddr').textContent, ref:$('lhRef').textContent,
+    sub:$('lhSubTxt')?$('lhSubTxt').textContent:'',
+    html:editor.innerHTML,
+    leftLogo:logos.left.dataUrl, leftLogoSz:logos.left.sz,
+    rightLogo:logos.right.dataUrl, rightLogoSz:logos.right.sz,
+    at:new Date().toISOString()
+  };
+  if(idx>=0)arr[idx]=tpl;else arr.unshift(tpl);
+  saveTpls(arr); curId=id; renderTplList(); updateStatus();
+}
+function loadTpl(id){
+  const t=getTpls().find(x=>x.id===id); if(!t) return;
+  curId=id; $('docType').value=t.dt||'noting'; updateDocLayout(); setPage(t.pgSz||'a4');
+  if(t.offHi)$('lhHi').textContent=t.offHi;
+  if(t.offEn)$('lhEn').textContent=t.offEn;
+  if(t.addr)$('lhAddr').textContent=t.addr;
+  if(t.ref)$('lhRef').textContent=t.ref;
+  if(t.sub&&$('lhSubTxt'))$('lhSubTxt').textContent=t.sub;
+  editor.innerHTML=t.html||'';
+  // Restore logos
+  if(t.leftLogo){
+    const img=$('leftLogoImg'),ph=$('leftLogoPH'),sz=t.leftLogoSz||56;
+    logos.left.dataUrl=t.leftLogo; logos.left.sz=sz;
+    img.src=t.leftLogo; img.style.width=sz+'px'; img.style.height=sz+'px';
+    img.style.display='block'; ph.style.display='none';
+    $('leftLogoRem').style.display='flex'; $('leftLogoSz').value=sz; $('leftLogoSzV').textContent=sz+'px';
+  }
+  if(t.rightLogo){
+    const img=$('rightLogoImg'),ph=$('rightLogoPH'),sz=t.rightLogoSz||56;
+    logos.right.dataUrl=t.rightLogo; logos.right.sz=sz;
+    img.src=t.rightLogo; img.style.width=sz+'px'; img.style.height=sz+'px';
+    img.style.display='block'; ph.style.display='none';
+    $('rightLogoRem').style.display='flex'; $('rightLogoSz').value=sz; $('rightLogoSzV').textContent=sz+'px';
+  }
+  setMode('edit'); updateStatus(); toast('📂 Loaded: '+t.name,'ok');
+}
+function delTpl(id){
+  if(!confirm('Delete this template?')) return;
+  saveTpls(getTpls().filter(t=>t.id!==id));
+  if(curId===id) curId=null; renderTplList(); updateStatus(); toast('🗑️ Deleted');
+}
+const CI={noting:'📗',letter:'📄',order:'📋',other:'📁'};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function renderTplList(){
+  const list=$('tplList'), empty=$('tplEmpty'), tpls=getTpls();
+  $('tplCnt').textContent=tpls.length;
+  if(!tpls.length){if(empty)empty.style.display='block';return;}
+  if(empty)empty.style.display='none';
+  list.innerHTML=tpls.map(t=>`
+    <div class="titem${t.id===curId?' act':''}" data-id="${t.id}">
+      <span class="tico">${CI[t.cat]||'📁'}</span>
+      <div class="tibod"><div class="titl">${esc(t.name)}</div><div class="timt">${t.cat} · ${new Date(t.at).toLocaleDateString()}</div></div>
+      <div class="tiacts">
+        <button class="tiact ed" data-id="${t.id}" title="Load">✏️</button>
+        <button class="tiact dl" data-id="${t.id}" title="Delete">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+  list.querySelectorAll('.titem').forEach(el=>{
+    el.addEventListener('click',e=>{if(e.target.classList.contains('tiact'))return;loadTpl(el.dataset.id);list.querySelectorAll('.titem').forEach(i=>i.classList.remove('act'));el.classList.add('act');});
+  });
+  list.querySelectorAll('.tiact.ed').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();loadTpl(b.dataset.id);}));
+  list.querySelectorAll('.tiact.dl').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();delTpl(b.dataset.id);}));
+}
+function renderLoadModal(){
+  const list=$('mLoadList'), tpls=getTpls();
+  if(!tpls.length){list.innerHTML='<div style="text-align:center;padding:14px;color:var(--tm);font-size:11px;">No templates saved yet.</div>';return;}
+  list.innerHTML=tpls.map(t=>`
+    <div class="litem">
+      <span style="font-size:19px;">${CI[t.cat]||'📁'}</span>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:12px;font-weight:700;color:var(--tp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(t.name)}</div>
+        <div style="font-size:9.5px;color:var(--tm);">${t.cat} · ${esc(t.desc||'')} · ${new Date(t.at).toLocaleDateString()}</div>
+      </div>
+      <button style="padding:4px 10px;background:linear-gradient(135deg,#4f46e5,#6366f1);color:#fff;border:none;border-radius:5px;font-weight:700;font-size:11px;cursor:pointer;font-family:inherit;" data-id="${t.id}" class="lbtn">Load</button>
+    </div>
+  `).join('');
+  list.querySelectorAll('.lbtn').forEach(b=>b.addEventListener('click',()=>{loadTpl(b.dataset.id);closeM('mLoad');}));
+}
+
+/* ── SAMPLE DATA ── */
+function fillSample(){
+  editor.innerHTML=`
+<p>सेवा में,</p>
+<p>श्री <span class="field-span" data-field="Employee Name">🏷️ Employee Name</span>,<br>
+<span class="field-span" data-field="Designation">🏷️ Designation</span>,<br>
+<span class="field-span" data-field="Office">🏷️ Office Name</span></p>
+<p>&nbsp;</p>
+<p><strong>विषय:</strong> <span class="blank-span" style="width:190px;color:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> के संबंध में।</p>
+<p>&nbsp;</p>
+<p>उपरोक्त विषय के संदर्भ में यह सूचित किया जाता है कि श्री <span class="blank-span" style="width:130px;color:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+का <span class="blank-span" style="width:80px;color:transparent;">&nbsp;&nbsp;&nbsp;&nbsp;</span> दिनांक&nbsp;<span class="blank-span" style="width:75px;color:transparent;">&nbsp;&nbsp;&nbsp;</span>
+से <span class="blank-span" style="width:75px;color:transparent;">&nbsp;&nbsp;&nbsp;</span> तक स्वीकृत किया जाता है।</p>
+<p>&nbsp;</p>
+<p>कार्यालयाध्यक्ष के अनुमोदन से जारी।</p>
+<div class="sig-block">
+(हस्ताक्षर / Signature)<br>
+<span class="field-span" data-field="Signatory Name">🏷️ Signatory Name</span><br>
+<span class="field-span" data-field="Signatory Designation">🏷️ Designation</span><br>
+दिनांक: <span class="field-span" data-field="Date">🏷️ Date</span>
+</div>`;
+  updateStatus(); toast('⚡ Sample loaded','ok');
+}
+
+/* ── MODALS ── */
+function openM(id){$(id).classList.add('open');const f=$(id).querySelector('input,select');if(f)setTimeout(()=>f.focus(),80);}
+function closeM(id){$(id).classList.remove('open');}
+function closeAll(){document.querySelectorAll('.mbd').forEach(m=>m.classList.remove('open'));}
+
+/* ── INIT ── */
+function init(){
+  // Set today date
+  $('lhDate').textContent=new Date().toLocaleDateString('hi-IN',{day:'2-digit',month:'2-digit',year:'numeric'});
+  editor.innerHTML='<p>यहाँ टाइप करें / Start typing here...</p>';
+
+  // Editor events
+  editor.addEventListener('mouseup',saveSel);
+  editor.addEventListener('keyup',saveSel);
+  editor.addEventListener('focus',saveSel);
+  editor.addEventListener('input',()=>{updateStatus();if(mode==='fill')updateFillProg();});
+
+  // Logos
+  setupLogo('left'); setupLogo('right');
+
+  // Rich toolbar
+  const ex=(cmd,v)=>{editor.focus();document.execCommand(cmd,false,v);updateStatus();};
+  $('rtB').onclick=()=>ex('bold');
+  $('rtI').onclick=()=>ex('italic');
+  $('rtU').onclick=()=>ex('underline');
+  $('rtS').onclick=()=>ex('strikeThrough');
+  $('rtAL').onclick=()=>ex('justifyLeft');
+  $('rtAC').onclick=()=>ex('justifyCenter');
+  $('rtAR').onclick=()=>ex('justifyRight');
+  $('rtAJ').onclick=()=>ex('justifyFull');
+  $('rtIM').onclick=()=>ex('indent');
+  $('rtIL').onclick=()=>ex('outdent');
+  $('rtUL').onclick=()=>ex('insertUnorderedList');
+  $('rtOL').onclick=()=>ex('insertOrderedList');
+  $('rtUndo').onclick=()=>ex('undo');
+  $('rtRedo').onclick=()=>ex('redo');
+  $('rtClr').onclick=()=>ex('removeFormat');
+  $('fontFam').onchange=e=>ex('fontName',e.target.value);
+  $('fontSzSel').onchange=e=>{
+    curFontSz=parseInt(e.target.value)||13;
+    restSel();
+    ex('fontSize','7');
+    editor.querySelectorAll('font[size="7"]').forEach(f=>{f.removeAttribute('size');f.style.fontSize=curFontSz+'px';});
+    $('sbFs').textContent='Font:'+curFontSz+'px';
+  };
+  $('lineSp').onchange=e=>{editor.style.lineHeight=e.target.value;};
+  $('txtColor').oninput=e=>ex('foreColor',e.target.value);
+  $('hlColor').oninput=e=>ex('hiliteColor',e.target.value);
+  // A+ A-
+  $('rtAP').onclick=()=>changeFontSize(1);
+  $('rtAM').onclick=()=>changeFontSize(-1);
+
+  // Sidebar
+  $('btnSB').onclick=()=>sb.classList.toggle('col');
+  // Mode
+  $('modeEdit').onclick=()=>setMode('edit');
+  $('modeFill').onclick=()=>setMode('fill');
+  // Page size
+  $('btnA4').onclick=()=>setPage('a4');
+  $('btnLegal').onclick=()=>setPage('legal');
+  // Doc type
+  $('docType').onchange=updateDocLayout;
+  // New
+  $('btnNew').onclick=()=>{
+    if(confirm('Start new document? (Current will be cleared)')) {
+      editor.innerHTML='<p>नया दस्तावेज़ / New Document</p>';
+      curId=null; curFontSz=13;
+      // Clear logos
+      ['left','right'].forEach(s=>{
+        logos[s].dataUrl=null;
+        $(s+'LogoImg').src=''; $(s+'LogoImg').style.display='none';
+        $(s+'LogoPH').style.display='flex'; $(s+'LogoRem').style.display='none';
+      });
+      updateStatus(); toast('📄 New document','ok');
+    }
+  };
+  $('btnPrint').onclick=()=>window.print();
+  $('btnSample').onclick=fillSample;
+  $('btnSave').onclick=()=>openM('mSave');
+  $('btnLoad').onclick=()=>{renderLoadModal();openM('mLoad');};
+  // Blank width slider
+  $('bwSlider').oninput=()=>$('bwVal').textContent=$('bwSlider').value;
+  // Insert: blank
+  $('iBlank').onclick=()=>{
+    const w=parseInt($('bwSlider').value)||8, px=w*11;
+    const s=document.createElement('span'); s.className='blank-span';
+    s.style.width=px+'px'; s.style.color='transparent';
+    s.innerHTML='&nbsp;'.repeat(Math.max(1,Math.round(px/6)));
+    insNode(s); toast('✅ Blank inserted','ok');
+  };
+  // Insert: named field
+  $('iField').onclick=()=>{saveSel();openM('mField');};
+  // Insert: line break
+  $('iBR').onclick=()=>{insNode(document.createElement('br'));toast('↵ Line break','ok');};
+  // Insert: extra line
+  $('iLine').onclick=()=>{const p=document.createElement('p');p.innerHTML='&nbsp;';insNode(p);toast('⇩ Extra line','ok');};
+  // Insert: today date
+  $('iDate').onclick=()=>{insHTML('<span style="font-weight:700;">'+new Date().toLocaleDateString('hi-IN',{day:'2-digit',month:'2-digit',year:'numeric'})+'</span>');toast('📅 Date inserted','ok');};
+  // Insert: date field
+  $('iDateF').onclick=()=>{
+    const s=document.createElement('span'); s.className='field-span'; s.setAttribute('data-field','Date'); s.textContent='📆 Date';
+    insNode(s); if(mode==='fill')syncFillPanel(); toast('📆 Date field','ok');
+  };
+  // Insert: signature
+  $('iSig').onclick=()=>{
+    insHTML(`<div class="sig-block"><br>(हस्ताक्षर / Signature)<br>
+<span class="field-span" data-field="Signatory Name">🏷️ Name</span><br>
+<span class="field-span" data-field="Designation">🏷️ Designation</span><br>
+<span class="field-span" data-field="Office">🏷️ Office</span></div>`);
+    if(mode==='fill')syncFillPanel(); toast('✍️ Signature block','ok');
+  };
+  // Insert: table
+  $('iTable').onclick=()=>{saveSel();openM('mTable');};
+
+  // Modal events
+  document.querySelectorAll('.mbd').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll();}));
+  $('mFldCan').onclick=()=>closeM('mField');
+  $('mFldOk').onclick=()=>{
+    const n=$('mFldNm').value.trim(); if(!n){toast('Enter field name','err');return;}
+    const s=document.createElement('span'); s.className='field-span'; s.setAttribute('data-field',n); s.textContent='🏷️ '+n;
+    insNode(s); if(mode==='fill')syncFillPanel(); $('mFldNm').value=''; closeM('mField'); toast('✅ Field "'+n+'"','ok');
+  };
+  $('mFldNm').onkeydown=e=>{if(e.key==='Enter')$('mFldOk').click();};
+  $('mSvCan').onclick=()=>closeM('mSave');
+  $('mSvOk').onclick=()=>{
+    const n=$('mSvNm').value.trim(); if(!n){toast('Enter template name','err');return;}
+    saveCurTpl(n,$('mSvCat').value,$('mSvDesc').value.trim()); closeM('mSave'); toast('💾 Saved: '+n,'ok');
+  };
+  $('mSvNm').onkeydown=e=>{if(e.key==='Enter')$('mSvOk').click();};
+  $('mTblCan').onclick=()=>closeM('mTable');
+  $('mTblOk').onclick=()=>{
+    const r=parseInt($('tRows').value)||3, c=parseInt($('tCols').value)||3;
+    let h='<table style="width:100%;border-collapse:collapse;margin:7px 0;">';
+    for(let i=0;i<r;i++){
+      h+='<tr>';
+      for(let j=0;j<c;j++){
+        const tg=i===0?'th':'td';
+        const st=`border:1px solid #94a3b8;padding:5px 7px;${i===0?'background:#f1f5f9;font-weight:700;':''}`;
+        h+=`<${tg} style="${st}">${i===0?'Header '+(j+1):'&nbsp;'}</${tg}>`;
+      }
+      h+='</tr>';
+    }
+    h+='</table>';
+    insHTML(h); closeM('mTable'); toast('⊞ '+r+'×'+c+' table','ok');
+  };
+  $('mLdClo').onclick=()=>closeM('mLoad');
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown',e=>{
+    if(e.ctrlKey&&e.key==='p'){e.preventDefault();window.print();}
+    if(e.ctrlKey&&e.key==='s'){e.preventDefault();openM('mSave');}
+    if(e.ctrlKey&&e.key==='='){e.preventDefault();changeFontSize(1);}
+    if(e.ctrlKey&&e.key==='-'){e.preventDefault();changeFontSize(-1);}
+    if(e.key==='Escape')closeAll();
+  });
+
+  renderTplList(); updateStatus(); updateDocLayout();
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+  <script src="user-details.js"></script>
+</body>
+</html>

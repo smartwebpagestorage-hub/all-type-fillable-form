@@ -1,0 +1,18 @@
+# Robots.txt for sarkari-forms-seva-555.web.app
+# Official Government Forms Hub (सरकारी फॉर्म सेवा)
+# Curated by Niraj Kumar, Section Supervisor, RO, Faridabad
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /privacy-policy.html
+Allow: /terms-and-conditions.html
+Allow: /disclaimer.html
+Allow: /contact-us.html
+Allow: /*.html$
+
+# Protect administrative management dashboard from public indexing
+Disallow: /admin-users.html
+
+# XML Sitemap Location for Googlebot, Bingbot & Search Engines
+Sitemap: https://sarkari-forms-seva-555.web.app/sitemap.xml

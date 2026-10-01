@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTO Form 29 & 30 (वाहन स्वामित्व हस्तांतरण प्रपत्र - Vehicle Ownership Transfer) | सरकारी फॉर्म सेवा</title>
+  <meta name="description" content="RTO Form 29 & Form 30 ऑनलाइन भरें एवं प्रिंट लें। पुरानी कार, बाइक या किसी भी मोटर वाहन की खरीद-बिक्री के बाद आरटीओ में ओनरशिप ट्रांसफर हेतु आधिकारिक प्रपत्र।">
+  <meta name="keywords" content="rto form 29 30 pdf download, vehicle transfer form 29 30, parivahan form 29 30 fillable, car ownership transfer form rto, bike transfer form">
+  <link rel="canonical" href="https://sarkari-forms-seva-555.web.app/rto-form-29-30.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #e2e8f0;
+      color: #000000;
+      line-height: 1.35;
+      padding-top: 56px;
+      padding-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Fixed Application Toolbar (No-Print) */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      white-space: nowrap;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    .toolbar-badge {
+      background: #d97706;
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .toolbar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .toolbar-title span {
+      font-size: 10.5px;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-tool {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-tool-sample { background: #3b82f6; color: #ffffff; }
+    .btn-tool-sample:hover { background: #2563eb; }
+    .btn-tool-clear { background: #475569; color: #ffffff; }
+    .btn-tool-clear:hover { background: #334155; }
+    .btn-tool-pdf { background: #dc2626; color: #ffffff; }
+    .btn-tool-pdf:hover { background: #b91c1c; }
+    .btn-tool-print { background: #16a34a; color: #ffffff; font-weight: 700; }
+    .btn-tool-print:hover { background: #15803d; }
+
+    /* Printable Page Sheet */
+    .page-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      margin: 15px auto;
+      padding: 10mm 12mm;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border: 1px solid #cbd5e1;
+      position: relative;
+      box-sizing: border-box;
+      color: #000;
+    }
+
+    .form-header-box {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .form-header-box h1 {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .form-header-box h2 {
+      font-size: 11px;
+      font-weight: 700;
+      color: #222;
+      margin-top: 2px;
+    }
+
+    .form-header-box h3 {
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .to-section {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .to-section input {
+      border: none;
+      border-bottom: 1px solid #000;
+      padding: 1px 4px;
+      font-weight: 700;
+      font-size: 11px;
+      outline: none;
+      background: transparent;
+      width: 260px;
+    }
+
+    .body-paragraph {
+      font-size: 11px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
+    .body-paragraph input {
+      border: none;
+      border-bottom: 1px solid #000;
+      padding: 1px 4px;
+      font-weight: 700;
+      font-size: 11px;
+      outline: none;
+      background: transparent;
+    }
+
+    .body-paragraph input:focus {
+      background: #fef9c3;
+    }
+
+    .vehicle-specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 10.5px;
+    }
+
+    .vehicle-specs-table th, .vehicle-specs-table td {
+      border: 1px solid #000;
+      padding: 5px 8px;
+    }
+
+    .vehicle-specs-table th {
+      background: #f8fafc;
+      width: 35%;
+      font-weight: 700;
+    }
+
+    .vehicle-specs-table input {
+      width: 100%;
+      border: none;
+      font-size: 11px;
+      font-weight: 700;
+      outline: none;
+      background: transparent;
+    }
+
+    .sign-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 28px;
+      padding: 0 10px;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+
+    .sign-box-right {
+      text-align: center;
+      border-top: 1px solid #000;
+      padding-top: 4px;
+      min-width: 200px;
+    }
+
+    .section-divider {
+      border-top: 2px dashed #64748b;
+      margin: 25px 0 20px 0;
+      position: relative;
+    }
+
+    .section-divider-label {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      padding: 0 10px;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #0284c7;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #ffffff;
+      }
+      .app-toolbar, .no-print {
+        display: none !important;
+      }
+      .page-sheet {
+        margin: 0 !important;
+        padding: 8mm 10mm !important;
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+      }
+      .page-sheet-break {
+        page-break-before: always;
+      }
+    
+      /* === UNIVERSAL PRINT BLACK: All text prints full black === */
+      /* Visible content prints solid black while placeholders stay hidden */
+      *:not(input):not(textarea):not(select) { color: #000000 !important; }
+      input, textarea, select { color: #000000 !important; }
+      input::placeholder, textarea::placeholder,
+      input::-webkit-input-placeholder, textarea::-webkit-input-placeholder,
+      input::-moz-placeholder, textarea::-moz-placeholder,
+      input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        opacity: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Application Toolbar -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-left">
+      <a href="index.html" class="btn-nav-home">🏠 मुख्य पोर्टल</a>
+      <span class="toolbar-badge">PARIVAHAN RTO FORM 29 &amp; 30</span>
+      <div class="toolbar-title">
+        वाहन स्वामित्व हस्तांतरण (FORM 29 &amp; 30)
+        <span>Notice of Transfer of Ownership of Motor Vehicle &amp; Application for Intimation</span>
+      </div>
+    </div>
+
+    <div class="toolbar-actions">
+      <button type="button" class="btn-tool btn-tool-sample" onclick="fillSampleData()">⚡ टेस्ट डेटा भरें</button>
+      <button type="button" class="btn-tool btn-tool-clear" onclick="clearForm()">🧹 खाली करें</button>
+      <button type="button" class="btn-tool btn-tool-pdf" onclick="exportPDF()">📄 Save PDF</button>
+      <button type="button" class="btn-tool btn-tool-print" onclick="window.print()">🖨️ डायरेक्ट प्रिंट (Ctrl+P)</button>
+    </div>
+  </header>
+
+  <!-- Sheet 1: FORM 29 -->
+  <main class="page-sheet" id="printableForm2930">
+    <div class="form-header-box">
+      <h1>FORM 29</h1>
+      <h2>[See Rule 55(1)]</h2>
+      <h3>NOTICE OF TRANSFER OF OWNERSHIP OF A MOTOR VEHICLE (विक्रेता द्वारा स्वामित्व हस्तांतरण की सूचना)</h3>
+    </div>
+
+    <div class="to-section">
+      To,<br>
+      The Registering Authority (RTO / DTO Office):<br>
+      <input type="text" id="rtoOffice" value="REGIONAL TRANSPORT OFFICE, FARIDABAD, HARYANA">
+    </div>
+
+    <p class="body-paragraph">
+      I/We, <input type="text" id="sellerName" value="SUNIL SHARMA" style="width: 220px;">, resident of <input type="text" id="sellerAddr" value="H. NO. 112, SECTOR 16, FARIDABAD, HARYANA" style="width: 320px;">, have on the <input type="text" id="saleDate" value="20th day of September 2026" style="width: 170px;"> sold and delivered my/our motor vehicle, the specifications of which are given below, to Shri/Smt. <input type="text" id="buyerName" value="AMIT KUMAR" style="width: 220px;">, son/wife/daughter of <input type="text" id="buyerFather" value="LATE SHRI OM PRAKASH" style="width: 200px;">, residing at <input type="text" id="buyerAddr" value="FLAT 302, GREEN APARTMENTS, SECTOR 21C, FARIDABAD" style="width: 340px;"> under an agreement of sale.
+    </p>
+
+    <div style="font-size: 11px; font-weight: 800; margin-bottom: 4px;">वाहन का विवरण (Particulars of Vehicle):</div>
+    <table class="vehicle-specs-table">
+      <tr>
+        <th>1. Vehicle Registration No. (पंजीकरण संख्या):</th>
+        <td><input type="text" id="vehRegNo" value="HR-38-AB-1234"></td>
+      </tr>
+      <tr>
+        <th>2. Make & Model (निर्माता एवं मॉडल):</th>
+        <td><input type="text" id="vehMake" value="MARUTI SUZUKI SWIFT VXI (PETROL)"></td>
+      </tr>
+      <tr>
+        <th>3. Chassis Number (चेसिस संख्या):</th>
+        <td><input type="text" id="vehChassis" value="MA3EJD11S00123456"></td>
+      </tr>
+      <tr>
+        <th>4. Engine Number (इंजन संख्या):</th>
+        <td><input type="text" id="vehEngine" value="K12MN1234567"></td>
+      </tr>
+      <tr>
+        <th>5. Type of Vehicle (वाहन का प्रकार):</th>
+        <td><input type="text" id="vehType" value="LIGHT MOTOR VEHICLE (LMV / CAR)"></td>
+      </tr>
+    </table>
+
+    <p class="body-paragraph">
+      The registration certificate and insurance certificate have been handed over to the transferee. To the best of my knowledge and belief, the vehicle is not subject to any agreement of hire-purchase/lease/hypothecation (or details enclosed if under finance).
+    </p>
+
+    <div class="sign-row">
+      <div>
+        Date: <input type="text" value="20/09/2026" style="border:none; border-bottom:1px solid #000; width:90px; font-weight:700;"><br>
+        Place: <input type="text" value="FARIDABAD" style="border:none; border-bottom:1px solid #000; width:100px; font-weight:700;">
+      </div>
+      <div class="sign-box-right">
+        <strong>Signature or Thumb Impression of Transferor (Seller)</strong><br>
+        (विक्रेता के हस्ताक्षर)
+      </div>
+    </div>
+
+    <!-- Section Divider to Form 30 -->
+    <div class="section-divider">
+      <span class="section-divider-label">FORM 30 (आवेदन एवं पृष्ठांकन)</span>
+    </div>
+
+    <!-- Sheet 2 / Section: FORM 30 -->
+    <div class="form-header-box" style="margin-top: 15px;">
+      <h1>FORM 30</h1>
+      <h2>[See Rule 55(2) and 55(3)]</h2>
+      <h3>APPLICATION FOR INTIMATION AND TRANSFER OF OWNERSHIP OF A MOTOR VEHICLE</h3>
+    </div>
+
+    <div style="font-size: 11px; font-weight: 800; background: #f1f5f9; padding: 4px 6px; border: 1px solid #000; margin-bottom: 8px;">
+      PART I - FOR THE USE OF THE TRANSFEROR (विक्रेता द्वारा घोषणा)
+    </div>
+
+    <p class="body-paragraph" style="font-size: 10.5px;">
+      To, The Registering Authority, <input type="text" value="FARIDABAD, HARYANA" style="width: 180px;"><br>
+      I/We, <input type="text" value="SUNIL SHARMA" style="width: 160px;">, resident of <input type="text" value="SECTOR 16, FARIDABAD" style="width: 200px;"> hereby declare that I have on this day <input type="text" value="20/09/2026" style="width: 90px;"> transferred my motor vehicle No. <input type="text" value="HR-38-AB-1234" style="width: 120px;"> to Shri/Smt. <input type="text" value="AMIT KUMAR" style="width: 150px;"> and request that ownership be transferred in his/her name in the registration certificate.
+    </p>
+
+    <div class="sign-row" style="margin-top: 15px; margin-bottom: 15px;">
+      <div>Date: 20/09/2026</div>
+      <div class="sign-box-right" style="min-width: 180px;">
+        <strong>Signature of Transferor (Seller)</strong>
+      </div>
+    </div>
+
+    <div style="font-size: 11px; font-weight: 800; background: #f1f5f9; padding: 4px 6px; border: 1px solid #000; margin-bottom: 8px;">
+      PART II - FOR THE USE OF THE TRANSFEREE (क्रेता द्वारा सहमति एवं आवेदन)
+    </div>
+
+    <p class="body-paragraph" style="font-size: 10.5px;">
+      I/We, <input type="text" value="AMIT KUMAR" style="width: 180px;">, son/wife/daughter of <input type="text" value="LATE SHRI OM PRAKASH" style="width: 180px;">, residing at <input type="text" value="FLAT 302, GREEN APARTMENTS, SECTOR 21C, FARIDABAD" style="width: 320px;"> hereby apply for the transfer of ownership of motor vehicle No. <input type="text" value="HR-38-AB-1234" style="width: 120px;"> in my/our name and certify that the details furnished above are true and complete.
+    </p>
+
+    <div class="sign-row" style="margin-top: 15px;">
+      <div>Date: 20/09/2026</div>
+      <div class="sign-box-right" style="min-width: 180px;">
+        <strong>Signature or Thumb Impression of Transferee (Buyer)</strong>
+      </div>
+    </div>
+
+    <!-- Official Office Endorsement -->
+    <div style="border: 1px solid #000; padding: 6px 10px; margin-top: 20px; font-size: 10px;">
+      <div style="font-weight: 800; text-align: center; text-decoration: underline; margin-bottom: 4px;">
+        OFFICE ENDORSEMENT (कार्यालयीन पृष्ठांकन - केवल आरटीओ कार्यालय हेतु)
+      </div>
+      <p>
+        Ref. No. .................................................... Dated ...........................<br>
+        The ownership of the vehicle has been transferred in the name of Shri/Smt ......................................................... with effect from ................................................. in the records of this authority and note endorsed in Registration Certificate.
+      </p>
+      <div style="text-align: right; margin-top: 18px; font-weight: 800;">
+        Signature and Seal of the Registering Authority<br>
+        (पंजीकरण प्राधिकारी के हस्ताक्षर एवं मुहर)
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function fillSampleData() {
+      document.getElementById('rtoOffice').value = "REGIONAL TRANSPORT OFFICE, FARIDABAD, HARYANA";
+      document.getElementById('sellerName').value = "SUNIL SHARMA";
+      document.getElementById('sellerAddr').value = "H. NO. 112, SECTOR 16, FARIDABAD, HARYANA";
+      document.getElementById('saleDate').value = "20th day of September 2026";
+      document.getElementById('buyerName').value = "AMIT KUMAR";
+      document.getElementById('buyerFather').value = "LATE SHRI OM PRAKASH";
+      document.getElementById('buyerAddr').value = "FLAT 302, GREEN APARTMENTS, SECTOR 21C, FARIDABAD";
+      document.getElementById('vehRegNo').value = "HR-38-AB-1234";
+      document.getElementById('vehMake').value = "MARUTI SUZUKI SWIFT VXI (PETROL)";
+      document.getElementById('vehChassis').value = "MA3EJD11S00123456";
+      document.getElementById('vehEngine').value = "K12MN1234567";
+      document.getElementById('vehType').value = "LIGHT MOTOR VEHICLE (LMV / CAR)";
+    }
+
+    function clearForm() {
+      if (!confirm('क्या आप फॉर्म के सभी डेटा को खाली करना चाहते हैं?')) return;
+      document.querySelectorAll('input').forEach(i => i.value = '');
+    }
+
+    function exportPDF() {
+      const el = document.getElementById('printableForm2930');
+      const opt = {
+        margin: [4, 4, 4, 4],
+        filename: 'RTO_Form_29_30_Vehicle_Transfer.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(el).save();
+    }
+  </script>
+  <script src="user-details.js"></script>
+</body>
+</html>

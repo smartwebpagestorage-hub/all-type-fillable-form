@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Form 15H (वरिष्ठ नागरिकों हेतु शून्य TDS स्व-घोषणा) | सरकारी फॉर्म सेवा</title>
+  <meta name="description" content="Income Tax Form 15H ऑनलाइन भरें एवं A4 प्रिंट लें। 60 वर्ष या अधिक आयु के वरिष्ठ नागरिकों हेतु बैंक एफडी ब्याज अथवा पीएफ निकासी पर शून्य टीडीएस कटौती (Nil TDS Deduction) घोषणा पत्र।">
+  <meta name="keywords" content="form 15h download, form 15h for senior citizens, income tax form 15h online, 15h form for bank fd tds, nil tds declaration form 15h pdf, फॉर्म 15H वरिष्ठ नागरिक">
+  <meta name="author" content="Niraj Kumar, Section Supervisor, RO, Faridabad">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sarkari-forms-seva-555.web.app/income-tax-form-15h.html">
+
+  <!-- OpenGraph Social Sharing -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sarkari-forms-seva-555.web.app/income-tax-form-15h.html">
+  <meta property="og:title" content="Income Tax Form 15H (वरिष्ठ नागरिकों हेतु शून्य TDS स्व-घोषणा प्रपत्र)">
+  <meta property="og:description" content="60 वर्ष या अधिक आयु के वरिष्ठ नागरिकों हेतु बैंक एफडी ब्याज अथवा पीएफ निकासी पर टीडीएस छूट (धारा 197A(1C)) हेतु फॉर्म 15H।">
+  <meta property="og:image" content="https://sarkari-forms-seva-555.web.app/image/ashok_stambh.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #e2e8f0;
+      color: #000000;
+      line-height: 1.35;
+      padding-top: 56px;
+      padding-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Fixed Application Toolbar (No-Print) */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      white-space: nowrap;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    .toolbar-badge {
+      background: #059669;
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .toolbar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .toolbar-title span {
+      font-size: 10.5px;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-tool {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-tool-sample { background: #3b82f6; color: #ffffff; }
+    .btn-tool-sample:hover { background: #2563eb; }
+    .btn-tool-clear { background: #475569; color: #ffffff; }
+    .btn-tool-clear:hover { background: #334155; }
+    .btn-tool-pdf { background: #dc2626; color: #ffffff; }
+    .btn-tool-pdf:hover { background: #b91c1c; }
+    .btn-tool-print { background: #16a34a; color: #ffffff; font-weight: 700; }
+    .btn-tool-print:hover { background: #15803d; }
+
+    /* Printable Page Sheet */
+    .page-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      margin: 15px auto;
+      padding: 10mm 12mm;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      font-size: 10.5px;
+    }
+
+    .form-header-center {
+      text-align: center;
+      margin-bottom: 8px;
+      border-bottom: 1.5px solid #000000;
+      padding-bottom: 5px;
+    }
+
+    .form-title-main {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .form-rule-ref {
+      font-size: 10.5px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .form-sub-desc {
+      font-size: 9.8px;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-top: 3px;
+      padding: 0 20px;
+    }
+
+    .part-banner {
+      background: #f1f5f9;
+      border: 1px solid #000000;
+      padding: 4px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 11px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    /* Grid Table System */
+    .form-grid-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #000000;
+      margin-bottom: 8px;
+    }
+
+    .form-grid-table td, .form-grid-table th {
+      border: 1px solid #000000;
+      padding: 3.5px 5px;
+      vertical-align: top;
+      font-size: 10px;
+    }
+
+    .col-label {
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.25;
+    }
+
+    .col-label span {
+      font-weight: 500;
+      color: #475569;
+      display: block;
+      font-size: 9px;
+    }
+
+    .input-cell {
+      outline: none;
+      min-height: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      background: transparent;
+      border-bottom: 1px dashed transparent;
+      padding: 1px 2px;
+    }
+
+    .input-cell:hover {
+      border-bottom-color: #0284c7;
+      background: rgba(2, 132, 199, 0.04);
+    }
+
+    .input-cell:focus {
+      border-bottom: 1.5px solid #0284c7;
+      background: #e0f2fe;
+    }
+
+    .input-cell:empty::before {
+      content: attr(data-placeholder);
+      color: #94a3b8;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Incomes Details Sub-Table */
+    .incomes-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #000000;
+      margin-top: 4px;
+    }
+
+    .incomes-table th, .incomes-table td {
+      border: 1px solid #000000;
+      padding: 3px 4px;
+      font-size: 9.5px;
+      text-align: center;
+    }
+
+    .incomes-table th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    /* Verification Box */
+    .verification-block {
+      border: 1px solid #000000;
+      padding: 7px 10px;
+      margin-top: 6px;
+      font-size: 10px;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    .verification-title {
+      text-align: center;
+      font-weight: 800;
+      font-size: 11px;
+      margin-bottom: 4px;
+      text-decoration: underline;
+    }
+
+    .sign-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 14px;
+      padding: 0 8px;
+    }
+
+    .sign-place-date {
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .sign-box-declarant {
+      text-align: center;
+      min-width: 220px;
+      border-top: 1px dashed #000000;
+      padding-top: 3px;
+      font-weight: 700;
+    }
+
+    .page-footer-note {
+      font-size: 8.5px;
+      color: #475569;
+      margin-top: 10px;
+      border-top: 0.5px solid #cbd5e1;
+      padding-top: 3px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Print Setup */
+    @media print {
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+      }
+      .app-toolbar, .no-print {
+        display: none !important;
+      }
+      .page-sheet {
+        margin: 0 !important;
+        padding: 8mm 10mm !important;
+        box-shadow: none !important;
+        page-break-after: always;
+      }
+      .page-sheet:last-child {
+        page-break-after: avoid;
+      }
+      .input-cell:empty::before {
+        display: none !important;
+      }
+      .input-cell {
+        border-bottom: none !important;
+        background: transparent !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 5mm 8mm 5mm 8mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top App Toolbar -->
+  <header class="app-toolbar">
+    <div class="toolbar-left">
+      <a href="index.html" class="btn-nav-home">🏠 मुख्य पोर्टल</a>
+      <span class="toolbar-badge">FORM 15H</span>
+      <div class="toolbar-title">
+        <span>आयकर नियम 29C / Section 197A(1C)</span>
+        <strong>वरिष्ठ नागरिक शून्य TDS स्व-घोषणा (Age 60+)</strong>
+      </div>
+    </div>
+    <div class="toolbar-actions">
+      <button type="button" class="btn-tool btn-tool-sample" onclick="fillSeniorSampleData()">⚡ वरिष्ठ नागरिक नमूना डेटा</button>
+      <button type="button" class="btn-tool btn-tool-clear" onclick="clearForm()">🔄 रीसेट</button>
+      <button type="button" class="btn-tool btn-tool-pdf" onclick="downloadPdf()">📄 PDF डाउनलोड</button>
+      <button type="button" class="btn-tool btn-tool-print" onclick="window.print()">🖨️ A4 प्रिंट करें</button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       PAGE 1: PART I - DECLARATION BY SENIOR CITIZEN
+       ========================================================================= -->
+  <article class="page-sheet" id="pageSheet1">
+    <div class="form-header-center">
+      <div class="form-title-main">FORM NO. 15H</div>
+      <div class="form-rule-ref">[See section 197A(1C) and rule 29C]</div>
+      <div class="form-sub-desc">
+        Declaration under section 197A(1C) to be made by an individual who is of the age of sixty years or more claiming certain incomes without deduction of tax.
+      </div>
+    </div>
+
+    <div class="part-banner">PART I</div>
+
+    <table class="form-grid-table">
+      <tr>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">1. Name of Assessee (Declarant) <span>करदाता / आवेदक का नाम</span></div>
+          <div class="input-cell" id="f1_name" contenteditable="true" data-placeholder="e.g. RAMESH PRASAD SHARMA"></div>
+        </td>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">2. Permanent Account Number (PAN) <span>स्थाई खाता संख्या</span></div>
+          <div class="input-cell" id="f2_pan" contenteditable="true" data-placeholder="e.g. ABCDE1234F"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">3. Date of Birth (DD/MM/YYYY) <span>जन्मतिथि (वरिष्ठ नागरिक 60+)</span></div>
+          <div class="input-cell" id="f3_dob" contenteditable="true" data-placeholder="e.g. 15/08/1958"></div>
+        </td>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">4. Previous Year (P.Y.) <span>वित्तीय वर्ष (जिसकी आय है)</span></div>
+          <div class="input-cell" id="f4_py" contenteditable="true" data-placeholder="e.g. 2026-2027"></div>
+        </td>
+        <td colspan="2" style="width: 34%;">
+          <div class="col-label">5. Flat / Door / Block No. <span>मकान / फ्लैट संख्या</span></div>
+          <div class="input-cell" id="f5_flat" contenteditable="true" data-placeholder="e.g. Flat No. 402, Tower B"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">6. Name of Premises <span>भवन / परिसर का नाम</span></div>
+          <div class="input-cell" id="f6_premises" contenteditable="true" data-placeholder="e.g. Shanti Niketan Apts"></div>
+        </td>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">7. Road / Street / Lane <span>सड़क / गली</span></div>
+          <div class="input-cell" id="f7_road" contenteditable="true" data-placeholder="e.g. Mathura Road"></div>
+        </td>
+        <td colspan="2" style="width: 34%;">
+          <div class="col-label">8. Area / Locality <span>क्षेत्र / मोहल्ला</span></div>
+          <div class="input-cell" id="f8_area" contenteditable="true" data-placeholder="e.g. Sector-15A"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">9. Town / City / District <span>शहर / जिला</span></div>
+          <div class="input-cell" id="f9_city" contenteditable="true" data-placeholder="e.g. Faridabad"></div>
+        </td>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">10. State <span>राज्य</span></div>
+          <div class="input-cell" id="f10_state" contenteditable="true" data-placeholder="e.g. Haryana"></div>
+        </td>
+        <td colspan="2" style="width: 34%;">
+          <div class="col-label">11. PIN Code <span>पिन कोड</span></div>
+          <div class="input-cell" id="f11_pin" contenteditable="true" data-placeholder="e.g. 121007"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">12. Email Address <span>ईमेल आईडी</span></div>
+          <div class="input-cell" id="f12_email" contenteditable="true" data-placeholder="e.g. ramesh.sharma@example.com"></div>
+        </td>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">13. Telephone / Mobile No. <span>दूरभाष / मोबाइल संख्या</span></div>
+          <div class="input-cell" id="f13_mobile" contenteditable="true" data-placeholder="e.g. 9811223344"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" style="width: 65%;">
+          <div class="col-label">14. (a) Whether assessed to tax? <span>क्या पहले आयकर निर्धारण हुआ है? (Yes / No)</span></div>
+          <div class="input-cell" id="f14a_assessed" contenteditable="true" data-placeholder="Yes / No"></div>
+        </td>
+        <td colspan="2" style="width: 35%;">
+          <div class="col-label">(b) If yes, latest Assessment Year <span>यदि हाँ, तो अंतिम निर्धारण वर्ष</span></div>
+          <div class="input-cell" id="f14b_ay" contenteditable="true" data-placeholder="e.g. 2025-2026"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">15. Estimated income for which this declaration is made <span>जिस आय हेतु छूट मांगी गई है (अनुमानित राशि)</span></div>
+          <div class="input-cell" id="f15_income" contenteditable="true" data-placeholder="e.g. ₹ 1,20,000/-"></div>
+        </td>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">16. Estimated total income of the P.Y. in which income mentioned in col. 15 to be included <span>कुल अनुमानित आय</span></div>
+          <div class="input-cell" id="f16_tot_income" contenteditable="true" data-placeholder="e.g. ₹ 4,50,000/-"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <div class="col-label">17. Details of Form No. 15H other than this form filed for the previous year, if any: <span>चालू वर्ष में अन्य भरे गए 15H फॉर्म</span></div>
+          <div style="display: flex; gap: 20px; margin-top: 4px;">
+            <div style="flex: 1;">Total No. of Form No. 15H filed: <span class="input-cell" id="f17_num" contenteditable="true" style="display:inline-block; min-width: 60px;">0</span></div>
+            <div style="flex: 1;">Aggregate amount of income: <span class="input-cell" id="f17_amt" contenteditable="true" style="display:inline-block; min-width: 80px;">NIL</span></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          <div class="col-label" style="margin-bottom: 2px;">18. Details of income for which the declaration is filed: <span>जिस आय के संबंध में घोषणा की गई है (FD/RD/PF विवरण)</span></div>
+          <table class="incomes-table">
+            <thead>
+              <tr>
+                <th style="width: 6%;">Sl. No.</th>
+                <th style="width: 34%;">Identification number of relevant investment/account (FD/A/c No)</th>
+                <th style="width: 20%;">Nature of income</th>
+                <th style="width: 20%;">Section under which tax is deductible</th>
+                <th style="width: 20%;">Amount of income (Rs.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><div class="input-cell" id="inc_acc1" contenteditable="true" data-placeholder="e.g. SBI FD A/c 30987654321"></div></td>
+                <td><div class="input-cell" id="inc_nat1" contenteditable="true" data-placeholder="FD Interest"></div></td>
+                <td><div class="input-cell" id="inc_sec1" contenteditable="true" data-placeholder="194A"></div></td>
+                <td><div class="input-cell" id="inc_amt1" contenteditable="true" data-placeholder="80,000/-"></div></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><div class="input-cell" id="inc_acc2" contenteditable="true" data-placeholder="e.g. PNB FD A/c 50123456789"></div></td>
+                <td><div class="input-cell" id="inc_nat2" contenteditable="true" data-placeholder="FD Interest"></div></td>
+                <td><div class="input-cell" id="inc_sec2" contenteditable="true" data-placeholder="194A"></div></td>
+                <td><div class="input-cell" id="inc_amt2" contenteditable="true" data-placeholder="40,000/-"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Verification Section -->
+    <div class="verification-block">
+      <div class="verification-title">Declaration / Verification (सत्यापन)</div>
+      <p>
+        I, <strong><span class="input-cell" id="v_name" contenteditable="true" style="display:inline-block; min-width: 160px; font-weight: 800;">RAMESH PRASAD SHARMA</span></strong> do hereby declare that I am resident in India within the meaning of section 6 of the Income-tax Act, 1961. I also declare that I was of the age of sixty years or more during the previous year in which income referred to in column 15 is to be included for having born on <strong><span class="input-cell" id="v_dob" contenteditable="true" style="display:inline-block; min-width: 90px; font-weight: 800;">15/08/1958</span></strong>. I further declare that the tax on my estimated total income, including the income/incomes referred to in column 15 computed in accordance with the provisions of the Income-tax Act, 1961, for the previous year relevant to the assessment year <strong><span class="input-cell" id="v_ay" contenteditable="true" style="display:inline-block; min-width: 90px; font-weight: 800;">2027-2028</span></strong> will be <strong>nil</strong>.
+      </p>
+      <p style="margin-top: 5px;">
+        *I also declare that to the best of my knowledge and belief, what is stated in this declaration is correct, complete and is truly stated.
+      </p>
+
+      <div class="sign-row">
+        <div class="sign-place-date">
+          Place: <span class="input-cell" id="v_place" contenteditable="true" style="display:inline-block; min-width: 100px;">Faridabad</span><br>
+          Date: <span class="input-cell" id="v_date" contenteditable="true" style="display:inline-block; min-width: 90px;">29/09/2026</span>
+        </div>
+        <div class="sign-box-declarant">
+          <br>
+          Signature of the Declarant (हस्ताक्षर)
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer-note">
+      <span>सरकारी फॉर्म सेवा (Sarkari Forms Seva) | www.sarkari-forms-seva-555.web.app</span>
+      <span>Form 15H | Page 1 of 2</span>
+    </div>
+  </article>
+
+  <!-- =========================================================================
+       PAGE 2: PART II - TO BE FILLED BY THE PERSON RESPONSIBLE FOR PAYING
+       ========================================================================= -->
+  <article class="page-sheet" id="pageSheet2">
+    <div class="form-header-center">
+      <div class="form-title-main">FORM NO. 15H [Part II]</div>
+      <div class="form-sub-desc">
+        [To be filled by the person responsible for paying the income referred to in column 15 of Part I]
+      </div>
+    </div>
+
+    <div class="part-banner">PART II (कटौतीकर्ता / बैंक / ईपीएफओ द्वारा भरा जाएगा)</div>
+
+    <table class="form-grid-table">
+      <tr>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">1. Name of the person responsible for paying <span>भुगतानकर्ता / बैंक / शाखा का नाम</span></div>
+          <div class="input-cell" id="p2_name" contenteditable="true" data-placeholder="e.g. State Bank of India / EPFO Regional Office"></div>
+        </td>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">2. Unique Identification No. (UIN) <span>विशिष्ट पहचान संख्या</span></div>
+          <div class="input-cell" id="p2_uin" contenteditable="true" data-placeholder="e.g. 15H/2026/000984"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">3. Permanent Account Number (PAN) of person paying <span>भुगतानकर्ता का पैन (PAN)</span></div>
+          <div class="input-cell" id="p2_pan" contenteditable="true" data-placeholder="e.g. AAACS1234A"></div>
+        </td>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">4. Tax Deduction and Collection Account Number (TAN) <span>टैन (TAN) संख्या</span></div>
+          <div class="input-cell" id="p2_tan" contenteditable="true" data-placeholder="e.g. RTKS01234D"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">5. Flat / Door / Block No. <span>कार्यालय / शाखा भवन संख्या</span></div>
+          <div class="input-cell" id="p2_flat" contenteditable="true" data-placeholder="e.g. Branch Office, Plot 12"></div>
+        </td>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">6. Name of Premises <span>परिसर का नाम</span></div>
+          <div class="input-cell" id="p2_premises" contenteditable="true" data-placeholder="e.g. SBI Main Market Complex"></div>
+        </td>
+        <td colspan="2" style="width: 34%;">
+          <div class="col-label">7. Road / Street / Lane <span>सड़क / मार्ग</span></div>
+          <div class="input-cell" id="p2_road" contenteditable="true" data-placeholder="e.g. Neelam Bata Road"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">8. Area / Locality <span>क्षेत्र / इलाका</span></div>
+          <div class="input-cell" id="p2_area" contenteditable="true" data-placeholder="e.g. NIT"></div>
+        </td>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">9. Town / City / District <span>शहर / जिला</span></div>
+          <div class="input-cell" id="p2_city" contenteditable="true" data-placeholder="e.g. Faridabad"></div>
+        </td>
+        <td colspan="2" style="width: 34%;">
+          <div class="col-label">10. State <span>राज्य</span></div>
+          <div class="input-cell" id="p2_state" contenteditable="true" data-placeholder="e.g. Haryana"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">11. PIN Code <span>पिन कोड</span></div>
+          <div class="input-cell" id="p2_pin" contenteditable="true" data-placeholder="e.g. 121001"></div>
+        </td>
+        <td colspan="2" style="width: 33%;">
+          <div class="col-label">12. Telephone / Mobile No. <span>फ़ोन नंबर</span></div>
+          <div class="input-cell" id="p2_tel" contenteditable="true" data-placeholder="e.g. 0129-2415566"></div>
+        </td>
+        <td colspan="2" style="width: 34%;">
+          <div class="col-label">13. Email ID <span>आधिकारिक ईमेल</span></div>
+          <div class="input-cell" id="p2_email" contenteditable="true" data-placeholder="e.g. sbi.faridabad@sbi.co.in"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">14. Date on which Declaration is received (DD/MM/YYYY) <span>घोषणा प्राप्ति तिथि</span></div>
+          <div class="input-cell" id="p2_rec_date" contenteditable="true" data-placeholder="e.g. 29/09/2026"></div>
+        </td>
+        <td colspan="3" style="width: 50%;">
+          <div class="col-label">15. Date on which the income has been paid/credited (DD/MM/YYYY) <span>आय भुगतान/जमा तिथि</span></div>
+          <div class="input-cell" id="p2_paid_date" contenteditable="true" data-placeholder="e.g. 30/09/2026"></div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="sign-row" style="margin-top: 30px;">
+      <div class="sign-place-date">
+        Place: <span class="input-cell" id="p2_place" contenteditable="true" style="display:inline-block; min-width: 100px;">Faridabad</span><br>
+        Date: <span class="input-cell" id="p2_date" contenteditable="true" style="display:inline-block; min-width: 90px;">29/09/2026</span>
+      </div>
+      <div class="sign-box-declarant">
+        <br>
+        Signature of the person responsible for paying the income referred to in column 15 of Part I<br>
+        <span style="font-size: 8.5px; color: #475569;">(हस्ताक्षर व बैंक/कार्यालय मुहर)</span>
+      </div>
+    </div>
+
+    <!-- Instructions / Rules Brief -->
+    <div style="margin-top: 35px; border-top: 1px solid #000000; padding-top: 8px; font-size: 8.5px; line-height: 1.45; color: #334155;">
+      <strong>महत्वपूर्ण निर्देश (Instructions for Form 15H):</strong>
+      <ol style="padding-left: 16px; margin-top: 3px;">
+        <li>यह प्रपत्र केवल उन <strong>वरिष्ठ नागरिकों (आयु 60 वर्ष या अधिक)</strong> द्वारा भरा जा सकता है जो भारत में निवासी हैं।</li>
+        <li>फॉर्म 15H की प्रमुख विशेषता यह है कि वित्तीय वर्ष के दौरान कुल अनुमानित कर देयता (Tax Payable) शून्य (Nil) होनी चाहिए, भले ही कुल आय मूल छूट सीमा से अधिक हो।</li>
+        <li>बैंक सावधि जमा (FD), आवर्ती जमा (RD) ब्याज अथवा ईपीएफओ से समयपूर्व पीएफ निकासी पर टीडीएस कटौती से बचने हेतु इसे जमा किया जाता है।</li>
+        <li>धारा 277 के तहत झूठी घोषणा प्रस्तुत करने पर 3 माह से 7 वर्ष तक के सश्रम कारावास तथा जुर्माने का विधिक प्रावधान है।</li>
+      </ol>
+    </div>
+
+    <div class="page-footer-note" style="margin-top: auto;">
+      <span>सरकारी फॉर्म सेवा (Sarkari Forms Seva) | Income Tax Department Rule 29C</span>
+      <span>Form 15H | Page 2 of 2</span>
+    </div>
+  </article>
+
+  <!-- Script for Auto-Fill & PDF -->
+  <script>
+    function fillSeniorSampleData() {
+      document.getElementById('f1_name').textContent = 'RAMESH PRASAD SHARMA';
+      document.getElementById('f2_pan').textContent = 'ABCDE1234F';
+      document.getElementById('f3_dob').textContent = '15/08/1958';
+      document.getElementById('f4_py').textContent = '2026-2027';
+      document.getElementById('f5_flat').textContent = 'Flat No. 402, Block-B';
+      document.getElementById('f6_premises').textContent = 'Shanti Niketan Apartments';
+      document.getElementById('f7_road').textContent = 'Mathura Road';
+      document.getElementById('f8_area').textContent = 'Sector-15A';
+      document.getElementById('f9_city').textContent = 'Faridabad';
+      document.getElementById('f10_state').textContent = 'Haryana';
+      document.getElementById('f11_pin').textContent = '121007';
+      document.getElementById('f12_email').textContent = 'ramesh.sharma58@example.com';
+      document.getElementById('f13_mobile').textContent = '9811223344';
+      document.getElementById('f14a_assessed').textContent = 'Yes';
+      document.getElementById('f14b_ay').textContent = '2025-2026';
+      document.getElementById('f15_income').textContent = '₹ 1,20,000/-';
+      document.getElementById('f16_tot_income').textContent = '₹ 4,80,000/-';
+      document.getElementById('f17_num').textContent = '1';
+      document.getElementById('f17_amt').textContent = '₹ 40,000/-';
+      
+      document.getElementById('inc_acc1').textContent = 'SBI Term Deposit A/c 30987654321';
+      document.getElementById('inc_nat1').textContent = 'Senior Citizen FD Interest';
+      document.getElementById('inc_sec1').textContent = '194A';
+      document.getElementById('inc_amt1').textContent = '80,000/-';
+
+      document.getElementById('inc_acc2').textContent = 'PNB Term Deposit A/c 50123456789';
+      document.getElementById('inc_nat2').textContent = 'FD Interest';
+      document.getElementById('inc_sec2').textContent = '194A';
+      document.getElementById('inc_amt2').textContent = '40,000/-';
+
+      document.getElementById('v_name').textContent = 'RAMESH PRASAD SHARMA';
+      document.getElementById('v_dob').textContent = '15/08/1958';
+      document.getElementById('v_ay').textContent = '2027-2028';
+      document.getElementById('v_place').textContent = 'Faridabad';
+      document.getElementById('v_date').textContent = '29/09/2026';
+
+      // Part II
+      document.getElementById('p2_name').textContent = 'State Bank of India, Sector-15 Branch';
+      document.getElementById('p2_uin').textContent = '15H/2026/000984';
+      document.getElementById('p2_pan').textContent = 'AAACS1234A';
+      document.getElementById('p2_tan').textContent = 'RTKS01234D';
+      document.getElementById('p2_flat').textContent = 'SCO 45-46';
+      document.getElementById('p2_premises').textContent = 'SBI Main Complex';
+      document.getElementById('p2_road').textContent = 'Neelam Bata Road';
+      document.getElementById('p2_area').textContent = 'NIT';
+      document.getElementById('p2_city').textContent = 'Faridabad';
+      document.getElementById('p2_state').textContent = 'Haryana';
+      document.getElementById('p2_pin').textContent = '121001';
+      document.getElementById('p2_tel').textContent = '0129-2415566';
+      document.getElementById('p2_email').textContent = 'sbi.01428@sbi.co.in';
+      document.getElementById('p2_rec_date').textContent = '29/09/2026';
+      document.getElementById('p2_paid_date').textContent = '30/09/2026';
+      document.getElementById('p2_place').textContent = 'Faridabad';
+      document.getElementById('p2_date').textContent = '29/09/2026';
+
+      alert('✅ वरिष्ठ नागरिक नमूना डेटा (Senior Citizen Form 15H) सफलतापूर्वक लोड हो गया है!');
+    }
+
+    function clearForm() {
+      if (!confirm('क्या आप फॉर्म रीसेट करना चाहते हैं?')) return;
+      document.querySelectorAll('.input-cell').forEach(el => {
+        el.textContent = '';
+      });
+    }
+
+    function downloadPdf() {
+      const opt = {
+        margin: [5, 8, 5, 8],
+        filename: 'Income_Tax_Form_15H_Senior_Citizen.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      const element = document.createElement('div');
+      const p1 = document.getElementById('pageSheet1').cloneNode(true);
+      const p2 = document.getElementById('pageSheet2').cloneNode(true);
+      element.appendChild(p1);
+      element.appendChild(p2);
+
+      html2pdf().set(opt).from(element).save().catch(err => {
+        console.error(err);
+        window.print();
+      });
+    }
+  </script>
+  <script src="user-details.js"></script>
+</body>
+</html>

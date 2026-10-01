@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPFO Form 10-C: EPS Withdrawal Benefit & Scheme Certificate (कर्मचारी पेंशन निकासी लाभ व स्कीम प्रमाण-पत्र) | सरकारी फॉर्म सेवा</title>
+  <meta name="description" content="EPFO Form 10-C ऑनलाइन भरें एवं प्रिंट लें। 10 वर्ष से कम सेवा पर कर्मचारी पेंशन अंशदान निकासी (Pension Withdrawal Benefit) अथवा स्कीम सर्टिफिकेट (Scheme Certificate) हेतु आधिकारिक प्रपत्र।">
+  <meta name="keywords" content="epfo form 10c download, epf form 10c pdf fillable, eps withdrawal benefit form 10c, scheme certificate form 10c epfo, uan form 10c">
+  <link rel="canonical" href="https://sarkari-forms-seva-555.web.app/epfo-form-10c.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #e2e8f0;
+      color: #000000;
+      line-height: 1.35;
+      padding-top: 56px;
+      padding-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Fixed Application Toolbar */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      white-space: nowrap;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    .toolbar-badge {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .toolbar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .toolbar-title span {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: #94a3b8;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-sample { background: #3b82f6; color: white; }
+    .btn-sample:hover { background: #2563eb; }
+    .btn-clear { background: #64748b; color: white; }
+    .btn-clear:hover { background: #475569; }
+    .btn-pdf { background: #059669; color: white; }
+    .btn-pdf:hover { background: #047857; }
+    .btn-print { background: #d97706; color: white; }
+    .btn-print:hover { background: #b45309; }
+
+    /* Multi-Sheet Container */
+    .document-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .document-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      padding: 14mm 16mm 14mm 16mm;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .epfo-header {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .epfo-header h1 {
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .epfo-header h2 {
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .epfo-header .scheme-sub {
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .purpose-choice-box {
+      border: 1.5px solid #000;
+      background: #f8fafc;
+      padding: 6px 12px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-around;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .purpose-choice-box label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .fill-line {
+      display: inline-block;
+      border-bottom: 1px dotted #000;
+      min-width: 80px;
+      padding: 0 4px;
+      font-weight: 600;
+      color: #0f172a;
+      outline: none;
+    }
+
+    .fill-line[contenteditable="true"]:empty:before {
+      content: attr(data-placeholder);
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    table.fields-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    table.fields-table td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      vertical-align: middle;
+    }
+
+    table.fields-table td.label-td {
+      width: 38%;
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      margin: 6px 0 10px 0;
+    }
+
+    table.data-table th, table.data-table td {
+      border: 1px solid #000;
+      padding: 5px 6px;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    table.data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+
+    .stamp-receipt-box {
+      border: 1.5px solid #000;
+      padding: 8px 10px;
+      margin-top: 10px;
+      background: #fff;
+    }
+
+    .receipt-header {
+      text-align: center;
+      font-weight: 800;
+      font-size: 12px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+    }
+
+    .revenue-stamp-box {
+      border: 1px dashed #64748b;
+      width: 80px;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #475569;
+      background: #fafafa;
+    }
+
+    .employer-cert-box {
+      border: 1.5px solid #000;
+      padding: 10px;
+      margin-top: 12px;
+      background: #f8fafc;
+    }
+
+    .page-footer {
+      font-size: 9.5px;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #cbd5e1;
+      padding-top: 4px;
+      margin-top: 8px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+      }
+      .app-toolbar {
+        display: none !important;
+      }
+      .document-container {
+        margin: 0;
+        gap: 0;
+      }
+      .document-page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        padding: 10mm 12mm;
+      }
+      table.fields-table td.label-td, table.data-table th {
+        background: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Toolbar -->
+  <header class="app-toolbar">
+    <div class="toolbar-left">
+      <a href="index.html" class="btn-nav-home">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        मुख्य पोर्टल / Home
+      </a>
+      <span class="toolbar-badge">EPFO फॉर्म 10-C</span>
+      <div class="toolbar-title">
+        पेंशन निकासी लाभ व स्कीम सर्टिफिकेट (Form 10-C)
+        <span>Employees' Pension Scheme, 1995 - Claim for Withdrawal Benefit / Scheme Certificate</span>
+      </div>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn-action btn-sample" onclick="fillSampleData()" title="नमूना विवरण भरें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        नमूना भरें
+      </button>
+      <button class="btn-action btn-clear" onclick="clearData()" title="फॉर्म साफ़ करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        साफ़ करें
+      </button>
+      <button class="btn-action btn-pdf" onclick="downloadPDF()" title="PDF डाउनलोड करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        PDF डाउनलोड
+      </button>
+      <button class="btn-action btn-print" onclick="window.print()" title="प्रिंट करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        प्रिंट करें
+      </button>
+    </div>
+  </header>
+
+  <div class="document-container" id="form10cDocument">
+    
+    <!-- PAGE 1: Member Particulars & Purpose -->
+    <main class="document-page">
+      <div>
+        <div class="epfo-header">
+          <h1>EMPLOYEES' PROVIDENT FUND ORGANISATION</h1>
+          <h2>EMPLOYEES' PENSION SCHEME, 1995 - FORM 10-C</h2>
+          <div class="scheme-sub">कर्मचारी पेंशन योजना, 1995 - फॉर्म 10-सी (पैरा 13 और 14 देखें)</div>
+          <div style="font-size: 11px; font-weight: 700; margin-top: 3px;">
+            निकासी लाभ (Withdrawal Benefit) / स्कीम प्रमाण-पत्र (Scheme Certificate) हेतु दावा प्रपत्र
+          </div>
+        </div>
+
+        <div class="purpose-choice-box">
+          <label>
+            <input type="checkbox" id="chk_wb" checked> (क) निकासी लाभ हेतु / For Withdrawal Benefit
+          </label>
+          <label>
+            <input type="checkbox" id="chk_sc"> (ख) स्कीम प्रमाण-पत्र हेतु / For Scheme Certificate
+          </label>
+        </div>
+
+        <table class="fields-table">
+          <tr>
+            <td class="label-td">1. सदस्य का नाम (बड़े अक्षरों में)<br><span style="font-size: 10px; font-weight: normal;">Name of Member (in Block Letters)</span></td>
+            <td><strong class="fill-line" id="f10c_name" contenteditable="true" style="width: 100%;">RAHUL KUMAR SHARMA</strong></td>
+          </tr>
+          <tr>
+            <td class="label-td">2. पिता का नाम (विवाहित महिला के मामले में पति का नाम)<br><span style="font-size: 10px; font-weight: normal;">Father's Name / Husband's Name</span></td>
+            <td><span class="fill-line" id="f10c_father" contenteditable="true" style="width: 100%;">SHIV CHARAN SHARMA</span></td>
+          </tr>
+          <tr>
+            <td class="label-td">3. जन्म तिथि (DD/MM/YYYY)<br><span style="font-size: 10px; font-weight: normal;">Date of Birth</span></td>
+            <td><span class="fill-line" id="f10c_dob" contenteditable="true" style="min-width: 140px;">14/08/1992</span></td>
+          </tr>
+          <tr>
+            <td class="label-td">4. अंतिम प्रतिष्ठान का नाम व पूरा पता<br><span style="font-size: 10px; font-weight: normal;">Name & Full Address of Last Establishment</span></td>
+            <td><span class="fill-line" id="f10c_est_name" contenteditable="true" style="width: 100%;">M/s TechNova Infotech Solutions Pvt Ltd, DLF Cyber City, Gurugram, Haryana - 122002</span></td>
+          </tr>
+          <tr>
+            <td class="label-td">5. प्रतिष्ठान कोड एवं सदस्य खाता संख्या / UAN<br><span style="font-size: 10px; font-weight: normal;">Est. Code & Member ID / UAN</span></td>
+            <td>
+              स्थापना कोड व सदस्य आईडी: <span class="fill-line" id="f10c_mid" contenteditable="true" style="min-width: 160px;">GNGGN12345670000089</span><br>
+              सार्वभौमिक खाता संख्या (UAN): <strong class="fill-line" id="f10c_uan" contenteditable="true" style="min-width: 140px;">100987654321</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="label-td">6. सेवा में कार्यग्रहण की तिथि (DOJ)<br><span style="font-size: 10px; font-weight: normal;">Date of Joining Service</span></td>
+            <td><span class="fill-line" id="f10c_doj" contenteditable="true" style="min-width: 140px;">01/06/2019</span></td>
+          </tr>
+          <tr>
+            <td class="label-td">7. सेवा छोड़ने की तिथि एवं कारण (DOL & Reason)<br><span style="font-size: 10px; font-weight: normal;">Date of Leaving Service & Reason</span></td>
+            <td>
+              तिथि: <span class="fill-line" id="f10c_dol" contenteditable="true" style="min-width: 120px;">31/07/2026</span> &nbsp;|&nbsp;
+              कारण: <span class="fill-line" id="f10c_reason" contenteditable="true" style="min-width: 160px;">त्यागपत्र / Cessation (Resignation)</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="label-td">8. सदस्य का पूरा डाक पता व मोबाइल<br><span style="font-size: 10px; font-weight: normal;">Full Postal Address of Member & Mobile</span></td>
+            <td>
+              <div class="fill-line" id="f10c_address" contenteditable="true" style="width: 100%; min-height: 38px;">
+                मकान संख्या 214, ब्लॉक-बी, ग्रीन फील्ड्स कॉलोनी, फरीदाबाद, हरियाणा - 121010<br>
+                मो. / Mobile: 9876543210 &nbsp;|&nbsp; ईमेल: rahul.sharma@example.com
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Table 9: Family Particulars (For Scheme Certificate) -->
+        <div style="font-size: 11px; font-weight: 700; margin-top: 8px; margin-bottom: 4px;">
+          9. परिवार के सदस्यों का विवरण (यदि स्कीम प्रमाण-पत्र हेतु दावा किया गया हो / If applied for Scheme Certificate):
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width: 6%;">क्र.</th>
+              <th style="width: 38%;">सदस्य का नाम / Name</th>
+              <th style="width: 18%;">जन्म तिथि / DOB</th>
+              <th style="width: 18%;">संबंध / Relation</th>
+              <th style="width: 20%;">अभिभावक (यदि नाबालिग हो)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td contenteditable="true">सीमा शर्मा</td>
+              <td contenteditable="true">20/05/1995</td>
+              <td contenteditable="true">पत्नी (Wife)</td>
+              <td contenteditable="true">--</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td contenteditable="true">आरव शर्मा</td>
+              <td contenteditable="true">12/10/2021</td>
+              <td contenteditable="true">पुत्र (Son)</td>
+              <td contenteditable="true">राहुल कुमार शर्मा (पिता)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="page-footer">
+        <span>EPFO Form 10-C (Revised) - कर्मचारी पेंशन योजना 1995</span>
+        <span>पृष्ठ 1 / 2 (Page 1 of 2)</span>
+      </div>
+    </main>
+
+    <!-- PAGE 2: Bank Details, Advance Receipt & Employer Attestation -->
+    <main class="document-page">
+      <div>
+        <table class="fields-table" style="margin-top: 0;">
+          <tr>
+            <td class="label-td" style="width: 38%;">10. बैंक खाता विवरण (जिसमें राशि अंतरित की जानी है)<br><span style="font-size: 10px; font-weight: normal;">Bank Account Details for Direct Credit</span></td>
+            <td>
+              खाता संख्या / A/c No.: <strong class="fill-line" id="f10c_bank_ac" contenteditable="true" style="min-width: 170px;">30894561234</strong><br>
+              बैंक का नाम / Bank Name: <span class="fill-line" id="f10c_bank_name" contenteditable="true" style="min-width: 200px;">State Bank of India</span><br>
+              शाखा व IFSC कोड / Branch & IFSC: <span class="fill-line" id="f10c_bank_ifsc" contenteditable="true" style="min-width: 200px;">SBIN0001234, Neelam Chowk, NIT Faridabad</span><br>
+              <small style="color: #64748b;">(संलग्नक: मूल रद्द किया गया चेक / Original Cancelled Cheque Leaf Enclosed)</small>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Member Declaration -->
+        <div style="font-size: 11.5px; line-height: 1.5; margin: 12px 0; text-align: justify;">
+          <strong>घोषणा / DECLARATION:</strong><br>
+          मैं प्रमाणित करता हूँ कि ऊपर दी गई जानकारी मेरी सर्वोत्तम जानकारी व विश्वास के अनुसार सत्य है। मैंने किसी अन्य प्रतिष्ठान में कार्यभार ग्रहण नहीं किया है तथा वर्तमान में किसी अन्य पेंशन अंशदान का लाभ नहीं ले रहा हूँ।
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 14px; margin-bottom: 14px;">
+          <div style="font-size: 11.5px;">
+            दिनांक / Date: <span class="fill-line" id="f10c_sign_date" contenteditable="true" style="min-width: 100px;">29/09/2026</span><br>
+            स्थान / Place: <span class="fill-line" id="f10c_sign_place" contenteditable="true" style="min-width: 100px;">फरीदाबाद</span>
+          </div>
+          <div style="text-align: right; font-size: 11.5px;">
+            <br><br>
+            ................................................................................<br>
+            <strong>सदस्य के हस्ताक्षर / बाएँ हाथ का अँगूठा निशान</strong><br>
+            Signature or Left Hand Thumb Impression of Member
+          </div>
+        </div>
+
+        <!-- Advance Stamped Receipt -->
+        <div class="stamp-receipt-box">
+          <div class="receipt-header">
+            अग्रिम रसीद / ADVANCE STAMPED RECEIPT (केवल निकासी लाभ के लिए / For Withdrawal Benefit only)
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 11px; line-height: 1.6; flex: 1; padding-right: 14px;">
+              क्षेत्रीय भविष्य निधि आयुक्त से कर्मचारी पेंशन योजना, 1995 के अंतर्गत देय निकासी लाभ की पूरी राशि मेरे बैंक खाते में प्राप्त करने हेतु अग्रिम रसीद दी जाती है।
+              <br><br>
+              दिनांक / Date: <span class="fill-line" id="f10c_rec_date" contenteditable="true" style="min-width: 90px;">29/09/2026</span>
+            </div>
+            <div class="revenue-stamp-box">
+              ₹ 1.00<br>राजस्व टिकट<br>Revenue<br>Stamp
+            </div>
+          </div>
+        </div>
+
+        <!-- Employer Certification -->
+        <div class="employer-cert-box">
+          <div style="text-align: center; font-weight: 800; font-size: 12px; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 8px;">
+            नियोक्ता का प्रमाण-पत्र / CERTIFICATE BY THE EMPLOYER
+          </div>
+          <div style="font-size: 11px; line-height: 1.55; text-align: justify;">
+            प्रमाणित किया जाता है कि श्री/श्रीमती <strong class="fill-line" id="f10c_cert_name" contenteditable="true">RAHUL KUMAR SHARMA</strong> 
+            हमारे प्रतिष्ठान में दिनांक <span class="fill-line" id="f10c_cert_doj" contenteditable="true">01/06/2019</span> से 
+            <span class="fill-line" id="f10c_cert_dol" contenteditable="true">31/07/2026</span> तक नियोजित थे। इनके द्वारा दी गई जानकारी की जांच हमारे कार्यालय अभिलेखों से कर ली गई है तथा यह पूर्णतः सही पाई गई है।
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 24px; font-size: 11px;">
+            <div>
+              दिनांक / Date: <span class="fill-line" id="f10c_emp_date" contenteditable="true" style="min-width: 90px;">29/09/2026</span><br>
+              स्थान / Place: <span class="fill-line" id="f10c_emp_place" contenteditable="true" style="min-width: 90px;">गुरुग्राम</span>
+            </div>
+            <div style="text-align: right;">
+              <br><br>
+              [हस्ताक्षर एवं मुहर / Signature & Seal]<br>
+              <strong>नियोक्ता / प्राधिकृत हस्ताक्षरकर्ता</strong><br>
+              Authorized Signatory with Establishment Stamp
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span>EPFO Form 10-C (Revised) - कर्मचारी पेंशन योजना 1995</span>
+        <span>पृष्ठ 2 / 2 (Page 2 of 2)</span>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    // Sync Member Name
+    document.getElementById('f10c_name').addEventListener('input', function() {
+      document.getElementById('f10c_cert_name').innerText = this.innerText;
+    });
+
+    function fillSampleData() {
+      document.getElementById('f10c_name').innerText = 'MANISH SHARMA';
+      document.getElementById('f10c_father').innerText = 'RAMESHWAR SHARMA';
+      document.getElementById('f10c_dob').innerText = '15/05/1990';
+      document.getElementById('f10c_est_name').innerText = 'M/s Global Technologies India Pvt Ltd, Udyog Vihar Phase 4, Gurugram, HR';
+      document.getElementById('f10c_mid').innerText = 'GNGGN00456120000045';
+      document.getElementById('f10c_uan').innerText = '101234567890';
+      document.getElementById('f10c_doj').innerText = '10/02/2020';
+      document.getElementById('f10c_dol').innerText = '30/06/2026';
+      document.getElementById('f10c_reason').innerText = 'Resignation / Cessation (व्यक्तिगत कारणों से)';
+      document.getElementById('f10c_address').innerText = 'मकान नं. 302, सेक्टर 14, फरीदाबाद, हरियाणा - 121007 (मो. 9811223344)';
+      document.getElementById('f10c_bank_ac').innerText = '20456123498';
+      document.getElementById('f10c_bank_name').innerText = 'Punjab National Bank';
+      document.getElementById('f10c_bank_ifsc').innerText = 'PUNB0123400, Sector 15 Faridabad';
+      document.getElementById('f10c_sign_date').innerText = '29/09/2026';
+      document.getElementById('f10c_sign_place').innerText = 'फरीदाबाद';
+      document.getElementById('f10c_rec_date').innerText = '29/09/2026';
+      document.getElementById('f10c_cert_name').innerText = 'MANISH SHARMA';
+      document.getElementById('f10c_cert_doj').innerText = '10/02/2020';
+      document.getElementById('f10c_cert_dol').innerText = '30/06/2026';
+      document.getElementById('f10c_emp_date').innerText = '29/09/2026';
+      document.getElementById('f10c_emp_place').innerText = 'गुरुग्राम';
+    }
+
+    function clearData() {
+      if (!confirm('क्या आप सभी भरे हुए विवरण हटाना चाहते हैं?')) return;
+      const editableFields = document.querySelectorAll('[contenteditable="true"]');
+      editableFields.forEach(el => {
+        el.innerText = '';
+      });
+    }
+
+    function downloadPDF() {
+      const element = document.getElementById('form10cDocument');
+      const name = document.getElementById('f10c_name').innerText.trim() || 'Member';
+      const opt = {
+        margin: [6, 6, 6, 6],
+        filename: 'EPFO_Form_10C_' + name.replace(/\s+/g, '_') + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+  <script src="user-details.js"></script>
+</body>
+</html>

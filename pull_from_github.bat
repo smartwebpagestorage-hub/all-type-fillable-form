@@ -4,9 +4,9 @@ echo =======================================================
 echo Pulling latest updates from GitHub...
 echo Repository: https://github.com/smartwebpagestorage-hub/all-type-fillable-form
 echo =======================================================
-set "PATH=C:\Users\hp\MinGit\cmd;C:\Users\hp\MinGit\mingw64\bin;%PATH%"
-cd /d e:\Forms
-git.exe pull origin main
+set "PATH=%PATH%;C:\Users\hp\MinGit\cmd;C:\Users\hp\MinGit\mingw64\bin"
+cd /d "%~dp0"
+git pull origin main
 echo.
 if %errorlevel% equ 0 (
     echo =======================================================

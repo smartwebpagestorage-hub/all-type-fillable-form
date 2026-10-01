@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTO Form 35 (हाइपोथीकेशन / लोन समाप्ति प्रपत्र - Notice of Termination of Hypothecation) | सरकारी फॉर्म सेवा</title>
+  <meta name="description" content="RTO Form 35 ऑनलाइन भरें एवं प्रिंट लें। वाहन ऋण (कार/बाइक लोन) चुकता होने पर आरसी (RC) से बैंक हाइपोथीकेशन हटाने (Loan HPA Cancellation / NOC) हेतु आधिकारिक प्रपत्र।">
+  <meta name="keywords" content="rto form 35 pdf, form 35 hypothecation cancellation, parivahan form 35, car loan noc form 35 rto, bike loan hpa termination form 35">
+  <link rel="canonical" href="https://sarkari-forms-seva-555.web.app/rto-form-35.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #e2e8f0;
+      color: #000000;
+      line-height: 1.4;
+      padding-top: 56px;
+      padding-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Fixed Application Toolbar (No-Print) */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      white-space: nowrap;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    .toolbar-badge {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .toolbar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .toolbar-title span {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: #94a3b8;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-sample { background: #3b82f6; color: white; }
+    .btn-sample:hover { background: #2563eb; }
+    .btn-clear { background: #64748b; color: white; }
+    .btn-clear:hover { background: #475569; }
+    .btn-pdf { background: #059669; color: white; }
+    .btn-pdf:hover { background: #047857; }
+    .btn-print { background: #d97706; color: white; }
+    .btn-print:hover { background: #b45309; }
+
+    /* Page Container */
+    .document-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      padding: 16mm 18mm 16mm 18mm;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 16px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .form-header {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .form-header h1 {
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .form-header .sub-rule {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .form-header h2 {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .form-header .hindi-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .duplicate-notice {
+      font-size: 11px;
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 5px;
+      color: #333;
+    }
+
+    .addressee-section {
+      margin-bottom: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .fill-line {
+      display: inline-block;
+      border-bottom: 1px dotted #000;
+      min-width: 140px;
+      padding: 0 4px;
+      font-weight: 700;
+      color: #0f172a;
+      outline: none;
+    }
+
+    .fill-line[contenteditable="true"]:empty:before {
+      content: attr(data-placeholder);
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .content-body {
+      font-size: 12.5px;
+      line-height: 1.65;
+      text-align: justify;
+      margin-bottom: 14px;
+    }
+
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 12px;
+    }
+
+    .details-table th, .details-table td {
+      border: 1px solid #000;
+      padding: 6px 10px;
+      vertical-align: middle;
+    }
+
+    .details-table th {
+      background: #f8fafc;
+      width: 38%;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .details-table td {
+      font-weight: 600;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    .sig-box {
+      border: 1px dashed #64748b;
+      padding: 12px;
+      border-radius: 4px;
+      text-align: center;
+      background: #f8fafc;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sig-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .sig-meta {
+      font-size: 11px;
+      color: #475569;
+      margin-top: 30px;
+    }
+
+    .office-endorsement {
+      border: 1.5px solid #000;
+      padding: 12px 14px;
+      margin-top: 14px;
+      background: #fff;
+    }
+
+    .office-endorsement h3 {
+      font-size: 12.5px;
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+
+    .endorsement-body {
+      font-size: 11.5px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .endorsement-sig-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 11.5px;
+      margin-top: 16px;
+    }
+
+    .instruction-footer {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 12px;
+      line-height: 1.4;
+      border-top: 1px solid #cbd5e1;
+      padding-top: 6px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+      }
+      .app-toolbar {
+        display: none !important;
+      }
+      .document-page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        min-height: auto;
+        padding: 12mm 14mm;
+      }
+      .sig-box {
+        background: transparent !important;
+        border: 1px dashed #999 !important;
+      }
+      .details-table th {
+        background: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Toolbar -->
+  <header class="app-toolbar">
+    <div class="toolbar-left">
+      <a href="index.html" class="btn-nav-home">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        मुख्य पोर्टल / Home
+      </a>
+      <span class="toolbar-badge">RTO फॉर्म 35</span>
+      <div class="toolbar-title">
+        हाइपोथीकेशन समाप्ति सूचना (Form 35)
+        <span>Termination of Hire-Purchase / Lease / Hypothecation Agreement</span>
+      </div>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn-action btn-sample" onclick="fillSampleData()" title="नमूना विवरण भरें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        नमूना भरें
+      </button>
+      <button class="btn-action btn-clear" onclick="clearData()" title="फॉर्म साफ़ करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        साफ़ करें
+      </button>
+      <button class="btn-action btn-pdf" onclick="downloadPDF()" title="PDF डाउनलोड करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        PDF डाउनलोड
+      </button>
+      <button class="btn-action btn-print" onclick="window.print()" title="प्रिंट करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        प्रिंट करें
+      </button>
+    </div>
+  </header>
+
+  <!-- Document Page (Strict A4 Fit) -->
+  <main class="document-page" id="formContent">
+    <div>
+      <div class="form-header">
+        <h1>FORM 35</h1>
+        <div class="sub-rule">[See Rule 61(1) of Central Motor Vehicles Rules, 1989]</div>
+        <h2>NOTICE OF TERMINATION OF AN AGREEMENT OF HIRE-PURCHASE / LEASE / HYPOTHECATION</h2>
+        <div class="hindi-title">हायर-परचेज / पट्टा (लीज) / दृष्टिबंधक (हाइपोथीकेशन) अनुबंध समाप्ति की सूचना</div>
+        <div class="duplicate-notice">(To be submitted in duplicate to the Registering Authority / दो प्रतियों में प्रस्तुत करें)</div>
+      </div>
+
+      <div class="addressee-section">
+        <strong>सेवा में / To,</strong><br>
+        पंजीकरण प्राधिकारी / The Registering Authority,<br>
+        <span class="fill-line" id="rto_office" contenteditable="true" data-placeholder="उदा. RTO / DTO कार्यालय का नाम एवं शहर">क्षेत्रीय परिवहन कार्यालय, फरीदाबाद, हरियाणा</span>
+      </div>
+
+      <div class="content-body">
+        हम इसके द्वारा सूचित करते हैं कि मोटर वाहन पंजीकरण संख्या 
+        <strong class="fill-line" id="reg_no" contenteditable="true" data-placeholder="HR-51-AB-1234">HR-51-AB-1234</strong> 
+        के संबंध में हमारे बीच निष्पादित किया गया हायर-परचेज / पट्टा / दृष्टिबंधक (Hypothecation) अनुबंध दिनांक 
+        <span class="fill-line" id="agreement_date" contenteditable="true" data-placeholder="DD/MM/YYYY">15/03/2021</span> 
+        को समाप्त (Terminate) हो चुका है। ऋण की संपूर्ण राशि चुकता कर दी गई है।
+        <br><br>
+        अतः अनुरोध है कि उक्त मोटर वाहन के पंजीकरण प्रमाण-पत्र (Certificate of Registration) में दर्ज दृष्टिबंधक प्रविष्टि को रद्द (Cancel) करने की कृपा करें। पंजीकरण प्रमाण-पत्र तथा आवश्यक शुल्क संलग्न है।
+        <div style="font-size: 11px; color: #475569; margin-top: 4px; font-style: italic;">
+          We hereby give notice that the agreement of Hire-Purchase / Lease / Hypothecation entered into between us on the date above has been terminated on 
+          <span class="fill-line" id="termination_date" contenteditable="true" data-placeholder="DD/MM/YYYY">10/09/2026</span>. 
+          It is requested that the note endorsable in the Certificate of Registration regarding the agreement may be cancelled.
+        </div>
+      </div>
+
+      <table class="details-table">
+        <tr>
+          <th>1. मोटर वाहन पंजीकरण संख्या<br><span style="font-size: 10px; font-weight: normal;">Registration Mark of Vehicle</span></th>
+          <td><span class="fill-line" id="tbl_reg_no" contenteditable="true" style="width: 100%;">HR-51-AB-1234</span></td>
+        </tr>
+        <tr>
+          <th>2. वाहन का प्रकार, मेक एवं मॉडल<br><span style="font-size: 10px; font-weight: normal;">Type, Make & Model of Vehicle</span></th>
+          <td><span class="fill-line" id="tbl_make_model" contenteditable="true" style="width: 100%;">Maruti Suzuki Swift Dzire VXI (Light Motor Vehicle - Car)</span></td>
+        </tr>
+        <tr>
+          <th>3. चेसिस संख्या (पूर्ण)<br><span style="font-size: 10px; font-weight: normal;">Chassis Number</span></th>
+          <td><span class="fill-line" id="tbl_chassis" contenteditable="true" style="width: 100%;">MA3FDFB1S00123456</span></td>
+        </tr>
+        <tr>
+          <th>4. इंजन संख्या / मोटर संख्या<br><span style="font-size: 10px; font-weight: normal;">Engine Number / Motor Number</span></th>
+          <td><span class="fill-line" id="tbl_engine" contenteditable="true" style="width: 100%;">K12MN1234567</span></td>
+        </tr>
+        <tr>
+          <th>5. पंजीकृत स्वामी का नाम व पता<br><span style="font-size: 10px; font-weight: normal;">Name & Full Address of Registered Owner</span></th>
+          <td>
+            <div class="fill-line" id="tbl_owner_info" contenteditable="true" style="width: 100%; min-height: 38px;">
+              अमित कुमार पुत्र श्री रमेश कुमार, मकान संख्या 452, सेक्टर 15, फरीदाबाद, हरियाणा - 121007
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>6. फाइनेंसर / बैंक का नाम व पता<br><span style="font-size: 10px; font-weight: normal;">Name & Full Address of Financier / Bank</span></th>
+          <td>
+            <div class="fill-line" id="tbl_bank_info" contenteditable="true" style="width: 100%; min-height: 38px;">
+              भारतीय स्टेट बैंक (State Bank of India), रिटेल एसेट्स शाखा, नीलम चौक, एनआईटी फरीदाबाद, हरियाणा - 121001
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Signatures Grid -->
+      <div class="signature-grid">
+        <div class="sig-box">
+          <div class="sig-title">
+            पंजीकृत स्वामी के हस्ताक्षर / अंगूठे का निशान<br>
+            <span style="font-size: 10.5px; font-weight: normal;">Signature or Thumb Impression of Registered Owner</span>
+          </div>
+          <div class="sig-meta">
+            दिनांक / Date: <span class="fill-line" id="sig_date_owner" contenteditable="true" style="min-width: 90px;">29/09/2026</span>
+          </div>
+        </div>
+
+        <div class="sig-box">
+          <div class="sig-title">
+            फाइनेंसर के प्राधिकृत हस्ताक्षर एवं मुहर<br>
+            <span style="font-size: 10.5px; font-weight: normal;">Signature & Official Seal of the Financier (NOC Issued)</span>
+          </div>
+          <div class="sig-meta">
+            दिनांक / Date: <span class="fill-line" id="sig_date_fin" contenteditable="true" style="min-width: 90px;">29/09/2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Office Endorsement -->
+      <div class="office-endorsement">
+        <h3>कार्यालयीन पृष्ठांकन / OFFICE ENDORSEMENT</h3>
+        <div class="endorsement-body">
+          क्रमांक / Ref. No. <span class="fill-line" id="rto_ref_no" contenteditable="true" style="min-width: 120px;">RTO/FBD/HPA/2026/</span> 
+          दिनांक / Date: <span class="fill-line" id="rto_ref_date" contenteditable="true" style="min-width: 90px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <br><br>
+          मोटर वाहन पंजीकरण संख्या <span class="fill-line" id="rto_endorsed_reg" contenteditable="true" style="min-width: 110px;">HR-51-AB-1234</span> 
+          के संबंध में दृष्टिबंधक अनुबंध की प्रविष्टि को आज दिनांक <span class="fill-line" id="rto_action_date" contenteditable="true" style="min-width: 90px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+          को पंजीकरण प्रमाण-पत्र एवं इस कार्यालय के अभिलेख में रद्द / निरस्त कर दिया गया है।
+          <br>
+          <span style="font-size: 10.5px; color: #475569;">The cancellation of entry of Hypothecation in respect of above vehicle has been effected in the Certificate of Registration and office records.</span>
+        </div>
+
+        <div class="endorsement-sig-row">
+          <div>
+            प्रतिलिपि प्रेषित / Copy forwarded to:<br>
+            1. पंजीकृत स्वामी (Registered Owner)<br>
+            2. फाइनेंसर (Financier)
+          </div>
+          <div style="text-align: right;">
+            <br>
+            [हस्ताक्षर एवं मुहर / Signature & Seal]<br>
+            <strong>पंजीकरण प्राधिकारी / Registering Authority</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="instruction-footer">
+      * संलग्नक (Enclosures): 1. पंजीकरण प्रमाण-पत्र की मूल प्रति (Original RC), 2. बैंक/फाइनेंसर से प्राप्त नो ऑब्जेक्शन सर्टिफिकेट (NOC / Form 35), 3. वैध बीमा प्रमाण-पत्र एवं प्रदूषण प्रमाण-पत्र (PUC), 4. निर्धारित शुल्क रसीद।
+    </div>
+  </main>
+
+  <script>
+    // Sync Registration No automatically
+    document.getElementById('reg_no').addEventListener('input', function() {
+      const val = this.innerText;
+      document.getElementById('tbl_reg_no').innerText = val;
+      document.getElementById('rto_endorsed_reg').innerText = val;
+    });
+
+    function fillSampleData() {
+      document.getElementById('rto_office').innerText = 'क्षेत्रीय परिवहन कार्यालय, फरीदाबाद, हरियाणा';
+      document.getElementById('reg_no').innerText = 'HR-51-CD-5678';
+      document.getElementById('tbl_reg_no').innerText = 'HR-51-CD-5678';
+      document.getElementById('rto_endorsed_reg').innerText = 'HR-51-CD-5678';
+      document.getElementById('agreement_date').innerText = '12/04/2021';
+      document.getElementById('termination_date').innerText = '15/09/2026';
+      document.getElementById('tbl_make_model').innerText = 'Hyundai Creta SX Petrol (LMV)';
+      document.getElementById('tbl_chassis').innerText = 'MALC381CLNM987654';
+      document.getElementById('tbl_engine').innerText = 'G4FLM198765';
+      document.getElementById('tbl_owner_info').innerText = 'विकास शर्मा पुत्र श्री ओ. पी. शर्मा, मकान नं. 112, सेक्टर 21C, फरीदाबाद (हरियाणा)';
+      document.getElementById('tbl_bank_info').innerText = 'HDFC Bank Ltd., Auto Loans Dept., नीलम बाटा रोड, फरीदाबाद, हरियाणा - 121001';
+      document.getElementById('sig_date_owner').innerText = '29/09/2026';
+      document.getElementById('sig_date_fin').innerText = '29/09/2026';
+      document.getElementById('rto_ref_no').innerText = 'RTO/FBD/HPA/2026/8942';
+      document.getElementById('rto_ref_date').innerText = '29/09/2026';
+      document.getElementById('rto_action_date').innerText = '29/09/2026';
+    }
+
+    function clearData() {
+      if (!confirm('क्या आप सभी भरे हुए विवरण हटाना चाहते हैं?')) return;
+      const editableFields = document.querySelectorAll('[contenteditable="true"]');
+      editableFields.forEach(el => {
+        el.innerText = '';
+      });
+    }
+
+    function downloadPDF() {
+      const element = document.getElementById('formContent');
+      const reg = document.getElementById('reg_no').innerText.trim() || 'Vehicle';
+      const opt = {
+        margin: [6, 8, 6, 8],
+        filename: 'RTO_Form_35_Hypothecation_Termination_' + reg + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+  <script src="user-details.js"></script>
+</body>
+</html>

@@ -32,17 +32,21 @@ function doPost(e) {
       sheet.appendRow([
         "S.No",
         "User ID",
+        "User Role (वर्ग)",
         "Full Name (नाम)",
-        "Email Address (ईमेल)",
-        "Mobile Number (मोबाइल)",
+        "Mobile (मोबाइल)",
+        "Email (ईमेल)",
         "Password (पासवर्ड)",
+        "Establishment / Office / Dept",
+        "Estt Code / Employee ID",
+        "Designation (पदनाम)",
         "Registration Date (पंजीकरण समय)",
         "Last Login",
         "Total Logins"
       ]);
       
       // Style header row with Navy Blue background & bold text
-      var headerRange = sheet.getRange(1, 1, 1, 9);
+      var headerRange = sheet.getRange(1, 1, 1, 13);
       headerRange.setBackground("#0284c7");
       headerRange.setFontColor("#ffffff");
       headerRange.setFontWeight("bold");
@@ -55,15 +59,23 @@ function doPost(e) {
     var data = JSON.parse(rawData);
     
     var nextSNo = sheet.getLastRow(); // Since header is row 1
-    
+    var roleLabel = data.userTypeLabel || (data.userType === 'employer' ? 'नियोक्ता / कंपनी' : data.userType === 'epfo_staff' ? 'EPFO स्टाफ' : data.userType === 'govt_staff' ? 'अन्य सरकारी' : 'EPFO सदस्य');
+    var orgName = data.establishmentName || data.officeName || data.departmentName || "";
+    var orgCode = data.establishmentCode || data.employeeId || "";
+    var designation = data.designation || "";
+
     // Append new registered user row
     sheet.appendRow([
       nextSNo,
       data.id || ("USR_" + new Date().getTime()),
+      roleLabel,
       data.name || "",
-      data.email || "",
       "'" + (data.mobile || ""), // apostrophe ensures mobile is saved as text without truncation
+      data.email || "",
       data.password || "",
+      orgName,
+      orgCode,
+      designation,
       data.registeredAt || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       data.lastLoginAt || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       data.totalLogins || 1

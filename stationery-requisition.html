@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- html2pdf.js for multi-page PDF generation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="html2pdf.bundle.min.js"></script>
   
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="portal.css">
@@ -529,6 +529,19 @@
         border: none !important;
         background: transparent !important;
       }
+    
+      /* === UNIVERSAL PRINT BLACK: All text prints full black === */
+      /* Visible content prints solid black while placeholders stay hidden */
+      *:not(input):not(textarea):not(select) { color: #000000 !important; }
+      input, textarea, select { color: #000000 !important; }
+      input::placeholder, textarea::placeholder,
+      input::-webkit-input-placeholder, textarea::-webkit-input-placeholder,
+      input::-moz-placeholder, textarea::-moz-placeholder,
+      input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        opacity: 0 !important;
+      }
     }
   </style>
 </head>
@@ -975,5 +988,6 @@
 
     })();
   </script>
+  <script src="user-details.js"></script>
 </body>
 </html>

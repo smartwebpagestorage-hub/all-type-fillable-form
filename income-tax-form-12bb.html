@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Form 12BB (कर्मचारी निवेश एवं कर छूट घोषणा प्रपत्र - Investment Declaration) | सरकारी फॉर्म सेवा</title>
+  <meta name="description" content="Income Tax Form 12BB ऑनलाइन भरें एवं प्रिंट लें। धारा 192 व नियम 26C के अंतर्गत वेतनभोगी कर्मचारियों हेतु HRA, गृह ऋण ब्याज, 80C, 80D निवेश घोषणा प्रपत्र।">
+  <meta name="keywords" content="form 12bb income tax pdf, form 12bb investment declaration, hra claim form 12bb, 80c 80d declaration form 12bb, salaried tax exemption form 12bb">
+  <link rel="canonical" href="https://sarkari-forms-seva-555.web.app/income-tax-form-12bb.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #e2e8f0;
+      color: #000000;
+      line-height: 1.35;
+      padding-top: 56px;
+      padding-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Fixed Application Toolbar */
+    .app-toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      gap: 10px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      white-space: nowrap;
+    }
+
+    .btn-nav-home:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+
+    .toolbar-badge {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .toolbar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .toolbar-title span {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: #94a3b8;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-sample { background: #3b82f6; color: white; }
+    .btn-sample:hover { background: #2563eb; }
+    .btn-clear { background: #64748b; color: white; }
+    .btn-clear:hover { background: #475569; }
+    .btn-pdf { background: #059669; color: white; }
+    .btn-pdf:hover { background: #047857; }
+    .btn-print { background: #d97706; color: white; }
+    .btn-print:hover { background: #b45309; }
+
+    /* Multi-Sheet Container */
+    .document-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .document-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      padding: 14mm 16mm 14mm 16mm;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .form-header {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .form-header h1 {
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .form-header .sub-rule {
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .form-header h2 {
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-top: 3px;
+      color: #1e293b;
+    }
+
+    .fill-line {
+      display: inline-block;
+      border-bottom: 1px dotted #000;
+      min-width: 80px;
+      padding: 0 4px;
+      font-weight: 600;
+      color: #0f172a;
+      outline: none;
+    }
+
+    .fill-line[contenteditable="true"]:empty:before {
+      content: attr(data-placeholder);
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .emp-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .emp-meta-table td {
+      border: 1px solid #000;
+      padding: 5px 8px;
+    }
+
+    .emp-meta-table td.label-td {
+      background: #f8fafc;
+      font-weight: 700;
+      width: 32%;
+    }
+
+    table.claims-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      margin-bottom: 10px;
+    }
+
+    table.claims-table th, table.claims-table td {
+      border: 1px solid #000;
+      padding: 5px 6px;
+      vertical-align: middle;
+    }
+
+    table.claims-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    table.claims-table td.cat-header {
+      background: #e2e8f0;
+      font-weight: 800;
+      font-size: 11px;
+    }
+
+    .verification-box {
+      border: 1.5px solid #000;
+      padding: 10px;
+      margin-top: 12px;
+      background: #fafafa;
+    }
+
+    .page-footer {
+      font-size: 9.5px;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #cbd5e1;
+      padding-top: 4px;
+      margin-top: 8px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+      }
+      .app-toolbar {
+        display: none !important;
+      }
+      .document-container {
+        margin: 0;
+        gap: 0;
+      }
+      .document-page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        padding: 10mm 12mm;
+      }
+      table.claims-table th, table.claims-table td.cat-header, .emp-meta-table td.label-td {
+        background: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Toolbar -->
+  <header class="app-toolbar">
+    <div class="toolbar-left">
+      <a href="index.html" class="btn-nav-home">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        मुख्य पोर्टल / Home
+      </a>
+      <span class="toolbar-badge">आयकर फॉर्म 12BB</span>
+      <div class="toolbar-title">
+        कर्मचारी निवेश घोषणा (Form 12BB)
+        <span>Statement of claims by employee for tax deduction under section 192 (HRA, 80C, 80D, Home Loan)</span>
+      </div>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn-action btn-sample" onclick="fillSampleData()" title="नमूना विवरण भरें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        नमूना भरें
+      </button>
+      <button class="btn-action btn-clear" onclick="clearData()" title="फॉर्म साफ़ करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        साफ़ करें
+      </button>
+      <button class="btn-action btn-pdf" onclick="downloadPDF()" title="PDF डाउनलोड करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        PDF डाउनलोड
+      </button>
+      <button class="btn-action btn-print" onclick="window.print()" title="प्रिंट करें">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        प्रिंट करें
+      </button>
+    </div>
+  </header>
+
+  <div class="document-container" id="f12bbDocument">
+    
+    <!-- PAGE 1: Employee Meta, HRA, LTA & Home Loan Interest -->
+    <main class="document-page">
+      <div>
+        <div class="form-header">
+          <h1>FORM NO. 12BB</h1>
+          <div class="sub-rule">[See Rule 26C of Income-tax Rules, 1962]</div>
+          <h2>
+            STATEMENT OF CLAIMS BY AN EMPLOYEE FOR DEDUCTION OF TAX UNDER SECTION 192<br>
+            <span style="font-size: 11px; font-weight: 600;">कर्मचारी द्वारा धारा 192 के अंतर्गत कर कटौती दावों का विवरण प्रपत्र (वेतनभोगी आयकर छूट)</span>
+          </h2>
+        </div>
+
+        <table class="emp-meta-table">
+          <tr>
+            <td class="label-td">1. कर्मचारी का नाम / Name of Employee:</td>
+            <td><strong class="fill-line" id="bb_name" contenteditable="true" style="width: 100%;">संजय कुमार गुप्ता (SANJAY KUMAR GUPTA)</strong></td>
+          </tr>
+          <tr>
+            <td class="label-td">2. स्थायी खाता संख्या / Permanent Account Number (PAN):</td>
+            <td><strong class="fill-line" id="bb_pan" contenteditable="true" style="letter-spacing: 1px;">ABCDE1234F</strong></td>
+          </tr>
+          <tr>
+            <td class="label-td">3. कर्मचारी का पूरा पता / Address of Employee:</td>
+            <td><span class="fill-line" id="bb_address" contenteditable="true" style="width: 100%;">मकान नं. 504, टावर 3, ओमेक्स हाइट्स, सेक्टर 86, फरीदाबाद, हरियाणा - 121002</span></td>
+          </tr>
+          <tr>
+            <td class="label-td">4. वित्तीय वर्ष एवं कर निर्धारण वर्ष / Financial Year:</td>
+            <td>
+              वित्तीय वर्ष (F.Y.): <strong class="fill-line" id="bb_fy" contenteditable="true">2026-2027</strong> &nbsp;|&nbsp; 
+              कर निर्धारण वर्ष (A.Y.): <strong class="fill-line" id="bb_ay" contenteditable="true">2027-2028</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="label-td">5. नियोक्ता / संगठन का नाम / Name of Employer:</td>
+            <td><span class="fill-line" id="bb_employer" contenteditable="true" style="width: 100%;">M/s Apex Global Solutions Pvt Ltd, Udyog Vihar, Gurugram</span></td>
+          </tr>
+        </table>
+
+        <div style="font-weight: 800; font-size: 12px; margin-bottom: 6px;">
+          दावे का विवरण / DETAILS OF CLAIMS:
+        </div>
+
+        <table class="claims-table">
+          <thead>
+            <tr>
+              <th style="width: 6%;">क्र.</th>
+              <th style="width: 32%;">दावे की मद / Nature of Claim</th>
+              <th style="width: 22%;">दावा की गई राशि (₹)<br>Amount Claimed</th>
+              <th style="width: 40%;">संलग्न साक्ष्य एवं विवरण<br>Evidence / Particulars Attached</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Category 1: HRA -->
+            <tr>
+              <td colspan="4" class="cat-header">1. मकान किराया भत्ता / House Rent Allowance (Section 10(13A))</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">(i)</td>
+              <td>
+                मकान मालिक को भुगतान किया गया किराया<br>
+                <span style="font-size: 9.5px; color: #475569;">(Rent paid to the landlord)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_rent_amt" contenteditable="true" style="min-width: 100px;">2,40,000.00</strong><br>
+                <small style="color: #64748b;">(₹20,000/- प्रतिमाह)</small>
+              </td>
+              <td>
+                मकान मालिक का नाम: <span class="fill-line" id="bb_landlord_name" contenteditable="true">राजेश कुमार सिंह</span><br>
+                मकान मालिक का पैन: <strong class="fill-line" id="bb_landlord_pan" contenteditable="true">AAAPK9876M</strong><br>
+                पता: <span class="fill-line" id="bb_landlord_addr" contenteditable="true">सेक्टर 86, फरीदाबाद</span><br>
+                <small style="color: #64748b;">(संलग्नक: किराया रसीदें एवं रेंट एग्रीमेंट प्रति)</small>
+              </td>
+            </tr>
+
+            <!-- Category 2: LTC / LTA -->
+            <tr>
+              <td colspan="4" class="cat-header">2. छुट्टी यात्रा रियायत या सहायता / Leave Travel Concession or Assistance (Section 10(5))</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">(ii)</td>
+              <td>
+                स्वीकार्य छुट्टी यात्रा व्यय<br>
+                <span style="font-size: 9.5px; color: #475569;">(Leave Travel Concession / LTA)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_lta_amt" contenteditable="true" style="min-width: 100px;">45,000.00</strong>
+              </td>
+              <td>
+                गंतव्य: <span class="fill-line" id="bb_lta_dest" contenteditable="true">गोवा (Goa)</span><br>
+                संलग्नक: <span class="fill-line" id="bb_lta_proof" contenteditable="true">एयर इंडिया वायुयान टिकट एवं बोर्डिंग पास प्रतियां</span>
+              </td>
+            </tr>
+
+            <!-- Category 3: Home Loan Interest -->
+            <tr>
+              <td colspan="4" class="cat-header">3. ऋण पर ब्याज की कटौती / Deduction of Interest on Borrowing (Section 24 - Housing Loan)</td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">(iii)</td>
+              <td>
+                स्वयं के आवास हेतु गृह ऋण पर देय ब्याज<br>
+                <span style="font-size: 9.5px; color: #475569;">(Interest payable/paid to the lender)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_hloan_amt" contenteditable="true" style="min-width: 100px;">1,85,000.00</strong><br>
+                <small style="color: #64748b;">(अधिकतम सीमा ₹2,00,000/-)</small>
+              </td>
+              <td>
+                ऋणदाता बैंक का नाम: <span class="fill-line" id="bb_lender_name" contenteditable="true">State Bank of India</span><br>
+                ऋणदाता का पैन: <strong class="fill-line" id="bb_lender_pan" contenteditable="true">AAACS8577K</strong><br>
+                ऋण खाता सं.: <span class="fill-line" id="bb_loan_acc" contenteditable="true">38901234567</span><br>
+                <small style="color: #64748b;">(संलग्नक: बैंक द्वारा जारी अनंतिम ब्याज प्रमाण-पत्र)</small>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="page-footer">
+        <span>Income-tax Rules, 1962 - Form 12BB (Statement of Claims under Section 192)</span>
+        <span>पृष्ठ 1 / 2 (Page 1 of 2)</span>
+      </div>
+    </main>
+
+    <!-- PAGE 2: Chapter VI-A Deductions & Verification -->
+    <main class="document-page">
+      <div>
+        <table class="claims-table" style="margin-top: 0;">
+          <thead>
+            <tr>
+              <th colspan="4" class="cat-header" style="text-align: left; font-size: 11.5px;">
+                4. अध्याय VI-A के अंतर्गत कटौतियां / DEDUCTIONS UNDER CHAPTER VI-A
+              </th>
+            </tr>
+            <tr>
+              <th style="width: 6%;">क्र.</th>
+              <th style="width: 32%;">धारा एवं कटौती का प्रकार<br>Section & Nature</th>
+              <th style="width: 22%;">दावा की गई राशि (₹)<br>Amount Claimed</th>
+              <th style="width: 40%;">संलग्न साक्ष्य का विवरण<br>Evidence Particulars Attached</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center;">1</td>
+              <td>
+                <strong>धारा 80C, 80CCC, 80CCD(1)</strong><br>
+                <span style="font-size: 9.5px; color: #475569;">(EPF, PPF, LIC, ELSS, Home Loan Principal, Tuition Fee)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_80c_amt" contenteditable="true" style="min-width: 100px;">1,50,000.00</strong><br>
+                <small style="color: #64748b;">(अधिकतम ₹1,50,000/-)</small>
+              </td>
+              <td>
+                <div contenteditable="true" style="font-size: 10px; line-height: 1.4;">
+                  1. LIC प्रीमियम रसीद (₹42,000)<br>
+                  2. PPF जमा रसीद (₹50,000)<br>
+                  3. गृह ऋण मूलधन प्रमाण-पत्र (₹60,000)
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">2</td>
+              <td>
+                <strong>धारा 80CCD(1B)</strong><br>
+                <span style="font-size: 9.5px; color: #475569;">(National Pension System - अतिरिक्त NPS)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_nps_amt" contenteditable="true" style="min-width: 100px;">50,000.00</strong><br>
+                <small style="color: #64748b;">(अतिरिक्त ₹50,000/-)</small>
+              </td>
+              <td>
+                PRAN No: <span class="fill-line" id="bb_pran" contenteditable="true">110023456789</span><br>
+                <small style="color: #64748b;">(संलग्नक: NSDL NPS अंशदान रसीद)</small>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">3</td>
+              <td>
+                <strong>धारा 80D</strong><br>
+                <span style="font-size: 9.5px; color: #475569;">(स्वास्थ्य बीमा प्रीमियम - Health Insurance)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_80d_amt" contenteditable="true" style="min-width: 100px;">35,000.00</strong>
+              </td>
+              <td>
+                स्वयं व परिवार: ₹20,000/-<br>
+                माता-पिता (वरिष्ठ नागरिक): ₹15,000/-<br>
+                <small style="color: #64748b;">(संलग्नक: 80D मेडिक्लेम प्रीमियम प्रमाण-पत्र)</small>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">4</td>
+              <td>
+                <strong>धारा 80E</strong><br>
+                <span style="font-size: 9.5px; color: #475569;">(उच्च शिक्षा ऋण ब्याज / Education Loan)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_80e_amt" contenteditable="true" style="min-width: 100px;">0.00</strong>
+              </td>
+              <td>
+                बैंक ब्याज प्रमाण-पत्र
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">5</td>
+              <td>
+                <strong>धारा 80G</strong><br>
+                <span style="font-size: 9.5px; color: #475569;">(स्वीकृत राहत कोष में दान / Donations)</span>
+              </td>
+              <td>
+                ₹ <strong class="fill-line" id="bb_80g_amt" contenteditable="true" style="min-width: 100px;">10,000.00</strong>
+              </td>
+              <td>
+                PM National Relief Fund दान रसीद सं. 8941
+              </td>
+            </tr>
+            <tr style="background: #f1f5f9; font-weight: 800;">
+              <td colspan="2" style="text-align: right; padding-right: 8px;">कुल अध्याय VI-A कटौती दावा (Total Chapter VI-A):</td>
+              <td>₹ <span id="bb_ch6_total">2,45,000.00</span></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Verification / Declaration -->
+        <div class="verification-box">
+          <div style="text-align: center; font-weight: 800; font-size: 12px; border-bottom: 1px solid #000; padding-bottom: 4px; margin-bottom: 6px;">
+            सत्यापन / VERIFICATION
+          </div>
+          <div style="font-size: 11.5px; line-height: 1.6; text-align: justify;">
+            मैं, <strong class="fill-line" id="bb_ver_name" contenteditable="true">संजय कुमार गुप्ता</strong>, 
+            पुत्र/पुत्री श्री <span class="fill-line" id="bb_ver_father" contenteditable="true">एम. एल. गुप्ता</span>, 
+            एतद्द्वारा घोषणा करता/करती हूँ कि ऊपर दी गई जानकारी मेरी सर्वोत्तम जानकारी व विश्वास के अनुसार सत्य और पूर्ण है। मैंने जो कटौतियां दावा की हैं, उनके मूल साक्ष्य अपने पास सुरक्षित रखे हैं तथा नियोक्ता एवं आयकर विभाग के समक्ष सत्यापन हेतु उपलब्ध कराने का वचन देता/देती हूँ।
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 24px; font-size: 11.5px;">
+            <div>
+              स्थान / Place: <span class="fill-line" id="bb_place" contenteditable="true" style="min-width: 100px;">फरीदाबाद</span><br>
+              दिनांक / Date: <span class="fill-line" id="bb_date" contenteditable="true" style="min-width: 100px;">29/09/2026</span>
+            </div>
+            <div style="text-align: right;">
+              <br><br>
+              ......................................................................<br>
+              <strong>कर्मचारी के पूर्ण हस्ताक्षर / Full Signature of Employee</strong><br>
+              पदनाम: <span class="fill-line" id="bb_sign_desig" contenteditable="true">वरिष्ठ विश्लेषक (Sr. Analyst)</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 10px; color: #475569; margin-top: 10px; line-height: 1.4;">
+          * नोट: आयकर नियम 26C के अनुसार, यदि वार्षिक किराया ₹1,00,000 से अधिक है, तो मकान मालिक का पैन अनिवार्य है। गृह ऋण ब्याज हेतु वित्तीय संस्थान का ब्याज प्रमाण-पत्र आवश्यक है।
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span>Income-tax Rules, 1962 - Form 12BB (Statement of Claims under Section 192)</span>
+        <span>पृष्ठ 2 / 2 (Page 2 of 2)</span>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    // Sync Employee Name
+    document.getElementById('bb_name').addEventListener('input', function() {
+      document.getElementById('bb_ver_name').innerText = this.innerText;
+    });
+
+    function fillSampleData() {
+      document.getElementById('bb_name').innerText = 'विकास कुमार शर्मा (VIKAS KUMAR SHARMA)';
+      document.getElementById('bb_pan').innerText = 'BNPSK4321R';
+      document.getElementById('bb_address').innerText = 'फ्लैट नं. 402, रॉयल हाइट्स, सेक्टर 14, फरीदाबाद, हरियाणा - 121007';
+      document.getElementById('bb_fy').innerText = '2026-2027';
+      document.getElementById('bb_ay').innerText = '2027-2028';
+      document.getElementById('bb_employer').innerText = 'M/s Infosys BPM Ltd, Cyber City, Gurugram';
+      document.getElementById('bb_rent_amt').innerText = '2,16,000.00';
+      document.getElementById('bb_landlord_name').innerText = 'सुरेश चंद मित्तल';
+      document.getElementById('bb_landlord_pan').innerText = 'ABCPM4567D';
+      document.getElementById('bb_landlord_addr').innerText = 'सेक्टर 14, फरीदाबाद';
+      document.getElementById('bb_lta_amt').innerText = '38,000.00';
+      document.getElementById('bb_lta_dest').innerText = 'मनाली / शिमला (हिमाचल प्रदेश)';
+      document.getElementById('bb_lta_proof').innerText = 'एचआरटीसी वॉल्वो बस टिकट व यात्रा बिल संलग्न';
+      document.getElementById('bb_hloan_amt').innerText = '1,65,000.00';
+      document.getElementById('bb_lender_name').innerText = 'HDFC Bank Ltd';
+      document.getElementById('bb_lender_pan').innerText = 'AAACH2702H';
+      document.getElementById('bb_loan_acc').innerText = '65432198701';
+      document.getElementById('bb_80c_amt').innerText = '1,50,000.00';
+      document.getElementById('bb_nps_amt').innerText = '50,000.00';
+      document.getElementById('bb_pran').innerText = '110098765432';
+      document.getElementById('bb_80d_amt').innerText = '30,000.00';
+      document.getElementById('bb_80e_amt').innerText = '0.00';
+      document.getElementById('bb_80g_amt').innerText = '5,000.00';
+      document.getElementById('bb_ch6_total').innerText = '2,35,000.00';
+      document.getElementById('bb_ver_name').innerText = 'विकास कुमार शर्मा';
+      document.getElementById('bb_ver_father').innerText = 'स्व. ओ. पी. शर्मा';
+      document.getElementById('bb_place').innerText = 'फरीदाबाद';
+      document.getElementById('bb_date').innerText = '29/09/2026';
+      document.getElementById('bb_sign_desig').innerText = 'प्रोजेक्ट मैनेजर (Project Manager)';
+    }
+
+    function clearData() {
+      if (!confirm('क्या आप सभी भरे हुए विवरण हटाना चाहते हैं?')) return;
+      const editableFields = document.querySelectorAll('[contenteditable="true"]');
+      editableFields.forEach(el => {
+        el.innerText = '';
+      });
+    }
+
+    function downloadPDF() {
+      const element = document.getElementById('f12bbDocument');
+      const name = document.getElementById('bb_name').innerText.trim() || 'Employee';
+      const opt = {
+        margin: [6, 6, 6, 6],
+        filename: 'Income_Tax_Form_12BB_' + name.replace(/\s+/g, '_') + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+  <script src="user-details.js"></script>
+</body>
+</html>

@@ -1026,6 +1026,14 @@
     }
 
     @media print {
+    /* Hide all placeholders completely in print */
+    input::placeholder,
+    textarea::placeholder,
+    [contenteditable]::placeholder {
+      color: transparent !important;
+      -webkit-text-fill-color: transparent !important;
+      opacity: 0 !important;
+    }
       @page {
         size: A4 portrait;
         margin: 8mm 10mm 8mm 10mm !important;
@@ -1090,6 +1098,19 @@
         background: #f1f5f9 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+      }
+    
+      /* === UNIVERSAL PRINT BLACK: All text prints full black === */
+      /* Visible content prints solid black while placeholders stay hidden */
+      *:not(input):not(textarea):not(select) { color: #000000 !important; }
+      input, textarea, select { color: #000000 !important; }
+      input::placeholder, textarea::placeholder,
+      input::-webkit-input-placeholder, textarea::-webkit-input-placeholder,
+      input::-moz-placeholder, textarea::-moz-placeholder,
+      input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        opacity: 0 !important;
       }
     }
   </style>
@@ -1183,12 +1204,15 @@
         <span>⚡ नमूना डेटा भरें</span>
       </button>
 
-      <button type="button" class="btn btn-secondary" id="btnClearData">
-        <span>🧹 साफ करें</span>
+      <button type="button" class="btn btn-secondary" id="btnClearData" title="कोरा फॉर्म तैयार करें (Blank Form)">
+        <span>📄 कोरा फॉर्म (Blank Form)</span>
       </button>
 
       <button type="button" class="btn btn-primary" id="btnPrint">
-        <span>🖨️ डायरेक्ट प्रिंट / PDF</span>
+        <span>🖨️ डायरेक्ट प्रिंट</span>
+      </button>
+      <button type="button" class="btn btn-success" id="btnExportPDF">
+        <span>⬇️ डाउनलोड PDF</span>
       </button>
     </div>
   </header>
@@ -1268,7 +1292,7 @@
       </div>
 
       <!-- Recipient Block -->
-      <div class="recipient-block">
+      <div class="recipient-block" contenteditable="true" title="सेवा में / प्राप्तकर्ता का पता बदलें या खाली छोड़ें">
         सेवा में,<br>
         <strong>क्षेत्रीय भविष्य निधि आयुक्त / प्रभारी अधिकारी,</strong><br>
         कर्मचारी भविष्य निधि संगठन (EPFO),<br>
@@ -1389,7 +1413,7 @@
           दिनांक: <span class="sync-date-text">16.09.2026</span>
         </div>
         <div class="signatory-box">
-          भवदीय / संस्थान की ओर से,<br><br><br>
+          <span class="edit-inline" contenteditable="true">भवदीय / संस्थान की ओर से,</span><br><br><br>
           <strong>अधिकृत हस्ताक्षरकर्ता</strong><br>
           नाम व पदनाम: <span class="edit-inline sync-sign-name-input" contenteditable="true">SANJAY MEHTA (MANAGER - HR)</span><br>
           (संस्थान की सील / मुहर)
@@ -1436,7 +1460,7 @@
       </div>
 
       <!-- Recipient Block -->
-      <div class="recipient-block">
+      <div class="recipient-block" contenteditable="true" title="Edit recipient (To) details or leave blank">
         To,<br>
         <strong>The Regional P. F. Commissioner / Officer-in-Charge,</strong><br>
         Employees' Provident Fund Organisation (EPFO),<br>
@@ -1557,7 +1581,7 @@
           Date: <span class="sync-date-text">16.09.2026</span>
         </div>
         <div class="signatory-box">
-          Yours faithfully,<br>
+          <span class="edit-inline" contenteditable="true">Yours faithfully,</span><br>
           For &amp; on behalf of Establishment<br><br>
           <strong>Authorized Signatory</strong><br>
           Name &amp; Designation: <span class="edit-inline sync-sign-name-input" contenteditable="true">SANJAY MEHTA (MANAGER - HR)</span><br>
@@ -2686,7 +2710,7 @@
 
       // 9. Clear Form
       btnClearData.addEventListener('click', () => {
-        if (confirm('क्या आप सभी डेटा साफ करना चाहते हैं? (Clear all fields?)')) {
+        if (confirm('क्या आप फॉर्म को कोरा (Blank) करना चाहते हैं ताकि स्वच्छ खाली प्रिंट निकाला जा सके?')) {
           document.querySelectorAll('.tbl-input').forEach(i => i.value = '');
           document.querySelectorAll('.fill-input').forEach(i => i.value = '');
           syncAllFields();
@@ -2702,5 +2726,8 @@
       syncAllFields();
     });
   </script>
+  <script src="html2pdf.bundle.min.js"></script>
+  <script src="user-details.js"></script>
+  <script src="form-admin-editor.js"></script>
 </body>
 </html>

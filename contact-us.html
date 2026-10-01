@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>संपर्क करें (Contact Us) | सरकारी फॉर्म सेवा</title>
+  <meta name="description" content="सरकारी फॉर्म सेवा पोर्टल से संपर्क करें। किसी भी फॉर्म में सुधार, सुझाव अथवा तकनीकी सहायता हेतु हमें संदेश भेजें।">
+  <link rel="canonical" href="https://sarkari-forms-seva-555.web.app/contact-us.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+  <style>
+    .contact-page-container {
+      max-width: 960px;
+      margin: 36px auto 60px auto;
+      padding: 0 20px;
+    }
+    .contact-grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 28px;
+    }
+    .contact-info-card, .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+    }
+    .contact-info-card h2, .contact-form-card h2 {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin-bottom: 12px;
+    }
+    .contact-meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .contact-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #e0f2fe;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .contact-meta-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 2px;
+    }
+    .contact-meta-text p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .contact-input-group {
+      margin-bottom: 16px;
+    }
+    .contact-input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 6px;
+    }
+    .contact-form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f8fafc;
+      color: var(--text-heading);
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s;
+    }
+    body.dark-mode .contact-form-control {
+      background: #0f172a;
+      border-color: #334155;
+      color: #f8fafc;
+    }
+    .contact-form-control:focus {
+      border-color: var(--brand-blue);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+    .btn-send-message {
+      width: 100%;
+      background: var(--brand-blue);
+      color: #ffffff;
+      border: none;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+    .btn-send-message:hover {
+      background: var(--brand-blue-hover);
+    }
+    .contact-success-msg {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    @media (max-width: 800px) {
+      .contact-grid-row { grid-template-columns: 1fr; }
+      .contact-info-card, .contact-form-card { padding: 22px 18px; }
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4356289331524516">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4356289331524516" crossorigin="anonymous"></script>
+</head>
+<body class="portal-body">
+
+  <header class="portal-navbar">
+    <a href="index.html" class="portal-brand">
+      <img src="image/ashok_stambh.svg" alt="Ashok Stambh Emblem" class="emblem-img">
+      <div class="portal-brand-text">
+        <h1>सरकारी फॉर्म सेवा</h1>
+        <span>एक ही जगह, सभी सरकारी फॉर्म</span>
+      </div>
+    </a>
+
+    <nav class="portal-nav-links">
+      <a href="index.html" class="nav-link">🏠 होम</a>
+      <a href="index.html#formsSection" class="nav-link">📄 सभी फॉर्म</a>
+      <a href="https://omniconvert-niraj.web.app/" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-omni" title="Omni Converter - ऑनलाइन कनवर्टर टूल">⚡ Omni Converter ↗</a>
+      <a href="privacy-policy.html" class="nav-link">🛡️ प्राइवेसी पॉलिसी</a>
+      <a href="terms-and-conditions.html" class="nav-link">📜 नियम व शर्तें</a>
+      <a href="disclaimer.html" class="nav-link">⚠️ डिस्क्लेमर</a>
+      <a href="contact-us.html" class="nav-link active">📞 संपर्क</a>
+    </nav>
+  </header>
+
+  <main class="contact-page-container">
+    <div class="contact-grid-row">
+      
+      <!-- Left Info -->
+      <div class="contact-info-card">
+        <h2>संपर्क सूत्र (Contact Info)</h2>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px;">
+          पोर्टल पर उपलब्ध किसी भी फॉर्म में संशोधन, नए फॉर्म की मांग अथवा तकनीकी सहायता हेतु आप सीधे संपर्क कर सकते हैं।
+        </p>
+
+        <div class="contact-meta-item">
+          <div class="contact-icon-box">👨‍💼</div>
+          <div class="contact-meta-text">
+            <h4>क्यूरेटर एवं प्रशासक (Portal Administrator)</h4>
+            <p>नीरज कुमार (अनुभाग पर्यवेक्षक)</p>
+            <p>क्षेत्रीय कार्यालय, फरीदाबाद (Regional Office, Faridabad)</p>
+          </div>
+        </div>
+
+        <div class="contact-meta-item">
+          <div class="contact-icon-box">📧</div>
+          <div class="contact-meta-text">
+            <h4>ईमेल संपर्क (Official Email)</h4>
+            <p>smart.webpage.storage@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-meta-item">
+          <div class="contact-icon-box">📱</div>
+          <div class="contact-meta-text">
+            <h4>हेल्पलाइन व सपोर्ट (Phone Support)</h4>
+            <p>+91 8700383426</p>
+          </div>
+        </div>
+
+        <div class="contact-meta-item">
+          <div class="contact-icon-box">📍</div>
+          <div class="contact-meta-text">
+            <h4>स्थान (Location)</h4>
+            <p>क्षेत्रीय कार्यालय, फरीदाबाद, हरियाणा, भारत</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Form -->
+      <div class="contact-form-card">
+        <h2>संदेश भेजें (Send a Message)</h2>
+        <div id="contactSuccessMsg" class="contact-success-msg">
+          ✅ धन्यवाद! आपका संदेश सफलता पूर्वक दर्ज कर लिया गया है। हम शीघ्र आपसे संपर्क करेंगे।
+        </div>
+        <form id="contactForm">
+          <div class="contact-input-group">
+            <label for="cName">आपका पूरा नाम (Your Full Name) *</label>
+            <input type="text" id="cName" class="contact-form-control" placeholder="उदा. राहुल शर्मा" required>
+          </div>
+          <div class="contact-input-group">
+            <label for="cEmail">ईमेल पता (Email Address) *</label>
+            <input type="email" id="cEmail" class="contact-form-control" placeholder="उदा. rahul@example.com" required>
+          </div>
+          <div class="contact-input-group">
+            <label for="cSubject">विषय / प्रपत्र का नाम (Subject / Form Name) *</label>
+            <input type="text" id="cSubject" class="contact-form-control" placeholder="उदा. Form 10-D सुझाव अथवा तकनीकी समस्या" required>
+          </div>
+          <div class="contact-input-group">
+            <label for="cMessage">संदेश विवरण (Your Message) *</label>
+            <textarea id="cMessage" rows="4" class="contact-form-control" placeholder="अपना सुझाव या समस्या विस्तार से लिखें..." required></textarea>
+          </div>
+          <button type="submit" class="btn-send-message">संदेश भेजें (Submit Message) →</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-bottom-row" style="max-width: 960px; margin: 0 auto; text-align: center; font-size: 13px; color: var(--text-muted);">
+      <p>© 2026 सरकारी फॉर्म सेवा (Sarkari Forms Seva) | सभी अधिकार सुरक्षित।</p>
+      <div style="margin-top: 8px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="index.html" style="color: var(--brand-blue); text-decoration: none;">होम</a>
+        <a href="privacy-policy.html" style="color: var(--brand-blue); text-decoration: none;">गोपनीयता नीति</a>
+        <a href="terms-and-conditions.html" style="color: var(--brand-blue); text-decoration: none;">नियम व शर्तें</a>
+        <a href="disclaimer.html" style="color: var(--brand-blue); text-decoration: none;">अस्वीकरण</a>
+        <a href="contact-us.html" style="color: var(--brand-blue); text-decoration: none;">संपर्क करें</a>
+        <a href="sitemap.xml" style="color: var(--brand-blue); text-decoration: none;">साइटमैप</a>
+        <a href="admin-users.html" style="color: var(--brand-blue); text-decoration: none;">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const successBox = document.getElementById('contactSuccessMsg');
+      if (successBox) {
+        successBox.style.display = 'block';
+        this.reset();
+        successBox.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -604,6 +604,14 @@
 
     /* Print Specific Rules */
     @media print {
+      /* Hide all placeholders completely when printing */
+      input::placeholder,
+      textarea::placeholder,
+      [contenteditable]::placeholder {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        opacity: 0 !important;
+      }
       @page {
         size: A4 portrait;
         margin: 0mm 8mm 6mm 8mm !important;
@@ -702,6 +710,19 @@
       .fill-input::placeholder {
         color: transparent !important;
       }
+    
+      /* === UNIVERSAL PRINT BLACK: All text prints full black === */
+      /* Visible content prints solid black while placeholders stay hidden */
+      *:not(input):not(textarea):not(select) { color: #000000 !important; }
+      input, textarea, select { color: #000000 !important; }
+      input::placeholder, textarea::placeholder,
+      input::-webkit-input-placeholder, textarea::-webkit-input-placeholder,
+      input::-moz-placeholder, textarea::-moz-placeholder,
+      input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        opacity: 0 !important;
+      }
     }
   </style>
 </head>
@@ -785,9 +806,16 @@
       </button>
 
       <!-- Print Button -->
-      <button type="button" class="btn btn-success" id="btnPrint" title="Print document or save to PDF">
+      <!-- Direct Print Button -->
+      <button type="button" class="btn btn-primary" id="btnPrint" title="Direct Print">
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
-        <span>Print / Save PDF</span>
+        <span>🖨️ डायरेक्ट प्रिंट</span>
+      </button>
+
+      <!-- Save PDF Button -->
+      <button type="button" class="btn btn-success" id="btnSavePdf" title="Save document to PDF">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+        <span>⬇️ डाउनलोड PDF</span>
       </button>
     </div>
   </header>
@@ -1270,7 +1298,57 @@
       const mm = String(today.getMonth() + 1).padStart(2, '0');
       const yyyy = today.getFullYear();
       document.getElementById('metaDate').value = `${dd}.${mm}.${yyyy}`;
+
+      // Check for ?custom_letter_id=
+      const urlParams = new URLSearchParams(window.location.search);
+      const customLetterId = urlParams.get('custom_letter_id');
+      const shouldAutoPrint = urlParams.get('print') === '1';
+
+      if (customLetterId && typeof UserDetailsHub !== 'undefined') {
+        const item = UserDetailsHub.getCustomLetterById(customLetterId);
+        if (item) {
+          if (item.title) document.title = item.title + ' | Sarkari Forms Seva';
+          if (item.officeTitleHindi) {
+            const el = document.getElementById('hdrOfficeHindi');
+            if (el) el.textContent = item.officeTitleHindi;
+          }
+          if (item.officeTitleEnglish) {
+            const el = document.getElementById('hdrOfficeEnglish');
+            if (el) el.textContent = item.officeTitleEnglish;
+          }
+          if (item.officeAddress) {
+            const el = document.getElementById('hdrOfficeAddress');
+            if (el) el.textContent = item.officeAddress;
+          }
+          if (item.refNo) {
+            const el = document.getElementById('metaRefNo');
+            if (el) el.value = item.refNo;
+          }
+          if (item.subject) {
+            const el = document.getElementById('subjectInput');
+            if (el) el.value = item.subject;
+          }
+          if (item.contentHtml) {
+            const el = document.getElementById('docEditor');
+            if (el) el.innerHTML = item.contentHtml;
+          } else if (item.content) {
+            const el = document.getElementById('docEditor');
+            if (el) el.innerHTML = item.content;
+          }
+          if (item.docMode) {
+            applyDocPreset(item.docMode);
+            const sel = document.getElementById('docPresetSelect');
+            if (sel) sel.value = item.docMode;
+          }
+          if (shouldAutoPrint) {
+            setTimeout(() => window.print(), 700);
+          }
+        }
+      }
     });
   </script>
+  <script src="html2pdf.bundle.min.js"></script>
+  <script src="user-details.js"></script>
+  <script src="form-admin-editor.js"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@ echo =======================================================
 echo Pushing All-Type Fillable Forms to GitHub...
 echo Repository: https://github.com/smartwebpagestorage-hub/all-type-fillable-form
 echo =======================================================
-set "PATH=C:\Users\hp\MinGit\cmd;C:\Users\hp\MinGit\mingw64\bin;%PATH%"
-cd /d e:\Forms
-git.exe push -u origin main
+set "PATH=%PATH%;C:\Users\hp\MinGit\cmd;C:\Users\hp\MinGit\mingw64\bin"
+cd /d "%~dp0"
+git push origin main
 echo.
 if %errorlevel% equ 0 (
     echo =======================================================

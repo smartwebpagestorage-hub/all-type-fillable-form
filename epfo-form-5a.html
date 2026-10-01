@@ -556,6 +556,19 @@
         resize: none !important;
         background: transparent !important;
       }
+    
+      /* === UNIVERSAL PRINT BLACK: All text prints full black === */
+      /* Visible content prints solid black while placeholders stay hidden */
+      *:not(input):not(textarea):not(select) { color: #000000 !important; }
+      input, textarea, select { color: #000000 !important; }
+      input::placeholder, textarea::placeholder,
+      input::-webkit-input-placeholder, textarea::-webkit-input-placeholder,
+      input::-moz-placeholder, textarea::-moz-placeholder,
+      input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        opacity: 0 !important;
+      }
     }
   </style>
 </head>
@@ -593,7 +606,10 @@
 
       <!-- Print Button -->
       <button type="button" class="btn btn-print" id="btnPrintDoc">
-        🖨️ डायरेक्ट प्रिंट / PDF (2 पृष्ठ)
+        <span>🖨️ डायरेक्ट प्रिंट</span>
+      </button>
+      <button type="button" class="btn btn-success" id="btnExportPDF" style="background: #16a34a; color: #fff; border: 1px solid #15803d; border-radius: 6px; padding: 6px 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+        <span>⬇️ डाउनलोड PDF</span>
       </button>
     </div>
   </header>
@@ -1122,7 +1138,43 @@
       // Print
       if (btnPrintDoc) {
         btnPrintDoc.addEventListener('click', () => {
-          window.print();
+          if (window.UserDetailsHub && typeof UserDetailsHub.protectFormAction === 'function') {
+            UserDetailsHub.protectFormAction('print', () => window.print());
+          } else {
+            window.print();
+          }
+        });
+      }
+
+      const btnExportPDF = document.getElementById('btnExportPDF');
+      if (btnExportPDF) {
+        btnExportPDF.addEventListener('click', () => {
+          const runExport = () => {
+            const element = document.querySelector('main.sheet-wrapper') || document.body;
+            const opt = {
+              margin: [8, 8, 8, 8],
+              filename: 'EPFO_Form_5A_Ownership_Return.pdf',
+              image: { type: 'jpeg', quality: 0.98 },
+              html2canvas: { scale: 2, useCORS: true, allowTaint: true },
+              jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            try {
+              if (typeof html2pdf !== 'undefined') {
+                html2pdf().set(opt).from(element).save();
+              } else {
+                window.print();
+              }
+            } catch (err) {
+              console.warn('PDF export error, falling back to print:', err);
+              window.print();
+            }
+          };
+
+          if (window.UserDetailsHub && typeof UserDetailsHub.protectFormAction === 'function') {
+            UserDetailsHub.protectFormAction('download', runExport);
+          } else {
+            runExport();
+          }
         });
       }
 
@@ -1195,5 +1247,7 @@
       initAutoGrow();
     });
   </script>
+  <script src="html2pdf.bundle.min.js"></script>
+  <script src="user-details.js"></script>
 </body>
 </html>

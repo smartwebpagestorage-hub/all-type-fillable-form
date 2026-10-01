@@ -1,0 +1,51 @@
+{
+  "name": "sarkari-forms-seva",
+  "version": "1.0.0",
+  "description": "सरकारी फॉर्म सेवा - 100% Offline Standalone Windows Application",
+  "main": "main.js",
+  "author": "Niraj Kumar, Section Supervisor, RO, Faridabad",
+  "license": "Proprietary",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.sarkariforms.seva",
+    "productName": "Sarkari Forms Seva",
+    "copyright": "Copyright © 2026 Niraj Kumar. All Rights Reserved.",
+    "directories": {
+      "output": "../dist"
+    },
+    "files": [
+      "main.js",
+      "security-guard.js",
+      "activation.html",
+      "../**/*",
+      "!../dist/**",
+      "!../desktop/node_modules/**",
+      "!../.git/**",
+      "!../.firebase/**"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "../image/ashok_stambh.svg",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Sarkari Forms Seva",
+      "uninstallDisplayName": "Sarkari Forms Seva (Uninstall)"
+    },
+    "asar": true
+  }
+}

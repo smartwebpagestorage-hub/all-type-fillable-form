@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>सरकारी फॉर्म सेवा - सॉफ्टवेयर एक्टिवेशन</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      user-select: none;
+    }
+
+    .activation-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      max-width: 520px;
+      padding: 36px 32px;
+      text-align: center;
+      position: relative;
+    }
+
+    .emblem-wrap {
+      width: 76px;
+      height: 76px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px auto;
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25);
+    }
+
+    .emblem-wrap img {
+      width: 48px;
+      height: auto;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .sub-text {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .security-badge-box {
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 24px;
+      text-align: left;
+      font-size: 12px;
+      color: #bae6fd;
+    }
+
+    .security-badge-box div {
+      margin-bottom: 4px;
+    }
+
+    .security-badge-box div:last-child {
+      margin-bottom: 0;
+    }
+
+    .machine-code-val {
+      font-family: monospace;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="password"], input[type="text"] {
+      width: 100%;
+      background: #0f172a;
+      border: 1.5px solid #475569;
+      border-radius: 10px;
+      padding: 12px 44px 12px 14px;
+      font-size: 15px;
+      color: #ffffff;
+      outline: none;
+      transition: all 0.2s ease;
+      letter-spacing: 1.5px;
+      font-family: monospace;
+    }
+
+    input:focus {
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+    }
+
+    .btn-toggle-eye {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px;
+    }
+
+    .btn-activate {
+      width: 100%;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-activate:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-activate:active {
+      transform: translateY(0);
+    }
+
+    .feedback-msg {
+      margin-top: 16px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      display: none;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    .feedback-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
+
+    .feedback-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="activation-card">
+    <div class="emblem-wrap">
+      <img src="../image/ashok_stambh.svg" alt="Ashok Stambh Emblem">
+    </div>
+
+    <h2>सरकारी फॉर्म सेवा</h2>
+    <p class="sub-text">100% ऑफलाइन स्टैंडअलोन डेस्कटॉप सॉफ्टवेयर एक्टिवेशन</p>
+
+    <div class="security-badge-box">
+      <div>🔒 <strong>सुरक्षा मोड:</strong> हार्डवेयर बाउंड (Motherboard &amp; Machine Locked)</div>
+      <div>💻 <strong>इस कंप्यूटर का हार्डवेयर आईडी:</strong> <span class="machine-code-val" id="dispMachineId">लोड हो रहा है...</span></div>
+      <div style="color: #94a3b8; font-size: 11px; margin-top: 4px;">यह सॉफ्टवेयर केवल इसी अधिकृत कंप्यूटर पर चलेगा और कॉपी-प्रोटेक्टेड है।</div>
+    </div>
+
+    <form id="activationForm">
+      <div class="form-group">
+        <label for="inputMasterPassword">मास्टर इंस्टॉलेशन पासवर्ड (Master Password) दर्ज करें:</label>
+        <div class="input-wrapper">
+          <input type="password" id="inputMasterPassword" placeholder="पासवर्ड दर्ज करें..." required autofocus autocomplete="off">
+          <button type="button" class="btn-toggle-eye" id="btnToggleEye" title="पासवर्ड देखें">👁️</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-activate" id="btnSubmitActivation">
+        🔓 सॉफ्टवेयर एक्टिवेट करें एवं शुरू करें →
+      </button>
+    </form>
+
+    <div id="feedbackBox" class="feedback-msg"></div>
+
+    <div class="footer-note">
+      निर्माता: <strong>Niraj Kumar, Section Supervisor, RO, Faridabad</strong><br>
+      सॉफ्टवेयर सहायता: smart.webpage.storage@gmail.com | 8700383426
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    const dispMachineId = document.getElementById('dispMachineId');
+    const inputMasterPassword = document.getElementById('inputMasterPassword');
+    const btnToggleEye = document.getElementById('btnToggleEye');
+    const activationForm = document.getElementById('activationForm');
+    const btnSubmitActivation = document.getElementById('btnSubmitActivation');
+    const feedbackBox = document.getElementById('feedbackBox');
+
+    // Fetch Machine Short ID from main process
+    ipcRenderer.invoke('get-machine-id').then(res => {
+      if (res && res.shortId) {
+        dispMachineId.textContent = res.shortId;
+      } else {
+        dispMachineId.textContent = 'HARDWARE-ID-READY';
+      }
+    });
+
+    // Toggle Password Visibility
+    btnToggleEye.addEventListener('click', () => {
+      if (inputMasterPassword.type === 'password') {
+        inputMasterPassword.type = 'text';
+        btnToggleEye.textContent = '🔒';
+      } else {
+        inputMasterPassword.type = 'password';
+        btnToggleEye.textContent = '👁️';
+      }
+    });
+
+    // Submit Activation
+    activationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const pwd = inputMasterPassword.value.trim();
+      if (!pwd) return;
+
+      btnSubmitActivation.disabled = true;
+      btnSubmitActivation.textContent = 'सत्यापित हो रहा है...';
+
+      feedbackBox.style.display = 'none';
+      feedbackBox.className = 'feedback-msg';
+
+      const result = await ipcRenderer.invoke('submit-activation-password', pwd);
+
+      if (result.success) {
+        feedbackBox.className = 'feedback-msg feedback-success';
+        feedbackBox.innerHTML = `✅ <strong>सफल!</strong> ${result.message}<br>सॉफ्टवेयर लोड हो रहा है, कृपया प्रतीक्षा करें...`;
+        feedbackBox.style.display = 'block';
+
+        setTimeout(() => {
+          ipcRenderer.send('launch-main-app');
+        }, 800);
+      } else {
+        btnSubmitActivation.disabled = false;
+        btnSubmitActivation.textContent = '🔓 सॉफ्टवेयर एक्टिवेट करें एवं शुरू करें →';
+        feedbackBox.className = 'feedback-msg feedback-error';
+        feedbackBox.innerHTML = `❌ <strong>त्रुटि:</strong> ${result.message}`;
+        feedbackBox.style.display = 'block';
+        inputMasterPassword.focus();
+        inputMasterPassword.select();
+      }
+    });
+  </script>
+</body>
+</html>

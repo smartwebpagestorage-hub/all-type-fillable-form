@@ -8,3 +8,19 @@ Desktop.ini
 *.log
 .vscode/
 .idea/
+
+# Large files & local state
+GEMINI.md
+scratch/
+scratch_chunk_*.json
+
+# Firebase
+.firebase/
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Binaries
+*.exe
+

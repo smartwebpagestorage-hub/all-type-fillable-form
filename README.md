@@ -4,23 +4,30 @@ An interactive, responsive, and high-fidelity web-based government and statutory
 
 ---
 
-## 🚀 Live Demo & Portal
-Open `index.html` in any modern web browser or access the published GitHub Pages site.
+## 🚀 Live Demo & Production Deployment
+- **Live Website**: [https://sarkari-forms-seva-555.web.app](https://sarkari-forms-seva-555.web.app)
+- **Admin Portal**: [https://sarkari-forms-seva-555.web.app/admin-users.html](https://sarkari-forms-seva-555.web.app/admin-users.html)
+- **Local Preview**: Open `index.html` directly or serve via `python -m http.server 3000`.
 
 ---
 
-## 📋 Available Active Forms
-
-| # | Form Name | Description | Key Features |
-|---|---|---|---|
-| 1 | **[EPFO Composite Claim Form (Death Cases)](epfo-death-claim.html)** | Forms 20 (PF), 10-D (Pension), and 5-IF (EDLI) for deceased members | 4-column layout, 14 data sections, claimant particulars, bank accounts, enclosures |
-| 2 | **[On-Roll & Family Description Certificates](onroll-family-form.html)** | Two separate A4 statutory certificates issued by employer | **Real-time 2-way auto-sync**, dynamic beneficiary rows, auto-expanding dotted blanks |
-| 3 | **[EPFO Form 10-D (Monthly Pension)](epfo-form-10d.html)** | Application for monthly pension under EPS 1995 (Full 6 Sheets) | Complete 6 pages, 12-month wages table, family particulars, descriptive roll |
-| 4 | **[G.A.R-14A: TA Bill for Tour](gar14a-ta-bill.html)** | Tour Traveling Allowance Bill under Rules 66(1) & 90(1)(i) (3 Sheets) | Journey particulars, **dynamic row addition/deletion**, **live total auto-calculation**, Part-B entitlement section |
-| 5 | **[EPFO Composite Claim Form (Aadhar)](epfo-composite-claim-aadhar.html)** | Unified single form combining **Form 19, 10C & 31** (3 Sheets) | 10 withdrawal purpose options, PAN details, Page 1 form + Pages 2-3 official instructions |
-| 6 | **[Children Education Allowance (CEA)](children-education-allowance.html)** | CEA & Hostel Subsidy claim form for Central Govt employees (4 Sheets) | 4 complete pages, expenditure table, dynamic child rows, Bonafide school certificate, self-declaration |
-| 7 | **[Stationery Requisition Form](stationery-requisition.html)** | Office Stationery Requisition Slip / Note Sheet | **Dual Logos (EPFO & Ashok Stambh)**, **Customizable Office Header**, dynamic item rows, **[+] / [-] qty adjusters**, clean 1-sheet print |
-| 8 | **[Blank Letterhead & Official Noting Sheet](epfo-letterhead-noting.html)** | Blank Letterhead & Official Drafting / Note Sheet Tool | **EPFO logo on left, Ashok Stambh on right**, 4 instant presets (Office Note, Official Letter, Office Order, Blank), Rich Text Toolbar, Multi-page support |
+## 🔐 Administrative Dashboard, Form Editor & Video Hub
+Access **[admin-users.html](admin-users.html)** for centralized portal management.
+- **Admin Access**:
+  - Email: `smart.webpage.storage@gmail.com`
+  - Password: `EPFO#Admin123` or Master PIN: `EPFO#121007`
+  - Universal access to all 20 forms without role restrictions.
+- **Tab 1 — पंजीकृत यूज़र्स (User Database & Sync)**:
+  - Role Breakdown Analytics: Live counters for Members, Employers, EPFO Staff, and Central Govt Staff.
+  - Data Exporting: 1-click Export to Excel (CSV), JSON download, and code snippet backup.
+  - Google Sheets Real-Time Sync: Webhook integration forwarding all registrations instantly to Google Sheets with full 13-column schema.
+- **Tab 2 — प्रपत्र सामग्री संपादक (Form Content Manager & Live Visual Editor)**:
+  - Select any of the 20 forms to customize Office Header, Subtitle, Custom Notice, and Signatory Notes.
+  - One-click launch into **Live Visual Editor (`?admin_edit=true`)**: edit any text, title, or table on the form directly in the browser and save with 1 click.
+- **Tab 3 — वीडियो एवं मीडिया ट्यूटोरियल प्रबंधक (Video Hub Manager)**:
+  - Add video tutorials for any existing form or new custom topic.
+  - Add YouTube links (auto-converts to embed player) OR upload local video files (`.mp4`, `.webm`, `.ogg`) saved locally via IndexedDB.
+  - Preview any video directly within the dashboard or view on the main home page.
 
 ---
 

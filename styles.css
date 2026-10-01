@@ -1256,6 +1256,31 @@ body.size-legal .enclosure-list li {
   body.size-legal .enclosure-list li {
     margin-bottom: 1.5px !important;
   }
+
+  /* ===================================================================
+     UNIVERSAL PRINT BLACK — All text hardcoded or user-filled = #000000
+     Overrides any grey/muted color from screen styles.
+     .no-print elements are already display:none so they're unaffected.
+     =================================================================== */
+  * {
+    color: #000000 !important;
+  }
+  /* Hide placeholders completely when printing */
+  input::placeholder,
+  textarea::placeholder,
+  [contenteditable]::placeholder {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    opacity: 0 !important;
+  }
+
+
+  /* Restore white-on-colored backgrounds that must remain visible
+     (section banners, checkbox accents) */
+  .section-header-banner,
+  .section-header-banner * {
+    color: #000000 !important;
+  }
 }
 
 /* ==========================================================================

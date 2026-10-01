@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EPFO Stationery Requisition Office Note | कार्यालय उपयोग हेतु लेखन सामग्री मांग प्रपत्र</title>
-  
+
   <!-- Google Fonts: Inter and Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <!-- html2pdf.js for direct high-quality PDF export -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  
+  <script src="html2pdf.bundle.min.js"></script>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="portal.css">
-  
+
   <!-- Dynamic Print Page Size Style (A4 / Legal) -->
   <style id="dynamicPageSizeStyle">
     @page {
@@ -730,7 +733,17 @@
        Guarantees EXACTLY ONE A4 PAGE output with zero spillover
        ========================================================================== */
     @media print {
-      html, body {
+      /* Hide all placeholders completely in print */
+      input::placeholder,
+      textarea::placeholder,
+      [contenteditable]::placeholder {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        opacity: 0 !important;
+      }
+
+      html,
+      body {
         width: 100% !important;
         height: 100% !important;
         margin: 0 !important;
@@ -928,7 +941,8 @@
         gap: 2px !important;
       }
 
-      .qty-select, .unit-select {
+      .qty-select,
+      .unit-select {
         border: none !important;
         background: transparent !important;
         padding: 0 !important;
@@ -1035,6 +1049,11 @@
         margin-bottom: 1px !important;
         border-bottom: 1px dotted #000000 !important;
       }
+
+      /* === UNIVERSAL PRINT BLACK: All text prints full black === */
+      * {
+        color: #000000 !important;
+      }
     }
 
     /* PDF Exporting Class matching print compact styles */
@@ -1100,6 +1119,7 @@
     }
   </style>
 </head>
+
 <body class="size-a4">
 
   <!-- Floating Application Action Bar (Hidden in Print) -->
@@ -1107,7 +1127,10 @@
     <div class="toolbar-brand">
       <!-- Back to Home Portal Button -->
       <a href="index.html" class="btn-nav-home" title="Go to Home Page Portal">
-        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg>
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+          <path
+            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+        </svg>
         Home
       </a>
     </div>
@@ -1122,26 +1145,42 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-secondary" id="btnSampleData" title="Load the standard 18 items with sample details">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/></svg>
+      <button type="button" class="btn btn-secondary" id="btnSampleData"
+        title="Load the standard 18 items with sample details">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+          <path
+            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
+        </svg>
         <span class="btn-text-full">Fill Sample Data</span>
         <span class="btn-text-short">Sample</span>
       </button>
 
       <button type="button" class="btn btn-outline" id="btnClearForm" title="Clear all items to start fresh">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/></svg>
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+          <path
+            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+        </svg>
         <span class="btn-text-full">Reset Blank Form</span>
         <span class="btn-text-short">Clear</span>
       </button>
 
       <button type="button" class="btn btn-primary" id="btnSavePdf" title="Save document directly as PDF file">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/></svg>
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+          <path
+            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+          <path
+            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+        </svg>
         <span class="btn-text-full">Save as PDF</span>
         <span class="btn-text-short">PDF</span>
       </button>
 
       <button type="button" class="btn btn-success" id="btnPrint" title="Print document or Save via system dialog">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg>
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+          <path
+            d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+        </svg>
         <span class="btn-text-full">Print Note</span>
         <span class="btn-text-short">Print</span>
       </button>
@@ -1156,17 +1195,29 @@
       <div class="screen-control-bar no-print">
         <div class="quick-add-group">
           <span class="quick-add-label">
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
             त्वरित सामग्री जोड़ें (Quick Add):
           </span>
-          <button type="button" class="chip-btn" data-name="A-4 Size Paper (ए-4 साइज पेपर)" data-qty="2" data-unit="Reams">+ A-4 Paper (Ream)</button>
-          <button type="button" class="chip-btn" data-name="Ball Pen Blue (बॉल पेन - नीला)" data-qty="10" data-unit="Nos.">+ Ball Pen (Blue)</button>
-          <button type="button" class="chip-btn" data-name="File Covers (फाइल कवर)" data-qty="50" data-unit="Nos.">+ File Covers (50)</button>
-          <button type="button" class="chip-btn" data-name="Office File (ऑफिस फाइल)" data-qty="20" data-unit="Nos.">+ Office Files (20)</button>
-          <button type="button" class="chip-btn" data-name="Note Sheet Pad (नोट शीट पैड)" data-qty="10" data-unit="Nos.">+ Note Pad (10)</button>
-          <button type="button" class="chip-btn" data-name="Highlighter Pen (हाइलाइटर पेन)" data-qty="4" data-unit="Nos.">+ Highlighter</button>
-          <button type="button" class="chip-btn" data-name="Calculator (कैलकुलेटर)" data-qty="1" data-unit="Nos.">+ Calculator</button>
-          <button type="button" class="chip-btn" data-name="Stamp Pad & Ink (स्टाम्प पैड एवं स्याही)" data-qty="2" data-unit="Set">+ Stamp Pad</button>
+          <button type="button" class="chip-btn" data-name="A-4 Size Paper (ए-4 साइज पेपर)" data-qty="2"
+            data-unit="Reams">+ A-4 Paper (Ream)</button>
+          <button type="button" class="chip-btn" data-name="Ball Pen Blue (बॉल पेन - नीला)" data-qty="10"
+            data-unit="Nos.">+ Ball Pen (Blue)</button>
+          <button type="button" class="chip-btn" data-name="File Covers (फाइल कवर)" data-qty="50" data-unit="Nos.">+
+            File Covers (50)</button>
+          <button type="button" class="chip-btn" data-name="Office File (ऑफिस फाइल)" data-qty="20" data-unit="Nos.">+
+            Office Files (20)</button>
+          <button type="button" class="chip-btn" data-name="Note Sheet Pad (नोट शीट पैड)" data-qty="10"
+            data-unit="Nos.">+ Note Pad (10)</button>
+          <button type="button" class="chip-btn" data-name="Highlighter Pen (हाइलाइटर पेन)" data-qty="4"
+            data-unit="Nos.">+ Highlighter</button>
+          <button type="button" class="chip-btn" data-name="Calculator (कैलकुलेटर)" data-qty="1" data-unit="Nos.">+
+            Calculator</button>
+          <button type="button" class="chip-btn" data-name="Stamp Pad & Ink (स्टाम्प पैड एवं स्याही)" data-qty="2"
+            data-unit="Set">+ Stamp Pad</button>
         </div>
       </div>
 
@@ -1179,13 +1230,17 @@
         <div class="header-center-info">
           <h1 class="org-hi">कर्मचारी भविष्य निधि संगठन</h1>
           <h2 class="org-en">EMPLOYEES' PROVIDENT FUND ORGANISATION</h2>
-          <div class="org-sub-hi">श्रम एवं रोजगार मंत्रालय, भारत सरकार / Ministry of Labour &amp; Employment, Govt. of India</div>
+          <div class="org-sub-hi">श्रम एवं रोजगार मंत्रालय, भारत सरकार / Ministry of Labour &amp; Employment, Govt. of
+            India</div>
           <div class="office-editable-row">
-            <input type="text" id="officeName" class="office-input" list="officePresets" value="क्षेत्रीय कार्यालय, सेक्टर-15, फरीदाबाद / Regional Office, Sector-15, Faridabad" placeholder="Enter Regional Office" title="अपने कार्यालय अनुसार बदलें / Edit Office Name">
+            <input type="text" id="officeName" class="office-input" list="officePresets"
+              value="क्षेत्रीय कार्यालय, सेक्टर-15, फरीदाबाद / Regional Office, Sector-15, Faridabad"
+              placeholder="Enter Regional Office" title="अपने कार्यालय अनुसार बदलें / Edit Office Name">
             <datalist id="officePresets">
               <option value="क्षेत्रीय कार्यालय, सेक्टर-15, फरीदाबाद / Regional Office, Sector-15, Faridabad">
               <option value="क्षेत्रीय कार्यालय, फरीदाबाद / Regional Office, Faridabad">
-              <option value="क्षेत्रीय कार्यालय, भविष्य निधि भवन, आर.के. पुरम, नई दिल्ली / Regional Office, R.K. Puram, New Delhi">
+              <option
+                value="क्षेत्रीय कार्यालय, भविष्य निधि भवन, आर.के. पुरम, नई दिल्ली / Regional Office, R.K. Puram, New Delhi">
               <option value="क्षेत्रीय कार्यालय, पटना / Regional Office, Patna">
               <option value="क्षेत्रीय कार्यालय, बान्द्रा, मुम्बई / Regional Office, Bandra, Mumbai">
               <option value="क्षेत्रीय कार्यालय, हैदराबाद / Regional Office, Hyderabad">
@@ -1222,21 +1277,26 @@
       <div class="subject-section">
         <div class="subject-line">
           <span class="subject-label">विषय / Subject:</span>
-          <input type="text" id="subjectText" class="subject-text-input" value="Requirement of Stationery Items for Office Use / कार्यालय उपयोग हेतु लेखन सामग्री (स्टेशनरी) की आवश्यकता">
+          <input type="text" id="subjectText" class="subject-text-input"
+            value="Requirement of Stationery Items for Office Use / कार्यालय उपयोग हेतु लेखन सामग्री (स्टेशनरी) की आवश्यकता">
         </div>
         <div class="preamble-line">
-          <span>It is requested that the following stationery items may kindly be provided for day-to-day official work in the</span>
+          <span>It is requested that the following stationery items may kindly be provided for day-to-day official work
+            in the</span>
           <select id="sectionNameSelect" class="section-select-input">
-            <option value="Administration Section / प्रशासन अनुभाग" selected>Administration Section / प्रशासन अनुभाग</option>
+            <option value="Administration Section / प्रशासन अनुभाग" selected>Administration Section / प्रशासन अनुभाग
+            </option>
             <option value="Accounts Section / लेखा अनुभाग">Accounts Section / लेखा अनुभाग</option>
             <option value="Pension Section / पेंशन अनुभाग">Pension Section / पेंशन अनुभाग</option>
             <option value="Establishment Section / स्थापना अनुभाग">Establishment Section / स्थापना अनुभाग</option>
             <option value="Caretaking & Store / परिचर्या एवं स्टोर">Caretaking &amp; Store / परिचर्या एवं स्टोर</option>
-            <option value="Legal & Recovery Section / विधि एवं वसूली अनुभाग">Legal &amp; Recovery Section / विधि एवं वसूली अनुभाग</option>
+            <option value="Legal & Recovery Section / विधि एवं वसूली अनुभाग">Legal &amp; Recovery Section / विधि एवं
+              वसूली अनुभाग</option>
             <option value="Computer / IT Cell (कंप्यूटर शाखा)">Computer / IT Cell (कंप्यूटर शाखा)</option>
             <option value="Custom">Other / अन्य अनुभाग (टाइप करें)...</option>
           </select>
-          <input type="text" id="customSectionInput" class="section-select-input" style="display:none; width: 180px;" placeholder="Enter Section Name">
+          <input type="text" id="customSectionInput" class="section-select-input" style="display:none; width: 180px;"
+            placeholder="Enter Section Name">
           <span>:</span>
         </div>
       </div>
@@ -1247,7 +1307,8 @@
           <thead>
             <tr>
               <th class="col-sno">क्र.सं.<br>S. No.</th>
-              <th class="col-item-name">लेखन सामग्री का नाम एवं विवरण<br>Name &amp; Specification of Stationery Item</th>
+              <th class="col-item-name">लेखन सामग्री का नाम एवं विवरण<br>Name &amp; Specification of Stationery Item
+              </th>
               <th class="col-qty">मांग मात्रा<br>Quantity Required (1-10 / Bulk)</th>
               <th class="col-remarks">अभ्युक्ति / प्रयोजन<br>Remarks / Purpose</th>
               <th class="col-action no-print">हटाएं<br>Action</th>
@@ -1262,7 +1323,10 @@
       <!-- Table Actions (Add Item Button & Count Tag) -->
       <div class="table-actions-bar no-print">
         <button type="button" class="btn-add-item" id="btnAddRow">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+          </svg>
           + Add Stationery Item / + नई सामग्री जोड़ें
         </button>
         <span class="items-count-tag" id="itemsCountDisplay">Total Items: 18</span>
@@ -1271,10 +1335,12 @@
       <!-- Closing Standard Official Justification Note -->
       <div class="closing-note-box">
         <p class="closing-note-hi">
-          उपर्युक्त लेखन सामग्री (स्टेशनरी) दैनिक शासकीय कार्यों के सुचारू एवं निर्बाध निष्पादन हेतु आवश्यक है। अतः अनुरोध है कि उपलब्धता के आधार पर उक्त सामग्री शीघ्र जारी/उपलब्ध कराने की कृपा की जाए।
+          उपर्युक्त लेखन सामग्री (स्टेशनरी) दैनिक शासकीय कार्यों के सुचारू एवं निर्बाध निष्पादन हेतु आवश्यक है। अतः
+          अनुरोध है कि उपलब्धता के आधार पर उक्त सामग्री शीघ्र जारी/उपलब्ध कराने की कृपा की जाए।
         </p>
         <p class="closing-note-en">
-          The above stationery items are required for smooth and uninterrupted day-to-day official work. It is, therefore, requested that the same may kindly be issued/provided at the earliest, subject to availability.
+          The above stationery items are required for smooth and uninterrupted day-to-day official work. It is,
+          therefore, requested that the same may kindly be issued/provided at the earliest, subject to availability.
         </p>
       </div>
 
@@ -1285,15 +1351,18 @@
           <div class="sign-space">Signature of Indenting Official / मांगकर्ता के हस्ताक्षर</div>
           <div class="sign-line">
             <label for="indenterName">नाम / Name:</label>
-            <input type="text" id="indenterName" class="sign-input" value="Niraj Kumar" placeholder="Officer / Staff Name">
+            <input type="text" id="indenterName" class="sign-input" value="Niraj Kumar"
+              placeholder="Officer / Staff Name">
           </div>
           <div class="sign-line">
             <label for="indenterDesig">पदनाम / Desig.:</label>
-            <input type="text" id="indenterDesig" class="sign-input" value="Senior Social Security Assistant (SSSA)" placeholder="Designation">
+            <input type="text" id="indenterDesig" class="sign-input" value="Senior Social Security Assistant (SSSA)"
+              placeholder="Designation">
           </div>
           <div class="sign-line">
             <label for="indenterSection">अनुभाग / Section:</label>
-            <input type="text" id="indenterSection" class="sign-input" value="Administration Section" placeholder="Section">
+            <input type="text" id="indenterSection" class="sign-input" value="Administration Section"
+              placeholder="Section">
           </div>
           <div class="sign-line">
             <label for="indenterDate">दिनांक / Date:</label>
@@ -1636,5 +1705,8 @@
         .replace(/'/g, "&#039;");
     }
   </script>
+  <script src="user-details.js"></script>
+  <script src="form-admin-editor.js"></script>
 </body>
+
 </html>
